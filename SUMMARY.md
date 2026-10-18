@@ -4,7 +4,7 @@
 
 ## 第一部分：控制论导论与形式化基础
 * [01. 范式转移：从离散提示词工程到闭环控制论](docs/preface/01-paradigm-shift.md)
-* [02. 合规剧场（Compliance Theater）的形式化证明与物理破局](docs/preface/02-compliance-theater.md)
+* [02. 奖励欺骗（Reward Hacking）的形式化分析与物理破局](docs/preface/02-compliance-theater.md)
 * [03. 工业智能体四大公理与因果不变性形式化定义](docs/preface/03-axioms-and-invariance.md)
 
 ## 第二部分：物理底座与现实锚定模式
@@ -47,3 +47,6 @@
 
 ## 结语
 * [结语：通向自给自足的自主软件工程](docs/epilogue/towards-autonomous-cybernetics.md)
+
+## 附录
+* [附录 A：本书术语与学术界既有术语映射表](docs/terminology-mapping.md)

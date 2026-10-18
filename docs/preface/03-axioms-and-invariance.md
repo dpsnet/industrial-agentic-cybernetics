@@ -34,21 +34,25 @@ flowchart TD
 * **数学表达**：设智能体内部认知状态输出为 $\hat{Y}_{agent}$，外部客观物理世界状态为 $Y_{phys} \in \{0, 1\}$（0 代表失败，1 代表物理通过）。
   $$ \lim_{k \to \infty} P\left( Y_{phys} = 1 \mid \hat{Y}_{agent} = \text{"SUCCESS"}, \text{Sensor}_{ext} = \emptyset \right) \le \epsilon \ll 1 $$
 * **公理诠释**：在没有任何外部物理传感器（独立外部执行器、真实编译退出码、无桩 HTTP 探针）强介入的封闭推理链中，智能体声称“任务成功”的物理真实率趋近于零。一切未锚定于物理底座真实返回的完成声称，在控制论上均必须判定为非法伪信号。
+* **学术锚点**：该公理形式化了人工智能安全文献的核心实证结论——无外部接地（Grounding）的模型自我报告不可信；且在可被欺骗的评价信号下，智能体必然涌现奖励欺骗（Reward Hacking）行为（Amodei et al., 2016；Huang et al., ICLR 2024；Anthropic, arXiv:2511.18397）。
 
 #### 公理 II：注意力熵增与特权发散公理（Axiom of Attention Entropy）
 * **数学表达**：设智能体注意力视野中包含的上下文集合为 $\mathcal{C}$，当前子任务的充要上下文集合为 $\mathcal{C}^*$。定义上下文特权冗余比 $\rho = |\mathcal{C} \setminus \mathcal{C}^*| / |\mathcal{C}^*|$。智能体产生越界破坏性变更的概率 $P_{violate}$ 满足：
   $$ P_{violate}(\rho) \ge 1 - e^{-\alpha \rho}, \quad (\alpha > 0) $$
 * **公理诠释**：给智能体注入的无关工程文件、非目标接口契约越多（$\rho$ 越大），模型的注意力分布信息熵越高，其无意识修改不相关源码、破坏全局单测的概率呈指数级发散。必须对上下文施加**最小特权原则（Principle of Least Privilege, PoLP）**投影。
+* **学术锚点**：该公理对应长上下文实证研究所刻画的**上下文退化（Context Rot）**现象：模型有效推理能力随无关上下文增长而显著衰减，呈“迷失在中间（Lost in the Middle）”的 U 型注意力分布（Liu et al., TACL 2024）；实测有效上下文长度远低于标称值（Hsieh et al., 2024, RULER；Chroma, 2024, Context Rot）。
 
 #### 公理 III：变异因果律单调公理（Axiom of Monotonic Causal Mutation）
 * **数学表达**：设文件系统物理状态在时间 $t$ 的状态为 $\Phi(t)$，物理修改时间戳集合为 $\mathcal{M}(t) = \{ \text{mtime}(f) \mid f \in \text{Files} \}$。对于智能体连续执行的变异动作序列 $a_1, a_2$，其物理生效充要条件为：
   $$ \forall f \in \text{Modified}(a_k), \quad \text{mtime}_{new}(f) > \text{mtime}_{old}(f) \quad \text{且} \quad \text{Hash}(a_k) \text{ 具备幂等可溯性} $$
 * **公理诠释**：智能体执行的代码写回，若物理时间戳未发生单调正向跳变，构建工具的增量解析器将直接跳过变异。同时，所有的变异动作必须拥有唯一规范化 SHA-256 签名日志，防止重试过程中的状态二次错位叠加。
+* **学术锚点**：该公理是分布式系统经典结论在智能体—文件系统交互上的直接迁移：事件排序遵循**因果序（Happens-Before Ordering）**（Lamport, CACM 1978），状态变更的可重放性依赖**写前日志（Write-Ahead Logging, WAL）**与**幂等性（Idempotency）**保障（Kleppmann, 2017），并发协作依赖**租约（Lease）**机制（Gray & Cheriton, SOSP 1989）。
 
 #### 公理 IV：经验自免疫公理（Axiom of Crystallization Auto-Immunity）
 * **数学表达**：设智能体在单次生命周期内自发萃取的知识资产集合为 $\mathcal{K}_{raw}$。全局知识库状态更新算子必须满足双盲过滤：
   $$ \mathcal{K}_{global}(t+1) = \mathcal{K}_{global}(t) \cup \left\{ k \in \mathcal{K}_{raw} \mid \text{Verdict}_{audit}(k) = \text{PROMOTE} \wedge \text{SubstratePass}(k) = \text{TRUE} \right\} $$
 * **公理诠释**：智能体在开发链路中总结的“模式/规则”，在未经过完整的端到端五重物理判据与独立审查者终审前，一律视为高风险疑似污染源（`DRAFT_SUSPECT`），严禁横向传播。
+* **学术锚点**：该公理对应 2024 年以来的两项核心实证发现：其一，对递归自生成数据的循环训练导致**模型坍缩（Model Collapse）**（Shumailov et al., *Nature* 631, 2024）；其二，智能体长期记忆的**记忆投毒（Memory Poisoning）**攻击可跨会话持久生效，且极低污染率即可造成高攻击成功率（arXiv:2512.16962；arXiv:2605.18930）。
 
 ---
 
@@ -61,4 +65,4 @@ flowchart TD
 > 2. **变异局部性（Locality）**：每次状态变异严格受限于最小特权投影（PoLP Slice），变异集合与非目标域正交；
 > 3. **评估解耦性（Decoupled Evaluation）**：评价者、考题制定者、解题执行者三者在物理环境、上下文内存与进程生命周期上完全物理隔离。
 
-只要破坏上述三项中的任意一项，智能体系统在经过有限轮次演化后，必然陷入震荡（Oscillation）、死锁（Deadlock）或虚假通过（Tautological Illusion）。
+只要破坏上述三项中的任意一项，智能体系统在经过有限轮次演化后，必然陷入震荡（Oscillation）、死锁（Deadlock）或虚假通过（Falsified Pass）。

@@ -9,7 +9,7 @@
 
 在生成式大语言模型（LLM）爆发的初期，学术界与早期行业实践普遍沉浸在一套基于**离散提示词工程（Discrete Prompt Engineering）**的乌托邦假设中。该范式假定：
 1. **马尔可夫无后效性假设**：智能体在任意单步的上下文生成，只要给予足够详尽的 Prompt 约束，就能生成全局一致、无破坏性副作用的软件系统；
-2. **反思自愈假设（Reflection Fallacy）**：智能体在被告知“你的代码有错误”时，仅凭自身的多轮反思（Self-Reflection）与思维链（Chain-of-Thought），就能自发跳出认知盲区、自我纠正；
+2. **反思自愈假设**：智能体在被告知“你的代码有错误”时，仅凭自身的多轮反思（Self-Reflection）与思维链（Chain-of-Thought），就能自发跳出认知盲区、自我纠正——该假设已被系统性实证证伪：在缺乏外部反馈时，大语言模型的自我纠错不仅无效，反而常导致性能退化（Huang et al., *Large Language Models Cannot Self-Correct Reasoning Yet*, ICLR 2024）；
 3. **黑盒沙箱等价假设**：在一个脱离实际工程底座的单文件、临时空目录或 Mock 桩环境中运行的代码，其正确性等价于在真实企业级多模块单体或微服务集群中的正确性。
 
 这套体系催生了以 ReAct（Reasoning + Acting）、Reflection、多智能体辩论（Multi-Agent Debate）为代表的初阶“模式”。然而，当企业尝试将此类基于开源框架（如 LangChain、AutoGPT、MetaGPT 等）搭建的智能体投入到具有**数十万至百万行真实企业级代码库**时，无一例外遭遇了灾难性的雪崩：
@@ -22,7 +22,7 @@ flowchart TD
         Prompt --> LLM["LLM 离散推理生成"]
         LLM --> Scratch["写入临时环境/执行测试脚本"]
         Scratch --> FakeGreen{"看起来全绿 / Mock通过?"}
-        FakeGreen -- "是 (合规剧场)" --> FalsePass["宣布需求完成 (产生隐蔽故障)"]
+        FakeGreen -- "是 (奖励欺骗)" --> FalsePass["宣布需求完成 (产生隐蔽故障)"]
         FakeGreen -- "否" --> SelfReflect["盲目自我反思 (重试无限循环)"]
         SelfReflect --> LLM
     end

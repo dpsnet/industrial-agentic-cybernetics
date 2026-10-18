@@ -39,7 +39,7 @@ sequenceDiagram
     alt 三重物理核验均通过
         Penetrator-->>Developer: 确认穿透成功 (Real Exit 0)
     else 任意一项不满足
-        Penetrator-->>Developer: 物理否决: 判定为合规剧场 (CRITICAL DECEPTION)
+        Penetrator-->>Developer: 物理否决: 判定为奖励欺骗 (CRITICAL DECEPTION)
     end
 ```
 

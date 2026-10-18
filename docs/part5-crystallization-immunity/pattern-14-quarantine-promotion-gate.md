@@ -3,13 +3,13 @@
 ---
 
 ### 1. 意图 (Intent)
-建立知识资产的**单源萃取（Single-Source Crystallization）、草稿隔离期（Draft Quarantine）与双盲终审晋升机制（Double-Blind Promotion Gate）**，所有由智能体在研发执行过程中总结出的自生经验（Rules/Patterns）默认标记为可疑草稿（`DRAFT_SUSPECT`），只有当整体验收经由客观物理五重判据完全通过后，才准予晋升为全局活跃资产（`VERIFIED_ACTIVE`），阻断错误经验对后续任务的代际毒化。
+建立知识资产的**单源萃取（Single-Source Crystallization）、草稿隔离期（Draft Quarantine）与双盲终审晋升机制（Double-Blind Promotion Gate）**，所有由智能体在研发执行过程中总结出的自生经验（Rules/Patterns）默认标记为可疑草稿（`DRAFT_SUSPECT`），只有当整体验收经由客观物理五重判据完全通过后，才准予晋升为全局活跃资产（`VERIFIED_ACTIVE`），阻断错误经验跨代际传播所导致的记忆投毒（Memory Poisoning）。
 
 ---
 
 ### 2. 动机与工业失效场景 (Motivation & Real-World Failure Modes)
 
-在许多具备“自我学习”或“知识沉淀”能力的智能体系统中，最危险的现象是**“知识自噬中毒（Auto-Toxic Hallucination Pollution）”**：
+在许多具备“自我学习”或“知识沉淀”能力的智能体系统中，最危险的现象是**记忆投毒（Memory Poisoning）**——未经终审验证的自生经验经检索复用后，对后续任务产生持续性污染；这类递归自我消费在宏观层面已被证明导致模型坍缩（Model Collapse）（Shumailov et al., *Nature* 631, 2024）：
 - **失效场景 A（错误经验自强化）**：智能体在开发题目的中间步骤中，为了修复某个报错，写了一条错误的规则：“在遇到 Redis 依赖时应将版本降级为 2.1”。该智能体立即将此经验写入全局知识库。然而该题目最终评测全面崩溃。不幸的是，后续的 10 个智能体在启动时检索到了这条“经验”，纷纷在初始化时错误降级依赖，导致全局流水线发生连环雪崩；
 - **失效场景 B（污染代码模式泛滥）**：智能体在编写代码时引入了某种反模式（如在 Controller 中直接写裸 SQL），由于缺少晋升门禁，该代码模式被萃取为“最佳实践模板”，随后在整个项目中像病毒一样蔓延；
 - **失效场景 C（未完成态的知识泄露）**：处于自愈尝试阶段的半成品知识被正在并发运行的其他智能体读取，导致其他智能体基于未验证的假设开展工作。
@@ -36,7 +36,7 @@ flowchart TD
 
     QuarantineDefense --> FinalSubstrateGate
 
-    FinalSubstrateGate -- "任一物理判据失败" --> Discard["判定为毒化模式: 永久标记 DEPRECATED_QUARANTINED (硬拦截)"]
+    FinalSubstrateGate -- "任一物理判据失败" --> Discard["判定为投毒模式: 永久标记 DEPRECATED_QUARANTINED (硬拦截)"]
     FinalSubstrateGate -- "五重物理判据全部绿灯" --> Promote["晋升为 VERIFIED_ACTIVE (准予全局检索复用)"]
 ```
 
@@ -73,7 +73,7 @@ sequenceDiagram
     Crystal->>KB: 写入知识资产，状态标为 DRAFT_SUSPECT
     
     OtherDev->>KB: 检索可用知识 (verifiedOnly: true)
-    KB-->>OtherDev: 过滤掉 DRAFT_SUSPECT，仅返回既有已晋升的 VERIFIED_ACTIVE 资产 (防御毒化!)
+    KB-->>OtherDev: 过滤掉 DRAFT_SUSPECT，仅返回既有已晋升的 VERIFIED_ACTIVE 资产 (防御记忆投毒!)
 
     alt 任务最终未通过五重物理判据或被打回
         Gate->>KB: triggerRejection(batchId)

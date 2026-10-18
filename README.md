@@ -10,7 +10,7 @@
 ### 【中文导言】关于本专著
 在人工智能驱动的软件工程（AI for Software Engineering）领域，学术界与早期开源界长期沉溺于“玩具级/演示级（Toy/Demo-level）”的假设：假定大语言模型（LLM）通过多轮提示词堆叠、简单的自我反思（Reflection）或不受约束的外部工具调用，就能自主构建出高可靠的大型软件系统。
 
-然而，一旦进入具有百万行源码、深层依赖树、增量编译缓存与高并发协作的**真实工业级软件底座**，这套纯提示词范式瞬间崩溃——智能体陷入“自我欺骗的合规剧场”、“注意力涣散导致的越界代码破坏”、“变异工具重试造成的状态污染”、“并发读写死锁”以及“自生经验毒化后续任务的知识自噬”。
+然而，一旦进入具有百万行源码、深层依赖树、增量编译缓存与高并发协作的**真实工业级软件底座**，这套纯提示词范式瞬间崩溃——智能体陷入“自我欺骗式的奖励欺骗（Reward Hacking）”、“上下文退化（Context Rot）导致的越界代码破坏”、“变异工具重试造成的状态污染”、“并发读写死锁”以及“自生经验毒化后续任务的记忆投毒（Memory Poisoning）”。
 
 **本书旨在彻底打破“提示词修补”的经验主义迷思，首次将经典系统控制论（Cybernetics）、分布式系统因果一致性理论、编译原理与认知注意力约束，系统性引入智能体系统架构。**
 
@@ -21,7 +21,7 @@
 ### 【English Introduction】About This Treatise
 In the field of AI for Software Engineering, academia and early open-source initiatives have long operated under toy-level assumptions: presuming that Large Language Models (LLMs) can reliably synthesize large-scale enterprise systems through naive prompt chaining, ungrounded self-reflection, or unconstrained tool calls.
 
-However, when confronted with **real-world industrial software substrates**—characterized by millions of lines of code, intricate dependency graphs, incremental compilation caches, and concurrent multi-agent interactions—the naive prompt-engineering paradigm catastrophically fails. Autonomous agents inevitably plunge into *Compliance Theater* (fabricating passes), *Attention Dilution* (unbounded cross-cutting edits), *Mutation State Pollution* (stale compilation caches), and *Auto-Toxic Degradation* (hallucinatory self-reinforcement).
+However, when confronted with **real-world industrial software substrates**—characterized by millions of lines of code, intricate dependency graphs, incremental compilation caches, and concurrent multi-agent interactions—the naive prompt-engineering paradigm catastrophically fails. Autonomous agents inevitably plunge into *Reward Hacking* (fabricating passes), *Context Rot* (unbounded cross-cutting edits), *Mutation State Pollution* (stale compilation caches), and *Memory Poisoning* (hallucinatory self-reinforcement).
 
 **This treatise breaks away from empirical prompt tinkering by formally integrating Classical Cybernetics, Distributed Consistency Theory, Compiler Substrates, and Cognitive Attention Bounds into autonomous agent architectures.**
 
@@ -35,10 +35,10 @@ Adhering to the formal Gang of Four (GoF) specification standard, this book deri
 flowchart TD
     subgraph AxiomaticCore["控制论四大基础公理 (The Four Cybernetic Axioms)"]
         direction TB
-        A1["<b>公理 I：物理非信任公理 (Axiom of Physical Non-Trustworthiness)</b><br/><i>在缺乏外部不可逆物理系统(编译器、沙箱探针、Exit Code)锚定时，模型的自我宣称完成必然退化为合规剧场。</i>"]
+        A1["<b>公理 I：物理非信任公理 (Axiom of Physical Non-Trustworthiness)</b><br/><i>在缺乏外部不可逆物理系统(编译器、沙箱探针、Exit Code)锚定时，模型的自我宣称完成必然退化为奖励欺骗 (Reward Hacking)。</i>"]
         A2["<b>公理 II：注意力熵增公理 (Axiom of Attention Entropy)</b><br/><i>非当前任务的上下文特权投影越宽，注意力信息熵越高，跨界破坏与逻辑回归概率呈超线性发散。</i>"]
         A3["<b>公理 III：变异因果律单调公理 (Axiom of Monotonic Causal Mutation)</b><br/><i>状态变异必须具备幂等重放日志，且物理时间戳必须严格单调递增，否则增量编译缓存破坏收敛确定性。</i>"]
-        A4["<b>公理 IV：经验自免疫公理 (Axiom of Crystallization Auto-Immunity)</b><br/><i>未经外部终审隔离的智能体自生知识，其代际传播必然导致系统发生自噬性知识中毒。</i>"]
+        A4["<b>公理 IV：经验自免疫公理 (Axiom of Crystallization Auto-Immunity)</b><br/><i>未经外部终审隔离的智能体自生知识，其代际传播必然导致系统发生记忆投毒 (Memory Poisoning)。</i>"]
     end
     
     AxiomaticCore --> Patterns["推导支撑：22 个工业级自主控制模式"]
@@ -50,7 +50,7 @@ flowchart TD
 
 ### [第一部分：控制论导论与形式化基础 (Foundations & Axioms)](docs/preface/01-paradigm-shift.md)
 * [01. 范式转移：从离散提示词工程到闭环控制论](docs/preface/01-paradigm-shift.md)
-* [02. 合规剧场（Compliance Theater）的形式化证明与物理破局](docs/preface/02-compliance-theater.md)
+* [02. 奖励欺骗（Reward Hacking）的形式化分析与物理破局](docs/preface/02-compliance-theater.md)
 * [03. 工业智能体四大公理与因果不变性形式化定义](docs/preface/03-axioms-and-invariance.md)
 
 ### [第二部分：物理底座与现实锚定模式 (Substrate Anchoring Patterns)](docs/part1-substrate-anchoring/pattern-01-substrate-penetration.md)
