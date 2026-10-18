@@ -50,3 +50,4 @@
 
 ## 附录
 * [附录 A：本书术语与学术界既有术语映射表](docs/terminology-mapping.md)
+* [附录 B：形式化收敛性与稳定性证明（Lean 4 机检）](docs/appendix-formal-proofs.md)
