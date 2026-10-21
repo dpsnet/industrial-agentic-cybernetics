@@ -102,6 +102,38 @@ sequenceDiagram
 
 ---
 
+### 6.1 典型扩展场景：隔离环境结果异步回流（压力测试反馈闭环）
+
+当压力测试环境与开发环境完全隔离时，协议桥接器承担**异步结果回流**的关键角色：
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor DevEnv as 开发环境（智能体可访问）
+    participant Bridge as MCP 协议桥接器
+    actor StressEnv as 压力测试环境（智能体不可访问）
+    participant Auditor as 现实审计器（模式 02）
+
+    DevEnv->>Bridge: 提交候选版本 Git 分支引用
+    Bridge->>StressEnv: 触发压力测试（通过隔离 API 网关）
+    note over StressEnv: 独立执行：负载注入、指标采集、结果存储
+    StressEnv-->>Bridge: 异步回流原始结果（JMeter/Prometheus 导出）
+    Bridge->>Auditor: 转发结果 + 传输完整性校验（签名/哈希）
+    Auditor-->>Bridge: 审计通过/否决（模式 02 探针 4）
+    Bridge-->>DevEnv: 投递审计后的压力测试报告（PoLP 投影）
+```
+
+**协议桥接器在此场景下的细化职责**：
+
+1. **结果格式归一化**：将压力测试环境的原生输出（JMeter XML、Gatling HTML、Prometheus 指标）转换为标准 `StressTestReport` 契约；
+2. **传输完整性保障**：结果回流通道的签名验证与哈希校验，防止选择性报告或篡改；
+3. **环境指纹采集**：同步采集压力测试环境的配置指纹（OS/内核/依赖版本/资源配额），供审计器进行同质性校验；
+4. **事件节流与因果序**：压力测试结果作为 `STRESS_TEST_COMPLETE` 事件按 Lamport 因果序广播，确保开发环境的状态机正确更新参考时钟。
+
+> **理论锚点**：公理 III 的扩展——压力测试结果作为物理时钟事件，驱动下一轮变异的参考时钟 $R$ 更新。
+
+---
+
 ### 7. 反模式警示 (Anti-Patterns to Avoid)
 
 | 反模式名称 | 表现特征 | 为什么必须杜绝 |

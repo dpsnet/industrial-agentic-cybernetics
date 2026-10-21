@@ -137,3 +137,119 @@ class HiddenOracleEvaluator {
   }
 }
 ```
+
+---
+
+### 9. 隔离环境扩展：压力测试隐藏 Oracle（Stress-Test Hidden Oracle）
+
+当压力测试环境与开发环境完全隔离时，模式 18 扩展为**双隐藏 Oracle 架构**：
+
+```mermaid
+flowchart TD
+    subgraph DevVisible["智能体可见空间（开发环境）"]
+        Agent["智能体执行上下文"]
+        PublicBrief["公开发布的任务需求"]
+        TargetRepo["可变业务源码目录"]
+    end
+
+    subgraph HiddenOracle1["隐藏 Oracle #1：功能测试沙箱"]
+        FuncTests["功能测试集（单元/集成）"]
+        FuncProbes["功能探针（HTTP/Exit 0）"]
+    end
+
+    subgraph HiddenOracle2["隐藏 Oracle #2：压力测试沙箱（隔离环境）"]
+        StressTests["压力测试配置（负载模型/SLA 阈值）"]
+        StressEnv["压力测试执行环境（独立基础设施）"]
+        StressMetrics["原始指标采集（Prometheus/JMeter）"]
+    end
+
+    subgraph AuditChannel["独立审计通道（模式 02 探针 4）"]
+        Auditor["现实审计器"]
+        IntegrityCheck["传输完整性校验"]
+        HomogeneityCheck["环境同质性校验"]
+    end
+
+    DevVisible -- "Git 提交" --> HiddenOracle1
+    DevVisible -- "Git 提交" --> HiddenOracle2
+    HiddenOracle1 -- "功能测试结果" --> AuditChannel
+    HiddenOracle2 -- "压力测试结果（异步回流）" --> AuditChannel
+    AuditChannel -- "审计通过/否决" --> Verdict["最终物理战报"]
+```
+
+#### 9.1 压力测试隐藏 Oracle 的实现规约
+
+```typescript
+interface StressTestOracle {
+  // 负载模型（对智能体隐藏）
+  loadProfile: {
+    qpsGradient: number[];        // QPS 梯度 [100, 500, 1000, 5000]
+    durationPerStep: number;      // 每档持续时间（秒）
+    payloadTemplates: string[];   // 请求负载模板（含边界值）
+  };
+
+  // SLA 阈值（对智能体隐藏）
+  slaThresholds: {
+    p99LatencyMs: number;         // P99 延迟上限
+    errorRateMax: number;         // 错误率上限
+    saturationPoint: number;      // 饱和点标定
+  };
+
+  // 环境指纹（用于同质性校验）
+  environmentFingerprint: {
+    osVersion: string;
+    kernelVersion: string;
+    dependencyVersions: Record<string, string>;
+    resourceQuota: { cpu: string; memory: string };
+  };
+}
+
+class IsolatedStressTestEvaluator {
+  async evaluateStressTest(
+    agentBranch: string,
+    oracle: StressTestOracle
+  ): Promise<StressTestResult> {
+    // 1. 在隔离环境部署候选版本
+    const deployment = await deployToIsolatedEnv(agentBranch, {
+      environmentFingerprint: oracle.environmentFingerprint,
+      networkIsolation: true,  // 与开发环境物理隔离
+    });
+
+    // 2. 执行压力测试（独立执行器，非智能体控制）
+    const stressResult = await runIsolatedStressTest(deployment, {
+      loadProfile: oracle.loadProfile,
+      durationPerStep: oracle.durationPerStep,
+    });
+
+    // 3. 采集原始指标（Prometheus/JMeter 原生导出）
+    const rawMetrics = await exportRawMetrics(stressResult);
+
+    // 4. 生成环境指纹报告
+    const envFingerprint = await captureEnvironmentFingerprint(deployment);
+
+    // 5. 通过协议桥接器异步回流（模式 12）
+    return {
+      passed: this.checkSLA(rawMetrics, oracle.slaThresholds),
+      rawMetrics: rawMetrics,           // 原始指标，非智能体转述
+      environmentFingerprint: envFingerprint,
+      integrityHash: computeHash(rawMetrics),  // 传输完整性校验
+    };
+  }
+}
+```
+
+#### 9.2 关键实现约束
+
+| 约束 | 实现方式 |
+|:---|:---|
+| **负载模型隐藏** | 压力测试配置存储于隔离环境，智能体仅知"将进行压力测试"，不知具体 QPS 梯度、负载模板、SLA 阈值 |
+| **结果异步回流** | 压力测试结果通过协议桥接器（模式 12）异步回流，非实时同步 |
+| **传输完整性** | 结果附 SHA-256 哈希，审计器（模式 02 探针 4）验证完整性后方可采信 |
+| **环境同质性** | 压力测试环境配置指纹与生产环境偏差需 ≤ 预注册容差（如内核版本 ±1 minor、依赖版本精确匹配） |
+| **结果不可篡改** | 压力测试环境对智能体完全只读，结果存储于 WORM（Write Once Read Many）存储 |
+
+#### 9.3 与模式 19/20 的协同
+
+- **模式 19 扩展**：压力测试结果作为**第六重独立判据**（判据 6：压力梯度性能衰减判据），与功能五重判据并列；
+- **模式 20 扩展**：三维对照矩阵——通道 A（基线版本功能+性能）、通道 B（候选版本功能+性能）、通道 C（压力测试环境性能衰减曲线）。
+
+> **理论锚点**：定理 3.1 的"评估解耦性"在隔离环境场景下的扩展——功能评估与性能评估在物理环境、执行主体、结果通道上完全解耦。

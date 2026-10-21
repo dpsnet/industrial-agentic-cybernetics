@@ -1,0 +1,45 @@
+{
+  "model": "kimi-for-coding",
+  "rows": [
+    {
+      "ok": true,
+      "dt": 27.795421600341797,
+      "correct": true,
+      "found": 5,
+      "total": 5,
+      "needles": [
+        "crimson red",
+        "teal",
+        "emerald",
+        "golden yellow",
+        "royal purple"
+      ],
+      "reply": "1. crimson red  \n2. teal  \n3. emerald  \n4. golden yellow  \n5. royal purple",
+      "prompt_tokens": 180322,
+      "target_tokens": 128000,
+      "n_needles": 5,
+      "distractor_ratio": 0.5,
+      "rep": 0
+    },
+    {
+      "ok": true,
+      "dt": 29.74056339263916,
+      "correct": true,
+      "found": 5,
+      "total": 5,
+      "needles": [
+        "periwinkle blue",
+        "magenta",
+        "teal",
+        "navy blue",
+        "forest green"
+      ],
+      "reply": "1. periwinkle blue\n2. magenta\n3. teal\n4. navy blue\n5. forest green",
+      "prompt_tokens": 180223,
+      "target_tokens": 128000,
+      "n_needles": 5,
+      "distractor_ratio": 0.5,
+      "rep": 1
+    }
+  ]
+}

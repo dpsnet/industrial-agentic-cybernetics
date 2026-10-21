@@ -1,0 +1,385 @@
+{
+  "model": "kimi-for-coding",
+  "rows": [
+    {
+      "ok": true,
+      "dt": 59.3974883556366,
+      "correct": true,
+      "found": 5,
+      "total": 5,
+      "needles": [
+        "crimson red",
+        "teal",
+        "emerald",
+        "golden yellow",
+        "royal purple"
+      ],
+      "reply": "1. crimson red\n2. teal\n3. emerald\n4. golden yellow\n5. royal purple",
+      "prompt_tokens": 361688,
+      "target_tokens": 256000,
+      "n_needles": 5,
+      "distractor_ratio": 0.5,
+      "rep": 0
+    },
+    {
+      "ok": true,
+      "dt": 56.98988747596741,
+      "correct": true,
+      "found": 5,
+      "total": 5,
+      "needles": [
+        "teal",
+        "golden yellow",
+        "navy blue",
+        "forest green",
+        "crimson red"
+      ],
+      "reply": "The 5 secret magic colors mentioned in the context are:\n\n1. Teal\n2. Golden yellow\n3. Navy blue\n4. Forest green\n5. Crimson red",
+      "prompt_tokens": 362179,
+      "target_tokens": 256000,
+      "n_needles": 5,
+      "distractor_ratio": 0.5,
+      "rep": 1
+    },
+    {
+      "ok": true,
+      "dt": 54.84266114234924,
+      "correct": true,
+      "found": 5,
+      "total": 5,
+      "needles": [
+        "periwinkle blue",
+        "royal purple",
+        "emerald",
+        "sunset orange",
+        "magenta"
+      ],
+      "reply": "1. Periwinkle blue\n2. Royal purple\n3. Emerald\n4. Sunset orange\n5. Magenta",
+      "prompt_tokens": 362110,
+      "target_tokens": 256000,
+      "n_needles": 5,
+      "distractor_ratio": 0.5,
+      "rep": 2
+    },
+    {
+      "ok": true,
+      "dt": 56.69658827781677,
+      "correct": true,
+      "found": 5,
+      "total": 5,
+      "needles": [
+        "magenta",
+        "crimson red",
+        "navy blue",
+        "sunset orange",
+        "teal"
+      ],
+      "reply": "1. magenta\n2. crimson red\n3. navy blue\n4. sunset orange\n5. teal",
+      "prompt_tokens": 361706,
+      "target_tokens": 256000,
+      "n_needles": 5,
+      "distractor_ratio": 0.5,
+      "rep": 3
+    },
+    {
+      "ok": true,
+      "dt": 55.266425371170044,
+      "correct": true,
+      "found": 5,
+      "total": 5,
+      "needles": [
+        "crimson red",
+        "magenta",
+        "teal",
+        "sunset orange",
+        "forest green"
+      ],
+      "reply": "1. Crimson red  \n2. Magenta  \n3. Teal  \n4. Sunset orange  \n5. Forest green",
+      "prompt_tokens": 362279,
+      "target_tokens": 256000,
+      "n_needles": 5,
+      "distractor_ratio": 0.5,
+      "rep": 4
+    },
+    {
+      "ok": true,
+      "dt": 55.59087133407593,
+      "correct": true,
+      "found": 5,
+      "total": 5,
+      "needles": [
+        "navy blue",
+        "teal",
+        "royal purple",
+        "magenta",
+        "emerald"
+      ],
+      "reply": "1. navy blue\n2. teal\n3. royal purple\n4. magenta\n5. emerald",
+      "prompt_tokens": 362190,
+      "target_tokens": 256000,
+      "n_needles": 5,
+      "distractor_ratio": 0.5,
+      "rep": 5
+    },
+    {
+      "ok": true,
+      "dt": 57.656858921051025,
+      "correct": true,
+      "found": 5,
+      "total": 5,
+      "needles": [
+        "crimson red",
+        "periwinkle blue",
+        "teal",
+        "emerald",
+        "sunset orange"
+      ],
+      "reply": "1. crimson red\n2. periwinkle blue\n3. teal\n4. emerald\n5. sunset orange",
+      "prompt_tokens": 361435,
+      "target_tokens": 256000,
+      "n_needles": 5,
+      "distractor_ratio": 0.5,
+      "rep": 6
+    },
+    {
+      "ok": true,
+      "dt": 57.29851794242859,
+      "correct": true,
+      "found": 5,
+      "total": 5,
+      "needles": [
+        "navy blue",
+        "magenta",
+        "periwinkle blue",
+        "crimson red",
+        "golden yellow"
+      ],
+      "reply": "The 5 secret magic colors mentioned in the context are:\n\n1. Navy blue\n2. Magenta\n3. Periwinkle blue\n4. Crimson red\n5. Golden yellow",
+      "prompt_tokens": 362358,
+      "target_tokens": 256000,
+      "n_needles": 5,
+      "distractor_ratio": 0.5,
+      "rep": 7
+    },
+    {
+      "ok": true,
+      "dt": 53.424765825271606,
+      "correct": true,
+      "found": 5,
+      "total": 5,
+      "needles": [
+        "sunset orange",
+        "teal",
+        "forest green",
+        "royal purple",
+        "magenta"
+      ],
+      "reply": "1. Sunset orange  \n2. Teal  \n3. Forest green  \n4. Royal purple  \n5. Magenta",
+      "prompt_tokens": 361832,
+      "target_tokens": 256000,
+      "n_needles": 5,
+      "distractor_ratio": 0.5,
+      "rep": 8
+    },
+    {
+      "ok": true,
+      "dt": 54.607916593551636,
+      "correct": true,
+      "found": 5,
+      "total": 5,
+      "needles": [
+        "emerald",
+        "periwinkle blue",
+        "sunset orange",
+        "navy blue",
+        "royal purple"
+      ],
+      "reply": "1. emerald\n2. periwinkle blue\n3. sunset orange\n4. navy blue\n5. royal purple",
+      "prompt_tokens": 362402,
+      "target_tokens": 256000,
+      "n_needles": 5,
+      "distractor_ratio": 0.5,
+      "rep": 9
+    },
+    {
+      "ok": true,
+      "dt": 118.9298312664032,
+      "correct": true,
+      "found": 5,
+      "total": 5,
+      "needles": [
+        "emerald",
+        "periwinkle blue",
+        "sunset orange",
+        "navy blue",
+        "royal purple"
+      ],
+      "reply": "1. emerald\n2. periwinkle blue\n3. sunset orange\n4. navy blue\n5. royal purple",
+      "prompt_tokens": 725074,
+      "target_tokens": 512000,
+      "n_needles": 5,
+      "distractor_ratio": 0.5,
+      "rep": 0
+    },
+    {
+      "ok": true,
+      "dt": 125.19228267669678,
+      "correct": true,
+      "found": 5,
+      "total": 5,
+      "needles": [
+        "emerald",
+        "navy blue",
+        "golden yellow",
+        "crimson red",
+        "teal"
+      ],
+      "reply": "The 5 secret magic colors mentioned in the context are:\n\n1. Emerald\n2. Navy blue\n3. Golden yellow\n4. Crimson red\n5. Teal",
+      "prompt_tokens": 724882,
+      "target_tokens": 512000,
+      "n_needles": 5,
+      "distractor_ratio": 0.5,
+      "rep": 1
+    },
+    {
+      "ok": true,
+      "dt": 124.46867179870605,
+      "correct": true,
+      "found": 5,
+      "total": 5,
+      "needles": [
+        "crimson red",
+        "teal",
+        "emerald",
+        "golden yellow",
+        "royal purple"
+      ],
+      "reply": "1. crimson red\n2. teal\n3. emerald\n4. golden yellow\n5. royal purple",
+      "prompt_tokens": 725003,
+      "target_tokens": 512000,
+      "n_needles": 5,
+      "distractor_ratio": 0.5,
+      "rep": 2
+    },
+    {
+      "ok": true,
+      "dt": 119.8451874256134,
+      "correct": true,
+      "found": 5,
+      "total": 5,
+      "needles": [
+        "crimson red",
+        "sunset orange",
+        "royal purple",
+        "navy blue",
+        "emerald"
+      ],
+      "reply": "1. crimson red\n2. sunset orange\n3. royal purple\n4. navy blue\n5. emerald",
+      "prompt_tokens": 724992,
+      "target_tokens": 512000,
+      "n_needles": 5,
+      "distractor_ratio": 0.5,
+      "rep": 3
+    },
+    {
+      "ok": true,
+      "dt": 118.3551652431488,
+      "correct": true,
+      "found": 5,
+      "total": 5,
+      "needles": [
+        "emerald",
+        "royal purple",
+        "golden yellow",
+        "navy blue",
+        "crimson red"
+      ],
+      "reply": "1. emerald\n2. royal purple\n3. golden yellow\n4. navy blue\n5. crimson red",
+      "prompt_tokens": 725524,
+      "target_tokens": 512000,
+      "n_needles": 5,
+      "distractor_ratio": 0.5,
+      "rep": 4
+    },
+    {
+      "ok": true,
+      "dt": 120.71136474609375,
+      "correct": true,
+      "found": 5,
+      "total": 5,
+      "needles": [
+        "royal purple",
+        "forest green",
+        "teal",
+        "emerald",
+        "magenta"
+      ],
+      "reply": "1. royal purple\n2. forest green\n3. teal\n4. emerald\n5. magenta",
+      "prompt_tokens": 724916,
+      "target_tokens": 512000,
+      "n_needles": 5,
+      "distractor_ratio": 0.5,
+      "rep": 5
+    },
+    {
+      "ok": true,
+      "dt": 121.9797911643982,
+      "correct": true,
+      "found": 5,
+      "total": 5,
+      "needles": [
+        "crimson red",
+        "teal",
+        "navy blue",
+        "periwinkle blue",
+        "magenta"
+      ],
+      "reply": "1. crimson red\n2. teal\n3. navy blue\n4. periwinkle blue\n5. magenta",
+      "prompt_tokens": 725370,
+      "target_tokens": 512000,
+      "n_needles": 5,
+      "distractor_ratio": 0.5,
+      "rep": 6
+    },
+    {
+      "ok": true,
+      "dt": 124.31467628479004,
+      "correct": true,
+      "found": 5,
+      "total": 5,
+      "needles": [
+        "magenta",
+        "forest green",
+        "periwinkle blue",
+        "emerald",
+        "navy blue"
+      ],
+      "reply": "1. magenta\n2. forest green\n3. periwinkle blue\n4. emerald\n5. navy blue",
+      "prompt_tokens": 725048,
+      "target_tokens": 512000,
+      "n_needles": 5,
+      "distractor_ratio": 0.5,
+      "rep": 7
+    },
+    {
+      "ok": true,
+      "dt": 123.7451810836792,
+      "correct": true,
+      "found": 5,
+      "total": 5,
+      "needles": [
+        "teal",
+        "sunset orange",
+        "emerald",
+        "royal purple",
+        "navy blue"
+      ],
+      "reply": "1. teal\n2. sunset orange\n3. emerald\n4. royal purple\n5. navy blue",
+      "prompt_tokens": 724888,
+      "target_tokens": 512000,
+      "n_needles": 5,
+      "distractor_ratio": 0.5,
+      "rep": 8
+    }
+  ]
+}

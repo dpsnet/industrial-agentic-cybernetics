@@ -1,0 +1,111 @@
+{
+  "theorem": "B.6 因果不变性定理（定理 3.1）",
+  "date": "2026-10-21",
+  "sufficient": {
+    "description": "三条件满足时 Lyapunov 收敛界 t <= V0/delta",
+    "trials": 12,
+    "pass": true,
+    "details": [
+      {
+        "V0": 10,
+        "delta": 0.5,
+        "steps": 20,
+        "bound": 20.0,
+        "within_bound": true
+      },
+      {
+        "V0": 10,
+        "delta": 1.0,
+        "steps": 10,
+        "bound": 10.0,
+        "within_bound": true
+      },
+      {
+        "V0": 10,
+        "delta": 2.0,
+        "steps": 5,
+        "bound": 5.0,
+        "within_bound": true
+      },
+      {
+        "V0": 50,
+        "delta": 0.5,
+        "steps": 100,
+        "bound": 100.0,
+        "within_bound": true
+      },
+      {
+        "V0": 50,
+        "delta": 1.0,
+        "steps": 50,
+        "bound": 50.0,
+        "within_bound": true
+      },
+      {
+        "V0": 50,
+        "delta": 2.0,
+        "steps": 25,
+        "bound": 25.0,
+        "within_bound": true
+      },
+      {
+        "V0": 100,
+        "delta": 0.5,
+        "steps": 200,
+        "bound": 200.0,
+        "within_bound": true
+      },
+      {
+        "V0": 100,
+        "delta": 1.0,
+        "steps": 100,
+        "bound": 100.0,
+        "within_bound": true
+      },
+      {
+        "V0": 100,
+        "delta": 2.0,
+        "steps": 50,
+        "bound": 50.0,
+        "within_bound": true
+      },
+      {
+        "V0": 500,
+        "delta": 0.5,
+        "steps": 1000,
+        "bound": 1000.0,
+        "within_bound": true
+      },
+      {
+        "V0": 500,
+        "delta": 1.0,
+        "steps": 500,
+        "bound": 500.0,
+        "within_bound": true
+      },
+      {
+        "V0": 500,
+        "delta": 2.0,
+        "steps": 250,
+        "bound": 250.0,
+        "within_bound": true
+      }
+    ]
+  },
+  "necessary_no_observability": {
+    "description": "破坏可观测性 → 虚假通过吸收态（100% 复现）",
+    "trials": 10000,
+    "pass": true
+  },
+  "necessary_no_locality": {
+    "description": "破坏局部性 → 2-周期震荡，Lyapunov 不可能",
+    "trials": 10000,
+    "pass": true
+  },
+  "necessary_coupled_eval": {
+    "description": "破坏评估解耦 → 自指不动点（退化平庸解）",
+    "trials": 10000,
+    "pass": true
+  },
+  "verdict": "PASS"
+}

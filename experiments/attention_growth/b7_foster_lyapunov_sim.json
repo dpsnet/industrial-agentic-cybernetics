@@ -1,0 +1,287 @@
+{
+  "theorem": "B.7 随机 Foster-Lyapunov 期望停时界",
+  "date": "2026-10-21",
+  "main_bound": {
+    "description": "E[τ] <= V0/δ（蒙特卡洛验证，含噪声扰动）",
+    "trials_per_config": 100000,
+    "configs": 27,
+    "pass": true,
+    "details": [
+      {
+        "V0": 10,
+        "delta": 0.5,
+        "noise_std": 0.0,
+        "E_tau": 20.0,
+        "bound": 20.0,
+        "within_bound": true,
+        "max_tau": 20,
+        "min_tau": 20
+      },
+      {
+        "V0": 10,
+        "delta": 0.5,
+        "noise_std": 0.1,
+        "E_tau": 19.52,
+        "bound": 20.0,
+        "within_bound": true,
+        "max_tau": 23,
+        "min_tau": 16
+      },
+      {
+        "V0": 10,
+        "delta": 0.5,
+        "noise_std": 0.3,
+        "E_tau": 19.42,
+        "bound": 20.0,
+        "within_bound": true,
+        "max_tau": 33,
+        "min_tau": 11
+      },
+      {
+        "V0": 10,
+        "delta": 1.0,
+        "noise_std": 0.0,
+        "E_tau": 10.0,
+        "bound": 10.0,
+        "within_bound": true,
+        "max_tau": 10,
+        "min_tau": 10
+      },
+      {
+        "V0": 10,
+        "delta": 1.0,
+        "noise_std": 0.1,
+        "E_tau": 9.5,
+        "bound": 10.0,
+        "within_bound": true,
+        "max_tau": 11,
+        "min_tau": 8
+      },
+      {
+        "V0": 10,
+        "delta": 1.0,
+        "noise_std": 0.3,
+        "E_tau": 9.54,
+        "bound": 10.0,
+        "within_bound": true,
+        "max_tau": 14,
+        "min_tau": 7
+      },
+      {
+        "V0": 10,
+        "delta": 2.0,
+        "noise_std": 0.0,
+        "E_tau": 5.0,
+        "bound": 5.0,
+        "within_bound": true,
+        "max_tau": 5,
+        "min_tau": 5
+      },
+      {
+        "V0": 10,
+        "delta": 2.0,
+        "noise_std": 0.1,
+        "E_tau": 4.5,
+        "bound": 5.0,
+        "within_bound": true,
+        "max_tau": 5,
+        "min_tau": 4
+      },
+      {
+        "V0": 10,
+        "delta": 2.0,
+        "noise_std": 0.3,
+        "E_tau": 4.5,
+        "bound": 5.0,
+        "within_bound": true,
+        "max_tau": 6,
+        "min_tau": 3
+      },
+      {
+        "V0": 50,
+        "delta": 0.5,
+        "noise_std": 0.0,
+        "E_tau": 100.0,
+        "bound": 100.0,
+        "within_bound": true,
+        "max_tau": 100,
+        "min_tau": 100
+      },
+      {
+        "V0": 50,
+        "delta": 0.5,
+        "noise_std": 0.1,
+        "E_tau": 99.52,
+        "bound": 100.0,
+        "within_bound": true,
+        "max_tau": 108,
+        "min_tau": 91
+      },
+      {
+        "V0": 50,
+        "delta": 0.5,
+        "noise_std": 0.3,
+        "E_tau": 98.41,
+        "bound": 100.0,
+        "within_bound": true,
+        "max_tau": 124,
+        "min_tau": 76
+      },
+      {
+        "V0": 50,
+        "delta": 1.0,
+        "noise_std": 0.0,
+        "E_tau": 50.0,
+        "bound": 50.0,
+        "within_bound": true,
+        "max_tau": 50,
+        "min_tau": 50
+      },
+      {
+        "V0": 50,
+        "delta": 1.0,
+        "noise_std": 0.1,
+        "E_tau": 49.51,
+        "bound": 50.0,
+        "within_bound": true,
+        "max_tau": 52,
+        "min_tau": 47
+      },
+      {
+        "V0": 50,
+        "delta": 1.0,
+        "noise_std": 0.3,
+        "E_tau": 49.57,
+        "bound": 50.0,
+        "within_bound": true,
+        "max_tau": 59,
+        "min_tau": 41
+      },
+      {
+        "V0": 50,
+        "delta": 2.0,
+        "noise_std": 0.0,
+        "E_tau": 25.0,
+        "bound": 25.0,
+        "within_bound": true,
+        "max_tau": 25,
+        "min_tau": 25
+      },
+      {
+        "V0": 50,
+        "delta": 2.0,
+        "noise_std": 0.1,
+        "E_tau": 24.5,
+        "bound": 25.0,
+        "within_bound": true,
+        "max_tau": 26,
+        "min_tau": 23
+      },
+      {
+        "V0": 50,
+        "delta": 2.0,
+        "noise_std": 0.3,
+        "E_tau": 24.51,
+        "bound": 25.0,
+        "within_bound": true,
+        "max_tau": 28,
+        "min_tau": 22
+      },
+      {
+        "V0": 100,
+        "delta": 0.5,
+        "noise_std": 0.0,
+        "E_tau": 200.0,
+        "bound": 200.0,
+        "within_bound": true,
+        "max_tau": 200,
+        "min_tau": 200
+      },
+      {
+        "V0": 100,
+        "delta": 0.5,
+        "noise_std": 0.1,
+        "E_tau": 199.52,
+        "bound": 200.0,
+        "within_bound": true,
+        "max_tau": 212,
+        "min_tau": 188
+      },
+      {
+        "V0": 100,
+        "delta": 0.5,
+        "noise_std": 0.3,
+        "E_tau": 197.16,
+        "bound": 200.0,
+        "within_bound": true,
+        "max_tau": 237,
+        "min_tau": 165
+      },
+      {
+        "V0": 100,
+        "delta": 1.0,
+        "noise_std": 0.0,
+        "E_tau": 100.0,
+        "bound": 100.0,
+        "within_bound": true,
+        "max_tau": 100,
+        "min_tau": 100
+      },
+      {
+        "V0": 100,
+        "delta": 1.0,
+        "noise_std": 0.1,
+        "E_tau": 99.5,
+        "bound": 100.0,
+        "within_bound": true,
+        "max_tau": 104,
+        "min_tau": 95
+      },
+      {
+        "V0": 100,
+        "delta": 1.0,
+        "noise_std": 0.3,
+        "E_tau": 99.55,
+        "bound": 100.0,
+        "within_bound": true,
+        "max_tau": 115,
+        "min_tau": 87
+      },
+      {
+        "V0": 100,
+        "delta": 2.0,
+        "noise_std": 0.0,
+        "E_tau": 50.0,
+        "bound": 50.0,
+        "within_bound": true,
+        "max_tau": 50,
+        "min_tau": 50
+      },
+      {
+        "V0": 100,
+        "delta": 2.0,
+        "noise_std": 0.1,
+        "E_tau": 49.5,
+        "bound": 50.0,
+        "within_bound": true,
+        "max_tau": 51,
+        "min_tau": 48
+      },
+      {
+        "V0": 100,
+        "delta": 2.0,
+        "noise_std": 0.3,
+        "E_tau": 49.51,
+        "bound": 50.0,
+        "within_bound": true,
+        "max_tau": 55,
+        "min_tau": 45
+      }
+    ]
+  },
+  "truncated_uniform_bound": {
+    "description": "截断停时 τ_N 的期望对所有 N 一致有界",
+    "pass": true
+  },
+  "verdict": "PASS"
+}

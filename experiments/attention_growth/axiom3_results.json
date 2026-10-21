@@ -1,0 +1,424 @@
+{
+  "meta": {
+    "cargo": "cargo 1.96.0 (30a34c682 2026-05-25)",
+    "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)",
+    "python": "3.12.8",
+    "date": "2026-10-20 23:47:42",
+    "workdir": "C:\\Users\\dps_n\\AppData\\Local\\Temp\\axiom3_probe_3zeclvog",
+    "rebuild_signal": "Compiling <pkg> line in cargo build -v output"
+  },
+  "H1": {
+    "1a": [
+      {
+        "rep": 0,
+        "phase": "baseline",
+        "mtime_ns": 1792511262247014200,
+        "rebuilt": true,
+        "elapsed_s": 1.391,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "9e1c627092a5d9f15f4a8eb3dd87d8e2b1516c9023d46d4c1d9b08708c1c8e7f",
+        "sha_changed": null
+      },
+      {
+        "rep": 1,
+        "expect": "rebuild_new_output",
+        "mtime_ns": 1792511263669339800,
+        "rebuilt": true,
+        "elapsed_s": 0.559,
+        "rc": 0,
+        "bin_stdout": "v1",
+        "sha256": "2fc0b3d52a2e3815e721bd8c8ad7b2b5b45ca8f09401ecace66fec0f3504178e",
+        "sha_changed": true,
+        "pass": true
+      },
+      {
+        "rep": 2,
+        "expect": "rebuild_new_output",
+        "mtime_ns": 1792511264379064200,
+        "rebuilt": true,
+        "elapsed_s": 0.531,
+        "rc": 0,
+        "bin_stdout": "v2",
+        "sha256": "931b4f858b70e41f581e660ab405a62de73fda2672d9cb4ff8a47899f1b21a6d",
+        "sha_changed": true,
+        "pass": true
+      },
+      {
+        "rep": 3,
+        "expect": "rebuild_new_output",
+        "mtime_ns": 1792511265064732600,
+        "rebuilt": true,
+        "elapsed_s": 0.493,
+        "rc": 0,
+        "bin_stdout": "v3",
+        "sha256": "8898e5f8c84794d337b0edf4dfab1489686d715cc6d5966352ac7f1b968579c8",
+        "sha_changed": true,
+        "pass": true
+      },
+      {
+        "rep": 4,
+        "expect": "rebuild_new_output",
+        "mtime_ns": 1792511265695424400,
+        "rebuilt": true,
+        "elapsed_s": 0.475,
+        "rc": 0,
+        "bin_stdout": "v4",
+        "sha256": "49523f015e923a64252c6dca0d81fa49b8004c85fa1c7ac7cc9a4bdc0a407c02",
+        "sha_changed": true,
+        "pass": true
+      },
+      {
+        "rep": 5,
+        "expect": "rebuild_new_output",
+        "mtime_ns": 1792511266315711100,
+        "rebuilt": true,
+        "elapsed_s": 0.593,
+        "rc": 0,
+        "bin_stdout": "v5",
+        "sha256": "f56199d413bf6be790bf184287748413f2b56f8d8801cefb058a41dccce9d1ea",
+        "sha_changed": true,
+        "pass": true
+      }
+    ],
+    "1b": [
+      {
+        "rep": 0,
+        "phase": "baseline",
+        "mtime_ns": 1792511267247003300,
+        "rebuilt": true,
+        "elapsed_s": 0.628,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "ee90f3de0267eb9e1678085f9727ca8111169af2d75cb863547d6f3ca895717a",
+        "sha_changed": null
+      },
+      {
+        "rep": 1,
+        "expect": "skip_silent_loss",
+        "mtime_ns": 1792511267247003300,
+        "rebuilt": false,
+        "elapsed_s": 0.238,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "ee90f3de0267eb9e1678085f9727ca8111169af2d75cb863547d6f3ca895717a",
+        "sha_changed": false,
+        "pass": true
+      },
+      {
+        "rep": 2,
+        "expect": "skip_silent_loss",
+        "mtime_ns": 1792511267247003300,
+        "rebuilt": false,
+        "elapsed_s": 0.24,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "ee90f3de0267eb9e1678085f9727ca8111169af2d75cb863547d6f3ca895717a",
+        "sha_changed": false,
+        "pass": true
+      },
+      {
+        "rep": 3,
+        "expect": "skip_silent_loss",
+        "mtime_ns": 1792511267247003300,
+        "rebuilt": false,
+        "elapsed_s": 0.239,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "ee90f3de0267eb9e1678085f9727ca8111169af2d75cb863547d6f3ca895717a",
+        "sha_changed": false,
+        "pass": true
+      },
+      {
+        "rep": 4,
+        "expect": "skip_silent_loss",
+        "mtime_ns": 1792511267247003300,
+        "rebuilt": false,
+        "elapsed_s": 0.246,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "ee90f3de0267eb9e1678085f9727ca8111169af2d75cb863547d6f3ca895717a",
+        "sha_changed": false,
+        "pass": true
+      },
+      {
+        "rep": 5,
+        "expect": "skip_silent_loss",
+        "mtime_ns": 1792511267247003300,
+        "rebuilt": false,
+        "elapsed_s": 0.242,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "ee90f3de0267eb9e1678085f9727ca8111169af2d75cb863547d6f3ca895717a",
+        "sha_changed": false,
+        "pass": true
+      }
+    ],
+    "1c": [
+      {
+        "rep": 0,
+        "phase": "baseline",
+        "mtime_ns": 1792511273504840800,
+        "rebuilt": true,
+        "elapsed_s": 0.667,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "391366f94ac9c8d5ea1d5361227e55b4676a5979b7d90c3718c4aeef0d157bbb",
+        "sha_changed": null
+      },
+      {
+        "rep": 1,
+        "expect": "skip_silent_loss",
+        "mtime_ns": 1792507673504840800,
+        "rebuilt": false,
+        "elapsed_s": 0.251,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "391366f94ac9c8d5ea1d5361227e55b4676a5979b7d90c3718c4aeef0d157bbb",
+        "sha_changed": false,
+        "pass": true
+      },
+      {
+        "rep": 2,
+        "expect": "skip_silent_loss",
+        "mtime_ns": 1792507673504840800,
+        "rebuilt": false,
+        "elapsed_s": 0.267,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "391366f94ac9c8d5ea1d5361227e55b4676a5979b7d90c3718c4aeef0d157bbb",
+        "sha_changed": false,
+        "pass": true
+      },
+      {
+        "rep": 3,
+        "expect": "skip_silent_loss",
+        "mtime_ns": 1792507673504840800,
+        "rebuilt": false,
+        "elapsed_s": 0.271,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "391366f94ac9c8d5ea1d5361227e55b4676a5979b7d90c3718c4aeef0d157bbb",
+        "sha_changed": false,
+        "pass": true
+      },
+      {
+        "rep": 4,
+        "expect": "skip_silent_loss",
+        "mtime_ns": 1792507673504840800,
+        "rebuilt": false,
+        "elapsed_s": 0.267,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "391366f94ac9c8d5ea1d5361227e55b4676a5979b7d90c3718c4aeef0d157bbb",
+        "sha_changed": false,
+        "pass": true
+      },
+      {
+        "rep": 5,
+        "expect": "skip_silent_loss",
+        "mtime_ns": 1792507673504840800,
+        "rebuilt": false,
+        "elapsed_s": 0.318,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "391366f94ac9c8d5ea1d5361227e55b4676a5979b7d90c3718c4aeef0d157bbb",
+        "sha_changed": false,
+        "pass": true
+      }
+    ],
+    "1d": [
+      {
+        "rep": 0,
+        "phase": "baseline",
+        "mtime_ns": 1792511280011032900,
+        "rebuilt": true,
+        "elapsed_s": 0.644,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "92d9a7f81ce27638b03f67bc779922e0243086df91f1bc565db059b47ca9cd7b",
+        "sha_changed": null
+      },
+      {
+        "rep": 1,
+        "expect": "rebuild_same_output",
+        "mtime_ns": 1792511285011032900,
+        "rebuilt": true,
+        "elapsed_s": 0.511,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "7326af08e152b1fde6fa01f5dd4f2856695980ce6b7f3d2accc1664b73f37fcd",
+        "sha_changed": true,
+        "pass": true
+      },
+      {
+        "rep": 2,
+        "expect": "rebuild_same_output",
+        "mtime_ns": 1792511290011032900,
+        "rebuilt": true,
+        "elapsed_s": 0.522,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "1eeb2d68ca308b3a45e5faae87964bccbd34a6a3425499c4a0b684715d9fd0bb",
+        "sha_changed": true,
+        "pass": true
+      },
+      {
+        "rep": 3,
+        "expect": "rebuild_same_output",
+        "mtime_ns": 1792511295011032900,
+        "rebuilt": true,
+        "elapsed_s": 0.503,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "4f044e6bef46a5ca61323272d7a7d577e6023035abce80abd40ebcae5ded12e9",
+        "sha_changed": true,
+        "pass": true
+      },
+      {
+        "rep": 4,
+        "expect": "rebuild_same_output",
+        "mtime_ns": 1792511300011032900,
+        "rebuilt": true,
+        "elapsed_s": 0.486,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "db106d26afee12990a462a5b39141346c1b8dd69e317e3766dadcada91acc94f",
+        "sha_changed": true,
+        "pass": true
+      },
+      {
+        "rep": 5,
+        "expect": "rebuild_same_output",
+        "mtime_ns": 1792511305011032900,
+        "rebuilt": true,
+        "elapsed_s": 0.488,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "2463fe00f7931471c78b98490da0799a0b07aed09bb2d154c8845ccff944a4cc",
+        "sha_changed": true,
+        "pass": true
+      }
+    ]
+  },
+  "H2": {
+    "2a": [
+      {
+        "rep": 0,
+        "phase": "baseline",
+        "rebuilt": true,
+        "elapsed_s": 0.642,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "6dd9fd8fb83653b1363fe1daddd8b16088bf2a9a7d3d02dcbe579a7ae00587ad",
+        "sha_changed": null
+      },
+      {
+        "rep": 1,
+        "phase": "noop_rebuild",
+        "expect": "skip_same_sha",
+        "rebuilt": false,
+        "elapsed_s": 0.245,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "6dd9fd8fb83653b1363fe1daddd8b16088bf2a9a7d3d02dcbe579a7ae00587ad",
+        "sha_changed": false,
+        "pass": true
+      },
+      {
+        "rep": 2,
+        "phase": "noop_rebuild",
+        "expect": "skip_same_sha",
+        "rebuilt": false,
+        "elapsed_s": 0.244,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "6dd9fd8fb83653b1363fe1daddd8b16088bf2a9a7d3d02dcbe579a7ae00587ad",
+        "sha_changed": false,
+        "pass": true
+      },
+      {
+        "rep": 3,
+        "phase": "noop_rebuild",
+        "expect": "skip_same_sha",
+        "rebuilt": false,
+        "elapsed_s": 0.235,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "6dd9fd8fb83653b1363fe1daddd8b16088bf2a9a7d3d02dcbe579a7ae00587ad",
+        "sha_changed": false,
+        "pass": true
+      },
+      {
+        "rep": 4,
+        "phase": "noop_rebuild",
+        "expect": "skip_same_sha",
+        "rebuilt": false,
+        "elapsed_s": 0.227,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "6dd9fd8fb83653b1363fe1daddd8b16088bf2a9a7d3d02dcbe579a7ae00587ad",
+        "sha_changed": false,
+        "pass": true
+      },
+      {
+        "rep": 5,
+        "phase": "noop_rebuild",
+        "expect": "skip_same_sha",
+        "rebuilt": false,
+        "elapsed_s": 0.231,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "6dd9fd8fb83653b1363fe1daddd8b16088bf2a9a7d3d02dcbe579a7ae00587ad",
+        "sha_changed": false,
+        "pass": true
+      }
+    ],
+    "2b": {
+      "scenario": "2b_stash_retry",
+      "stash_out": "Saved working directory and index state WIP on master: e7a8f27 v0",
+      "pop_out": "On branch master\nChanges not staged for commit:\n  (use \"git add <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n\tmodified:   src/main.rs\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")\nDropped refs/stash@{0} (1b1bb5b10281badda94508ec4eac1dc3cbc2c996)",
+      "b1": {
+        "rebuilt": true,
+        "elapsed_s": 0.494,
+        "rc": 0,
+        "bin_stdout": "v1",
+        "sha256": "29c11e1573a7ba4358d2aecc7ca3abcc3230d657fa6dd80c1b8d868b0abe6b59",
+        "sha_changed": true
+      },
+      "b0_after_stash": {
+        "rebuilt": true,
+        "elapsed_s": 0.505,
+        "rc": 0,
+        "bin_stdout": "v0",
+        "sha256": "ff0beb0cbc353cbe97777289035f6c523d19bc0416d0fb9f448da1399a56fd42",
+        "sha_changed": true
+      },
+      "b1_after_pop": {
+        "rebuilt": true,
+        "elapsed_s": 0.516,
+        "rc": 0,
+        "bin_stdout": "v1",
+        "sha256": "70b1f1f49bbf26a03a98579e4f91a617a0c15b523eade2737e944abd3c9f6e24",
+        "sha_changed": true
+      },
+      "pass": true
+    },
+    "2c": {
+      "scenario": "2c_wal_replay_sim",
+      "first": {
+        "content": 42,
+        "hashVerified": true
+      },
+      "second": {
+        "content": 42,
+        "hashVerified": false
+      },
+      "pass": true
+    }
+  },
+  "verdict": {
+    "H1_all_pass": true,
+    "H2_all_pass": true
+  }
+}

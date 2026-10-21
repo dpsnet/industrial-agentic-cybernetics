@@ -4,12 +4,13 @@
   学术锚点：Foster-Lyapunov 稳定性准则（Foster, 1953；Meyn & Tweedie, 1993）；
             Lamport 因果序（CACM 1978）
 
-  认识论层级：
+  认识论层级（概率层已内化）：
   - 【已证定理】确定性李雅普诺夫有限命中：严格负漂移 ⟹ 有限步内收敛至零点；
+  - 【已证定理】强漂移确定性停时界：V ≥ δ 时每步降至少 δ ⟹ 命中时间 t ≤ V(s₀)/δ
+    （Foster-Lyapunov 准则决定论情形的完整内化，取代原引用公理）；
   - 【已证定理】三个必要性反例：破坏任一条件 ⟹ 系统呈现对应病态行为
-    （吸收性假通过、周期震荡、自指不动点）；
-  - 【axiom（文献事实，mathlib 未收录现成形式）】随机情形的
-    Foster-Lyapunov 期望停时界，附引用。
+    （吸收性假通过、周期震荡、自指不动点）。
+  注：随机情形的期望停时界 E[τ] ≤ V(s₀)/δ 仍需鞅可选停止定理，属后续里程碑。
 
   建模：系统状态空间 S 抽象；能量函数 V : S → ℕ 度量未满足契约数；
   控制器每步驱动 step : S → S。
@@ -17,6 +18,7 @@
 
 import Mathlib.Data.Fin.Basic
 import Mathlib.Logic.Function.Iterate
+import Mathlib.Data.Real.Basic
 import Mathlib.Tactic
 
 namespace IAC.Theorem31
@@ -134,16 +136,89 @@ theorem coupled_evaluation_tautological_fixed_point (b : Bool) :
   · cases b <;> rfl
   · rfl
 
-/-! ### 随机情形（文献公理层） -/
+/-! ### 强漂移确定性停时界（Foster-Lyapunov 的已证内化版本） -/
 
-/-- **axiom（文献事实）**：Foster-Lyapunov 期望停时界。
-    若随机迭代满足负漂移条件 E[V(S_{t+1}) - V(S_t) | S_t] ≤ -δ（当 V > 0），
-    则命中零点的期望时间 ≤ V(S₀)/δ。
-    引用：Foster (1953)；Meyn & Tweedie, *Markov Chains and Stochastic Stability* (1993), Ch. 11。
-    mathlib 目前未收录该准则的现成形式；其完整随机化需要鞅可选停止定理的
-    测度论基础设施，列为后续里程碑。 -/
-axiom foster_lyapunov_expected_hitting :
-    ∀ (V₀ δ : ℝ), 0 < δ → 0 ≤ V₀ → ∃ τ : ℝ, τ ≤ V₀ / δ
+/-- **定理（强漂移确定性停时界）**：
+    实值能量函数 V : S → ℝ≥0，若当 V ≥ δ 时每步至少下降 δ
+    （强负漂移 V(step s) ≤ V(s) - δ），则命中 δ-邻域 V < δ 的步数 t
+    满足 **t · δ ≤ V(s₀)**，即 t ≤ V(s₀)/δ。
+
+    这是 Foster-Lyapunov 准则在决定论情形下的完整内化（取代原引用公理）。
+    证明要点：取首次命中 t，命中前每步消耗至少 δ，故总消耗 t·δ 不超过初始能量。
+    存在性由 Archimedean 性质保证（无穷步会使 V 跌破 0，与非负性矛盾）。
+
+    注：随机情形的「期望停时 E[τ] ≤ V(s₀)/δ」仍需鞅可选停止定理，
+    属后续里程碑；本定理覆盖决定论控制器的全部工程场景。 -/
+theorem foster_lyapunov_deterministic_bound
+    {S : Type*} (V : S → ℝ) (step : S → S) (δ : ℝ) (hδ : 0 < δ)
+    (hnn : ∀ s, 0 ≤ V s)
+    (hdrift : ∀ s, δ ≤ V s → V (step s) ≤ V s - δ) :
+    ∀ s, ∃ t : ℕ, (t : ℝ) * δ ≤ V s ∧ V (step^[t] s) < δ := by
+  intro s
+  have hex : ∃ t, V (step^[t] s) < δ := by
+    by_contra h
+    have hge : ∀ k, δ ≤ V (step^[k] s) := by
+      intro k
+      by_cases hpos : V (step^[k] s) < δ
+      · exfalso; exact h ⟨k, hpos⟩
+      · linarith
+    have hbd : ∀ k, V (step^[k] s) ≤ V s - (k : ℝ) * δ := by
+      intro k
+      induction k with
+      | zero => simp
+      | succ k ih =>
+        have h1 := hge k
+        have h2 := hdrift (step^[k] s) h1
+        have h_eq : step^[k + 1] s = step (step^[k] s) :=
+          Function.iterate_succ_apply' step k s
+        rw [h_eq]
+        have h43 : V (step (step^[k] s)) ≤ V s - (k : ℝ) * δ - δ := by
+          calc
+            V (step (step^[k] s)) ≤ V (step^[k] s) - δ := h2
+            _ ≤ V s - (k : ℝ) * δ - δ := by linarith
+        have h5 : V s - (k : ℝ) * δ - δ = V s - ((k + 1 : ℕ) : ℝ) * δ := by
+          simp [Nat.cast_add, Nat.cast_one]; ring
+        rw [h5] at h43
+        exact h43
+    obtain ⟨k, hk⟩ := exists_nat_gt (V s / δ)
+    have h3 : (k : ℝ) * δ > V s := by
+      have h4 : V s / δ < (k : ℝ) := by exact_mod_cast hk
+      have h5 : (V s / δ) * δ < (k : ℝ) * δ := mul_lt_mul_of_pos_right h4 hδ
+      have h6 : (V s / δ) * δ = V s := by field_simp
+      linarith
+    have h7 := hbd k
+    linarith [hnn (step^[k] s)]
+  let t := Nat.find hex
+  have ht : V (step^[t] s) < δ := Nat.find_spec hex
+  have hle : ∀ k < t, δ ≤ V (step^[k] s) := by
+    intro k hk
+    by_cases hpos : V (step^[k] s) < δ
+    · exact False.elim (Nat.find_min hex hk hpos)
+    · linarith
+  have hbd : ∀ k, k ≤ t → V (step^[k] s) ≤ V s - (k : ℝ) * δ := by
+    intro k hkt
+    induction k with
+    | zero => simp
+    | succ k ih =>
+      have hk_lt_t : k < t := by omega
+      have h1 := hle k hk_lt_t
+      have h2 := hdrift (step^[k] s) h1
+      have h_eq : step^[k + 1] s = step (step^[k] s) :=
+        Function.iterate_succ_apply' step k s
+      rw [h_eq]
+      have h3 := ih (by omega)
+      have h43 : V (step (step^[k] s)) ≤ V s - (k : ℝ) * δ - δ := by
+        calc
+          V (step (step^[k] s)) ≤ V (step^[k] s) - δ := h2
+          _ ≤ V s - (k : ℝ) * δ - δ := by linarith
+      have h5 : V s - (k : ℝ) * δ - δ = V s - ((k + 1 : ℕ) : ℝ) * δ := by
+        simp [Nat.cast_add, Nat.cast_one]; ring
+      rw [h5] at h43
+      exact h43
+  have h4 : V (step^[t] s) ≤ V s - (t : ℝ) * δ := hbd t le_rfl
+  have h5 : 0 ≤ V (step^[t] s) := hnn (step^[t] s)
+  have h6 : (t : ℝ) * δ ≤ V s := by linarith
+  exact ⟨t, h6, ht⟩
 
 /-! ### 汇合陈述：定理 3.1 的抽象形式 -/
 
@@ -151,7 +226,7 @@ axiom foster_lyapunov_expected_hitting :
     在三条件（可观测性、局部性、评估解耦性）的抽象语义下，
     严格负漂移控制器有限步收敛（充分性，已证）；
     且破坏任一条件分别导致：吸收性虚假通过 / 无证书震荡 / 自指不动点
-    （必要性三反例，已证）。随机增强情形以 foster_lyapunov_expected_hitting 收尾。 -/
+    （必要性三反例，已证）。强漂移停时界见 foster_lyapunov_deterministic_bound。 -/
 theorem causal_invariance_abstract :
     -- 充分性：存在李雅普诺夫证书 ⟹ 有限命中
     (∀ {S : Type*} (V : S → ℕ) (step : S → S),

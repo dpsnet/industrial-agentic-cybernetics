@@ -18,20 +18,22 @@
 flowchart TD
     DevOutput["开发智能体交付物 (代码、报告、声明)"] --> Reviewer["审查者现实审计器 (Reality Auditor)"]
     
-    subgraph ThreePillars["三重物理现实审计核验 (Three-Pillar Reality Audit)"]
+    subgraph FourPillars["四重物理现实审计核验 (Four-Pillar Reality Audit)"]
         direction TB
         Pillar1["1. 物理实体核验 (Substrate Check)<br/>目标工程 Git 树是否存在实质代码物理 Diff?"]
         Pillar2["2. 物理常理核验 (Physical Feasibility Check)<br/>多模块编译耗时与资源消耗是否符合物理常理?"]
         Pillar3["3. 断言反自指核验 (Tautology Check)<br/>断言是否由 Mock 根据期待值自指回吐?"]
+        Pillar4["4. 隔离环境结果审计 (Isolated Environment Audit)<br/>压力测试/独立环境结果是否真实、完整、同质?"]
     end
     
-    Reviewer --> ThreePillars
+    Reviewer --> FourPillars
     
     Pillar1 -- "无代码变更" --> VETO["一票否决: CRITICAL DECEPTION (打回)"]
     Pillar2 -- "耗时趋近于0/虚假即时" --> VETO
     Pillar3 -- "自出题自打分" --> VETO
+    Pillar4 -- "结果篡改/选择性报告/环境漂移" --> VETO
     
-    ThreePillars -- "三重核验完全成立" --> RubricAudit["进入常规代码质量与 Rubric 评分 (0-9)"]
+    FourPillars -- "四重核验完全成立" --> RubricAudit["进入常规代码质量与 Rubric 评分 (0-9)"]
     RubricAudit --> Pass["正式晋升与放行"]
 ```
 
@@ -72,14 +74,26 @@ sequenceDiagram
     Substrate-->>Auditor: 返回真实进程时钟与 Stderr
     Auditor->>Substrate: 探针 3: 语法分析单测断言与 Mock 逻辑
     Substrate-->>Auditor: 返回断言依赖图
+    Auditor->>Substrate: 探针 4: 隔离环境结果审计（压力测试/独立环境）
+    Substrate-->>Auditor: 返回压力测试原始报告、环境配置指纹、结果完整性校验
     
     alt 发现任何一项物理造假 (Substrate Failure / False Claim)
         Auditor-->>Orchestrator: 裁决: VETO_REJECT (Score: 0, Severity: CRITICAL)
         Orchestrator->>Dev: 惩罚性回退: 强制重新进入实现循环并注入欺骗证据
-    else 三重物理核验通过
+    else 四重物理核验通过
         Auditor-->>Orchestrator: 现实核验通过，出具客观评审评分 (Score >= Threshold)
     end
 ```
+
+#### 探针 4：隔离环境结果审计（Isolated Environment Audit）的细化职责
+
+当压力测试环境与开发环境完全隔离时，审计器需额外验证：
+
+1. **结果真实性（Non-Self-Reported）**：压力测试结果必须来自独立执行系统的原始输出（如 JMeter/Gatling 原始报告、Prometheus 指标导出），而非智能体自报或转述；
+2. **传输完整性（Integrity in Transit）**：结果回流通道的签名验证与哈希校验，防止选择性报告或篡改；
+3. **环境同质性（Config Drift Detection）**：压力测试环境的配置指纹（OS/内核/依赖版本/资源配额）与生产环境的偏差必须在预注册容差内，防止"测试环境通过但生产环境崩溃"的漂移失效。
+
+> **理论锚点**：公理 I 的适用边界扩展——智能体不可直接访问的隔离环境，其结果必须经独立审计通道验证后方可采信。
 
 ---
 

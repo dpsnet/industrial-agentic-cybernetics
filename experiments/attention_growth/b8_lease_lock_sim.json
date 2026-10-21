@@ -1,0 +1,13 @@
+{
+  "theorem": "B.8 租约锁（模式 10）",
+  "date": "2026-10-21",
+  "trials_per_test": 10000,
+  "results": {
+    "mutual_exclusion": true,
+    "no_permanent_lockout": true,
+    "expired_write_revoked": true,
+    "heartbeat_protection": true,
+    "concurrent_write_impossible": true
+  },
+  "verdict": "PASS"
+}

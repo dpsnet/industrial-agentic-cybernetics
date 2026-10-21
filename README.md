@@ -14,7 +14,9 @@
 
 **本书旨在彻底打破“提示词修补”的经验主义迷思，首次将经典系统控制论（Cybernetics）、分布式系统因果一致性理论、编译原理与认知注意力约束，系统性引入智能体系统架构。**
 
-本书严格遵循 GoF（Gang of Four）设计模式的形式化规约，从工程控制论的第一性原理出发，提炼出 **8 大模式族、22 个工业级设计模式** 与 **四大底层控制论公理**，为构建高韧性、确定性收敛、防欺诈的工业级自主软件工程系统提供坚不可摧的方法论与理论基石。
+本书严格遵循 GoF（Gang of Four）设计模式的形式化规约，从工程控制论的第一性原理出发，提炼出 **9 大模式族、24 个工业级设计模式** 与 **四大底层控制论公理**，为构建高韧性、确定性收敛、防欺诈的工业级自主软件工程系统提供坚不可摧的方法论与理论基石。
+
+**环境隔离约束的显式覆盖**：本书完整覆盖开发、压力测试、生产三级环境的隔离架构——智能体可访问的开发环境直接穿透（模式 01-09），压力测试与生产环境通过协议桥接（模式 12）与独立审计（模式 02 探针 4）实现跨环境负反馈，生产缺陷经模式 23-24 萃取为系统免疫力，形成端到端闭环。
 
 ---
 
@@ -25,7 +27,9 @@ However, when confronted with **real-world industrial software substrates**—ch
 
 **This treatise breaks away from empirical prompt tinkering by formally integrating Classical Cybernetics, Distributed Consistency Theory, Compiler Substrates, and Cognitive Attention Bounds into autonomous agent architectures.**
 
-Adhering to the formal Gang of Four (GoF) specification standard, this book derives **4 Foundational Cybernetic Axioms** and **22 Industrial Agentic Design Patterns across 8 pattern families**, establishing an unyielding theoretical foundation for resilient, deterministically converging, and fraud-resistant autonomous software engineering systems.
+Adhering to the formal Gang of Four (GoF) specification standard, this book derives **4 Foundational Cybernetic Axioms** and **24 Industrial Agentic Design Patterns across 9 pattern families**, establishing an unyielding theoretical foundation for resilient, deterministically converging, and fraud-resistant autonomous software engineering systems.
+
+**Explicit Coverage of Environment Isolation**: The treatise fully addresses the isolation architecture across development, stress-testing, and production environments—direct penetration in agent-accessible development environments (Patterns 01-09), asynchronous bridging via Protocol Bridge (Pattern 12) and independent auditing (Pattern 02 Probe 4) for isolated stress-testing and production environments, with production defects crystallized into systemic immunity via Patterns 23-24, forming an end-to-end closed loop.
 
 ---
 
@@ -41,7 +45,40 @@ flowchart TD
         A4["<b>公理 IV：经验自免疫公理 (Axiom of Crystallization Auto-Immunity)</b><br/><i>未经外部终审隔离的智能体自生知识，其代际传播必然导致系统发生记忆投毒 (Memory Poisoning)。</i>"]
     end
     
-    AxiomaticCore --> Patterns["推导支撑：22 个工业级自主控制模式"]
+    AxiomaticCore --> Patterns["推导支撑：24 个工业级自主控制模式"]
+```
+
+---
+
+### 环境隔离约束的显式覆盖（Environment Isolation Coverage）
+
+```mermaid
+flowchart LR
+    subgraph DevEnv["开发环境（智能体可访问）"]
+        Dev["模式 01-09<br/>直接物理穿透"]
+    end
+
+    subgraph Isolated["隔离环境矩阵（智能体不可访问）"]
+        Stress["压力测试环境<br/>（隔离）"]
+        Prod["生产环境<br/>（隔离）"]
+    end
+
+    subgraph Bridge["协议桥接层（模式 12）"]
+        B1["异步结果回流"]
+        B2["跨环境时钟同步"]
+    end
+
+    subgraph Audit["独立审计层（模式 02 探针 4）"]
+        A1["真实性/完整性/同质性"]
+    end
+
+    Dev --> Stress
+    Dev --> Prod
+    Stress --> Bridge
+    Prod --> Bridge
+    Bridge --> Audit
+    Audit --> Feedback["模式 23-24<br/>生产反馈闭环"]
+    Feedback --> Immunity["系统免疫力<br/>（全局知识库）"]
 ```
 
 ---
@@ -90,6 +127,10 @@ flowchart TD
 ### [第九部分：智能体能效与收敛工程学 (Convergence Economics & Tokenomics)](docs/part8-convergence-economics/pattern-21-token-compression-architecture.md)
 * **模式 21**：[Token 吞吐断崖式压缩架构 (Tokenomics Convergence Architecture)](docs/part8-convergence-economics/pattern-21-token-compression-architecture.md)
 * **模式 22**：[纯模型原生 Provider 解耦桥接模式 (Pure Native Provider Bridge Pattern)](docs/part8-convergence-economics/pattern-22-native-provider-bridge.md)
+
+### [第十部分：生产韧性与反馈闭环模式 (Production Resilience & Feedback Loop Patterns)](docs/part9-production-resilience/pattern-23-production-runtime-anomaly-sniffing.md)
+* **模式 23**：[生产环境运行时监控与异常嗅探模式 (Production Runtime Anomaly Sniffing Pattern)](docs/part9-production-resilience/pattern-23-production-runtime-anomaly-sniffing.md)
+* **模式 24**：[生产缺陷萃取与热修复闭环模式 (Production Defect Crystallization & Hotfix Loop Pattern)](docs/part9-production-resilience/pattern-24-production-defect-crystallization-hotfix-loop.md)
 
 ### [结语：通向自给自足的自主软件工程 (Epilogue)](docs/epilogue/towards-autonomous-cybernetics.md)
 
