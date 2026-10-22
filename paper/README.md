@@ -13,18 +13,30 @@
 
 **目标出口**：ICSE/FSE/ASE 实证轨道，或 arXiv cs.SE → ACM TOSEM。
 
-**结构映射（论文章节 ← 原始文档素材）**：
+**结构：事实层单源共用 + 叙述层独立双写**
 
-| 论文部分 | 素材来源 |
-| :--- | :--- |
-| Introduction（问题→缺口→主张） | `docs/preface/03` 公理 IV + `docs/axioms-validation-report.md` |
-| 机制模型（GW 分支 vs 累积-竞争） | `experiments/attention_growth/EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md` §8.4 |
-| 形式化（Lean 条件定理） | `docs/appendix-formal-proofs.md` B.5 |
-| 实验（跨模型×跨架构×容量×隔离/标记门） | SUPERCRITICAL 384 会话 + 跨模型 288 + 跨任务族 144 + H1AC 960（待判读） |
-| 功效分析 | `experiments/attention_growth/e_power_markgate.py/.json` |
-| 方法论（工程公理、三层知识地位） | `docs/preface/01` §1.4.1–1.4.2 |
-| Scope & Generalizability | `docs/preface/01` §1.4.4–1.4.5 |
-| Limitations / 双层连接 | `docs/preface/01` §1.4.5 |
+论文与专著的**叙述组织不同，不能互相引用段落**（专著=完成态：公理→模式→验证；论文=辩护态：问题→方法→结果→讨论）。"共用"只发生在**事实层**：一切数字、结论、判读口径以主目录判读产物为**单一来源**，专著与论文各自叙述、共同引用同一事实源。防漂移规则：数字口径只在判读 JSON/脚本中定义一次，两处引用；叙述各自演进，事实必须一致。
+
+**A. 事实层（单源，直接引用，不重写）**
+
+| 事实资产 | 路径 | 论文用途 |
+| :--- | :--- | :--- |
+| 实验原始结果 | `experiments/attention_growth/axiom4_results*.json`（SUPERCRITICAL/跨模型/跨任务族/H1AC） | 实验章节数据表 |
+| 判读脚本与数字口径 | `e_supercritical_judge.py`/`judge2.py`/`sh3.py` + `*_judgement.json`、`e_power_markgate.py/.json` | 方法与功效分析 |
+| Lean 4 证明 | `formal_proof/` + `docs/appendix-formal-proofs.md` B.5 | 形式化章节 |
+| 预注册计划与判据 | `EXPERIMENT_PLAN_AXIOM4*.md` | 预注册声明（方法学） |
+
+**B. 叙述层（独立双写，按论文体例重写专著素材，不复制段落）**
+
+| 论文部分 | 素材参考（仅作内容来源） | 处理方式 |
+| :--- | :--- | :--- |
+| Introduction | `docs/preface/03` 公理 IV、SUPERCRITICAL §8 | 重写：问题→文献缺口→本工作主张 |
+| 机制模型（GW vs 累积-竞争） | `EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md` §8.4 | 重写：模型叙述+图示（专著版为最终态表述，论文版为假设-修订叙事） |
+| 实验方法 | 各计划文档 | 重写：IMRaD 方法节（判据、协议、模型档） |
+| Results | 事实层 A 的数据 | 由数据生成论文专属图表 |
+| 方法论（工程公理、三层地位） | `docs/preface/01` §1.4.1–1.4.2 | 重写：方法论选择角度（非术语纪律角度） |
+| Scope & Generalizability | `docs/preface/01` §1.4.4–1.4.5 | 重写：论文边界节 |
+| Related Work | 外部文献（Shumailov 等） | 新写：紧对标定位 |
 
 **写作口径（专著 vs 论文差异）**：
 - 专著=完成态（演化压缩为边界）；论文=辩护态（S-H3 被机制证据否定 → 理论修订为累积-竞争，写成叙事亮点）
