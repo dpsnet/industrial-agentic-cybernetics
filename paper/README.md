@@ -48,5 +48,6 @@
 - [ ] H1AC_BOOST 判读（Trae 执行中，产物：`experiments/attention_growth/axiom4_results_h1ac_*.json`）
 - [ ] 论文骨架（动笔条件：H1AC 判读完成）
 - [ ] Related Work 紧对标（Shumailov Nature 2024 / arXiv:2512.16962 / arXiv:2511.18397 / Liu TACL 2024 / RULER）
+- [ ] Related Work 对标 SE 定律谱系：Brooks 1986（本质复杂性）、Lehman's Laws（递增复杂性=软件熵增 ↔ 公理 II 注意力熵增）、Conway's Law、Brooks's Law、CAP 定理、停机问题——定位本公理体系为"SE 经验定律的形式化-实测化推进"（公理≠凭空造设，而是把既有定律系统化；附方法论声明 §1.4.1 三分法）
 - [ ] 正文初稿
 - [ ] 目标 venue 提交
