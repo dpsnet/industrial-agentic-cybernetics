@@ -154,3 +154,9 @@ class SubstrateAbBenchmarkRunner {
   }
 }
 ```
+
+---
+
+### 9. 数值宣称的可证伪地位 (Epistemic Status of Quantitative Claims)
+
+> **处置：待补测（需配额）**——"-80.0% 能耗压缩与 3.8x 加速比"来自同质沙箱 A/B 的示例运行，样本量与重复次数未预注册。现标注为**示例观测**；正式补测需配对 A/B（n≥10，同模型同批次），会消耗模型配额，排在当前 CROSS_TASK 实验之后执行。

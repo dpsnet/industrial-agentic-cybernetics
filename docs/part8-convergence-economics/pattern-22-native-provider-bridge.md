@@ -74,7 +74,7 @@ sequenceDiagram
     Note over Gateway: 后台常驻 Daemon 保持长连接与 OAuth 凭据就绪
     
     Core->>Gateway: POST /v1/chat/completions (流式请求，声明所需 22 个工具)
-    Gateway->>Model: 直连 API 握手 (零 CLI 启动开销，首字时延 <800ms)
+    Gateway->>Model: 直连 API 握手 (消除 CLI 冷启动；首字时延中位 0.8s，短于 CLI 调用路径)
     
     Model-->>Gateway: SSE 流式回吐 tool_call: [write_to_file("TwoFactorAuth.java")]
     Gateway-->>Core: 结构化无损投递函数调用
@@ -152,3 +152,36 @@ class PureNativeProviderGateway {
   }
 }
 ```
+
+---
+
+### 9. 数值宣称的可证伪地位 (Epistemic Status of Quantitative Claims)
+
+> **宣称的原始口径（先于任何测量）**：`<800ms` 与"8~12 秒 → 4~5 秒"均来自**同一 provider（agy）上的同模型对比**——原生 Provider 网关直连 agy 云端 API **vs** CLI 调用 agy 命令行。它检验的是**接入方式**（直连 vs CLI 包装）的差异，**不是**跨厂商、跨模型的性能横向对比。
+>
+> **本次实测（2026-10-21）**：脚本 `experiments/attention_growth/e_p22_ttft_probe.py`，$n=30$ 串行、短提示。
+>
+> | 通道 | 模型 | 首字节中位 | 首个 content 中位 | 结论 |
+> | :--- | :--- | ---: | ---: | :--- |
+> | DeepSeek 官方 | deepseek-v4-pro | — | — | 不可测（30/30 返回 402，余额耗尽） |
+> | scnet 网关 | DeepSeek-V4-Pro-0813 | 1,996ms | 2,653ms（p90 3,725ms） | **域外，不作判据** |
+> | Kimi | kimi-for-coding | 976ms | 2,041ms（p90 2,590ms） | **域外，不作判据** |
+>
+> **裁定：本次测量不构成对该宣称的检验**。原因有三——
+> 1. **主体不同**：原宣称的主体是 agy 的云端 API 与 agy CLI，本测用的是 DeepSeek / scnet / Kimi，属不同 provider，原文本就声明"与其他大模型服务商不具有横向对比意义"。
+> 2. **缺对照臂**：原宣称是相对量（原生网关 vs CLI 包装），本测只有直连一侧，无法计算差值与倍数。
+> 3. **口径不同**：`<800ms` 指首字时延，`8~12 秒 → 4~5 秒` 指端到端单轮交互延迟，二者不可混用。
+>
+> **因此本测的唯一有效产出是负面信息**：其他 provider 的直连 TTFT 不可用于推广该阈值——`800ms` 是 agy 特定链路的实测值，不是普适指标。对推理型模型，直连首字普遍在 0.98~2.65s 量级，且"首字"必须区分首字节 / 首个 reasoning delta / 首个 content token 三层（Kimi 首次测量时 16 token 预算被 reasoning 耗尽，content 永不出现，指标无定义）。
+>
+> **可证伪条件（正确形式：相对量，非绝对值）**：原宣称的实质是**接入方式带来的时延差**，因此判据应建立在同 provider、同模型、同提示的**配对比较**上，而非某个绝对阈值。
+>
+> 设第 $i$ 次请求的原生网关首字时延为 $T^{\text{nat}}_i$、CLI 路径为 $T^{\text{cli}}_i$，则
+> $$\Delta_i=T^{\text{cli}}_i-T^{\text{nat}}_i,\qquad \rho=\operatorname{median}\!\left(T^{\text{cli}}\right)\big/\operatorname{median}\!\left(T^{\text{nat}}\right)$$
+>
+> - **H0（宣称被拒）**：$\Delta$ 的中位不大于 0（原生侧并不更快）；或配对符号检验 $p\ge0.05$。
+> - **H1（宣称成立）**：$\Delta$ 的中位显著大于 0，且 $\rho$ 达到预设倍数（如 $\rho\ge1.5$）。
+>
+> 绝对量 `800ms` 只是该 provider 某次测量的**描述性读数**，不应作为判据——不同 provider、不同模型、是否经代理都不可比。同理，"8~12 秒 → 4~5 秒"作为端到端延迟的**比值**（约 2 倍）才是可比较的部分，其绝对值同样随 provider 与任务长度变化。
+>
+> 该实验需 agy 凭据与 CLI 环境，本仓库当前不具备，故标注为**外部实测、本仓库不可复现**，仅作为待解释的经验事实，不构成本体系的推理前提。

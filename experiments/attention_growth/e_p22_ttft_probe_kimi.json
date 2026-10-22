@@ -1,0 +1,25 @@
+{
+  "provider": "kimi",
+  "model": "kimi-for-coding",
+  "base_url": "https://api.kimi.com/coding/v1",
+  "n_requested": 30,
+  "n_content_ok": 30,
+  "n_any_delta": 30,
+  "n_err": 0,
+  "first_byte_ms": {
+    "median": 975.6,
+    "p90": 1167.8
+  },
+  "first_any_delta_ms": {
+    "median": 975.6,
+    "p90": 1167.8
+  },
+  "ttft_ms": {
+    "median": 2040.7,
+    "p90": 2589.5,
+    "min": 1562.8,
+    "max": 5025.0
+  },
+  "criterion": "median_ttft <= 800ms",
+  "pass": false
+}

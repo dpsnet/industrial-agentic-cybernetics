@@ -21,3 +21,5 @@ import IACFormalization.Theorem3_1_CausalInvariance
 import IACFormalization.GaltonWatson
 import IACFormalization.StochasticFosterLyapunov
 import IACFormalization.Pattern10_LeaseLock
+import IACFormalization.Pattern11_PrimaryWriter
+import IACFormalization.Pattern23_24_ProductionLoop

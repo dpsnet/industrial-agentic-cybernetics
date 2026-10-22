@@ -1,0 +1,529 @@
+{
+  "criterion": "s = cost-weighted prefix share >= 0.70",
+  "scenario": "offline analytic accounting; savings = avoided re-entry at checkpoint",
+  "empirical_source": "外部工程系统断点重试实测（本仓库不可复现，仅作为待解释的经验事实）",
+  "exponential_frontload_sweep": [
+    {
+      "r": 1.2,
+      "N": 16,
+      "mean_savings": 0.6822,
+      "k_min_for_70pct": 7,
+      "threshold_ratio_k_over_N": 0.4375
+    },
+    {
+      "r": 1.2,
+      "N": 32,
+      "mean_savings": 0.8154,
+      "k_min_for_70pct": 8,
+      "threshold_ratio_k_over_N": 0.25
+    },
+    {
+      "r": 1.5,
+      "N": 16,
+      "mean_savings": 0.814,
+      "k_min_for_70pct": 4,
+      "threshold_ratio_k_over_N": 0.25
+    },
+    {
+      "r": 1.5,
+      "N": 32,
+      "mean_savings": 0.9063,
+      "k_min_for_70pct": 4,
+      "threshold_ratio_k_over_N": 0.125
+    },
+    {
+      "r": 2.0,
+      "N": 16,
+      "mean_savings": 0.875,
+      "k_min_for_70pct": 3,
+      "threshold_ratio_k_over_N": 0.1875
+    },
+    {
+      "r": 2.0,
+      "N": 32,
+      "mean_savings": 0.9375,
+      "k_min_for_70pct": 3,
+      "threshold_ratio_k_over_N": 0.0938
+    },
+    {
+      "r": 3.0,
+      "N": 16,
+      "mean_savings": 0.9063,
+      "k_min_for_70pct": 3,
+      "threshold_ratio_k_over_N": 0.1875
+    },
+    {
+      "r": 3.0,
+      "N": 32,
+      "mean_savings": 0.9531,
+      "k_min_for_70pct": 3,
+      "threshold_ratio_k_over_N": 0.0938
+    }
+  ],
+  "by_profile": {
+    "uniform": [
+      {
+        "N": 8,
+        "mean_savings": 0.4375,
+        "min_savings": 0.0,
+        "max_savings": 0.875,
+        "k_min_for_70pct": 7,
+        "threshold_ratio_k_over_N": 0.875,
+        "fraction_positions_ge_70pct": 0.25
+      },
+      {
+        "N": 12,
+        "mean_savings": 0.4583,
+        "min_savings": 0.0,
+        "max_savings": 0.9167,
+        "k_min_for_70pct": 10,
+        "threshold_ratio_k_over_N": 0.8333,
+        "fraction_positions_ge_70pct": 0.25
+      },
+      {
+        "N": 16,
+        "mean_savings": 0.4688,
+        "min_savings": 0.0,
+        "max_savings": 0.9375,
+        "k_min_for_70pct": 13,
+        "threshold_ratio_k_over_N": 0.8125,
+        "fraction_positions_ge_70pct": 0.25
+      },
+      {
+        "N": 24,
+        "mean_savings": 0.4792,
+        "min_savings": 0.0,
+        "max_savings": 0.9583,
+        "k_min_for_70pct": 18,
+        "threshold_ratio_k_over_N": 0.75,
+        "fraction_positions_ge_70pct": 0.2917
+      },
+      {
+        "N": 32,
+        "mean_savings": 0.4844,
+        "min_savings": 0.0,
+        "max_savings": 0.9688,
+        "k_min_for_70pct": 24,
+        "threshold_ratio_k_over_N": 0.75,
+        "fraction_positions_ge_70pct": 0.2812
+      },
+      {
+        "N": 48,
+        "mean_savings": 0.4896,
+        "min_savings": 0.0,
+        "max_savings": 0.9792,
+        "k_min_for_70pct": 35,
+        "threshold_ratio_k_over_N": 0.7292,
+        "fraction_positions_ge_70pct": 0.2917
+      }
+    ],
+    "frontload": [
+      {
+        "N": 8,
+        "mean_savings": 0.5833,
+        "min_savings": 0.0,
+        "max_savings": 0.9722,
+        "k_min_for_70pct": 5,
+        "threshold_ratio_k_over_N": 0.625,
+        "fraction_positions_ge_70pct": 0.5
+      },
+      {
+        "N": 12,
+        "mean_savings": 0.6111,
+        "min_savings": 0.0,
+        "max_savings": 0.9872,
+        "k_min_for_70pct": 7,
+        "threshold_ratio_k_over_N": 0.5833,
+        "fraction_positions_ge_70pct": 0.5
+      },
+      {
+        "N": 16,
+        "mean_savings": 0.625,
+        "min_savings": 0.0,
+        "max_savings": 0.9926,
+        "k_min_for_70pct": 9,
+        "threshold_ratio_k_over_N": 0.5625,
+        "fraction_positions_ge_70pct": 0.5
+      },
+      {
+        "N": 24,
+        "mean_savings": 0.6389,
+        "min_savings": 0.0,
+        "max_savings": 0.9967,
+        "k_min_for_70pct": 13,
+        "threshold_ratio_k_over_N": 0.5417,
+        "fraction_positions_ge_70pct": 0.5
+      },
+      {
+        "N": 32,
+        "mean_savings": 0.6458,
+        "min_savings": 0.0,
+        "max_savings": 0.9981,
+        "k_min_for_70pct": 16,
+        "threshold_ratio_k_over_N": 0.5,
+        "fraction_positions_ge_70pct": 0.5312
+      },
+      {
+        "N": 48,
+        "mean_savings": 0.6528,
+        "min_savings": 0.0,
+        "max_savings": 0.9991,
+        "k_min_for_70pct": 23,
+        "threshold_ratio_k_over_N": 0.4792,
+        "fraction_positions_ge_70pct": 0.5417
+      }
+    ],
+    "backload": [
+      {
+        "N": 8,
+        "mean_savings": 0.2917,
+        "min_savings": 0.0,
+        "max_savings": 0.7778,
+        "k_min_for_70pct": 8,
+        "threshold_ratio_k_over_N": 1.0,
+        "fraction_positions_ge_70pct": 0.125
+      },
+      {
+        "N": 12,
+        "mean_savings": 0.3056,
+        "min_savings": 0.0,
+        "max_savings": 0.8462,
+        "k_min_for_70pct": 11,
+        "threshold_ratio_k_over_N": 0.9167,
+        "fraction_positions_ge_70pct": 0.1667
+      },
+      {
+        "N": 16,
+        "mean_savings": 0.3125,
+        "min_savings": 0.0,
+        "max_savings": 0.8824,
+        "k_min_for_70pct": 15,
+        "threshold_ratio_k_over_N": 0.9375,
+        "fraction_positions_ge_70pct": 0.125
+      },
+      {
+        "N": 24,
+        "mean_savings": 0.3194,
+        "min_savings": 0.0,
+        "max_savings": 0.92,
+        "k_min_for_70pct": 21,
+        "threshold_ratio_k_over_N": 0.875,
+        "fraction_positions_ge_70pct": 0.1667
+      },
+      {
+        "N": 32,
+        "mean_savings": 0.3229,
+        "min_savings": 0.0,
+        "max_savings": 0.9394,
+        "k_min_for_70pct": 28,
+        "threshold_ratio_k_over_N": 0.875,
+        "fraction_positions_ge_70pct": 0.1562
+      },
+      {
+        "N": 48,
+        "mean_savings": 0.3264,
+        "min_savings": 0.0,
+        "max_savings": 0.9592,
+        "k_min_for_70pct": 42,
+        "threshold_ratio_k_over_N": 0.875,
+        "fraction_positions_ge_70pct": 0.1458
+      }
+    ]
+  },
+  "dependency_sensitivity": [
+    {
+      "N": 16,
+      "m_downstream": 0,
+      "savings": 0.9375,
+      "passes_70": true
+    },
+    {
+      "N": 16,
+      "m_downstream": 1,
+      "savings": 0.875,
+      "passes_70": true
+    },
+    {
+      "N": 16,
+      "m_downstream": 2,
+      "savings": 0.8125,
+      "passes_70": true
+    },
+    {
+      "N": 16,
+      "m_downstream": 3,
+      "savings": 0.75,
+      "passes_70": true
+    },
+    {
+      "N": 16,
+      "m_downstream": 4,
+      "savings": 0.6875,
+      "passes_70": false
+    },
+    {
+      "N": 16,
+      "m_downstream": 5,
+      "savings": 0.625,
+      "passes_70": false
+    },
+    {
+      "N": 16,
+      "m_downstream": 6,
+      "savings": 0.5625,
+      "passes_70": false
+    },
+    {
+      "N": 16,
+      "m_downstream": 7,
+      "savings": 0.5,
+      "passes_70": false
+    },
+    {
+      "N": 16,
+      "m_downstream": 8,
+      "savings": 0.4375,
+      "passes_70": false
+    },
+    {
+      "N": 16,
+      "m_downstream": 9,
+      "savings": 0.375,
+      "passes_70": false
+    },
+    {
+      "N": 16,
+      "m_downstream": 10,
+      "savings": 0.3125,
+      "passes_70": false
+    },
+    {
+      "N": 16,
+      "m_downstream": 11,
+      "savings": 0.25,
+      "passes_70": false
+    },
+    {
+      "N": 16,
+      "m_downstream": 12,
+      "savings": 0.1875,
+      "passes_70": false
+    },
+    {
+      "N": 16,
+      "m_downstream": 13,
+      "savings": 0.125,
+      "passes_70": false
+    },
+    {
+      "N": 16,
+      "m_downstream": 14,
+      "savings": 0.0625,
+      "passes_70": false
+    },
+    {
+      "N": 16,
+      "m_downstream": 15,
+      "savings": 0.0,
+      "passes_70": false
+    },
+    {
+      "N": 32,
+      "m_downstream": 0,
+      "savings": 0.9688,
+      "passes_70": true
+    },
+    {
+      "N": 32,
+      "m_downstream": 1,
+      "savings": 0.9375,
+      "passes_70": true
+    },
+    {
+      "N": 32,
+      "m_downstream": 2,
+      "savings": 0.9062,
+      "passes_70": true
+    },
+    {
+      "N": 32,
+      "m_downstream": 3,
+      "savings": 0.875,
+      "passes_70": true
+    },
+    {
+      "N": 32,
+      "m_downstream": 4,
+      "savings": 0.8438,
+      "passes_70": true
+    },
+    {
+      "N": 32,
+      "m_downstream": 5,
+      "savings": 0.8125,
+      "passes_70": true
+    },
+    {
+      "N": 32,
+      "m_downstream": 6,
+      "savings": 0.7812,
+      "passes_70": true
+    },
+    {
+      "N": 32,
+      "m_downstream": 7,
+      "savings": 0.75,
+      "passes_70": true
+    },
+    {
+      "N": 32,
+      "m_downstream": 8,
+      "savings": 0.7188,
+      "passes_70": true
+    },
+    {
+      "N": 32,
+      "m_downstream": 9,
+      "savings": 0.6875,
+      "passes_70": false
+    },
+    {
+      "N": 32,
+      "m_downstream": 10,
+      "savings": 0.6562,
+      "passes_70": false
+    },
+    {
+      "N": 32,
+      "m_downstream": 11,
+      "savings": 0.625,
+      "passes_70": false
+    },
+    {
+      "N": 32,
+      "m_downstream": 12,
+      "savings": 0.5938,
+      "passes_70": false
+    },
+    {
+      "N": 32,
+      "m_downstream": 13,
+      "savings": 0.5625,
+      "passes_70": false
+    },
+    {
+      "N": 32,
+      "m_downstream": 14,
+      "savings": 0.5312,
+      "passes_70": false
+    },
+    {
+      "N": 32,
+      "m_downstream": 15,
+      "savings": 0.5,
+      "passes_70": false
+    },
+    {
+      "N": 32,
+      "m_downstream": 16,
+      "savings": 0.4688,
+      "passes_70": false
+    },
+    {
+      "N": 32,
+      "m_downstream": 17,
+      "savings": 0.4375,
+      "passes_70": false
+    },
+    {
+      "N": 32,
+      "m_downstream": 18,
+      "savings": 0.4062,
+      "passes_70": false
+    },
+    {
+      "N": 32,
+      "m_downstream": 19,
+      "savings": 0.375,
+      "passes_70": false
+    },
+    {
+      "N": 32,
+      "m_downstream": 20,
+      "savings": 0.3438,
+      "passes_70": false
+    },
+    {
+      "N": 32,
+      "m_downstream": 21,
+      "savings": 0.3125,
+      "passes_70": false
+    },
+    {
+      "N": 32,
+      "m_downstream": 22,
+      "savings": 0.2812,
+      "passes_70": false
+    },
+    {
+      "N": 32,
+      "m_downstream": 23,
+      "savings": 0.25,
+      "passes_70": false
+    },
+    {
+      "N": 32,
+      "m_downstream": 24,
+      "savings": 0.2188,
+      "passes_70": false
+    },
+    {
+      "N": 32,
+      "m_downstream": 25,
+      "savings": 0.1875,
+      "passes_70": false
+    },
+    {
+      "N": 32,
+      "m_downstream": 26,
+      "savings": 0.1562,
+      "passes_70": false
+    },
+    {
+      "N": 32,
+      "m_downstream": 27,
+      "savings": 0.125,
+      "passes_70": false
+    },
+    {
+      "N": 32,
+      "m_downstream": 28,
+      "savings": 0.0938,
+      "passes_70": false
+    },
+    {
+      "N": 32,
+      "m_downstream": 29,
+      "savings": 0.0625,
+      "passes_70": false
+    },
+    {
+      "N": 32,
+      "m_downstream": 30,
+      "savings": 0.0312,
+      "passes_70": false
+    },
+    {
+      "N": 32,
+      "m_downstream": 31,
+      "savings": 0.0,
+      "passes_70": false
+    }
+  ],
+  "verdict": {
+    "uniform": "70% 仅在 k/N >= 0.75 时成立",
+    "frontload": "成本前置时，中段失败即可达 70%——与外部实测一致",
+    "backload": "成本后置时，需更靠后的失败位置"
+  },
+  "note": "节省的实质是不重复支付已通过任务的历史成本；恰好 70% 所需的断点位置由成本加权前缀占比决定，而非单纯的任务计数比例。"
+}

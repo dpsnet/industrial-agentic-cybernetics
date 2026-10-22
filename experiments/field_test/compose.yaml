@@ -1,0 +1,186 @@
+# 生产现场实验拓扑（EXPERIMENT_PLAN_PRODUCTION_FIELD_TEST.md §3）
+# prod-net（智能体不可访问）→ bridge-volume（单向）→ dev-net → stress-net（隔离验证）
+
+name: iac-field
+
+services:
+  # ============ prod-net ============
+  app:
+    build: ./app
+    image: iac-app
+    networks: [prod-net]
+    ports:
+      - "8000:8000"   # 编排注入用（仅 host 可访问）
+    environment:
+      IAC_DOWNSTREAM_URL: http://toxiproxy:8475/downstream
+      IAC_POOL_SIZE: "20"
+      IAC_CACHE_CAP: "500"
+    depends_on: [toxiproxy, downstream]
+
+  downstream:
+    build: ./app
+    image: iac-downstream
+    command: ["python", "downstream.py"]
+    networks: [prod-net]
+
+  toxiproxy:
+    image: shopify/toxiproxy:latest
+    networks: [prod-net]
+    ports:
+      - "8474:8474"   # 控制端口（编排注入用，仅 host 可访问）
+      - "8475:8475"   # 代理端口（app -> toxiproxy:8475 经容器网络直连）
+
+  prometheus:
+    image: prom/prometheus:latest
+    networks: [prod-net]
+    command: ["--config.file=/etc/prometheus/prometheus.yml"]
+    volumes:
+      - ./infra/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    depends_on: [app]
+
+  # 流量生成器：模拟生产负载（/search + /downstream 正常路径）
+  k6:
+    image: grafana/k6:latest
+    networks: [prod-net]
+    command: ["run", "/scripts/load.js"]
+    volumes:
+      - ./infra/k6_load.js:/scripts/load.js:ro
+    restart: unless-stopped
+    depends_on: [app]
+
+  cadvisor:
+    image: google/cadvisor:latest
+    networks: [prod-net]
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    privileged: true
+    # Windows 容器后端下 cadvisor 可能无法读取宿主指标；失败不影响判读（F3 主信号在 app /metrics）
+
+  exporter:
+    build: ./infra
+    image: iac-exporter
+    networks: [prod-net]
+    environment:
+      IAC_SCRAPE_INTERVAL: "30"
+      IAC_APP_METRICS_URL: http://app:8000/metrics
+      IAC_APP_STATE_URL: http://app:8000/state
+      IAC_BRIDGE_OUT: /bridge/events
+    volumes:
+      - bridge-volume:/bridge/events
+    depends_on: [app]
+
+  # ============ dev-net ============
+  auditor:
+    build: ./devstack
+    image: iac-devstack
+    command: ["python", "-u", "auditor.py"]
+    networks: [dev-net]
+    environment:
+      IAC_BRIDGE_DIR: /bridge/events
+      IAC_AUDIT_OUT: /dev/audit
+      IAC_AUDIT_STATE: /dev/audit/audit_state.json
+    volumes:
+      - bridge-volume:/bridge/events:ro
+      - audit-volume:/dev/audit
+    depends_on: [exporter]
+
+  sniffer:
+    image: iac-devstack
+    networks: [dev-net]
+    command: ["python", "-u", "sniffer.py"]
+    environment:
+      IAC_AUDIT_FILE: /dev/audit/audit_pass.jsonl
+      IAC_ALERT_FILE: /dev/audit/alerts.jsonl
+      IAC_BASELINE_SEC: "120"
+      IAC_TH_POOL: "10"
+      IAC_TH_P99: "300"
+    volumes:
+      - bridge-volume:/bridge/events:ro
+      - audit-volume:/dev/audit
+    depends_on: [auditor]
+
+  crystallizer:
+    image: iac-devstack
+    networks: [dev-net]
+    command: ["python", "-u", "crystallizer.py"]
+    environment:
+      IAC_ALERT_FILE: /dev/audit/alerts.jsonl
+      IAC_PATTERN_FILE: /dev/audit/patterns.jsonl
+      IAC_LLM_API_KEY: ${scnet_api_key}
+      IAC_LLM_BASE_URL: ${scnet_api_base}
+      IAC_LLM_MODEL: DeepSeek-V4.1-Flash-1017
+      IAC_LLM_TEMPERATURE: "0.7"
+    volumes:
+      - audit-volume:/dev/audit
+    depends_on: [sniffer]
+
+  hotfix-gen:
+    image: iac-devstack
+    networks: [dev-net]
+    command: ["python", "-u", "hotfix_gen.py"]
+    environment:
+      IAC_PATTERN_FILE: /dev/audit/patterns.jsonl
+      IAC_INBOX_DIR: /dev/inbox
+      IAC_LLM_API_KEY: ${scnet_api_key}
+      IAC_LLM_BASE_URL: ${scnet_api_base}
+      IAC_LLM_MODEL: DeepSeek-V4.1-Flash-1017
+      IAC_LLM_TEMPERATURE: "0.7"
+    volumes:
+      - audit-volume:/dev/audit
+      - inbox-volume:/dev/inbox
+    depends_on: [crystallizer]
+
+  # H2 审计自测专用：向 bridge-volume 写入 20 次篡改并逐条校验（仅自测阶段使用）
+  tamperer:
+    image: iac-devstack
+    networks: [dev-net]
+    command: ["sleep", "infinity"]
+    environment:
+      IAC_BRIDGE_DIR: /bridge/events
+      IAC_TAMPER_CASES: /dev/audit/tamper_cases.json
+    volumes:
+      - bridge-volume:/bridge/events
+      - audit-volume:/dev/audit
+    profiles: ["h2"]
+
+  gate:
+    image: iac-devstack
+    networks: [dev-net]
+    command: ["python", "-u", "gate.py"]
+    environment:
+      IAC_REPORT_DIR: /dev/reports
+      IAC_GATE_RESULT: /dev/audit/gate_results.jsonl
+    volumes:
+      - reports-volume:/dev/reports
+      - audit-volume:/dev/audit
+    depends_on: [validator]
+
+  # ============ stress-net ============
+  validator:
+    image: iac-devstack
+    networks: [stress-net]
+    command: ["python", "-u", "validator.py"]
+    environment:
+      IAC_APP_SRC_DIR: /srv/app-src
+      IAC_INBOX_DIR: /dev/inbox
+      IAC_REPORT_DIR: /dev/reports
+      IAC_VALIDATOR_MODE: daemon
+    volumes:
+      - ./app:/srv/app-src:ro
+      - inbox-volume:/dev/inbox
+      - reports-volume:/dev/reports
+    depends_on: [hotfix-gen]
+
+volumes:
+  bridge-volume:
+  audit-volume:
+  inbox-volume:
+  reports-volume:
+
+networks:
+  prod-net:
+  dev-net:
+  stress-net:

@@ -1,0 +1,126 @@
+{
+ "total": 20,
+ "rejected": 20,
+ "results": [
+  {
+   "case": "tamper_hash_00",
+   "kind": "hash",
+   "rejected": true,
+   "reason": "hash_mismatch"
+  },
+  {
+   "case": "tamper_hash_01",
+   "kind": "hash",
+   "rejected": true,
+   "reason": "hash_mismatch"
+  },
+  {
+   "case": "tamper_hash_02",
+   "kind": "hash",
+   "rejected": true,
+   "reason": "hash_mismatch"
+  },
+  {
+   "case": "tamper_hash_03",
+   "kind": "hash",
+   "rejected": true,
+   "reason": "hash_mismatch"
+  },
+  {
+   "case": "tamper_hash_04",
+   "kind": "hash",
+   "rejected": true,
+   "reason": "hash_mismatch"
+  },
+  {
+   "case": "tamper_hash_05",
+   "kind": "hash",
+   "rejected": true,
+   "reason": "hash_mismatch"
+  },
+  {
+   "case": "tamper_hash_06",
+   "kind": "hash",
+   "rejected": true,
+   "reason": "hash_mismatch"
+  },
+  {
+   "case": "tamper_hash_07",
+   "kind": "hash",
+   "rejected": true,
+   "reason": "hash_mismatch"
+  },
+  {
+   "case": "tamper_mtime_00",
+   "kind": "mtime",
+   "rejected": true,
+   "reason": "mtime_not_strict_increasing: -1.0 <= 0.0"
+  },
+  {
+   "case": "tamper_mtime_01",
+   "kind": "mtime",
+   "rejected": true,
+   "reason": "mtime_not_strict_increasing: -1.0 <= 0.0"
+  },
+  {
+   "case": "tamper_mtime_02",
+   "kind": "mtime",
+   "rejected": true,
+   "reason": "mtime_not_strict_increasing: -1.0 <= 0.0"
+  },
+  {
+   "case": "tamper_mtime_03",
+   "kind": "mtime",
+   "rejected": true,
+   "reason": "mtime_not_strict_increasing: -1.0 <= 0.0"
+  },
+  {
+   "case": "tamper_mtime_04",
+   "kind": "mtime",
+   "rejected": true,
+   "reason": "mtime_not_strict_increasing: -1.0 <= 0.0"
+  },
+  {
+   "case": "tamper_mtime_05",
+   "kind": "mtime",
+   "rejected": true,
+   "reason": "mtime_not_strict_increasing: -1.0 <= 0.0"
+  },
+  {
+   "case": "tamper_fp_00",
+   "kind": "fingerprint",
+   "rejected": true,
+   "reason": "fingerprint_drift:os_release"
+  },
+  {
+   "case": "tamper_fp_01",
+   "kind": "fingerprint",
+   "rejected": true,
+   "reason": "mtime_not_strict_increasing: 1792633787.5902197 <= 1792633787.5902197"
+  },
+  {
+   "case": "tamper_fp_02",
+   "kind": "fingerprint",
+   "rejected": true,
+   "reason": "mtime_not_strict_increasing: 1792633787.5902197 <= 1792633787.5902197"
+  },
+  {
+   "case": "tamper_fp_03",
+   "kind": "fingerprint",
+   "rejected": true,
+   "reason": "mtime_not_strict_increasing: 1792633787.5902197 <= 1792633787.5902197"
+  },
+  {
+   "case": "tamper_fp_04",
+   "kind": "fingerprint",
+   "rejected": true,
+   "reason": "mtime_not_strict_increasing: 1792633787.5902197 <= 1792633787.5902197"
+  },
+  {
+   "case": "tamper_fp_05",
+   "kind": "fingerprint",
+   "rejected": true,
+   "reason": "mtime_not_strict_increasing: 1792633787.5902197 <= 1792633787.5902197"
+  }
+ ]
+}

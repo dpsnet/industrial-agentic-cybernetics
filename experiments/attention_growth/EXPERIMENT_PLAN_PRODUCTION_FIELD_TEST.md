@@ -135,4 +135,30 @@ stress-net（与 dev-net 隔离，用于验证）
 
 ---
 
-## 10. 结果判读（待补——实验执行后回填）
+## 10. 结果判读（2026-10-22 回填）
+
+### 执行概况
+- 环境：Docker Compose 受控生产拓扑（app/downstream/toxiproxy/prometheus/k6/exporter/auditor/sniffer/crystallizer/hotfix-gen/validator/gate + profile h2 tamperer）；LLM 组件模型 **DeepSeek-V4.1-Flash-1017**（scnet 网关，temperature 0.7）。
+- 场景：F1 连接池泄漏、F2 下游延迟（toxiproxy 400ms）、F3 内存泄漏（预填充）、F4 无注入对照；各 10 reps × 180s 检测窗口；H2 篡改自测 20 例。
+- 完整数据：`experiments/field_test/results/`（run_log / alerts_all / patterns_all / gate_results / tamper_results / audit_pass / judgement / f3_boundary_evidence）。
+
+### 判读结果（按 §5 预注册口径）
+
+| 判据 | 结果 | 证据 |
+|---|---|---|
+| H1-F1 检出率 | **PASS** 10/10（1.00 ≥ 0.90） | `pool_active>10.0 (751)` |
+| H1-F2 检出率 | **PASS** 10/10（1.00 ≥ 0.90） | `p99>300.0 (40x ms)` |
+| H1-F3 检出率 | **边界**（见下） | `f3_boundary_evidence.md` |
+| H1-F4 误报率 | **PASS** 0/60（0.00 ≤ 0.05） | 对照窗无告警 |
+| H2 篡改拒绝 | **PASS** 20/20（哈希 8、mtime 6、指纹 6） | tamper_results.json |
+| H3 晋升比例 | **PASS** 14/14 晋升（1.00 ≥ 0.80）、错误拦截 1.00 | gate_results.jsonl |
+| H4 mtime 单调 | **字面 FAIL→装置缺陷**（708 误拒，根因 exporter 重启序号复用；复核 456 快照单调 0 破坏；判据有效） | 见 §10 说明 |
+| H5 环境泄漏 | **PASS** 0/14（阈 0） | gate_results 正则审计 |
+
+### 边界与机制发现（按 §8 如实记录，不做理论修补）
+1. **F3 mem 3σ 判据失敏**：自适应 σ 被注入信号本身污染（EWMA judge 后仍更新 → σ 4MB→67MB 膨胀），3σ 阈值漂移吞没后续重复台阶信号；仅"极稳基线 + 大幅突跳"可触发（实测 dev 31.1σ）。判据形态（相对自适应 σ）与缺陷形态（泄漏/漂移台阶）失配；修复方向（稳健基线 / 固定绝对阈值 / judge 命中冻结 σ 窗口）留档。
+2. **H4 装置缺陷**：exporter 重启 seq 归零 → 快照文件名序号复用 → 按文件名序审计的 mtime 判据误拒 708 条正常事件（全部 reason `mtime_not_strict_increasing`，无哈希/指纹误拒）。装置已修：exporter 启动续号、auditor 按时间序审计。
+3. **LLM 闭环实证**：弱模型档（Flash-1017）下缺陷萃取 7/7 正确、14 条热修复全绿晋升、4 条历史缺陷正确拦截、晋升零环境泄漏——理论承诺由确定性组件承载的架构承诺获实证。
+
+### 结论
+主链路（确定性嗅探固定阈值 + 哈希/指纹/mtime 审计 + LLM 闭环热修复）的 H1-F1/F2/F4、H2、H3、H5 全部通过预注册判据；F3 与 H4 的边界/装置问题均为实验装置或判据形态层面的真实发现，不影响确定性组件承载理论承诺的主结论。

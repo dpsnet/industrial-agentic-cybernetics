@@ -1,0 +1,133 @@
+﻿{
+  "T_H1": {
+    "detail": [
+      {
+        "family": "A",
+        "runs": 12,
+        "Z1_mean": 0.0,
+        "status": "通过"
+      },
+      {
+        "family": "B",
+        "runs": 12,
+        "Z1_mean": 0.0,
+        "status": "通过"
+      },
+      {
+        "family": "C",
+        "runs": 12,
+        "Z1_mean": 0.0,
+        "status": "通过"
+      },
+      {
+        "family": "D",
+        "runs": 12,
+        "Z1_mean": 0.0,
+        "status": "通过"
+      }
+    ],
+    "pass_all_executed": true,
+    "note": "B/C/D 的 C3 尚未跑完，结论待全量完成后确认"
+  },
+  "T_H2": {
+    "A": {
+      "n_points": 12,
+      "slope": -0.017,
+      "r2": 0.525,
+      "degenerate": false,
+      "pass": false
+    },
+    "B": {
+      "n_points": 12,
+      "slope": 0.0,
+      "r2": null,
+      "degenerate": true,
+      "pass": false
+    },
+    "C": {
+      "n_points": 8,
+      "slope": -0.216,
+      "r2": 0.724,
+      "degenerate": false,
+      "pass": false
+    },
+    "D": {
+      "n_points": 12,
+      "slope": -0.498,
+      "r2": 0.888,
+      "degenerate": false,
+      "pass": true
+    }
+  },
+  "T_H3": {
+    "m_hat_C0": {
+      "A": 0.986,
+      "B": 1.0,
+      "C": 0.294,
+      "D": 0.625
+    },
+    "predicted_order": "A≈D > B > C",
+    "observed_order": [
+      "B",
+      "A",
+      "D",
+      "C"
+    ],
+    "tests": {
+      "C_lt_A": {
+        "p": 0.0,
+        "claim": "弱邻接族 C 的繁殖率显著低于基线族 A"
+      },
+      "C_lt_D": {
+        "p": 0.02625,
+        "claim": "族 C(P1 不邻接) 的繁殖率显著低于族 D(P3 邻接)"
+      },
+      "D_lt_A": {
+        "p": 0.0,
+        "claim": "族 D 低于族 A（预注册 A≈D 的偏离是否显著）"
+      },
+      "D_lt_B": {
+        "p": 0.0,
+        "claim": "族 D 低于族 B（预注册序 B<D 的反向偏离是否显著）"
+      }
+    },
+    "n_pool": {
+      "A": 71,
+      "B": 72,
+      "C": 17,
+      "D": 32
+    }
+  },
+  "T_H4": {
+    "m_C0_C": 0.29411764705882354,
+    "m_C0_D": 0.625,
+    "p": 0.02625,
+    "pass": true
+  },
+  "signature_cross_check": {
+    "A": {
+      "P1": 137,
+      "P3": 0,
+      "CTRL": 144,
+      "none": 146
+    },
+    "B": {
+      "P1": 144,
+      "P3": 0,
+      "CTRL": 51,
+      "none": 230
+    },
+    "C": {
+      "P1": 33,
+      "P3": 0,
+      "CTRL": 108,
+      "none": 285
+    },
+    "D": {
+      "P1": 0,
+      "P3": 46,
+      "CTRL": 99,
+      "none": 282
+    }
+  }
+}

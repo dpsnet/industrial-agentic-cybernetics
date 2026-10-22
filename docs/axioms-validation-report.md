@@ -108,20 +108,67 @@
 2. 所有实测结论以条件定理形式呈现，适用域逐条声明（模型族、任务族、协议、平台）；
 3. 与预注册判据不符的观测（H1a 功效不足、H1c 不可判定、E8 跨族崩溃、$\rho=0$ 异常）一律如实记录为边界，理论未作任何事后修补。
 
-**数据与复现**：`experiments/attention_growth/`（EXPERIMENT_PLAN.md、EXPERIMENT_PLAN_AXIOM3.md、EXPERIMENT_PLAN_AXIOM4.md 及各结果 JSON）；形式化复现见附录 B.10。
+**数据与复现**：`experiments/attention_growth/`（EXPERIMENT_PLAN.md、EXPERIMENT_PLAN_AXIOM3.md、EXPERIMENT_PLAN_AXIOM4.md 及各结果 JSON）；形式化复现见附录 B.12。
 
 ---
 
 ## 7. 局限与后续验证计划
 
-四条公理的验证均条件化于实测的模型、任务族与协议。下表为针对每项边界的补足路径；其中**跨模型已执行完毕**，其余四份为预注册计划（未执行）。
+四条公理的验证均条件化于实测的模型、任务族与协议。下表为针对每项边界的补足路径；其中**跨模型、跨任务族、生产现场实验均已执行完毕**，其余两份为预注册计划（未执行）。
 
 | 局限 | 计划 | 性质 | 预注册核心判据 |
 | :--- | :--- | :--- | :--- |
 | 单一模型（仅 DeepSeek v4-pro） | [EXPERIMENT_PLAN_AXIOM4_CROSS_MODEL.md](file:///e:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/EXPERIMENT_PLAN_AXIOM4_CROSS_MODEL.md) | **✅ 已执行**：Kimi 平行实验 288 会话 | X-H1 通过（24/24）、X-H4 显著；X-H2/H3-数值 受近临界区功效限制未通过 |
-| 单一任务族（pytest 编写） | [EXPERIMENT_PLAN_AXIOM4_CROSS_TASK.md](file:///e:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/EXPERIMENT_PLAN_AXIOM4_CROSS_TASK.md) | 四任务族 × 三条件（864 会话） | $\hat\mu$ 随毒株–任务邻接度单调；族内毒株对照 |
+| 单一任务族（pytest 编写） | [EXPERIMENT_PLAN_AXIOM4_CROSS_TASK.md](file:///e:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/EXPERIMENT_PLAN_AXIOM4_CROSS_TASK.md) | **✅ 已执行**：四任务族 × 三条件（144 链，2026-10-22） | T-H1 通过（48/48）；T-H4 通过（$p=0.026$）；T-H3 拒绝（邻接度序不成立）；T-H2 部分支持（近临界区判据失效） |
 | 超临界未出现（$\hat m=0.56<1$） | [EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md](file:///e:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md) | 全量追加 + FIFO 容量架构（384 会话） | $\hat m>1$ 且 CI 下限 $>1$；$q_{sim}$ 与 $q^*$ 偏差 $<0.02$ |
 | H1a 功效不足（$p=0.15$）/ H1c 不可判定（$n=1$） | [EXPERIMENT_PLAN_AXIOM4_H1AC_BOOST.md](file:///e:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/EXPERIMENT_PLAN_AXIOM4_H1AC_BOOST.md) | 配对设计 + 双毒株（960 会话） | 配对置换 $p<0.05$；比值 CI 完全落入 $[0.35,0.65]$ |
-| 模式 23/24 无形式化与实证 | [EXPERIMENT_PLAN_PRODUCTION_FIELD_TEST.md](file:///e:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/EXPERIMENT_PLAN_PRODUCTION_FIELD_TEST.md) | Docker Compose 受控生产环境（40 次运行） | 检出率 $\ge0.90$、篡改否决率 $=1.00$、错误修复拦截率 $=1.00$ |
+| 模式 23/24 无形式化与实证 | [EXPERIMENT_PLAN_PRODUCTION_FIELD_TEST.md](file:///e:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/EXPERIMENT_PLAN_PRODUCTION_FIELD_TEST.md) | **✅ 已执行（2026-10-22）**：Docker Compose 受控生产环境（F1–F4 各 10 reps + H2 篡改自测 20 + LLM 闭环 18 报告） | H1：F1/F2 检出率 1.00、F4 误报 0.00（F3 mem 3σ 判据形态边界）；H2 篡改否决率 1.00；H3 晋升比例 1.00、错误拦截 1.00；H5 环境泄漏 0；H4 mtime 判据有效（708 误拒系 exporter 序号复用装置缺陷，复核 456 快照单调 0 破坏） |
 
-**尚未形式化的结构性缺口**：模式 23→24→23 构成的"观测–学习"负反馈回路，其长期稳定性尚未构造 Lyapunov 函数并纳入 Lean 工程（B.7 框架可套用，但漂移条件 $\delta$ 与 $V$ 未给出）。这是当前理论体系中唯一已知的未闭合项，不以推论代替证明。
+**观测–学习回路的稳定性（2026-10-21 已闭合）**：模式 23→24→23 的负反馈回路此前未给出 Lyapunov 函数。现已在 `Pattern23_24_ProductionLoop` 中闭合：以缺陷存量 $V(x)=x$ 为 Lyapunov 函数、$b=1$、$\delta=2q-1$，证明检出–修复率 $q>1/2$ 时强漂移成立，命中"存量 $<1$"的期望时间满足 $\mathbb E[\tau]\le x_0/(2q-1)$；并给出临界负结果——$q\le 1/2$ 时 $V=\mathrm{id}$ 不构成 Lyapunov 函数。**该结论为模型内结论**（单缺陷类、单步注入/修复、i.i.d. 检出），不覆盖多缺陷类耦合与批量注入；$q$ 的实测值已于 2026-10-22 由 `EXPERIMENT_PLAN_PRODUCTION_FIELD_TEST.md` 的 H1 执行：固定阈值类缺陷（pool/p99）$q=1.00$ 满足门槛；mem 自适应 σ 判据因阈值漂移不满足（判据形态边界，见 `experiments/field_test/results/f3_boundary_evidence.md`）。理论侧的形式缺口至此清零，剩余缺口全部转为经验缺口。
+
+**跨任务族复核（2026-10-22 已闭合）**：四任务族（pytest 同步 / httpx 异步 / CI workflow / CI workflow+P3 对照）× 三条件（C0/C1/C3）× 12 replicate × 6 代，共 144 链。T-H1 通过（48/48 条 C3 链 $Z_1=0$，零违例）；T-H4 通过（族内毒株对照 $p=0.026$）；T-H3 拒绝（预注册邻接度序 $A\approx D>B>C$ 不成立，实测 $B>A>D>C$）；T-H2 部分支持（仅 D 族 $R^2=0.888$ 通过，近临界族判据失效）。关键修订：$\hat m$ 是**任务族与毒株适用位点的联合参数**，区间 $[0.29,1.00]$，跨族不可迁移；隔离（$\sigma=1$）的灭绝保证与 $\hat m$ 取值无关。模式 14 的门禁设计前提需重新标定为"毒株在任务中具有可落地的适用位点 $\Rightarrow \mu>0$"。详见 `EXPERIMENT_PLAN_AXIOM4_CROSS_TASK.md` §8。
+
+---
+
+## 8. 模式级闭环审计（24 模式可追溯矩阵）
+
+> 口径声明：`正文锚点` 指模式文档中**显式写出**的公理/定理编号（仅有 6 个模式写出）；`Lean` 指附录 B.1 的模块–章节映射——**正文未声明不等于无形式化**；`实证` 指已执行并完成判读的实验；`文中指标` 是正文给出的目标数值，属**工程宣称而非预注册判据**；`类型` 是该模式在体系中的最终认识论地位。
+
+| 编号 | 模式 | 正文锚点 | Lean 模块 | 实证证据 | 文中指标 | 类型 |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 01 | 底座穿透核验 | — | `Axiom1_Grounding`（间接） | 公理 I 文献锚点 | Exit 0 ≠ 物理真 | 可定理化（核心已证） |
+| 02 | 审查者现实审计否决 | 公理 I 扩展 | — | — | VETO 标记 | 工程约定 |
+| 03 | 双阶段脚手架隔离 | — | — | — | — | 工程约定 |
+| 04 | 任务级最小特权投影 | — | `Axiom2_AttentionDilution` | E3/E3b 注意力通道 | Token 降 >60% | 可定理化（核心已证） |
+| 05 | 宏微观渐进展开 | — | — | — | 蓝图 ≥7.0 | 实测型（未执行） |
+| 06 | 流式分解断点续跑 | — | — | 解析核算（成本加权） | 省 ≥70%（成本前置时） | 实测型 |
+| 07 | 驱动–导航结对 | — | — | — | 减 ≥80% 无效重试 | 实测型（未执行） |
+| 08 | 隐式分支嗅探 | — | — | — | 单测 +30%~60% | 实测型（未执行） |
+| 09 | 幂等日志与 mtime | — | `Axiom3_CausalMonotonicity` | Cargo 28/28 组 | mtime 严格单调 | 可定理化（已证） |
+| 10 | 租约锁与看门狗 | — | `Pattern10_LeaseLock` | E-B8 5×10⁴ 仿真 | TTL 30s / 心跳 10s | 可定理化（已证） |
+| 11 | 主写从读互斥降级 | — | `Pattern11_PrimaryWriter` | — | — | 可定理化（已证） |
+| 12 | 对等智能体协议桥接 | 公理 III 扩展 | — | — | — | 工程约定 |
+| 13 | 单源事实–模式双模萃取 | — | — | — | 探索 −50% | 实测型（未执行） |
+| 14 | 隔离草稿与晋升门禁 | 公理 IV 扩展 | `Axiom4_MemoryPoisoning` | 288 会话 + GW 仿真 | — | 可定理化（已证） |
+| 15 | 污点模式拒绝 | — | `Axiom4_MemoryPoisoning` | 公理 IV 同批实验 | — | 可定理化（已证） |
+| 16 | 手风琴多分辨率投影 | — | — | — | <10/<200/<2K Token | 工程约定 |
+| 17 | 飞行指挥官异步中断 | — | — | — | — | 工程约定 |
+| 18 | 隐藏 Oracle 沙箱 | 定理 3.1 | `Theorem3_1_CausalInvariance` | E-B6 12 组 Lyapunov | Failures = 0 | 可定理化（已证） |
+| 19 | 五重机械判据 | — | — | — | Jev ≥7.0 | 工程约定 |
+| 20 | 工业基准 A/B 对照 | — | — | — | −80% 能耗 / 3.8× | 实测型（未执行） |
+| 21 | Token 断崖压缩 | — | — | 实测 −80.7% | −80.7% | 实测型 |
+| 22 | 原生 Provider 桥接 | — | — | 外部实测（agy：网关 vs CLI，不可复现） | 首字时延短于 CLI（$\Delta=T^{cli}-T^{nat}>0$） | 实测型（相对量） |
+| 23 | 生产异常嗅探 | 公理 I/III；定理 3.1 | `Pattern23_24_ProductionLoop`（回路稳定性） | 生产现场实验 H1/H4（F1/F2 检出 1.00、F4 误报 0.00、F3 判据形态边界、H4 装置缺陷） | 检出率 ≥0.90（实测 1.00） | 可定理化（稳定性已证 + 实测支撑） |
+| 24 | 缺陷萃取与热修复 | 公理 III/IV | 同上（回路稳定性） | 生产现场实验 H2/H3/H5（篡改 20/20、晋升 14/14、泄漏 0） | 拦截率 = 1.00（实测 1.00） | 可定理化（稳定性已证 + 实测支撑） |
+
+**统计（2026-10-22 处置后）**：正文显式锚点 6/24（02、12、14、18、23、24）；有 Lean 模块对应 9/24（01、04、09、10、11、14、15、18、23/24）；有实证 10/24（01、04、09、10、14、15、18、21、23、24），另有 1 项外部实测不可复现（22）；**三者皆无 3/24（05、07、13）**——这三个均已按清单 2 标注为"经验目标（未验证）"，不构成理论结论；另有 4 个显式标注"工程约定"（03、16、17、19）。
+
+**指标口径原则（2026-10-21 增补）**：凡涉及"比 X 更快/更省"的宣称，指标一律取**相对量**（配对差 $\Delta$ 或比值 $\rho$），绝对阈值只作描述性读数。理由：绝对量随 provider、模型、并发度、任务长度漂移，不可跨环境比较；相对量在同一配对条件下可比，且能直接写出零假设。模式 06（节省率 = 已付成本占比）与模式 22（首字时延差 $\Delta>0$）已按此原则重述。
+
+**缺口分流（三张处置清单）**：
+
+1. **应补证明（已完成）**：模式 11 已补 `Pattern11_PrimaryWriter`（单写者因果序 + 视图前缀单调，零 sorry）；模式 23/24 已补 `Pattern23_24_ProductionLoop`（$V=x$、$b=1$、$\delta=2q-1$，含临界负结果）。二者均已挂入根模块并通过 `lake build`（6274 jobs）。除此之外，可定理化模式的核心结论均已入内核。
+2. **数值宣称已逐条裁定**：**已完成补测 2 项**——06（成本加权前缀核算，结论：节省率 = 已付成本占比而非任务计数占比；成本前置 $r\ge1.2$ 时 $N=32$ 期望 81.5%、断点 $k/N\ge0.25$ 即可达 70%，与外部断点重试实测相符；等成本下期望约 50%）、22（宣称实质是**相对量**——同 provider 下原生网关首字时延短于 CLI 路径；应以配对差 $\Delta=T^{\text{cli}}-T^{\text{nat}}$ 的中位数与比值 $\rho$ 为判据，`800ms`/`8~12 秒` 仅为描述性读数。外部实测、本仓库不可复现；本次以 DeepSeek/scnet/Kimi 测得 0.98~2.65s 属域外数据，**不构成检验**）；**待补测 1 项**——20（配对 A/B 需配额，排在 CROSS_TASK 之后）；降级 4 项——05（口径未定）、07（"无效重试"无定义）、08（行数为代理量，改测孤儿分支检出率）、13（依赖任务分布）；保留 1 项——21（已实测，需补口径）。各条已在对应模式文档 §9 显式标注。
+3. **应显式降级为约定（已完成）**：模式 03/16/17/19 已在正文 §9 标注为"工程约定"，并声明不得作为其他模式的推理前提。
+
+**闭环判据**：理论自洽的完整标准是——每个模式要么挂到一条已机检的定理上，要么挂到一组预注册实验的可证伪判据上，要么被显式标注为工程约定；三者都不满足的即为无效逻辑。按此判据，24 个模式**已全部归类完毕**：9 个有 Lean 锚点、10 个有实证或实测（与前者部分重叠）、4 个显式约定、3 个标注为未验证经验目标。剩余工作不再是"逻辑缺口"，而是**经验缺口**：模式 20 的配对 A/B（排在配额之后）。生产现场实验（模式 23/24 的 $q$ 实测）已于 2026-10-22 闭合：固定阈值类缺陷 $q=1.00$（F1/F2），mem 自适应 σ 判据因阈值漂移不满足 $q>1/2$ 门槛（判据形态边界，已留档）。

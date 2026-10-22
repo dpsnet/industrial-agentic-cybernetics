@@ -43,7 +43,7 @@ flowchart TD
 ---
 
 ### 3. 适用性 (Applicability)
-- 多个不同厂商或不同进程的智能体（如 DevForge 流水线、Trae、Cline、Cursor）接入同一个企业工程仓库；
+- 多个不同厂商或不同进程的智能体（如自建 CI 流水线、各类 IDE 编码智能体）接入同一个企业工程仓库；
 - 具有清晰的主备责任划分（Leader-Follower）、需要保障主流水线构建绝对纯净的场景；
 - 允许从属节点提出代码建议但严禁私自落盘的协作架构。
 
@@ -147,3 +147,15 @@ class PrimaryWriterReplicaReaderInterceptor {
   }
 }
 ```
+
+---
+
+### 9. 理论地位与形式化锚点 (Epistemic Status)
+
+> **可定理化（已证，零 sorry）**：本模式的核心并发主张已在 Lean 4 内核中验证，模块 `Pattern11_PrimaryWriter`（`formal_proof/IACFormalization`），对应附录 B.9。
+
+- 单写者前提不是额外约定：`writer_unique_of_lease` 直接由模式 10 的 `canWrite_unique` 推出——同一时刻至多一个智能体持有写权限。
+- 写日志层：`eq_of_mem_of_tick_eq` 证明合法日志中同刻度即同一事件；`writer_unique_per_tick` 给出"同刻度同写入者"，即并发写写冲突在协议内不可能。
+- 读一致性：`view_mono` 与 `no_lost_write` 证明从读者的视图是**完整前缀**——较晚读取包含较早读取的全部事件，且任何已提交事件必然可见，不存在"跳过中间提交"的视图。
+
+推论的可证伪指标：主写提交后，从读者读到的事件集合必须等于"tick ≤ 读取时刻"的日志前缀；若观测到缺失或乱序，则该定理的前提（时钟严格递增、租约互斥）在实现中不成立。

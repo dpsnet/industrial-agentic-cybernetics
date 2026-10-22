@@ -150,3 +150,9 @@ class DualModeTechnicalCrystallizer {
   }
 }
 ```
+
+---
+
+### 9. 数值宣称的可证伪地位 (Epistemic Status of Quantitative Claims)
+
+> **处置：降级为经验目标（未验证）**——"减少 50% 以上的探索轮次"依赖任务分布与模板命中率，无预注册判据。标注为**工程经验目标**；若要升格，须固定任务族、"探索轮次"的计数口径与"命中"的判定规则，再做配对比较。

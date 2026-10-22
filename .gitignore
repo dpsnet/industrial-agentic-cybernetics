@@ -7,3 +7,9 @@
 # Python bytecode cache directories
 **/__pycache__/
 
+# 本地密钥与环境配置
+.env
+# 运行日志
+*.log
+*.log.err
+
