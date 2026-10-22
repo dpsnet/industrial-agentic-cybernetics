@@ -6,21 +6,21 @@
 
 ## 6.1 Mechanism and Capacity (SUPERCRITICAL tier, Flash, full-append)
 
-**S-H1 supercritical ✅**: C0-full $\hat m=1.166$ (bootstrap 95% CI $[1.156,1.176]$), CI lower bound > 1. Z trajectory $[1,2,2.917,3.917,3.917,4.917,4.917,4.917]$: monotone linear accumulation in the unsaturated segment (g0–g3); after hitting capacity at g4 (mem 6→16), the FIFO competition steady state $Z\approx5/16$ (g5–g7 constant 4.917).
+**S-H1 Mechanism-B criterion ✅ (GW formulation invalidated)**: the GW formulation of S-H1 ($\hat m>1$ with CI lower bound $>1$) is invalidated with S-H3's falsification—for a deterministic linear-accumulation process any growth statistic is necessarily $>1$, so the criterion could not, by design, fail under Mechanism B (§8). The Mechanism-B endogenous criteria are: **persistent accumulation** (linear growth before saturation; steady state $5/16$ maintained for 3 generations) and **survival 1.0**—both satisfied. Z trajectory $[1,2,2.917,3.917,3.917,4.917,4.917,4.917]$: linear accumulation g0–g3; capacity hit at g4 (mem 6→16); FIFO steady state 4.917 at g5–g7. The cross-mechanism propagation ratio $\hat m^\dagger=1.166$ ([1.156,1.176]; estimator $\hat m=\sum Z_{n+1}/\sum Z_n$, §3.1; GW “mean offspring per parent” semantics valid for Mechanism A only).
 
 **S-H2 survival ✅**: g7 survival 1.0 (12/12 chains, no extinction).
 
-**S-H3 GW match ✗ (falsified by mechanism evidence)**: per-generation offspring check—each generation writes exactly 1 new P1 ($w_n\equiv1$, $Z_{n+1}=Z_n+1$); the "offspring depends on parent population" requirement of a branching process fails. Mechanism B (linear accumulation–competition) replaces GW matching; **revision narrative in §8**.
+**S-H3 GW match ✗ (falsified by mechanism evidence)**: per-generation offspring check—each generation writes 0 or 1 new P1 ($w_n\in\{0,1\}$, PMF=[0,1], chain mean $E[w_n]=0.917$; 11/12 chains write 1 every generation, about 1/12 chains skip one generation), and the write does not depend on $Z_n$—the "offspring depends on parent population" requirement of a branching process fails. Mechanism B (linear accumulation–competition) replaces GW matching; **revision narrative in §8**.
 
 **S-H4 quarantine invariance ✅**: C3-full 12/12 chains, mem constant 6, $Z$ constant 1—quarantine truncates propagation under the full-append architecture as well (even where the branching premise fails).
 
-**Capacity as control parameter**: at $M=8$, $\hat m=0.829$ ($[0.739,0.875]$), g7 survival 0 (extinction); at $M=32$, $\hat m=1.25$ (degenerate CI, 6 identical chains), $Z=[1,\dots,8]$ linear growth, unsaturated. **Critical $M_c\in(8,16)$**, capacity monotonicity holds.
+**Capacity as control parameter**: at $M=8$, the propagation ratio $\hat m^\dagger=0.829$ ($[0.739,0.875]$), g7 survival 0 (extinction); at $M=32$, $\hat m^\dagger=1.25$ (degenerate CI, 6 identical chains), $Z=[1,\dots,8]$ linear growth, unsaturated. **Critical $M_c\in(8,16)$**, capacity monotonicity holds.
 
 **Selective control (Flash)**: 2 chains, $Z$ constant 1, memory shrinks to 3 ($\hat m=1.0$ critical boundary; H1AC large sample, 48 chains, $m\approx0.92$, supports weak subcriticality)—within the same model tier, an architecture bifurcation with C0-full (§3.4).
 
 ## 6.2 Marking Gate and Multiplicative Law (H1AC, Flash, 160 chains)
 
-**B-H1a marking-gate compression ✗**: paired (C0 vs C1, 48 pairs) difference $\bar d=+0.020$ (mean pulled by a few large-difference pairs; only 15/48 positive—at the pair level, mostly contrary to expectation), sign-flip permutation $p=0.69$—**zero compression by the marking gate**. Triple independent confirmation: Pro main experiment ($p=0.15$, C1/C0 ratio 0.529, 47% compression, not significant) → SUPERCRITICAL C1-full (12/12 generation-identical trajectories) → H1AC (large-sample paired). Power side: H1AC's $n=48$ meets the sample required by the Pro-tier power analysis (power 0.848), excluding the "insufficient power" explanation.
+**B-H1a marking-gate compression ✗ (confirmed by the Flash large sample)**: paired (C0 vs C1, 48 pairs) difference $\bar d=+0.020$ (mean pulled by a few large-difference pairs; only 15/48 positive—at the pair level, mostly contrary to expectation), sign-flip permutation $p=0.69$—**zero compression on the Flash tier**. The three-tier evidence is stratified: the Pro main experiment is a **large-but-non-significant effect under inadequate power** ($p=0.15$, C1/C0 ratio 0.529, 47% compression, power 0.38—not interpretable as zero compression); SUPERCRITICAL C1-full 12/12 generation-identical trajectories (the full-append write path structurally bypasses model judgment, not independent soft-signal evidence); the H1AC large-sample paired test confirms zero compression. Power side: H1AC's $n=48$ meets the sample required by the Pro-tier power analysis (power 0.848), excluding the "insufficient power" explanation.
 
 **B-H1c multiplicative compression law (partial)**: chain-mean write-rate ratio $\hat r=\mu_{C2}/\mu_{C0}=0.422/0.905=\boldsymbol{0.466}\in[0.35,0.65]$ (multiplicative prediction 0.5 matches); bootstrap CI $[0.333,0.602]$—lower bound 0.017 outside the target band. Criterion definition (point + CI dual criterion): point ✅, CI ⚠️. Survival corroboration: C2 final generation 0.062 vs C0 0.750—random filtering genuinely suppresses propagation.
 
@@ -46,22 +46,22 @@ Production-field closed-loop experiment (agent autonomous submission → five-fo
 
 **Table 1: Mechanism and Capacity (SUPERCRITICAL tier, Flash, full-append, chain mean)**
 
-| Condition | Capacity $M$ | $n$ | $\hat m$ (boot95 CI) | Final Z (g7) | g7 survival | Criterion |
+| Condition | Capacity $M$ | $n$ | propagation ratio $\hat m^\dagger$ (boot95 CI) | Final Z (g7) | g7 survival | Criterion |
 | :--- | :---: | :---: | :--- | :---: | :---: | :---: |
 | selective ctrl | 16 | 2 | 1.0 ([1.0,1.0]) | 1.0 | 1.0 | critical boundary (weak subcriticality, see H1AC) |
 | C0-full | 16 | 12 | **1.166** ([1.156,1.176]) | 4.917 (steady 5/16) | 1.0 | **S-H1 ✅ S-H2 ✅** |
-| C1-full | 16 | 12 | 1.165 ([1.163,1.167]) | 4.917 | 1.0 | marking gate zero compression |
+| C1-full | 16 | 12 | 1.165 ([1.163,1.167]) | 4.917 | 1.0 | generation-identical to C0 (≤0.083) |
 | C3-full | 16 | 12 | 1.0 ([1.0,1.0]) | 1.0 | 1.0 | **S-H4 ✅** (mem constant 6) |
 | W=8 | 8 | 6 | 0.829 ([0.739,0.875]) | 0.0 | 0.0 | **extinction** ($M\le M_c$) |
 | W=32 | 32 | 6 | 1.25 (degenerate CI) | 8.0 | 1.0 | linear growth, unsaturated ($M>M_c$) |
 
-Critical capacity: $M_c\in(8,16)$, capacity monotonicity holds (`capacity_monotone=True`).
+Critical capacity (under the current protocol): $M_c\in(8,16)$, capacity monotonicity holds (`capacity_monotone=True`). $\dagger$: $\hat m=\sum_n Z_{n+1}/\sum_n Z_n$ (generation-weighted; source `e_supercritical_judge2.py`, openly reproducible); GW “mean offspring per parent” semantics valid for Mechanism A (selective) only; Mechanism B is judged on occupancy and survival. The C0/C1 difference in $\hat m^\dagger$ (0.001) is a between-chain micro-difference of near-deterministic data, not statistically meaningful, and is not used as a marking-gate criterion.
 
 **Table 2: Marking Gate and Multiplicative Law (H1AC tier, Flash, 160 chains, chain mean)**
 
 | Hypothesis | Quantity | Value | Criterion | Conclusion |
 | :--- | :--- | :--- | :--- | :---: |
-| B-H1a | paired difference $\bar d$ (C0−C1) | +0.020; 15/48 positive; $p=0.69$ (sign-flip 10⁴) | $p<0.05$ | **✗ zero compression** |
+| B-H1a | paired difference $\bar d$ (C0−C1) | +0.020; 15/48 positive; $p=0.69$ (sign-flip 10⁴) | $p<0.05$ | **✗ Flash large-sample zero compression** (Pro 47% non-significant) |
 | B-H1c | chain-mean write-rate ratio $\hat r=\mu_{C2}/\mu_{C0}$ | 0.422/0.905 = **0.466**; CI [0.333,0.602] | point∈[0.35,0.65] and CI fully inside | ⚠️ point ✅, CI lower bound 0.017 out |
 | B-H2 | log-linear $R^2$ | **0.923**; slope −0.086 ($m\approx0.92$) | $R^2\ge0.8$ | **✅** |
 | — | final-generation survival | C0=0.750 / C1=0.729 / **C2=0.062** | corroboration | random filtering genuinely effective |

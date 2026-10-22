@@ -14,13 +14,15 @@ All theorems are presented as **conditional theorems**: structural premises (e.g
 
 ## 4.2 Theorem Chain (Lean 4 machine-checked, zero `sorry`)
 
+Formalization sources: `formal_proof/IACFormalization` (this repository, commit `4825137`; Lean 4, mathlib version in `lakefile.lean`).
+
 **T1 Expected geometric law** (`expected_population_geometric`, by induction): $E[Z_n]=m^n E[Z_0]$.
 
-**T2 Subcritical probabilistic extinction** (`subcritical_extinction_in_probability`): by Markov's inequality with geometric decay, when $m<1$ the survival probability $P(Z_n\ge1)\to0$. This is the quantitative core of the quarantine promotion gate's effectiveness: the gate pushes $m$ below 1, and the lineage dies out with probability 1.
+**T2 Subcritical probabilistic extinction** (`subcritical_extinction_in_probability`): by Markov's inequality with geometric decay, when $m<1$ the survival probability $P(Z_n\ge1)\to0$. This is the quantitative core of the quarantine promotion gate's effectiveness: the gate pushes $m$ below 1, and the long-run survival probability $P(Z_n\ge1)\to0$ (convergence in probability)—strictly, the application-side statement is “the survival probability tends to 0,” not “dies out with probability 1.”
 
 **T3 Quarantine compresses offspring** (`quarantine_compresses_offspring`): the stricter $\sigma$, the smaller the effective reproduction number; full quarantine ($\sigma=1$) gives $m=0$, and the lineage reaches zero within one generation. **Applicability**: branching + multiplicative compression—measured to hold under the selective architecture (geometric law $R^2=0.958$); under the full-append architecture the branching premise fails, and quarantine's effectiveness is given directly by measurement (C3-full 12/12, mem constant 6, $Z$ constant 1), with the mechanism revision recorded transparently (§8).
 
-**T4 Supercritical non-extinction** (`galton_watson_non_extinction` + `supercritical_expectation_diverges`): when $m>1$, the extinction probability is the **least fixed point** $q=\min\{s\in[0,1]:\varphi(s)=s\}<1$ of the generating function $\varphi$ on $[0,1]$—non-extinction with positive probability; the expectation $E(n)\to+\infty$. The proof uses elementary generating-function fixed-point analysis (monotone squeezing + polynomial truncation), avoiding any dependence on continuity of $\varphi$.
+**T4 Supercritical non-extinction** (`galton_watson_non_extinction` + `supercritical_expectation_diverges`): when $m>1$, the extinction probability is the **least fixed point** $q=\min\{s\in[0,1]:\varphi(s)=s\}<1$ of the generating function $\varphi$ on $[0,1]$—non-extinction with positive probability; the expectation $E[Z_n]\to+\infty$. The proof uses elementary generating-function fixed-point analysis (monotone squeezing + polynomial truncation), avoiding any dependence on continuity of $\varphi$.
 
 ## 4.3 Theorem–Application Mapping
 
@@ -29,8 +31,8 @@ All theorems are presented as **conditional theorems**: structural premises (e.g
 | T1 | $E[Z_n]=m^nE[Z_0]$ | geometric-law criterion (expectation side of S-H2/B-H2) |
 | T2 | $m<1 \Rightarrow P(Z_n\ge1)\to0$ | quarantine/random filtering extinguishes lineages (C2 survival 0.062 vs C0 0.750) |
 | T3 | $\sigma\!\uparrow \Rightarrow m\downarrow$; $\sigma=1\Rightarrow m=0$ | quarantine invariance (S-H4/T-H1/X-H1) |
-| T4 | $m>1 \Rightarrow q<1$, expectation diverges | expectation-side counterpart of Mechanism B "persistent accumulation without extinction" (engineering-sense supercriticality) |
+| T4 | $m>1 \Rightarrow q<1$, $E[Z_n]\to+\infty$ | supercritical-side counterpart of Mechanism A; Mechanism B persistence is given by measured occupancy (engineering semantics) |
 
 ## 4.4 Boundary of the Formalization
 
-The **values** of $\hat m$, $M_c$, and $\sigma$ are empirical/engineering-layer parameters and do not enter the formal interface; the formalization guarantees **structural implication** (if the premise holds, the conclusion is necessarily true), and the values are estimated by pre-registered measurement. This division avoids two errors: treating empirical constants as theorems, and treating theorems as empirical constants.
+The **values** of $\hat m$ (Mechanism A), $M_c$, and $\sigma$ are empirical/engineering-layer parameters and do not enter the formal interface (Mechanism B has no GW-semantics $\hat m$; its propagation ratio is reported in the §6.1 table note); the formalization guarantees **structural implication** (if the premise holds, the conclusion is necessarily true), and the values are estimated by pre-registered measurement. This division avoids two errors: treating empirical constants as theorems, and treating theorems as empirical constants.

@@ -10,7 +10,7 @@
 
 | Script | Output | Use |
 | :--- | :--- | :--- |
-| `e_supercritical_judge.py` / `judge2.py` | `e_supercritical_judgement2.json` | SUPERCRITICAL tier: $\hat m$/CI, Z trajectory, survival, capacity sensitivity |
+| `e_supercritical_judge.py` / `judge2.py` | `e_supercritical_judgement2.json` | SUPERCRITICAL tier: propagation ratio $\hat m=\sum Z_{n+1}/\sum Z_n$/CI, Z trajectory, survival, capacity sensitivity |
 | `e_supercritical_sh3.py` | `e_supercritical_sh3.json` | per-generation offspring check (S-H3 falsification mechanism evidence) |
 | `e_cross_task_judge.py` | cross-task-family judgment JSON | T-H1/T-H4 |
 | `e_h1ac_judge.py` | `e_h1ac_judgement.json` | H1AC: B-H1a/B-H1c/B-H2 (bootstrap/sign-flip 10⁴) |
@@ -22,18 +22,20 @@
 
 **Execution environment**: DeepSeek-V4.1-Flash-1017 (abbrev. Flash; scnet-flash gateway, sampling temperature 0.7); the deviation of the model tier from the pre-registered DeepSeek-V4-Pro-0813 (Pro) tier is recorded in SUPERCRITICAL plan §9.
 
+**Run timestamps** (result-file mtime): selective control 2026-10-22 15:24, C0-full 15:30, W32 15:52, W8 16:02, C3-full 16:18, C1-full 16:20, H1AC C1 19:45/C0 19:49/C2 20:09—all within 5 days of the V4.1-Flash-1017 release (10-17).
+
 ## B. Key Values from Judgment JSONs (same source as the main text)
 
 | Quantity | Value | Source |
 | :--- | :--- | :--- |
-| C0-full $\hat m$ | 1.166, boot95 [1.156,1.176] | e_supercritical_judgement2 |
+| C0-full propagation ratio $\hat m^\dagger$ | 1.166, boot95 [1.156,1.176] (GW semantics for Mechanism A only) | e_supercritical_judgement2 |
 | C0-full Z trajectory | [1,2,2.917,3.917,3.917,4.917,4.917,4.917] | same |
 | C0-full mem trajectory | [6,9,12,15,16,16,16,16] (saturated at g4) | same |
-| C1-full $\hat m$ | 1.165 ([1.163,1.167]) | same |
+| C1-full propagation ratio $\hat m^\dagger$ | 1.165 ([1.163,1.167]) | same |
 | C3-full | mem constant 6, Z constant 1 (12/12) | same |
-| W=8 | $\hat m$=0.829 ([0.739,0.875]), g7 survival 0 | same |
-| W=32 | $\hat m$=1.25, Z=[1..8], mem→27 | same |
-| S-H3 mechanism evidence | $w_n\equiv1$, pmf=[0,1], criterion pass=False | e_supercritical_sh3 |
+| W=8 | $\hat m^\dagger$=0.829 ([0.739,0.875]), g7 survival 0 | same |
+| W=32 | $\hat m^\dagger$=1.25, Z=[1..8], mem→27 | same |
+| S-H3 mechanism evidence | $w_n\in\{0,1\}$, pmf=[0,1], chain mean $E[w_n]$=0.917, criterion pass=False | e_supercritical_sh3 |
 | B-H1a | $\bar d$=+0.0201, 15/48 positive, p=0.6918 | e_h1ac_judgement |
 | B-H1c | $\hat r$=0.4661, CI [0.3331,0.6017], point ✅ CI ⚠️ | same |
 | B-H2 | R²=0.9233, slope −0.086 | same |

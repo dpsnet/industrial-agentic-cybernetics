@@ -29,7 +29,7 @@ All criteria were fixed before the experiments (hypothesis list in §3.5): signi
 - **full-append**: C0-full / C1-full / C3-full (12 sessions × 8 generations each); capacity tiers $M=8$ / $M=32$ (6 sessions × 8 generations each); selective control (2 sessions × 6 generations);
 - **H1AC (Flash, dual-strain)**: C0 (48) / C1 (48) / C2 (64), 6 generations.
 
-Total session–generation units **1,264** (= main 288 + cross-model 288 + cross-task 144 + SUPERCRITICAL 384 + H1AC 160); SUPERCRITICAL 384 = 3 conditions × 12 replicates × 8 generations (C0/C1/C3-full) + 2 sensitivity tiers × 6 × 8 (W=8/32); the selective control (2 chains × 6 generations) is counted separately.
+**450 agent-session chains in total** (= main 48 + cross-model 48 + cross-task-family 144 + SUPERCRITICAL 50 + H1AC 160; session-generation units 2,796 = 288 + 288 + 864 + 384 + 960; the selective control, 2 chains × 6 generations, is counted separately). Of these, SUPERCRITICAL 50 chains = 3 conditions × 12 chains × 8 generations (C0/C1/C3-full) + 2 sensitivity tiers × 6 chains × 8 generations (W=8/32); H1AC 160 chains = C0 48 + C1 48 + C2 64, × 6 generations; cross-task-family 144 chains × 6 generations. **Timeline**: DeepSeek-V4.1-Flash-1017 was released on 2026-10-17; all SUPERCRITICAL and H1AC experiments were executed and judged within 5 days of release (2026-10-22; per-batch run timestamps in Appendix A).
 
 ## 5.5 Judgment Criteria
 

@@ -10,7 +10,7 @@
 
 | 脚本 | 产出 | 用途 |
 | :--- | :--- | :--- |
-| `e_supercritical_judge.py` / `judge2.py` | `e_supercritical_judgement2.json` | SUPERCRITICAL 档：$\hat m$/CI、Z 轨迹、存活率、容量敏感性 |
+| `e_supercritical_judge.py` / `judge2.py` | `e_supercritical_judgement2.json` | SUPERCRITICAL 档：传播比 $\hat m=\sum Z_{n+1}/\sum Z_n$/CI、Z 轨迹、存活率、容量敏感性 |
 | `e_supercritical_sh3.py` | `e_supercritical_sh3.json` | 逐代 offspring 核对（S-H3 证伪机制证据） |
 | `e_cross_task_judge.py` | 跨任务族判读 JSON | T-H1/T-H4 |
 | `e_h1ac_judge.py` | `e_h1ac_judgement.json` | H1AC：B-H1a/B-H1c/B-H2（bootstrap/符号翻转 10⁴） |
@@ -22,18 +22,20 @@
 
 **执行环境**：DeepSeek-V4.1-Flash-1017（简称 Flash；scnet-flash 网关，采样温度 0.7）；模型档偏离预注册 DeepSeek-V4-Pro-0813（Pro）档的记录见 SUPERCRITICAL 计划 §9。
 
+**运行时间戳**（结果文件 mtime）：selective 对照 2026-10-22 15:24、C0-full 15:30、W32 15:52、W8 16:02、C3-full 16:18、C1-full 16:20、H1AC C1 19:45/C0 19:49/C2 20:09——全部在 V4.1-Flash-1017 发布（10-17）后 5 日内完成。
+
 ## B. 判读 JSON 关键数值表（与正文同源）
 
 | 量 | 值 | 来源 |
 | :--- | :--- | :--- |
-| C0-full $\hat m$ | 1.166，boot95 [1.156,1.176] | e_supercritical_judgement2 |
+| C0-full 传播比 $\hat m^\dagger$ | 1.166，boot95 [1.156,1.176]（GW 语义仅机制 A） | e_supercritical_judgement2 |
 | C0-full Z 轨迹 | [1,2,2.917,3.917,3.917,4.917,4.917,4.917] | 同上 |
 | C0-full mem 轨迹 | [6,9,12,15,16,16,16,16]（g4 饱和） | 同上 |
-| C1-full $\hat m$ | 1.165（[1.163,1.167]） | 同上 |
+| C1-full 传播比 $\hat m^\dagger$ | 1.165（[1.163,1.167]） | 同上 |
 | C3-full | mem 恒 6、Z 恒 1（12/12） | 同上 |
-| W=8 | $\hat m$=0.829（[0.739,0.875]）、g7 存活 0 | 同上 |
-| W=32 | $\hat m$=1.25、Z=[1..8]、mem→27 | 同上 |
-| S-H3 机制证据 | $w_n\equiv1$、pmf=[0,1]、criterion pass=False | e_supercritical_sh3 |
+| W=8 | $\hat m^\dagger$=0.829（[0.739,0.875]）、g7 存活 0 | 同上 |
+| W=32 | $\hat m^\dagger$=1.25、Z=[1..8]、mem→27 | 同上 |
+| S-H3 机制证据 | $w_n\in\{0,1\}$、pmf=[0,1]、链均 $E[w_n]$=0.917、criterion pass=False | e_supercritical_sh3 |
 | B-H1a | $\bar d$=+0.0201、正差 15/48、p=0.6918 | e_h1ac_judgement |
 | B-H1c | $\hat r$=0.4661、CI [0.3331,0.6017]、点✅ CI⚠️ | 同上 |
 | B-H2 | R²=0.9233、slope −0.086 | 同上 |

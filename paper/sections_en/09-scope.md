@@ -14,7 +14,7 @@
 ## 9.2 Layering of Guarantees and Values
 
 - **Cross-boundary guarantee (theory layer)**: quarantine ($\sigma=1$) truncates propagation—measured across models, task families, and architectures; Lean-checked (T3 conditional theorem) for structural necessity;
-- **Within-boundary values (empirical layer)**: $\hat m$, $M_c$, multiplicative-law parameters—valid only over the measured domain; cross-domain transfer is prohibited;
+- **Within-boundary values (empirical layer)**: $\hat m$ (Mechanism A), $M_c$ (protocol-conditional; drifts with benign write rate $b$ and retrieval strategy), multiplicative-law parameters—valid only over the measured domain; cross-domain transfer is prohibited;
 - **Engineering layer**: production five-fold physical criteria (§2.3) serve as deployment adjudication; their coupling to theoretical parameters is listed as an open item.
 
 ## 9.3 Scoping Statement

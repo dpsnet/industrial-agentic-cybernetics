@@ -26,6 +26,6 @@ The main evidence is concentrated on the test-writing task family; across task f
 
 ## 10.6 Other
 
-- Model-tier time snapshots: all three models are of the 2025–2026 generation; drift of the conclusions to new model families is unverified;
+- Model-tier time snapshots: DeepSeek-V4.1-Flash-1017 was released on 2026-10-17, and all SUPERCRITICAL and H1AC experiments were executed within 5 days of release (2026-10-22; per-batch run timestamps in Appendix A); drift of the conclusions to newer model generations is unverified;
 - Sampling temperature 0.7 fixed; the effect of sampling temperature on $w_n$ is not scanned;
 - Judgment scripts depend on deterministic reshuffle seeds; cross-platform floating-point differences are untested.
