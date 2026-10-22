@@ -13,7 +13,7 @@
 
 | 档 | 模型 | 用途 |
 | :--- | :--- | :--- |
-| 主实验 | **DeepSeek-V4-Pro-0813**（简称 Pro；temperature 0.7） | selective 协议，4 条件 × 12 会话 × 6 代 = 288 会话 |
+| 主实验 | **DeepSeek-V4-Pro-0813**（简称 Pro；采样温度 temperature 0.7） | selective 协议，4 条件 × 12 会话 × 6 代 = 288 会话 |
 | 跨模型 | Kimi `kimi-for-coding` + 同 Pro 协议 | X-H1/X-H4，288 会话 |
 | SUPERCRITICAL | **DeepSeek-V4.1-Flash-1017**（简称 Flash） | full-append/容量档/selective 对照（与预注册模型档的偏离已在计划 §9 记录） |
 | H1AC | 同 Flash | 160 链双毒株大样本 |
@@ -41,4 +41,4 @@
 
 - 判读脚本：`e_supercritical_judge.py`/`judge2.py`/`sh3.py`、`e_cross_task_judge.py`、`e_h1ac_judge.py`（全部入 git）；
 - 原始会话：`axiom4_results_*.json`（SUPERCRITICAL/H1AC/跨模型/跨任务族全套入 git）；
-- 环境：模型档固定、temperature 0.7、温度与采样参数随会话归档。
+- 环境：模型档固定、采样温度 0.7、采样参数随会话归档。
