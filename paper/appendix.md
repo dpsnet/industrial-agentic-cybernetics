@@ -20,7 +20,7 @@
 
 **预注册计划**：`EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md`、`EXPERIMENT_PLAN_AXIOM4_H1AC_BOOST.md`（§9 判读回填与口径修订记录）。
 
-**执行环境**：DeepSeek-V4.1-Flash-1017（简称 Flash；scnet-flash 网关，temperature 0.7）；模型档偏离预注册 pro（DeepSeek-V4-Pro-0813）档的记录见 SUPERCRITICAL 计划 §9。
+**执行环境**：DeepSeek-V4.1-Flash-1017（简称 Flash；scnet-flash 网关，temperature 0.7）；模型档偏离预注册 DeepSeek-V4-Pro-0813（pro）档的记录见 SUPERCRITICAL 计划 §9。
 
 ## B. 判读 JSON 关键数值表（与正文同源）
 

@@ -72,7 +72,7 @@
 | :--- | :--- | :---: | :---: |
 | DeepSeek-V4-Pro-0813（pro） | 0.560（[0.294,0.735]） | ✅ | **X-H1/X-H4 ✅** |
 | Kimi | 0.983（[0.944,1.000]） | ✅ | 同上 |
-| Flash（DeepSeek-V4.1-Flash-1017, selective 对照） | 1.0（临界） | ✅ | 同上 |
+| DeepSeek-V4.1-Flash-1017（Flash，selective 对照） | 1.0（临界） | ✅ | 同上 |
 
 **表 4：跨任务族（144 链，selective）**
 

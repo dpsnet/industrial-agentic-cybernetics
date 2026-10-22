@@ -1,6 +1,6 @@
 # Memory Poisoning in Ungated Agentic Memory Architectures: Architecture-Dependent Propagation Mechanisms, Capacity Control, and Quarantine Invariance
 
-Long-lived language-model agents accumulate experience in persistent memory; unvalidated or malicious entries can propagate across sessions and poison downstream tasks. Existing defenses treat soft marking and hard quarantine interchangeably, and no account links the *memory architecture* to the mathematical structure of propagation. We study injection-propagation under two write protocols—selective replay and full append—through pre-registered experiments spanning three model families (DeepSeek-V4-Pro-0813 [pro], Kimi, DeepSeek-V4.1-Flash-1017 [Flash]), two architectures, three capacity settings, and 1,264 agent-session chains, with Lean 4 machine-checked conditional theorems.
+Long-lived language-model agents accumulate experience in persistent memory; unvalidated or malicious entries can propagate across sessions and poison downstream tasks. Existing defenses treat soft marking and hard quarantine interchangeably, and no account links the *memory architecture* to the mathematical structure of propagation. We study injection-propagation under two write protocols—selective replay and full append—through pre-registered experiments spanning three model families (DeepSeek-V4-Pro-0813 (pro), Kimi, DeepSeek-V4.1-Flash-1017 (Flash)), two architectures, three capacity settings, and 1,264 agent-session chains, with Lean 4 machine-checked conditional theorems.
 
 We find that the architecture, not the model, determines the propagation mechanism. Selective replay yields branching decay: a Galton-Watson process with model-specific offspring mean $\hat m\in[0.56,0.98]$ and geometric-law decay (R²≥0.92). Full append yields linear accumulation–competition: a constant per-generation write ($w_n\equiv1$) gives $Z_{n+1}=Z_n+1$ up to the memory capacity $M$, where FIFO competition reaches a steady state ($5/16$); the estimated mean $\hat m=1.166$ (CI [1.156,1.176]) persists rather than decays. Capacity $M$ is the control parameter, with a critical capacity $M_c\in(8,16)$ separating extinction ($M\le M_c$) from persistence ($M>M_c$).
 
@@ -311,7 +311,7 @@ $\hat m$、$M_c$、$\sigma$ 的**数值**为经验/工程层参数，不入形�
 | :--- | :--- | :---: | :---: |
 | DeepSeek-V4-Pro-0813（pro） | 0.560（[0.294,0.735]） | ✅ | **X-H1/X-H4 ✅** |
 | Kimi | 0.983（[0.944,1.000]） | ✅ | 同上 |
-| Flash（DeepSeek-V4.1-Flash-1017, selective 对照） | 1.0（临界） | ✅ | 同上 |
+| DeepSeek-V4.1-Flash-1017（Flash，selective 对照） | 1.0（临界） | ✅ | 同上 |
 
 **表 4：跨任务族（144 链，selective）**
 
@@ -482,7 +482,7 @@ H1AC 池化 per-parent 口径在 C2 下因幸存者偏差失效（末代存活�
 
 **预注册计划**：`EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md`、`EXPERIMENT_PLAN_AXIOM4_H1AC_BOOST.md`（§9 判读回填与口径修订记录）。
 
-**执行环境**：DeepSeek-V4.1-Flash-1017（简称 Flash；scnet-flash 网关，temperature 0.7）；模型档偏离预注册 pro（DeepSeek-V4-Pro-0813）档的记录见 SUPERCRITICAL 计划 §9。
+**执行环境**：DeepSeek-V4.1-Flash-1017（简称 Flash；scnet-flash 网关，temperature 0.7）；模型档偏离预注册 DeepSeek-V4-Pro-0813（pro）档的记录见 SUPERCRITICAL 计划 §9。
 
 ## B. 判读 JSON 关键数值表（与正文同源）
 
