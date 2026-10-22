@@ -1,10 +1,10 @@
 # Memory Poisoning in Ungated Agentic Memory Architectures: Architecture-Dependent Propagation Mechanisms, Capacity Control, and Quarantine Invariance
 
-Long-lived language-model agents accumulate experience in persistent memory; unvalidated or malicious entries can propagate across sessions and poison downstream tasks. Existing defenses treat soft marking and hard quarantine interchangeably, and no account links the *memory architecture* to the mathematical structure of propagation. We study injection-propagation under two write protocols—selective replay and full append—through pre-registered experiments spanning three model families (DeepSeek-V4-Pro-0813 (pro), Kimi, DeepSeek-V4.1-Flash-1017 (Flash)), two architectures, three capacity settings, and 1,264 agent-session chains, with Lean 4 machine-checked conditional theorems.
+Long-lived language-model agents accumulate experience in persistent memory; unvalidated or malicious entries can propagate across sessions and poison downstream tasks. Existing defenses treat soft marking and hard quarantine interchangeably, and no account links the *memory architecture* to the mathematical structure of propagation. We study injection-propagation under two write protocols—selective replay and full append—through pre-registered experiments spanning three model families (DeepSeek-V4-Pro-0813 (Pro), Kimi, DeepSeek-V4.1-Flash-1017 (Flash)), two architectures, three capacity settings, and 1,264 agent-session chains, with Lean 4 machine-checked conditional theorems.
 
 We find that the architecture, not the model, determines the propagation mechanism. Selective replay yields branching decay: a Galton-Watson process with model-specific offspring mean $\hat m\in[0.56,0.98]$ and geometric-law decay (R²≥0.92). Full append yields linear accumulation–competition: a constant per-generation write ($w_n\equiv1$) gives $Z_{n+1}=Z_n+1$ up to the memory capacity $M$, where FIFO competition reaches a steady state ($5/16$); the estimated mean $\hat m=1.166$ (CI [1.156,1.176]) persists rather than decays. Capacity $M$ is the control parameter, with a critical capacity $M_c\in(8,16)$ separating extinction ($M\le M_c$) from persistence ($M>M_c$).
 
-For defense, soft marking shows zero compression across three independent experiment families (pro $p=0.15$; full-append 12/12 same-trace; paired $n=48$, $\bar d=0.020$, $p=0.69$), while quarantine ($\sigma=1$) cuts off propagation in all conditions: 24/24 cross-model, 48/48 cross-task, and 12/12 full-append chains. We conclude that defense depends on hard quarantine, not soft marking. As a methodological note, our pre-registered branching-match hypothesis was falsified by direct generation-level evidence and revised to linear accumulation–competition; we report the revision transparently.
+For defense, soft marking shows zero compression across three independent experiment families (Pro $p=0.15$; full-append 12/12 same-trace; paired $n=48$, $\bar d=0.020$, $p=0.69$), while quarantine ($\sigma=1$) cuts off propagation in all conditions: 24/24 cross-model, 48/48 cross-task, and 12/12 full-append chains. We conclude that defense depends on hard quarantine, not soft marking. As a methodological note, our pre-registered branching-match hypothesis was falsified by direct generation-level evidence and revised to linear accumulation–competition; we report the revision transparently.
 
 
 ---
@@ -27,8 +27,8 @@ LLM 智能体（agent）正被部署到长期运行的生产系统：经验沉�
 
 1. **机制层**：识别"架构决定传播机制"——选择性转写产生分支衰减（Galton-Watson 分支过程），全量追加产生线性累积-容量竞争（每代恒定写入 $w_n\equiv1$）；记忆容量 $M$ 为控制参量，临界 $M_c\in(8,16)$（§3）；
 2. **形式化层**：Lean 4 机检定理链（零 `sorry`，§4）——GW 灭绝概率=最小不动点、亚临界概率灭绝、隔离压缩后代、超临界正概率不灭绝；
-3. **实证层**：预注册、跨模型（pro / Kimi / Flash；全名与简称映射见 §5.2）× 跨架构（selective / full-append / 容量档）× 跨任务族（144 链）× 大样本配对（160 链）闭合判据（§5–§6）；
-4. **工程含义**：防御依赖**隔离而非标记**——标记门在三档实验、两架构下零压缩（pro $p=0.15$；C1-full 12/12 逐代同轨；H1AC 配对 $\bar d=0.020$，$p=0.69$），隔离在跨模型（24/24 链 $Z_1=0$）、跨任务族（48/48 链）、跨架构（12/12 链 mem 恒 6）三维截断传播（§7）。
+3. **实证层**：预注册、跨模型（Pro / Kimi / Flash；全名与简称映射见 §5.2）× 跨架构（selective / full-append / 容量档）× 跨任务族（144 链）× 大样本配对（160 链）闭合判据（§5–§6）；
+4. **工程含义**：防御依赖**隔离而非标记**——标记门在三档实验、两架构下零压缩（Pro $p=0.15$；C1-full 12/12 逐代同轨；H1AC 配对 $\bar d=0.020$，$p=0.69$），隔离在跨模型（24/24 链 $Z_1=0$）、跨任务族（48/48 链）、跨架构（12/12 链 mem 恒 6）三维截断传播（§7）。
 
 **一项诚实的方法论声明**：预注册假说 S-H3（GW 分支匹配）被逐代机制证据（$w_n\equiv1$ 线性累积）**证伪**。我们将其作为"预注册假说被证伪→机制重新识别"的正面案例完整呈现（§8），而非事后合理化。
 
@@ -51,7 +51,7 @@ LLM 智能体（agent）正被部署到长期运行的生产系统：经验沉�
 
 既有防御沿两条思路：
 
-1. **软标记（soft marking）**：对自生经验打上"未验证"标记，供下游过滤（实验中的标记名 DRAFT_SUSPECT，§5.3）。本工作三档实验（pro 主实验 $p=0.15$；SUPERCRITICAL C1-full 12/12 逐代同轨；H1AC 大样本配对 $\bar d=0.020$，$p=0.69$；模型档全名见 §5.2）一致显示：**标记门无压缩效应**——模型对软信号的采纳不可靠；
+1. **软标记（soft marking）**：对自生经验打上"未验证"标记，供下游过滤（实验中的标记名 DRAFT_SUSPECT，§5.3）。本工作三档实验（Pro 主实验 $p=0.15$；SUPERCRITICAL C1-full 12/12 逐代同轨；H1AC 大样本配对 $\bar d=0.020$，$p=0.69$；模型档全名见 §5.2）一致显示：**标记门无压缩效应**——模型对软信号的采纳不可靠；
 2. **硬隔离（hard quarantine）**：未经**五重物理判据**与**独立审查终审**的经验不得进入全局知识库（等价于本工作的门禁 $\sigma=1$）。五重物理判据指编译、隐藏测试、真实执行探活、退出码核验、形式化审计五条**独立物理通道**全部绿灯方可晋升——LLM 自评不构成证据；独立审查终审指与经验生产者物理隔离的仲裁门，不接受自然语言辩解。本工作实测：隔离在**跨模型（24/24 链 $Z_1=0$）、跨任务族（48/48 链）、跨架构（full-append 12/12 链 mem 恒 6）**三个维度上截断传播——防御依赖结构阻断而非模型行为。
 
 这一"隔离有效、标记失效"的分离，是文献中未系统检验的实证结论（2512.16962 的防御讨论未区分二者）。
@@ -210,8 +210,8 @@ $\hat m$、$M_c$、$\sigma$ 的**数值**为经验/工程层参数，不入形�
 
 | 档 | 模型 | 用途 |
 | :--- | :--- | :--- |
-| 主实验 | **DeepSeek-V4-Pro-0813**（简称 pro；temperature 0.7） | selective 协议，4 条件 × 12 会话 × 6 代 = 288 会话 |
-| 跨模型 | Kimi `kimi-for-coding` + 同 pro 协议 | X-H1/X-H4，288 会话 |
+| 主实验 | **DeepSeek-V4-Pro-0813**（简称 Pro；temperature 0.7） | selective 协议，4 条件 × 12 会话 × 6 代 = 288 会话 |
+| 跨模型 | Kimi `kimi-for-coding` + 同 Pro 协议 | X-H1/X-H4，288 会话 |
 | SUPERCRITICAL | **DeepSeek-V4.1-Flash-1017**（简称 Flash） | full-append/容量档/selective 对照（与预注册模型档的偏离已在计划 §9 记录） |
 | H1AC | 同 Flash | 160 链双毒株大样本 |
 
@@ -232,7 +232,7 @@ $\hat m$、$M_c$、$\sigma$ 的**数值**为经验/工程层参数，不入形�
 - bootstrap CI（$10^4$ 重采样）估计 $\hat m$ 及比值 CI；符号翻转配对置换（$10^4$）检验标记门配对差；
 - **链均 vs 池化**：传播实验的判读单位取链均（per-parent 池化在 C2 下因幸存者偏差失效——末代存活率仅 6%，池化比值 1.017 无意义；已在计划 §9 记录并改用链均）；
 - 几何律复验：log-linear 拟合 $R^2$；
-- **功效**（pro 档标记门）：配对差 $d=0.167$、$sd=0.432$、C1/C0 比值 0.529 → 当前 $n=12$ 功效仅 0.38，达 0.8 需 $n\approx48$（`e_power_markgate.py/.json`）——H1AC 档以 48 配对补齐该缺口。
+- **功效**（Pro 档标记门）：配对差 $d=0.167$、$sd=0.432$、C1/C0 比值 0.529 → 当前 $n=12$ 功效仅 0.38，达 0.8 需 $n\approx48$（`e_power_markgate.py/.json`）——H1AC 档以 48 配对补齐该缺口。
 
 ## 5.6 可复现性
 
@@ -259,7 +259,7 @@ $\hat m$、$M_c$、$\sigma$ 的**数值**为经验/工程层参数，不入形�
 
 ## 6.2 标记门与乘性律（H1AC，Flash，160 链）
 
-**B-H1a 标记门压缩 ✗**：配对（C0 vs C1，48 对）差值 $\bar d=+0.020$（均值被少数大差对拉动；正差仅 15/48，配对层面多数反预期）、符号翻转置换 $p=0.69$——**标记门零压缩**。三重独立确认：pro 主实验（$p=0.15$，C1/C0 比值 0.529、压缩 47%，不显著）→ SUPERCRITICAL C1-full（12/12 逐代同轨）→ H1AC（大样本配对）。功效侧：H1AC 的 $n=48$ 已达 pro 档功效分析所需样本（功效 0.848），排除"功效不足"解释。
+**B-H1a 标记门压缩 ✗**：配对（C0 vs C1，48 对）差值 $\bar d=+0.020$（均值被少数大差对拉动；正差仅 15/48，配对层面多数反预期）、符号翻转置换 $p=0.69$——**标记门零压缩**。三重独立确认：Pro 主实验（$p=0.15$，C1/C0 比值 0.529、压缩 47%，不显著）→ SUPERCRITICAL C1-full（12/12 逐代同轨）→ H1AC（大样本配对）。功效侧：H1AC 的 $n=48$ 已达 Pro 档功效分析所需样本（功效 0.848），排除"功效不足"解释。
 
 **B-H1c 乘性压缩律（部分）**：链均写入率比 $\hat r=\mu_{C2}/\mu_{C0}=0.422/0.905=\boldsymbol{0.466}\in[0.35,0.65]$（乘性预测 0.5 吻合）；bootstrap CI $[0.333,0.602]$——下界微出目标带 0.017。判据定义（点估计+CI 双判据）：点估计 ✅、CI ⚠️。存活率佐证：C2 末代 0.062 vs C0 0.750——随机过滤真实压低传播。
 
@@ -269,7 +269,7 @@ $\hat m$、$M_c$、$\sigma$ 的**数值**为经验/工程层参数，不入形�
 
 ## 6.3 跨模型（288 会话，selective）
 
-**X-H1/X-H4 ✅**：无门禁下 $\hat m$ 模型特定（pro 0.560 [0.294,0.735]、Kimi 0.983 [0.944,1.000]、Flash 1.0 临界；转写衰减倾向异质，全名见 §5.2），但隔离保证跨模型成立（24/24 链 $Z_1=0$）——防御不依赖模型行为。判读汇总见 §6.6 表 3。
+**X-H1/X-H4 ✅**：无门禁下 $\hat m$ 模型特定（Pro 0.560 [0.294,0.735]、Kimi 0.983 [0.944,1.000]、Flash 1.0 临界；转写衰减倾向异质，全名见 §5.2），但隔离保证跨模型成立（24/24 链 $Z_1=0$）——防御不依赖模型行为。判读汇总见 §6.6 表 3。
 
 ## 6.4 跨任务族（144 链，selective）
 
@@ -309,7 +309,7 @@ $\hat m$、$M_c$、$\sigma$ 的**数值**为经验/工程层参数，不入形�
 
 | 模型 | $\hat m$（boot95 CI） | 隔离保证 | 判据 |
 | :--- | :--- | :---: | :---: |
-| DeepSeek-V4-Pro-0813（pro） | 0.560（[0.294,0.735]） | ✅ | **X-H1/X-H4 ✅** |
+| DeepSeek-V4-Pro-0813（Pro） | 0.560（[0.294,0.735]） | ✅ | **X-H1/X-H4 ✅** |
 | Kimi | 0.983（[0.944,1.000]） | ✅ | 同上 |
 | DeepSeek-V4.1-Flash-1017（Flash，selective 对照） | 1.0（临界） | ✅ | 同上 |
 
@@ -342,7 +342,7 @@ $\hat m$、$M_c$、$\sigma$ 的**数值**为经验/工程层参数，不入形�
 
 三档实验、两架构收敛到同一分离：
 
-- **标记门零压缩**：pro $p=0.15$（C1/C0 比值 0.529、压缩 47%，不显著）、C1-full 12/12 逐代同轨、H1AC 大样本配对 $\bar d=0.020$（$p=0.69$）——软标记是可被模型忽略的信号；
+- **标记门零压缩**：Pro $p=0.15$（C1/C0 比值 0.529、压缩 47%，不显著）、C1-full 12/12 逐代同轨、H1AC 大样本配对 $\bar d=0.020$（$p=0.69$）——软标记是可被模型忽略的信号；
 - **隔离/过滤有效**：隔离跨模型（24/24）、跨任务族（48/48）、跨架构（C3-full 12/12 mem 恒 6）截断传播；随机过滤（$\sigma=0.5$）大样本下把存活率压到 0.062。
 
 机制解释：标记是**决策层的软约束**（模型可无视），隔离是**写入层的结构阻断**（未终审条目物理不可达）。防御设计因此应以写入层门禁为主体，标记仅作审计线索。
@@ -401,7 +401,7 @@ B-H1c 点估计支持（$\hat r=0.466$，预测 0.5 吻合）但 CI 下界微出
 
 1. **任务族**：主实验任务族为测试用例编写（pytest），四变体（正确性/边界/负例/回归）；跨任务族传播强度的不可迁移（$\hat m\in[0.29,1.00]$）是实测结论——本文不声称对任意任务族的数值预测；
 2. **通道**：理论实证限定于**纯社会传播通道**（禁用物理执行反馈，仅上下文-记忆-转写回路）；生产现场的工程闭环（自主提交-晋升-归档循环）满足五重物理判据（§2.3），其与理论通道的定量连接——工程侧晋升回路比例 $q$（实测 1.00）与理论传播强度 $\hat m$ 的耦合——为开放项（§10.4）；
-3. **模型**：三模型档（pro/Kimi/Flash），$\hat m$ 模型特定；隔离保证不依赖模型；
+3. **模型**：三模型档（Pro/Kimi/Flash），$\hat m$ 模型特定；隔离保证不依赖模型；
 4. **架构**：selective / full-append / 容量档 $M\in\{8,16,32\}$；向量库直写以 full-append 为代理，未单列。
 
 ## 9.2 保证与数值的分层
@@ -419,7 +419,7 @@ B-H1c 点估计支持（$\hat r=0.466$，预测 0.5 吻合）但 CI 下界微出
 
 ## 10.1 标记门效应的模型异质性
 
-pro 档标记门方向为负（C1/C0 比值 0.529，$p=0.15$，功效不足 $n=12$），Flash 档零压缩（$p=0.69$，$n=48$ 功效充足）。两档方向不一致的原因未归因：可能是模型对软信号（DRAFT_SUSPECT 标记）的采纳倾向差异，也可能是任务族调节。**future work**：同协议跨模型配对比较标记采纳率。
+Pro 档标记门方向为负（C1/C0 比值 0.529，$p=0.15$，功效不足 $n=12$），Flash 档零压缩（$p=0.69$，$n=48$ 功效充足）。两档方向不一致的原因未归因：可能是模型对软信号（DRAFT_SUSPECT 标记）的采纳倾向差异，也可能是任务族调节。**future work**：同协议跨模型配对比较标记采纳率。
 
 ## 10.2 双毒株事件倍增失败
 
@@ -450,7 +450,7 @@ H1AC 池化 per-parent 口径在 C2 下因幸存者偏差失效（末代存活�
 
 1. **机制**：无门禁的累积型（full-append）智能体记忆架构下，注入毒株持续累积不灭绝——机制为**线性累积-容量竞争**（每代恒定写入 $w_n\equiv1$、$Z_{n+1}=Z_n+w_n$），实测 $\hat m=1.166$（boot95 CI $[1.156,1.176]$），容量饱和后 FIFO 竞争稳态 $5/16$；
 2. **架构效应**：传播机制由架构决定而非模型——selective 转写=分支衰减（GW，跨模型 $\hat m\in[0.56,0.98]$），full-append=累积-竞争；记忆容量 $M$ 为控制参量，临界 $M_c\in(8,16)$（$M\le M_c$ 灭绝、$M>M_c$ 持续累积）；
-3. **隔离不变性**：隔离（$\sigma=1$）跨机制截断传播——Lean 4 机检条件定理（T3）+ 跨模型 24/24、跨任务族 48/48、full-append 12/12 实测；标记门三档零压缩（pro $p=0.15$ / C1-full / H1AC $p=0.69$）——**防御依赖隔离而非标记**。
+3. **隔离不变性**：隔离（$\sigma=1$）跨机制截断传播——Lean 4 机检条件定理（T3）+ 跨模型 24/24、跨任务族 48/48、full-append 12/12 实测；标记门三档零压缩（Pro $p=0.15$ / C1-full / H1AC $p=0.69$）——**防御依赖隔离而非标记**。
 
 ## 11.2 贡献回顾
 
@@ -482,7 +482,7 @@ H1AC 池化 per-parent 口径在 C2 下因幸存者偏差失效（末代存活�
 
 **预注册计划**：`EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md`、`EXPERIMENT_PLAN_AXIOM4_H1AC_BOOST.md`（§9 判读回填与口径修订记录）。
 
-**执行环境**：DeepSeek-V4.1-Flash-1017（简称 Flash；scnet-flash 网关，temperature 0.7）；模型档偏离预注册 DeepSeek-V4-Pro-0813（pro）档的记录见 SUPERCRITICAL 计划 §9。
+**执行环境**：DeepSeek-V4.1-Flash-1017（简称 Flash；scnet-flash 网关，temperature 0.7）；模型档偏离预注册 DeepSeek-V4-Pro-0813（Pro）档的记录见 SUPERCRITICAL 计划 §9。
 
 ## B. 判读 JSON 关键数值表（与正文同源）
 
