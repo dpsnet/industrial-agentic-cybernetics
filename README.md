@@ -33,6 +33,12 @@ Adhering to the formal Gang of Four (GoF) specification standard, this book deri
 
 ---
 
+## 📋 项目协作规则 (Project Rules)
+
+本仓库所有工作（主 Agent、Trae 执行工具、后续会话）统一遵守 [PROJECT_RULES.md](PROJECT_RULES.md)：目录分工（根目录=原始文档区、paper/=论文产出区、monograph/=出版组装区）、**事实层单源共用 + 叙述层独立双写**、实证判读纪律、git 纪律与协作分工。进入仓库即视为遵守。
+
+---
+
 ## 🏛️ 四大底层控制论公理 (The Four Cybernetic Axioms)
 
 ```mermaid
