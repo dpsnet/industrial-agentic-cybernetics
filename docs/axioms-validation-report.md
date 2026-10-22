@@ -77,7 +77,7 @@
 | H1b 完全隔离（σ=1） | 全部 replicate $Z_1=0$，无 de novo 再发现 | ✅ 通过 |
 | H2 几何律 | 池化 $R^2=0.958\ge0.8$，逐代比无趋势 | ✅ 通过 |
 | H3-数值 | 三亚临界变体 $q_{sim}=1.0000=q^*$ 无自由参数吻合，Markov 界成立 | ✅ 通过 |
-| H1a 标记门压缩 | 方向符合（−38%）但 $p=0.15$ 未达显著性 | ⚠️ 未通过（功效不足） |
+| H1a 标记门压缩 | pro 档 $p=0.15$ 不显著；SUPERCRITICAL C1-full 零压缩；H1AC Flash 大样本 $\bar d=0.02$（$p=0.69$） | ❌ 标记门无效（三重独立确认，效应不存在非功效不足） |
 | H1c 乘性压缩律 | 过滤层有效样本 $n=1$，写出层涨落主导 | ⚠️ 字面未通过（不可判定） |
 
 **总判定**：工程核心承诺"**隔离 ⟹ 灭绝**"获最强形式验证；种群几何律成立；标记门显著性与乘性律 LLM 层直接检验受样本规模限制，记录为适用域边界（直接检验需 $\ge 10^2$ 量级 replicate），防御实现应依赖隔离而非仅依赖标记。
@@ -121,7 +121,7 @@
 | 单一模型（仅 DeepSeek v4-pro） | [EXPERIMENT_PLAN_AXIOM4_CROSS_MODEL.md](file:///e:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/EXPERIMENT_PLAN_AXIOM4_CROSS_MODEL.md) | **✅ 已执行**：Kimi 平行实验 288 会话 | X-H1 通过（24/24）、X-H4 显著；X-H2/H3-数值 受近临界区功效限制未通过 |
 | 单一任务族（pytest 编写） | [EXPERIMENT_PLAN_AXIOM4_CROSS_TASK.md](file:///e:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/EXPERIMENT_PLAN_AXIOM4_CROSS_TASK.md) | **✅ 已执行**：四任务族 × 三条件（144 链，2026-10-22） | T-H1 通过（48/48）；T-H4 通过（$p=0.026$）；T-H3 拒绝（邻接度序不成立）；T-H2 部分支持（近临界区判据失效） |
 | 超临界机制与适用域（原"未出现"，2026-10-22 已闭合） | [EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md](file:///e:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md) | **✅ 已执行（Flash 档）**：C0/C1/C3 各 12/12 + W8/W32 各 6/6 + selective 对照 | S-H1 ✅ $\hat m=1.166$（CI $[1.156,1.176]$）；S-H2 ✅ 存活率 1.0；S-H4 ✅ 隔离跨机制截断；容量 $W_c\in(8,16)$；S-H3 因累积型机制不适用（GW 框架不匹配） |
-| H1a 功效不足（$p=0.15$）/ H1c 不可判定（$n=1$） | [EXPERIMENT_PLAN_AXIOM4_H1AC_BOOST.md](file:///e:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/EXPERIMENT_PLAN_AXIOM4_H1AC_BOOST.md) | 配对设计 + 双毒株（960 会话） | 配对置换 $p<0.05$；比值 CI 完全落入 $[0.35,0.65]$ |
+| H1a 标记门零压缩 / H1c 乘性压缩律 | [EXPERIMENT_PLAN_AXIOM4_H1AC_BOOST.md](file:///e:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/EXPERIMENT_PLAN_AXIOM4_H1AC_BOOST.md) | **✅ 已执行（2026-10-22）**：Flash 档 160 链（C0/C1 各 48 + C2 64）配对设计 | B-H1a ❌ 零压缩（$\bar d=0.02$，$p=0.69$）；B-H1c 🟡 点估计支持（$\hat r=0.466$，CI $[0.333,0.602]$ 下界微出）；B-H2 ✅ $R^2=0.923$ |
 | 模式 23/24 无形式化与实证 | [EXPERIMENT_PLAN_PRODUCTION_FIELD_TEST.md](file:///e:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/EXPERIMENT_PLAN_PRODUCTION_FIELD_TEST.md) | **✅ 已执行（2026-10-22）**：Docker Compose 受控生产环境（F1–F4 各 10 reps + H2 篡改自测 20 + LLM 闭环 18 报告） | H1：F1/F2 检出率 1.00、F4 误报 0.00（F3 mem 3σ 判据形态边界）；H2 篡改否决率 1.00；H3 晋升比例 1.00、错误拦截 1.00；H5 环境泄漏 0；H4 mtime 判据有效（708 误拒系 exporter 序号复用装置缺陷，复核 456 快照单调 0 破坏） |
 
 **功效缺口分析（2026-10-22 已补算）**：H1a 标记门压缩（−38%，$p=0.15$）的失效是功效不足而非效应缺失。用主实验 pro 档 per-parent 口径（C0=0.354，C1=0.188，配对差 $d=0.167$，$sd=0.432$，比值 $0.53$）做配对检验功效分析：当前 $n=12$ 单侧 $\alpha=0.05$ 下功效仅 $0.38$（置换核对 $0.27$）；**达到功效 $0.8$ 需约 $48$ 配对样本量**。`EXPERIMENT_PLAN_AXIOM4_H1AC_BOOST.md` 的 960 配对设计远超所需（$n=96$ 功效 $0.98$），若效应真实且稳定，预期可给出显著结论。功效脚本/结果：`e_power_markgate.py`、`e_power_markgate.json`。
