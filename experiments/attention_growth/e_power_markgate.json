@@ -1,0 +1,20 @@
+{
+ "n0": 12,
+ "pair_diff_mean": 0.167,
+ "pair_diff_sd": 0.432,
+ "C1_C0_ratio": 0.529,
+ "method": "paired test, one-sided alpha=0.05, normal approx; permutation check at n=12/48",
+ "power_by_n": {
+  "12": 0.379,
+  "24": 0.596,
+  "48": 0.848,
+  "96": 0.984,
+  "192": 1.0,
+  "384": 1.0,
+  "480": 1.0,
+  "960": 1.0
+ },
+ "min_n_for_power_0_8": 48,
+ "power_at_n12": 0.379,
+ "note": "效应量来自主实验 pro 档 per-parent 口径（C0=0.354, C1=0.188）；960 配对（H1AC_BOOST）远超所需"
+}
