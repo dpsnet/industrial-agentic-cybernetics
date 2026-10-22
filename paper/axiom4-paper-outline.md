@@ -181,10 +181,14 @@
 
 ---
 
-## 待补（骨架动笔清单，动笔顺序）
+## 待补（骨架动笔清单，状态更新）
 
-1. Related Work 全文（AI safety 线 + SE 谱系线，需补 3–5 个 DOI/版本锚点）
-2. §3 机制模型图示（两机制并存 + $W$ 临界）
-3. §6 Results 表（每假说一表，数据取自判读 JSON）
-4. §4 定理陈述改写（Lean 源码 → 论文记号）
-5. 字数预算：目标 8–12 页双栏（约 6,000–8,000 词）+ 附录
+1. ✅ Related Work 全文（`sections/02-related-work.md`，16 引文含 DOI/arXiv）
+2. ✅ §3 机制模型图示（`figures/fig-mechanism.png/svg`，`make_figs.py` 可重生成）
+3. ✅ §6 Results 表（§6.6 正式判读表 5 张，数据直出判读 JSON）
+4. ✅ §4 定理陈述改写（`sections/04-formalization.md`，Lean B.5 同源）
+5. ✅ Abstract 定稿（`abstract.md`，226 词）+ 标题定稿
+6. ✅ 附录（`appendix.md`：脚本/数据/判读数值表/口径声明）
+7. ✅ 全稿组装（`manuscript.md`，约 3,400 词 + 图 2 张 + 参考文献 16 条；`assemble_manuscript.py` 可重生成）
+8. ⏳ 投稿体例转换（LaTeX/Word 双栏，目标 ICSE/arXiv）——待定
+9. ⏳ 字数预算：目标 8–12 页双栏（约 6,000–8,000 词）——正文扩写至目标字数或按会议格式裁剪，待定
