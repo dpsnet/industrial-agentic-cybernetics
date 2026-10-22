@@ -82,7 +82,7 @@
 
 **总判定**：工程核心承诺"**隔离 ⟹ 灭绝**"获最强形式验证；种群几何律成立；标记门显著性与乘性律 LLM 层直接检验受样本规模限制，记录为适用域边界（直接检验需 $\ge 10^2$ 量级 replicate），防御实现应依赖隔离而非仅依赖标记。
 
-**意外发现（适用域边界）**：无门禁下 $\hat m=0.56<1$——选择性逐代转写协议本身将传播压入亚临界；超临界坍缩动力学对应**无转写衰减的记忆架构**（全量追加式记忆库、向量库直写），本协议未覆盖。
+**意外发现与超临界验证（适用域边界，2026-10-22 闭合）**：无门禁下 $\hat m=0.56<1$——选择性逐代转写协议本身将传播压入亚临界；超临界坍缩动力学对应**无转写衰减的记忆架构**（全量追加式记忆库、向量库直写）。SUPERCRITICAL 计划（全量追加架构，Flash 档）已确认：该架构传播为**线性累积-容量竞争**型（每代 $W\equiv1$、$Z_{n+1}=Z_n+W$），C0-full $\hat m=1.166$（CI $[1.156,1.176]$）、W=32 线性 $Z\to8$、W=8 灭绝（临界容量 $W_c\in(8,16)$）——机制层架构分叉成立；"超临界"保留为工程语义（毒株池持续累积不灭绝），精确机制为累积-竞争。详见 `EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md` §8。
 
 **跨模型复核（M2：Kimi `kimi-for-coding`，288 会话，2026-10-21）**：
 
@@ -120,7 +120,7 @@
 | :--- | :--- | :--- | :--- |
 | 单一模型（仅 DeepSeek v4-pro） | [EXPERIMENT_PLAN_AXIOM4_CROSS_MODEL.md](file:///e:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/EXPERIMENT_PLAN_AXIOM4_CROSS_MODEL.md) | **✅ 已执行**：Kimi 平行实验 288 会话 | X-H1 通过（24/24）、X-H4 显著；X-H2/H3-数值 受近临界区功效限制未通过 |
 | 单一任务族（pytest 编写） | [EXPERIMENT_PLAN_AXIOM4_CROSS_TASK.md](file:///e:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/EXPERIMENT_PLAN_AXIOM4_CROSS_TASK.md) | **✅ 已执行**：四任务族 × 三条件（144 链，2026-10-22） | T-H1 通过（48/48）；T-H4 通过（$p=0.026$）；T-H3 拒绝（邻接度序不成立）；T-H2 部分支持（近临界区判据失效） |
-| 超临界未出现（$\hat m=0.56<1$） | [EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md](file:///e:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md) | 全量追加 + FIFO 容量架构（384 会话） | $\hat m>1$ 且 CI 下限 $>1$；$q_{sim}$ 与 $q^*$ 偏差 $<0.02$ |
+| 超临界机制与适用域（原"未出现"，2026-10-22 已闭合） | [EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md](file:///e:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md) | **✅ 已执行（Flash 档）**：C0/C1/C3 各 12/12 + W8/W32 各 6/6 + selective 对照 | S-H1 ✅ $\hat m=1.166$（CI $[1.156,1.176]$）；S-H2 ✅ 存活率 1.0；S-H4 ✅ 隔离跨机制截断；容量 $W_c\in(8,16)$；S-H3 因累积型机制不适用（GW 框架不匹配） |
 | H1a 功效不足（$p=0.15$）/ H1c 不可判定（$n=1$） | [EXPERIMENT_PLAN_AXIOM4_H1AC_BOOST.md](file:///e:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/EXPERIMENT_PLAN_AXIOM4_H1AC_BOOST.md) | 配对设计 + 双毒株（960 会话） | 配对置换 $p<0.05$；比值 CI 完全落入 $[0.35,0.65]$ |
 | 模式 23/24 无形式化与实证 | [EXPERIMENT_PLAN_PRODUCTION_FIELD_TEST.md](file:///e:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/EXPERIMENT_PLAN_PRODUCTION_FIELD_TEST.md) | **✅ 已执行（2026-10-22）**：Docker Compose 受控生产环境（F1–F4 各 10 reps + H2 篡改自测 20 + LLM 闭环 18 报告） | H1：F1/F2 检出率 1.00、F4 误报 0.00（F3 mem 3σ 判据形态边界）；H2 篡改否决率 1.00；H3 晋升比例 1.00、错误拦截 1.00；H5 环境泄漏 0；H4 mtime 判据有效（708 误拒系 exporter 序号复用装置缺陷，复核 456 快照单调 0 破坏） |
 

@@ -1,0 +1,34 @@
+{
+ "C0_full": {
+  "mean_m": 1.0,
+  "pmf": [
+   0.0,
+   1.0
+  ],
+  "n_pmf": 12,
+  "n_rep": 20000,
+  "q_star": 1.0,
+  "q_sim": 0.0,
+  "dev": 1.0,
+  "survival_last": 1.0,
+  "markov_ok": true,
+  "criterion": "dev<0.02",
+  "pass": false
+ },
+ "W32": {
+  "mean_m": 1.0,
+  "pmf": [
+   0.0,
+   1.0
+  ],
+  "n_pmf": 6,
+  "n_rep": 20000,
+  "q_star": 1.0,
+  "q_sim": 0.0,
+  "dev": 1.0,
+  "survival_last": 1.0,
+  "markov_ok": true,
+  "criterion": "dev<0.02",
+  "pass": false
+ }
+}

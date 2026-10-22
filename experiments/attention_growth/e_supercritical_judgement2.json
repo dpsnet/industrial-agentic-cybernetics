@@ -1,0 +1,326 @@
+{
+ "C0_full": {
+  "label": "C0-full",
+  "model": "DeepSeek-V4.1-Flash-1017",
+  "runs_done": 12,
+  "expected": 12,
+  "gens": 8,
+  "architecture": "full_append",
+  "window": 16,
+  "Z_means": [
+   1.0,
+   2.0,
+   2.917,
+   3.917,
+   3.917,
+   4.917,
+   4.917,
+   4.917
+  ],
+  "survival": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "mem_means": [
+   6.0,
+   9.0,
+   12.0,
+   15.0,
+   16.0,
+   16.0,
+   16.0,
+   16.0
+  ],
+  "final_Z_P1": [
+   4,
+   5
+  ],
+  "final_mem": [
+   16
+  ],
+  "m_hat": 1.166,
+  "boot95_CI": [
+   1.156,
+   1.176
+  ],
+  "m_hat_gt1_ci_excl": true
+ },
+ "C1_full_partial": {
+  "label": "C1-full(部分)",
+  "model": "DeepSeek-V4.1-Flash-1017",
+  "runs_done": 12,
+  "expected": 12,
+  "gens": 8,
+  "architecture": "full_append",
+  "window": 16,
+  "Z_means": [
+   1.0,
+   2.0,
+   3.0,
+   3.917,
+   3.917,
+   4.917,
+   4.917,
+   4.917
+  ],
+  "survival": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "mem_means": [
+   6.0,
+   9.0,
+   12.0,
+   15.0,
+   16.0,
+   16.0,
+   16.0,
+   16.0
+  ],
+  "final_Z_P1": [
+   4,
+   5
+  ],
+  "final_mem": [
+   16
+  ],
+  "m_hat": 1.165,
+  "boot95_CI": [
+   1.163,
+   1.167
+  ],
+  "m_hat_gt1_ci_excl": true
+ },
+ "C3_full_partial": {
+  "label": "C3-full(部分)",
+  "model": "DeepSeek-V4.1-Flash-1017",
+  "runs_done": 12,
+  "expected": 12,
+  "gens": 8,
+  "architecture": "full_append",
+  "window": 16,
+  "Z_means": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "survival": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "mem_means": [
+   6.0,
+   6.0,
+   6.0,
+   6.0,
+   6.0,
+   6.0,
+   6.0,
+   6.0
+  ],
+  "final_Z_P1": [
+   1
+  ],
+  "final_mem": [
+   6
+  ],
+  "m_hat": 1.0,
+  "boot95_CI": [
+   1.0,
+   1.0
+  ],
+  "m_hat_gt1_ci_excl": false
+ },
+ "W8": {
+  "label": "W=8 (C0)",
+  "model": "DeepSeek-V4.1-Flash-1017",
+  "runs_done": 6,
+  "expected": 6,
+  "gens": 8,
+  "architecture": "full_append",
+  "window": 8,
+  "Z_means": [
+   1.0,
+   1.0,
+   1.333,
+   0.833,
+   1.0,
+   0.5,
+   0.167,
+   0.0
+  ],
+  "survival": [
+   1.0,
+   1.0,
+   1.0,
+   0.5,
+   0.5,
+   0.333,
+   0.167,
+   0.0
+  ],
+  "mem_means": [
+   6.0,
+   8.0,
+   8.0,
+   8.0,
+   8.0,
+   8.0,
+   8.0,
+   8.0
+  ],
+  "final_Z_P1": [
+   0
+  ],
+  "final_mem": [
+   8
+  ],
+  "m_hat": 0.829,
+  "boot95_CI": [
+   0.739,
+   0.875
+  ],
+  "m_hat_gt1_ci_excl": false
+ },
+ "W32": {
+  "label": "W=32 (C0)",
+  "model": "DeepSeek-V4.1-Flash-1017",
+  "runs_done": 6,
+  "expected": 6,
+  "gens": 8,
+  "architecture": "full_append",
+  "window": 32,
+  "Z_means": [
+   1.0,
+   2.0,
+   3.0,
+   4.0,
+   5.0,
+   6.0,
+   7.0,
+   8.0
+  ],
+  "survival": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "mem_means": [
+   6.0,
+   9.0,
+   12.0,
+   15.0,
+   18.0,
+   21.0,
+   24.0,
+   27.0
+  ],
+  "final_Z_P1": [
+   8
+  ],
+  "final_mem": [
+   27
+  ],
+  "m_hat": 1.25,
+  "boot95_CI": [
+   1.25,
+   1.25
+  ],
+  "m_hat_gt1_ci_excl": true
+ },
+ "selective_ctrl": {
+  "label": "selective ctrl",
+  "model": "DeepSeek-V4.1-Flash-1017",
+  "runs_done": 2,
+  "expected": 2,
+  "gens": 6,
+  "architecture": "selective",
+  "window": 16,
+  "Z_means": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "survival": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "mem_means": [
+   6.0,
+   3.0,
+   3.0,
+   3.0,
+   3.0,
+   3.0
+  ],
+  "final_Z_P1": [
+   1
+  ],
+  "final_mem": [
+   3
+  ],
+  "m_hat": 1.0,
+  "boot95_CI": [
+   1.0,
+   1.0
+  ],
+  "m_hat_gt1_ci_excl": false
+ },
+ "capacity_sensitivity": {
+  "W8": {
+   "Z": [
+    0
+   ],
+   "m": 0.829
+  },
+  "W16": {
+   "Z": [
+    4,
+    5
+   ],
+   "m": 1.166
+  },
+  "W32": {
+   "Z": [
+    8
+   ],
+   "m": 1.25
+  }
+ },
+ "capacity_monotone": true
+}

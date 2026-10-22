@@ -26,6 +26,7 @@ PROVIDERS = {
     "deepseek-flash": ("DEEPSEEK_API_KEY", "DEEPSEEK_BASE_URL", "DEEPSEEK_MODEL_FAST"),
     "kimi": ("KIMI_API_KEY", "KIMI_BASE_URL", "KIMI_MODEL"),
     "scnet": ("scnet_api_key", "scnet_api_base", "scnet_api_model"),
+    "scnet-flash": ("scnet_api_key", "scnet_api_base", "scnet_api_model_fast"),
 }
 PROVIDER = "deepseek"
 API_KEY = API_URL = API_MODEL = None
@@ -188,6 +189,10 @@ def configure(provider, out_path=None):
     # scnet 的 DeepSeek-V4-Pro-0813 与官方 deepseek-v4-pro 同模型，
     # 但 API 路径不同（scnet 为代理网关），max_tokens 保持 16000 防截断。
     if provider == "scnet":
+        _API.update({"max_tokens": 16000, "retries": 6, "backoff": 10.0})
+    # scnet Flash-1017：低成本模型，Flash 推理 token 配额更充足，
+    # max_tokens 16000 防截断（PRODUCTION_FIELD_TEST 已验证可行）。
+    if provider == "scnet-flash":
         _API.update({"max_tokens": 16000, "retries": 6, "backoff": 10.0})
     print(f"[provider] {provider} model={API_MODEL} temp={_API['temperature']} "
           f"json_mode={_API['json_mode']} out={OUT_PATH}", flush=True)
