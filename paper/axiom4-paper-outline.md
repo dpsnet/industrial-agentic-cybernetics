@@ -24,6 +24,8 @@
 
 ## 1. Introduction
 
+> **已扩写全文**：`sections/01-introduction.md`（v1，2026-10-22）
+
 - **问题**：LLM 智能体的长期记忆会被注入内容持久污染；现有防御（软标记、审查门）在真实记忆架构下缺乏机制层面的保证。
 - **文献缺口**：
   - Model collapse（Shumailov et al., *Nature* 631, 2024）——递归自生成数据的循环退化，但未覆盖"记忆架构差异"这一维度；
@@ -71,6 +73,8 @@
 
 ## 4. Formalization（Lean 4）
 
+> **已扩写全文**：`sections/04-formalization.md`（v1，2026-10-22；定理源：Lean B.5 机检，零 sorry）
+
 - **4.1 定理链**（`formal_proof/` + `docs/appendix-formal-proofs.md` B.2–B.5，零 sorry）：
   - T1 GW 灭绝概率 $=\min\{s:\varphi(s)=s\}$；
   - T2 几何律（亚临界指数衰减）；
@@ -82,6 +86,8 @@
 ---
 
 ## 5. Experimental Setup
+
+> **已扩写全文**：`sections/05-experimental-setup.md`（v1，2026-10-22）
 
 - **5.1 预注册**：全部判据先于实验（S-* / B-* / X-* / T-*），判读单位与显著性门槛预先固定。
 - **5.2 模型档**：DeepSeek v4-pro（主实验）、Kimi `kimi-for-coding`（跨模型）、DeepSeek-V4.1-Flash-1017（SUPERCRITICAL 档 + H1AC 档 + selective 对照）；temperature 0.7。
@@ -96,6 +102,8 @@
 ---
 
 ## 6. Results
+
+> **已扩写全文**：`sections/06-results.md`（v1，2026-10-22；数据单源判读 JSON）
 
 - **6.1 超临界与机制（S-H1/S-H2/S-H3/S-H4）**：
   - C0-full：$\hat m=1.166$（CI $[1.156,1.176]$）、Z=[1,2,2.92,3.92,3.92,4.92,4.92,4.92]、mem 6→16、存活率 1.0 → S-H1 ✅、S-H2 ✅；
@@ -115,6 +123,8 @@
 
 ## 7. Discussion
 
+> **已扩写全文**：`sections/07-discussion.md`（v1，2026-10-22）
+
 - **7.1 防御依赖隔离而非标记（核心工程结论）**：三档实验、两架构收敛；机制解释——标记是软信号可被模型忽略，隔离是结构阻断。
 - **7.2 架构决定机制（理论结论）**：转发协议（选择性 vs 全量追加）改变传播的数学结构；对记忆系统设计的一般含义——记忆架构是安全属性而非性能属性。
 - **7.3 模型异质性**：$\hat m$ 是模型-任务-位点联合参数，跨族/跨模型不可迁移是结论非缺陷；隔离保证与之无关。
@@ -124,12 +134,16 @@
 
 ## 8. 机制修正的学术叙事（区别于专著的关键章节）
 
+> **已扩写全文**：`sections/08-mechanism-revision.md`（v1，2026-10-22）
+
 - 预注册 S-H3（GW 分支匹配）→ 逐代 offspring 核对发现 full_append 每代新写 $W\equiv1$（$Z_{n+1}=Z_n+W$）→ 假说被机制证据**证伪** → 理论修订：full_append 为线性累积-容量竞争，"超临界"为工程语义（持续累积不灭绝）而非分支倍增。
 - 论文处理：作为"预注册假说被证伪 → 机制重新识别"的正面案例（诚实修订是审稿人加分项）；专著处理为完成态（机制区分+术语声明，`docs/preface/03` 公理 IV SUPERCRITICAL 段）。
 
 ---
 
 ## 9. Scope & Generalizability
+
+> **已扩写全文**：`sections/09-scope.md`（v1，2026-10-22）
 
 （从专著 §1.4.4 收缩声明改写，不复制段落）
 - 任务族：pytest 测试编写四变体；跨族不可迁移为实测结论。
@@ -141,6 +155,8 @@
 
 ## 10. Limitations & Future Work
 
+> **已扩写全文**：`sections/10-limitations.md`（v1，2026-10-22）
+
 - 标记门效应异质性：pro 档方向（-38%, $p=0.15$）vs Flash 零压缩——需归因（模型对软信号采纳差异）。
 - P2 双毒株事件倍增未达成（$\mu\approx0.001$）——事件密度设计教训。
 - 双层连接（$q$ ↔ $\hat m$ 耦合）未定理化——future work 首位。
@@ -150,6 +166,8 @@
 ---
 
 ## 11. Conclusion
+
+> **已扩写全文**：`sections/11-conclusion.md`（v1，2026-10-22）
 
 - 三句主张复述 + 贡献四项 + 一句工程含义（防御依赖隔离而非标记）。
 
