@@ -1,17 +1,17 @@
-# Abstract & Title（定稿）
+# 中文题录（定稿）
 
-> 状态：**定稿 v1**（2026-10-22）；字数 226（Abstract body，约 230）。
+> 状态：**定稿 v1**（2026-10-22）；对应英文题录见 abstract_en.md。
 
 ---
 
-## 标题（定稿）
+## 标题（定稿·中文）
 
-**Memory Poisoning in Ungated Agentic Memory Architectures: Architecture-Dependent Propagation Mechanisms, Capacity Control, and Quarantine Invariance**
+**无门控智能体记忆架构中的记忆投毒：架构依赖的传播机制、容量控制与隔离不变性**
 
 ## 摘要（定稿）
 
-Long-lived language-model agents accumulate experience in persistent memory; unvalidated or malicious entries can propagate across sessions and poison downstream tasks. Existing defenses treat soft marking and hard quarantine interchangeably, and no account links the *memory architecture* to the mathematical structure of propagation. We study injection-propagation under two write protocols—selective replay and full append—through pre-registered experiments spanning three model families (DeepSeek-V4-Pro-0813 (Pro), Kimi, DeepSeek-V4.1-Flash-1017 (Flash)), two architectures, three capacity settings, and 1,264 agent-session chains, with Lean 4 machine-checked conditional theorems.
+长期运行的 LLM 智能体将经验沉淀进持久记忆；未经验证或恶意的条目可在会话间传播并污染下游任务。既有防御将软标记与硬隔离混为一谈，且尚无研究将记忆架构与传播的数学结构联系起来。本文在两种写入协议（选择性转写与全量追加）下研究注入-传播问题，通过覆盖三个模型族（DeepSeek-V4-Pro-0813（Pro）、Kimi、DeepSeek-V4.1-Flash-1017（Flash））、两种架构、三档容量、共 1,264 个会话-代单元的预注册实验，并以 Lean 4 机检条件定理支撑。
 
-We find that the architecture, not the model, determines the propagation mechanism. Selective replay yields branching decay: a Galton-Watson process with model-specific offspring mean $\hat m\in[0.56,0.98]$ and geometric-law decay (R²≥0.92). Full append yields linear accumulation–competition: a constant per-generation write ($w_n\equiv1$) gives $Z_{n+1}=Z_n+1$ up to the memory capacity $M$, where FIFO competition reaches a steady state ($5/16$); the estimated mean $\hat m=1.166$ (CI [1.156,1.176]) persists rather than decays. Capacity $M$ is the control parameter, with a critical capacity $M_c\in(8,16)$ separating extinction ($M\le M_c$) from persistence ($M>M_c$).
+我们发现：决定传播机制的是架构而非模型。选择性转写产生分支衰减——Galton-Watson 分支过程，模型特定的每亲繁殖数 $\hat m\in[0.56,0.98]$，呈几何律衰减（$R^2\ge0.92$）。全量追加产生线性累积-容量竞争——每代恒定写入（$w_n\equiv1$）使 $Z_{n+1}=Z_n+1$ 直至记忆容量 $M$，此后 FIFO 竞争达到稳态（$5/16$）；繁殖数估计 $\hat m=1.166$（CI $[1.156,1.176]$）持续累积而非衰减。容量 $M$ 是控制参量，临界容量 $M_c\in(8,16)$ 区分灭绝（$M\le M_c$）与持续（$M>M_c$）。
 
-For defense, soft marking shows zero compression across three independent experiment families (Pro $p=0.15$; full-append 12/12 same-trace; paired $n=48$, $\bar d=0.020$, $p=0.69$), while quarantine ($\sigma=1$) cuts off propagation in all conditions: 24/24 cross-model, 48/48 cross-task, and 12/12 full-append chains. We conclude that defense depends on hard quarantine, not soft marking. As a methodological note, our pre-registered branching-match hypothesis was falsified by direct generation-level evidence and revised to linear accumulation–competition; we report the revision transparently.
+防御侧：软标记在三个独立实验族上零压缩（Pro $p=0.15$；full-append 12/12 逐代同轨；配对 $n=48$，$\bar d=0.020$，$p=0.69$），而隔离（$\sigma=1$）在所有条件下截断传播：跨模型 24/24、跨任务族 48/48、full-append 12/12 链。我们据此得出结论：防御依赖硬隔离而非软标记。方法学上，我们预注册的分支匹配假说被逐代机制证据证伪，修订为线性累积-竞争，本文如实报告这一修订。

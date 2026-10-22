@@ -1,15 +1,15 @@
-# Memory Poisoning in Ungated Agentic Memory Architectures: Architecture-Dependent Propagation Mechanisms, Capacity Control, and Quarantine Invariance
+# 无门控智能体记忆架构中的记忆投毒：架构依赖的传播机制、容量控制与隔离不变性
 
-Long-lived language-model agents accumulate experience in persistent memory; unvalidated or malicious entries can propagate across sessions and poison downstream tasks. Existing defenses treat soft marking and hard quarantine interchangeably, and no account links the *memory architecture* to the mathematical structure of propagation. We study injection-propagation under two write protocols—selective replay and full append—through pre-registered experiments spanning three model families (DeepSeek-V4-Pro-0813 (Pro), Kimi, DeepSeek-V4.1-Flash-1017 (Flash)), two architectures, three capacity settings, and 1,264 agent-session chains, with Lean 4 machine-checked conditional theorems.
+长期运行的 LLM 智能体将经验沉淀进持久记忆；未经验证或恶意的条目可在会话间传播并污染下游任务。既有防御将软标记与硬隔离混为一谈，且尚无研究将记忆架构与传播的数学结构联系起来。本文在两种写入协议（选择性转写与全量追加）下研究注入-传播问题，通过覆盖三个模型族（DeepSeek-V4-Pro-0813（Pro）、Kimi、DeepSeek-V4.1-Flash-1017（Flash））、两种架构、三档容量、共 1,264 个会话-代单元的预注册实验，并以 Lean 4 机检条件定理支撑。
 
-We find that the architecture, not the model, determines the propagation mechanism. Selective replay yields branching decay: a Galton-Watson process with model-specific offspring mean $\hat m\in[0.56,0.98]$ and geometric-law decay (R²≥0.92). Full append yields linear accumulation–competition: a constant per-generation write ($w_n\equiv1$) gives $Z_{n+1}=Z_n+1$ up to the memory capacity $M$, where FIFO competition reaches a steady state ($5/16$); the estimated mean $\hat m=1.166$ (CI [1.156,1.176]) persists rather than decays. Capacity $M$ is the control parameter, with a critical capacity $M_c\in(8,16)$ separating extinction ($M\le M_c$) from persistence ($M>M_c$).
+我们发现：决定传播机制的是架构而非模型。选择性转写产生分支衰减——Galton-Watson 分支过程，模型特定的每亲繁殖数 $\hat m\in[0.56,0.98]$，呈几何律衰减（$R^2\ge0.92$）。全量追加产生线性累积-容量竞争——每代恒定写入（$w_n\equiv1$）使 $Z_{n+1}=Z_n+1$ 直至记忆容量 $M$，此后 FIFO 竞争达到稳态（$5/16$）；繁殖数估计 $\hat m=1.166$（CI $[1.156,1.176]$）持续累积而非衰减。容量 $M$ 是控制参量，临界容量 $M_c\in(8,16)$ 区分灭绝（$M\le M_c$）与持续（$M>M_c$）。
 
-For defense, soft marking shows zero compression across three independent experiment families (Pro $p=0.15$; full-append 12/12 same-trace; paired $n=48$, $\bar d=0.020$, $p=0.69$), while quarantine ($\sigma=1$) cuts off propagation in all conditions: 24/24 cross-model, 48/48 cross-task, and 12/12 full-append chains. We conclude that defense depends on hard quarantine, not soft marking. As a methodological note, our pre-registered branching-match hypothesis was falsified by direct generation-level evidence and revised to linear accumulation–competition; we report the revision transparently.
+防御侧：软标记在三个独立实验族上零压缩（Pro $p=0.15$；full-append 12/12 逐代同轨；配对 $n=48$，$\bar d=0.020$，$p=0.69$），而隔离（$\sigma=1$）在所有条件下截断传播：跨模型 24/24、跨任务族 48/48、full-append 12/12 链。我们据此得出结论：防御依赖硬隔离而非软标记。方法学上，我们预注册的分支匹配假说被逐代机制证据证伪，修订为线性累积-竞争，本文如实报告这一修订。
 
 
 ---
 
-## 1. Introduction
+## 1 引言
 
 ## 1.1 问题
 
@@ -37,17 +37,17 @@ LLM 智能体（agent）正被部署到长期运行的生产系统：经验沉�
 §2 Related Work；§3 机制模型；§4 形式化；§5 实验设置；§6 结果；§7 讨论；§8 机制修正叙事；§9 适用域；§10 局限；§11 结论。
 
 
-## 2. Background and Related Work
+## 2 背景与相关工作
 
-## 2.1 Agentic Memory and Poisoning
+## 2.1 智能体记忆与投毒
 
 智能体长期记忆（agentic memory）已成为 LLM 应用系统的标准组件：经验经检索（retrieval）复用，构成跨会话的持续知识层。与此同时，记忆已成为一类高价值攻击面：**记忆投毒（memory poisoning）**——攻击者或智能体自身的失效经验注入记忆库后，经后续检索被持久复用，污染后续任务（Shumailov et al., 2024；MemoryGraft, 2025）。近期实证表明，投毒攻击可跨会话持久生效，且极低污染率即可造成高攻击成功率（MemoryGraft, arXiv:2512.16962）；自进化智能体在"局部正确但不可迁移"经验下的污染路径亦有刻画（OEP, arXiv:2605.18930）。这些工作确立了攻击的现实性与持续性，但**防御侧停留在启发式**（标记、过滤、人工审查），缺乏对"为什么某些防御失效"的机制层解释——本工作补上这一层。
 
-## 2.2 Model Collapse and Recursive Degradation
+## 2.2 模型坍缩与递归退化
 
 宏观层面的递归自我消费已被证明导致**模型坍缩（model collapse）**：用递归生成的数据训练，模型分布退化为模式坍缩与方差消失（Shumailov et al., *Nature* 631, 2024）。其与分支过程（branching process）的联系在文献中已有提及：退化可刻画为种群动态（population dynamics）。本工作的理论工具——Galton-Watson 分支过程及其灭绝概率、几何衰减律（Harris, 1963）——正是这一联系的形式化端点之一。与 Shumailov 等的训练期坍缩不同，本工作关注**推理期/记忆期的传播**：不经过重训练，仅在上下文-记忆-转写回路中逐代传播。这一区分是本文机制的出发点。
 
-## 2.3 Defenses against Memory Poisoning
+## 2.3 针对记忆投毒的防御
 
 既有防御沿两条思路：
 
@@ -56,23 +56,23 @@ LLM 智能体（agent）正被部署到长期运行的生产系统：经验沉�
 
 这一"隔离有效、标记失效"的分离，是文献中未系统检验的实证结论（MemoryGraft, 2025 的防御讨论未区分二者）。
 
-## 2.4 General Degradation Mechanisms in Agents
+## 2.4 智能体的通用退化机制
 
 - **Reward hacking / specification gaming**：智能体满足目标的字面而非精神以骗取成功信号（Amodei et al., 2016；Krakovna et al., 2020）；生产级 RL 中已观察到自然涌现的失对齐（Anthropic, arXiv:2511.18397）。这与本文公理 I（外部锚定缺失→自我宣称不可信）同族，但未涉及代际传播。
 - **Context rot / Lost in the Middle**：随无关上下文增长，模型有效推理显著衰减，呈现 U 型注意力曲线（Liu et al., TACL 2024）；有效上下文长度远低于标称（Hsieh et al., 2024, RULER；Chroma, 2024）。这对应公理 II（注意力稀释），是**代内**退化；本文公理 IV 关注**代际**传播，两者在因果链上衔接但机制不同。
 
-## 2.5 Software Engineering "Near-Axiom" Laws（定位节）
+## 2.5 软件工程的"近公理"定律（定位节）
 
 软件工程学科的传统"根本规律"是**经验定律**而非形式公理：Brooks 的本质复杂性（Brooks, 1987）界定了工程极限；Lehman 定律（Lehman, 1980）刻画软件演化的持续变更与递增复杂性（软件的"熵增"）；Conway 定律（Conway, 1968）揭示架构-组织同构；CAP 定理（Gilbert & Lynch, 2002）锁定分布式一致性的取舍；停机问题（Turing, 1936）界定可判定性边界。这些规律源自大量工程实践的经验总结，**从未被形式化证明**。
 
 本工作的方法论立场：SE 的"近公理"规律可以且应当提升为**推理起点地位 + 经验可证伪内容**的工程公理。本文聚焦其中一支——经验自免疫——给出：Lean 4 机检的条件定理链（隔离⟹灭绝、GW 灭绝概率、几何律、超临界发散）、预注册的大样本实证、以及机制层修正（分支衰减 vs 累积-竞争）。这是把 SE 经验定律"形式化-实测化推进"的一次实例，而非凭空提出公设。
 
-## 2.6 Formal Verification Tooling
+## 2.6 形式化验证工具
 
 定理链在 **Lean 4**（Moura & Ullrich, 2021）中机检，零 `sorry`（条件定理与源码对应见 §4）。软件工程中形式化验证的应用先例（协议验证、并发正确性）支撑了"工程承诺以可机检定理呈现"的可行性；本文的贡献之一是此类条件定理（"对满足分支性与乘性压缩的系统，隔离使投毒谱系以概率 1 灭绝"）在智能体记忆安全问题上的首次应用。
 
 
-## 3. Model
+## 3 模型
 
 ## 3.1 记号（Notation）
 
@@ -141,11 +141,11 @@ $$Z_{n+1}=Z_n+w_n,\qquad w_n\equiv 1\ \text{(实测)}$$
 | **T-H1/T-H4** | 跨任务族隔离保证；毒株传播受任务族调节 | 48/48 链；配对 $p<0.05$ |
 
 
-![Mechanism schematic: branching decay (selective replay) vs. linear accumulation-competition (full append)](figures/fig-mechanism.png)
+![机制示意：分支衰减（选择性转写）与线性累积-容量竞争（全量追加）](figures/fig-mechanism.png)
 
-*Figure 1. Two propagation mechanisms: A) branching decay under selective replay (Galton-Watson, geometric law, extinction probability = least fixed point); B) linear accumulation-competition under full append (constant write $w_n\equiv1$, FIFO competition at capacity $M$, critical $M_c\in(8,16)$).* (data: DeepSeek-V4.1-Flash-1017, chain means)
+*图 1  两种传播机制：A）选择性转写下的分支衰减（Galton-Watson 分支过程、几何律，灭绝概率=最小不动点）；B）全量追加下的线性累积-容量竞争（每代恒定写入 $w_n\equiv1$、容量 $M$ 处 FIFO 竞争，临界 $M_c\in(8,16)$）。*（数据：DeepSeek-V4.1-Flash-1017，链均）
 
-## 4. Formalization
+## 4 形式化
 
 ## 4.1 模型结构
 
@@ -179,7 +179,7 @@ $$m = \mu(1-\sigma) \quad \text{(乘性压缩律)}$$
 $\hat m$、$M_c$、$\sigma$ 的**数值**为经验/工程层参数，不入形式化接口；形式化保证的是**结构蕴含**（若前提成立则结论必真），数值由预注册实测估计。这一分工避免了两类错误：把经验常数当定理、把定理当经验常数。
 
 
-## 5. Experimental Setup
+## 5 实验设置
 
 ## 5.1 预注册原则
 
@@ -222,7 +222,7 @@ $\hat m$、$M_c$、$\sigma$ 的**数值**为经验/工程层参数，不入形�
 - 环境：模型档固定、采样温度 0.7、采样参数随会话归档。
 
 
-## 6. Results
+## 6 结果
 
 ## 6.1 机制与容量（SUPERCRITICAL 档，Flash，full-append）
 
@@ -313,11 +313,11 @@ $\hat m$、$M_c$、$\sigma$ 的**数值**为经验/工程层参数，不入形�
 | 泄漏 | 0 |
 
 
-![Poison lineage trajectories by architecture and capacity](figures/fig-trajectories.png)
+![按架构与容量划分的各代毒株谱系轨迹](figures/fig-trajectories.png)
 
-*Figure 2. Poison lineage entries per generation for full-append conditions across capacity $M\in\{8,16,32\}$ and the selective control ($M=16$). The critical band $8<M_c\leq16$ separates extinction from persistence. Data: DeepSeek-V4.1-Flash-1017, chain means.*
+*图 2  全量追加各条件在容量 $M\in\{8,16,32\}$ 下与选择性对照（$M=16$）的各代毒株谱系条目数。临界带 $8<M_c\leq16$ 区分灭绝与持续。数据：DeepSeek-V4.1-Flash-1017，链均。*
 
-## 7. Discussion
+## 7 讨论
 
 ## 7.1 防御依赖隔离而非标记（核心工程结论）
 
@@ -345,7 +345,7 @@ B-H1c 点估计支持（$\hat r=0.466$，预测 0.5 吻合）但 CI 下界微出
 本文把一条 SE"近公理"规律（经验自免疫）从经验观察提升为**可机检条件定理 + 预注册实测**的工程公理（§2.5 定位）。方法论含义：Brooks/Lehman/Conway 式经验定律的下一代形式，可以是"条件定理+实测支撑"结构，而非停留在归纳总结。
 
 
-## 8. Mechanism Revision Narrative
+## 8 机制修正叙事
 
 ## 8.1 预注册假设
 
@@ -374,7 +374,7 @@ B-H1c 点估计支持（$\hat r=0.466$，预测 0.5 吻合）但 CI 下界微出
 - **方法论资产**：此案例演示了预注册假说如何被结构证据而非显著性检验证伪——机制识别优先于统计推断。
 
 
-## 9. Scope and Generalizability
+## 9 适用域与可推广性
 
 ## 9.1 适用边界（四重）
 
@@ -394,7 +394,7 @@ B-H1c 点估计支持（$\hat r=0.466$，预测 0.5 吻合）但 CI 下界微出
 本文对"无门禁智能体记忆系统的投毒传播"给出机制分类（架构决定）与防御分离（隔离>标记），不声称：任意任务族/模型的定量预测、跨通道因果、记忆系统的整体安全性。超出范围的推论视为读者延伸而非本文主张。
 
 
-## 10. Limitations and Future Work
+## 10 局限与未来工作
 
 ## 10.1 标记门效应的模型异质性
 
@@ -423,7 +423,7 @@ H1AC 池化 per-parent 口径在 C2 下因幸存者偏差失效（末代存活�
 - 判读脚本依赖确定性重组种子，跨平台浮点差异未测。
 
 
-## 11. Conclusion
+## 11 结论
 
 ## 11.1 结论（对应摘要三句主张）
 
@@ -443,7 +443,7 @@ H1AC 池化 per-parent 口径在 C2 下因幸存者偏差失效（末代存活�
 软件工程的经验定律可以且应当提升为"条件定理 + 实测支撑"的工程公理结构；本工作提供了完整实例（形式化 + 预注册 + 机制修正），并给出可迁移的方法论模板（三层知识地位 + 预注册判据 + 机制识别优先）。
 
 
-## Appendix
+## 附录
 
 ## A. 判读脚本与数据清单
 
@@ -490,7 +490,7 @@ H1AC 池化 per-parent 口径在 C2 下因幸存者偏差失效（末代存活�
 - bootstrap / 符号翻转置换各 10⁴ 次；B-H1a 以 replicate 级链均配对差（§5.5 判读口径）判读。
 
 
-## References
+## 参考文献
 
 1. Amodei, D., Olah, C., Steinhardt, J., Christiano, P., Schulman, J., & Mané, D. (2016). *Concrete Problems in AI Safety*. arXiv:1606.06565.
 2. Anthropic Alignment Team (2025). *Natural emergent misalignment from reward hacking in production RL*. arXiv:2511.18397.
