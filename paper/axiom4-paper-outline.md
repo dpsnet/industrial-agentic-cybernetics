@@ -90,7 +90,7 @@
 > **已扩写全文**：`sections/05-experimental-setup.md`（v1，2026-10-22）
 
 - **5.1 预注册**：全部判据先于实验（S-* / B-* / X-* / T-*），判读单位与显著性门槛预先固定。
-- **5.2 模型档**：DeepSeek v4-pro（主实验）、Kimi `kimi-for-coding`（跨模型）、DeepSeek-V4.1-Flash-1017（SUPERCRITICAL 档 + H1AC 档 + selective 对照）；temperature 0.7。
+- **5.2 模型档**：DeepSeek-V4-Pro-0813（简称 pro；主实验）、Kimi `kimi-for-coding`（跨模型）、DeepSeek-V4.1-Flash-1017（简称 Flash；SUPERCRITICAL 档 + H1AC 档 + selective 对照）；temperature 0.7。
 - **5.3 协议**：毒株规范注入 + 逐代转写；DRAFT_SUSPECT 双盲过滤；P1/P2 双毒株（H1AC）；lineage 谱系追踪。
 - **5.4 条件矩阵**：
   - selective：C0/C1/C2/C3（pro，4×12×6 = 288 会话）+ 跨模型（288）+ 跨任务族（144）；

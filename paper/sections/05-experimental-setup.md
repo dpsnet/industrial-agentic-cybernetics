@@ -13,9 +13,9 @@
 
 | 档 | 模型 | 用途 |
 | :--- | :--- | :--- |
-| 主实验 | DeepSeek v4-pro（temperature 0.7） | selective 协议，4 条件 × 12 会话 × 6 代 = 288 会话 |
+| 主实验 | **DeepSeek-V4-Pro-0813**（简称 pro；temperature 0.7） | selective 协议，4 条件 × 12 会话 × 6 代 = 288 会话 |
 | 跨模型 | Kimi `kimi-for-coding` + 同 pro 协议 | X-H1/X-H4，288 会话 |
-| SUPERCRITICAL | DeepSeek-V4.1-Flash-1017 | full-append/容量档/selective 对照（与预注册模型档的偏离已在计划 §9 记录） |
+| SUPERCRITICAL | **DeepSeek-V4.1-Flash-1017**（简称 Flash） | full-append/容量档/selective 对照（与预注册模型档的偏离已在计划 §9 记录） |
 | H1AC | 同 Flash | 160 链双毒株大样本 |
 
 ## 5.3 传播协议
