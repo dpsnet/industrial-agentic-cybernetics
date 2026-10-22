@@ -54,7 +54,7 @@ LLM 智能体（agent）正被部署到长期运行的生产系统：经验沉�
 1. **软标记（soft marking）**：对自生经验打上"未验证"标记，供下游过滤（实验中的标记名 DRAFT_SUSPECT，§5.3）。本工作三档实验（Pro 主实验 $p=0.15$；SUPERCRITICAL C1-full 12/12 逐代同轨；H1AC 大样本配对 $\bar d=0.020$，$p=0.69$；模型档全名见 §5.2）一致显示：**标记门无压缩效应**——模型对软信号的采纳不可靠；
 2. **硬隔离（hard quarantine）**：未经**五重物理判据**与**独立审查终审**的经验不得进入全局知识库（等价于本工作的门禁 $\sigma=1$）。五重物理判据指编译、隐藏测试、真实执行探活、退出码核验、形式化审计五条**独立物理通道**全部绿灯方可晋升——LLM 自评不构成证据；独立审查终审指与经验生产者物理隔离的仲裁门，不接受自然语言辩解。本工作实测：隔离在**跨模型（24/24 链 $Z_1=0$）、跨任务族（48/48 链）、跨架构（full-append 12/12 链 mem 恒 6）**三个维度上截断传播——防御依赖结构阻断而非模型行为。
 
-这一"隔离有效、标记失效"的分离，是文献中未系统检验的实证结论（2512.16962 的防御讨论未区分二者）。
+这一"隔离有效、标记失效"的分离，是文献中未系统检验的实证结论（MemoryGraft, 2025 的防御讨论未区分二者）。
 
 ## 2.4 General Degradation Mechanisms in Agents
 
@@ -70,27 +70,6 @@ LLM 智能体（agent）正被部署到长期运行的生产系统：经验沉�
 ## 2.6 Formal Verification Tooling
 
 定理链在 **Lean 4**（Moura & Ullrich, 2021）中机检，零 `sorry`（条件定理与源码对应见 §4）。软件工程中形式化验证的应用先例（协议验证、并发正确性）支撑了"工程承诺以可机检定理呈现"的可行性；本文的贡献之一是此类条件定理（"对满足分支性与乘性压缩的系统，隔离使投毒谱系以概率 1 灭绝"）在智能体记忆安全问题上的首次应用。
-
----
-
-## 参考文献（本节约用）
-
-1. Amodei, D., Olah, C., Steinhardt, J., Christiano, P., Schulman, J., & Mané, D. (2016). *Concrete Problems in AI Safety*. arXiv:1606.06565.
-2. Anthropic Alignment Team (2025). *Natural emergent misalignment from reward hacking in production RL*. arXiv:2511.18397.
-3. Brooks, F. P. (1987). *No Silver Bullet: Essence and Accidents of Software Engineering*. IEEE Computer, 20(4), 10–19. DOI: 10.1109/MC.1987.1663532.
-4. Chroma Research (2024). *Context Rot: How Increasing Input Tokens Impacts LLM Performance*. Technical Report.
-5. Conway, M. E. (1968). *How do committees invent?* Datamation, 14(4), 28–31.
-6. Gilbert, S., & Lynch, N. (2002). *Brewer's Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services*. ACM SIGACT News, 33(2), 51–59. DOI: 10.1145/564585.564601.
-7. Harris, T. E. (1963). *The Theory of Branching Processes*. Springer.
-8. Hsieh, C.-P., et al. (2024). *RULER: What's the Real Context Size of Your Long-Context Language Models?* arXiv:2404.06654.
-9. Krakovna, V., et al. (2020). *Specification Gaming: The Flip Side of AI Ingenuity*. DeepMind Blog.
-10. Lehman, M. M. (1980). *Programs, Life Cycles, and Laws of Software Evolution*. Proceedings of the IEEE, 68(9), 1060–1076. DOI: 10.1109/PROC.1980.11805.
-11. Liu, N. F., Lin, K., Hewitt, J., Paranjape, A., Bevilacqua, M., Petroni, F., & Liang, P. (2024). *Lost in the Middle: How Language Models Use Long Contexts*. TACL, 12.
-12. MemoryGraft (2025). *Persistent Compromise of LLM Agents via Poisoned Experience Retrieval*. arXiv:2512.16962.
-13. Moura, L., & Ullrich, S. (2021). *The Lean 4 Theorem Prover and Programming Language*. CADE-28, LNCS 12699, 625–635. DOI: 10.1007/978-3-030-79876-5_40.
-14. OEP (2026). *Poisoning Self-Evolving LLM Agents via Locally Correct but Non-Transferable Experiences*. arXiv:2605.18930.
-15. Shumailov, I., Shumaylov, Z., Zhao, Y., Papernot, N., Anderson, R., & Gal, Y. (2024). *AI models collapse when trained on recursively generated data*. Nature, 631, 755–759. DOI: 10.1038/s41586-024-07566-y.
-16. Turing, A. M. (1936). *On Computable Numbers, with an Application to the Entscheidungsproblem*. Proceedings of the LMS, 42, 230–265.
 
 
 ## 3. Model
@@ -145,7 +124,7 @@ $$Z_{n+1}=Z_n+w_n,\qquad w_n\equiv 1\ \text{(实测)}$$
 | selective 转写 | 分支衰减（A） | $\hat m\in[0.56,0.98]$（跨模型，模型特定） | $w_n$ 依赖 $Z_n$；几何律成立 |
 | full-append | 累积-竞争（B） | $Z$ 线性累积，容量 $M$ 定结局 | $w_n\equiv1$；$M_c\in(8,16)$ |
 
-**变量是架构，不是模型**：同一 Flash 档，selective 对照（2 链）$Z$ 恒 1、记忆收缩至 3（亚临界），full-append C0（12 链）$Z$ 线性累积至 5/16（超临界）——分叉完全由转写协议决定。这一结论与公理 IV 适用域口径一致：无门禁下 $\hat m$ 是模型-任务-位点联合参数（$[0.29,1.00]$，跨模型 $[0.56,0.98]$），但**机制类别由架构决定，不随模型迁移**。
+**变量是架构，不是模型**：同一 Flash 档，selective 对照（2 链）$Z$ 恒 1、记忆收缩至 3（临界边界 $\hat m=1.0$；弱亚临界由 H1AC 大样本 $m\approx0.92$ 支撑），full-append C0（12 链）$Z$ 线性累积至 5/16（工程语义超临界）——分叉完全由转写协议决定。这一结论与公理 IV 适用域口径一致：无门禁下 $\hat m$ 是模型-任务-位点联合参数（$[0.29,1.00]$，跨模型 $[0.56,0.98]$），但**机制类别由架构决定，不随模型迁移**。
 
 ## 3.5 预注册假说清单（实验在 §5，结果在 §6）
 
@@ -226,6 +205,8 @@ $\hat m$、$M_c$、$\sigma$ 的**数值**为经验/工程层参数，不入形�
 - **selective**：C0（无门禁）/ C1（标记门）/ C2（随机过滤 $\sigma=0.5$）/ C3（隔离 $\sigma=1$）；
 - **full-append**：C0-full / C1-full / C3-full（各 12 会话 × 8 代）；容量档 $M=8$ / $M=32$（各 6 会话 × 8 代）；selective 对照（2 会话 × 6 代）；
 - **H1AC（Flash 双毒株）**：C0（48）/ C1（48）/ C2（64），6 代。
+
+会话-代单元合计 **1,264**（= 主实验 288 + 跨模型 288 + 跨任务族 144 + SUPERCRITICAL 384 + H1AC 160）；其中 SUPERCRITICAL 384 = 3 条件 × 12 replicate × 8 代（C0/C1/C3-full）+ 敏感性 2 档 × 6 × 8（W=8/32），selective 对照 2 链 × 6 代另计。
 
 ## 5.5 判读口径
 
@@ -392,8 +373,6 @@ B-H1c 点估计支持（$\hat r=0.466$，预测 0.5 吻合）但 CI 下界微出
 - **不混淆**：机制 B 的"持续累积"与 GW 的"超临界"是不同数学对象，全文符号纪律（$w_n$ vs $M$ vs $\hat m$）防止误读；
 - **方法论资产**：此案例演示了预注册假说如何被结构证据而非显著性检验证伪——机制识别优先于统计推断。
 
-> 论文定稿时本节可与 §7.2 合并（作者注：本节为研究过程叙事，投稿前按期刊体例决定合并或保留）。
-
 
 ## 9. Scope and Generalizability
 
@@ -508,7 +487,7 @@ H1AC 池化 per-parent 口径在 C2 下因幸存者偏差失效（末代存活�
 
 - 判读单位：**链均**（H1AC）；SUPERCRITICAL 为链均 Z/存活率；
 - 池化口径在 C2 下因幸存者偏差失效（末代存活仅 6%，池化比值 1.017 无意义）——已改链均并在计划 §9 记录；
-- bootstrap / 符号翻转置换各 10⁴ 次；B-H1a 以 replicate 级链均配对差（§2.3 预注册口径）判读。
+- bootstrap / 符号翻转置换各 10⁴ 次；B-H1a 以 replicate 级链均配对差（§5.5 判读口径）判读。
 
 
 ## References

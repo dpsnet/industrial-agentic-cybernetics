@@ -20,7 +20,7 @@
 1. **软标记（soft marking）**：对自生经验打上"未验证"标记，供下游过滤（实验中的标记名 DRAFT_SUSPECT，§5.3）。本工作三档实验（Pro 主实验 $p=0.15$；SUPERCRITICAL C1-full 12/12 逐代同轨；H1AC 大样本配对 $\bar d=0.020$，$p=0.69$；模型档全名见 §5.2）一致显示：**标记门无压缩效应**——模型对软信号的采纳不可靠；
 2. **硬隔离（hard quarantine）**：未经**五重物理判据**与**独立审查终审**的经验不得进入全局知识库（等价于本工作的门禁 $\sigma=1$）。五重物理判据指编译、隐藏测试、真实执行探活、退出码核验、形式化审计五条**独立物理通道**全部绿灯方可晋升——LLM 自评不构成证据；独立审查终审指与经验生产者物理隔离的仲裁门，不接受自然语言辩解。本工作实测：隔离在**跨模型（24/24 链 $Z_1=0$）、跨任务族（48/48 链）、跨架构（full-append 12/12 链 mem 恒 6）**三个维度上截断传播——防御依赖结构阻断而非模型行为。
 
-这一"隔离有效、标记失效"的分离，是文献中未系统检验的实证结论（2512.16962 的防御讨论未区分二者）。
+这一"隔离有效、标记失效"的分离，是文献中未系统检验的实证结论（MemoryGraft, 2025 的防御讨论未区分二者）。
 
 ## 2.4 General Degradation Mechanisms in Agents
 
@@ -36,24 +36,3 @@
 ## 2.6 Formal Verification Tooling
 
 定理链在 **Lean 4**（Moura & Ullrich, 2021）中机检，零 `sorry`（条件定理与源码对应见 §4）。软件工程中形式化验证的应用先例（协议验证、并发正确性）支撑了"工程承诺以可机检定理呈现"的可行性；本文的贡献之一是此类条件定理（"对满足分支性与乘性压缩的系统，隔离使投毒谱系以概率 1 灭绝"）在智能体记忆安全问题上的首次应用。
-
----
-
-## 参考文献（本节约用）
-
-1. Amodei, D., Olah, C., Steinhardt, J., Christiano, P., Schulman, J., & Mané, D. (2016). *Concrete Problems in AI Safety*. arXiv:1606.06565.
-2. Anthropic Alignment Team (2025). *Natural emergent misalignment from reward hacking in production RL*. arXiv:2511.18397.
-3. Brooks, F. P. (1987). *No Silver Bullet: Essence and Accidents of Software Engineering*. IEEE Computer, 20(4), 10–19. DOI: 10.1109/MC.1987.1663532.
-4. Chroma Research (2024). *Context Rot: How Increasing Input Tokens Impacts LLM Performance*. Technical Report.
-5. Conway, M. E. (1968). *How do committees invent?* Datamation, 14(4), 28–31.
-6. Gilbert, S., & Lynch, N. (2002). *Brewer's Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services*. ACM SIGACT News, 33(2), 51–59. DOI: 10.1145/564585.564601.
-7. Harris, T. E. (1963). *The Theory of Branching Processes*. Springer.
-8. Hsieh, C.-P., et al. (2024). *RULER: What's the Real Context Size of Your Long-Context Language Models?* arXiv:2404.06654.
-9. Krakovna, V., et al. (2020). *Specification Gaming: The Flip Side of AI Ingenuity*. DeepMind Blog.
-10. Lehman, M. M. (1980). *Programs, Life Cycles, and Laws of Software Evolution*. Proceedings of the IEEE, 68(9), 1060–1076. DOI: 10.1109/PROC.1980.11805.
-11. Liu, N. F., Lin, K., Hewitt, J., Paranjape, A., Bevilacqua, M., Petroni, F., & Liang, P. (2024). *Lost in the Middle: How Language Models Use Long Contexts*. TACL, 12.
-12. MemoryGraft (2025). *Persistent Compromise of LLM Agents via Poisoned Experience Retrieval*. arXiv:2512.16962.
-13. Moura, L., & Ullrich, S. (2021). *The Lean 4 Theorem Prover and Programming Language*. CADE-28, LNCS 12699, 625–635. DOI: 10.1007/978-3-030-79876-5_40.
-14. OEP (2026). *Poisoning Self-Evolving LLM Agents via Locally Correct but Non-Transferable Experiences*. arXiv:2605.18930.
-15. Shumailov, I., Shumaylov, Z., Zhao, Y., Papernot, N., Anderson, R., & Gal, Y. (2024). *AI models collapse when trained on recursively generated data*. Nature, 631, 755–759. DOI: 10.1038/s41586-024-07566-y.
-16. Turing, A. M. (1936). *On Computable Numbers, with an Application to the Entscheidungsproblem*. Proceedings of the LMS, 42, 230–265.

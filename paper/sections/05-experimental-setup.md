@@ -30,6 +30,8 @@
 - **full-append**：C0-full / C1-full / C3-full（各 12 会话 × 8 代）；容量档 $M=8$ / $M=32$（各 6 会话 × 8 代）；selective 对照（2 会话 × 6 代）；
 - **H1AC（Flash 双毒株）**：C0（48）/ C1（48）/ C2（64），6 代。
 
+会话-代单元合计 **1,264**（= 主实验 288 + 跨模型 288 + 跨任务族 144 + SUPERCRITICAL 384 + H1AC 160）；其中 SUPERCRITICAL 384 = 3 条件 × 12 replicate × 8 代（C0/C1/C3-full）+ 敏感性 2 档 × 6 × 8（W=8/32），selective 对照 2 链 × 6 代另计。
+
 ## 5.5 判读口径
 
 - bootstrap CI（$10^4$ 重采样）估计 $\hat m$ 及比值 CI；符号翻转配对置换（$10^4$）检验标记门配对差；
