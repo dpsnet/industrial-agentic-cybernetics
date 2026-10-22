@@ -42,6 +42,8 @@
 
 ## 2. Background & Related Work
 
+> **已扩写全文**：`sections/02-related-work.md`（v1，2026-10-22）
+
 - **2.1 智能体记忆与投毒**：记忆库架构谱系（选择性转写 / 全量追加 / 向量库直写）；投毒注入面。
 - **2.2 Model Collapse 与递归退化**：Shumailov Nature 2024；与 GW 分支过程的既有联系（Bishop 2006 / Galton-Watson 谱系）。
 - **2.3 记忆投毒防御**：arXiv:2512.16962 的启发式防御；标记门（DRAFT_SUSPECT）、隔离门禁（五重判据）。

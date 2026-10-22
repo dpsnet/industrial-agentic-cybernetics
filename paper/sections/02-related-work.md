@@ -1,0 +1,59 @@
+# §2 Background & Related Work（论文全文扩写）
+
+> 状态：**扩写 v1**（2026-10-22）；引用与专著 `docs/terminology-mapping.md` 参考文献表一致，另补 SE 定律谱系经典文献。
+> 位置：公理 IV 论文骨架 §2（`axiom4-paper-outline.md`）。
+
+---
+
+## 2.1 Agentic Memory and Poisoning
+
+智能体长期记忆（agentic memory）已成为 LLM 应用系统的标准组件：经验经检索（retrieval）复用，构成跨会话的持续知识层。与此同时，记忆已成为一类高价值攻击面：**记忆投毒（memory poisoning）**——攻击者或智能体自身的失效经验注入记忆库后，经后续检索被持久复用，污染后续任务（Shumailov et al., 2024；MemoryGraft, 2025）。近期实证表明，投毒攻击可跨会话持久生效，且极低污染率即可造成高攻击成功率（MemoryGraft, arXiv:2512.16962）；自进化智能体在"局部正确但不可迁移"经验下的污染路径亦有刻画（OEP, arXiv:2605.18930）。这些工作确立了攻击的现实性与持续性，但**防御侧停留在启发式**（标记、过滤、人工审查），缺乏对"为什么某些防御失效"的机制层解释——本工作补上这一层。
+
+## 2.2 Model Collapse and Recursive Degradation
+
+宏观层面的递归自我消费已被证明导致**模型坍缩（model collapse）**：用递归生成的数据训练，模型分布退化为模式坍缩与方差消失（Shumailov et al., *Nature* 631, 2024）。其与分支过程（branching process）的联系在文献中已有提及：退化可刻画为种群动态（population dynamics）。本工作的理论工具——Galton-Watson 分支过程及其灭绝概率、几何衰减律（Harris, 1963）——正是这一联系的形式化端点之一。与 Shumailov 等的训练期坍缩不同，本工作关注**推理期/记忆期的传播**：不经过重训练，仅在上下文-记忆-转写回路中逐代传播。这一区分是本文机制的出发点。
+
+## 2.3 Defenses against Memory Poisoning
+
+既有防御沿两条思路：
+
+1. **软标记（soft marking）**：对自生经验打上"未验证"标记，供下游过滤（如 DRAFT_SUSPECT）。本工作三档实验（pro 主实验 $p=0.15$；SUPERCRITICAL C1-full 12/12 逐代同轨；H1AC 大样本配对 $\bar d=0.020$，$p=0.69$）一致显示：**标记门无压缩效应**——模型对软信号的采纳不可靠；
+2. **硬隔离（hard quarantine）**：未经五重物理判据与独立审查终审的经验不得进入全局知识库（等价于本工作的门禁 $\sigma=1$）。本工作实测：隔离在**跨模型（24/24 链 $Z_1=0$）、跨任务族（48/48 链）、跨架构（full-append 12/12 链 mem 恒 6）**三个维度上截断传播——防御依赖结构阻断而非模型行为。
+
+这一"隔离有效、标记失效"的分离，是文献中未系统检验的实证结论（2512.16962 的防御讨论未区分二者）。
+
+## 2.4 General Degradation Mechanisms in Agents
+
+- **Reward hacking / specification gaming**：智能体满足目标的字面而非精神以骗取成功信号（Amodei et al., 2016；Krakovna et al., 2020）；生产级 RL 中已观察到自然涌现的失对齐（Anthropic, arXiv:2511.18397）。这与本文公理 I（外部锚定缺失→自我宣称不可信）同族，但未涉及代际传播。
+- **Context rot / Lost in the Middle**：随无关上下文增长，模型有效推理显著衰减，呈现 U 型注意力曲线（Liu et al., TACL 2024）；有效上下文长度远低于标称（Hsieh et al., 2024, RULER；Chroma, 2024）。这对应公理 II（注意力稀释），是**代内**退化；本文公理 IV 关注**代际**传播，两者在因果链上衔接但机制不同。
+
+## 2.5 Software Engineering "Near-Axiom" Laws（定位节）
+
+软件工程学科的传统"根本规律"是**经验定律**而非形式公理：Brooks 的本质复杂性（Brooks, 1987）界定了工程极限；Lehman 定律（Lehman, 1980）刻画软件演化的持续变更与递增复杂性（软件的"熵增"）；Conway 定律（Conway, 1968）揭示架构-组织同构；CAP 定理（Gilbert & Lynch, 2002）锁定分布式一致性的取舍；停机问题（Turing, 1936）界定可判定性边界。这些规律源自大量工程实践的经验总结，**从未被形式化证明**。
+
+本工作的方法论立场（专著 §1.4.1 同口径）：SE 的"近公理"规律可以且应当提升为**推理起点地位 + 经验可证伪内容**的工程公理。本文聚焦其中一支——经验自免疫——给出：Lean 4 机检的条件定理链（隔离⟹灭绝、GW 灭绝概率、几何律、超临界发散）、预注册的大样本实证、以及机制层修正（分支衰减 vs 累积-竞争）。这是把 SE 经验定律"形式化-实测化推进"的一次实例，而非凭空提出公设。
+
+## 2.6 Formal Verification Tooling
+
+定理链在 **Lean 4**（Moura & Ullrich, 2021）中机检，零 `sorry`（专著附录 B.2–B.5）。软件工程中形式化验证的应用先例（协议验证、并发正确性）支撑了"工程承诺以可机检定理呈现"的可行性；本文的贡献之一是此类条件定理（"对满足分支性与乘性压缩的系统，隔离使投毒谱系以概率 1 灭绝"）在智能体记忆安全问题上的首次应用。
+
+---
+
+## 参考文献（本节约用）
+
+1. Amodei, D., Olah, C., Steinhardt, J., Christiano, P., Schulman, J., & Mané, D. (2016). *Concrete Problems in AI Safety*. arXiv:1606.06565.
+2. Anthropic Alignment Team (2025). *Natural emergent misalignment from reward hacking in production RL*. arXiv:2511.18397.
+3. Brooks, F. P. (1987). *No Silver Bullet: Essence and Accidents of Software Engineering*. IEEE Computer, 20(4), 10–19. DOI: 10.1109/MC.1987.1663532.
+4. Chroma Research (2024). *Context Rot: How Increasing Input Tokens Impacts LLM Performance*. Technical Report.
+5. Conway, M. E. (1968). *How do committees invent?* Datamation, 14(4), 28–31.
+6. Gilbert, S., & Lynch, N. (2002). *Brewer's Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services*. ACM SIGACT News, 33(2), 51–59. DOI: 10.1145/564585.564601.
+7. Harris, T. E. (1963). *The Theory of Branching Processes*. Springer.
+8. Hsieh, C.-P., et al. (2024). *RULER: What's the Real Context Size of Your Long-Context Language Models?* arXiv:2404.06654.
+9. Krakovna, V., et al. (2020). *Specification Gaming: The Flip Side of AI Ingenuity*. DeepMind Blog.
+10. Lehman, M. M. (1980). *Programs, Life Cycles, and Laws of Software Evolution*. Proceedings of the IEEE, 68(9), 1060–1076. DOI: 10.1109/PROC.1980.11805.
+11. Liu, N. F., Lin, K., Hewitt, J., Paranjape, A., Bevilacqua, M., Petroni, F., & Liang, P. (2024). *Lost in the Middle: How Language Models Use Long Contexts*. TACL, 12.
+12. MemoryGraft (2025). *Persistent Compromise of LLM Agents via Poisoned Experience Retrieval*. arXiv:2512.16962.
+13. Moura, L., & Ullrich, S. (2021). *The Lean 4 Theorem Prover and Programming Language*. CADE-28, LNCS 12699, 625–635. DOI: 10.1007/978-3-030-79876-5_40.
+14. OEP (2026). *Poisoning Self-Evolving LLM Agents via Locally Correct but Non-Transferable Experiences*. arXiv:2605.18930.
+15. Shumailov, I., Shumaylov, Z., Zhao, Y., Papernot, N., Anderson, R., & Gal, Y. (2024). *AI models collapse when trained on recursively generated data*. Nature, 631, 755–759. DOI: 10.1038/s41586-024-07566-y.
+16. Turing, A. M. (1936). *On Computable Numbers, with an Application to the Entscheidungsproblem*. Proceedings of the LMS, 42, 230–265.
