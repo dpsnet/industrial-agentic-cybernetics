@@ -9,13 +9,14 @@
 Three experiment families and two architectures converge on the same separation:
 
 - **Marking gate unreliable**: the Pro tier's 47% compression (C1/C0 ratio 0.529) is non-significant under inadequate power ($n=12$, power 0.38); C1-full 12/12 generation-identical trajectories (structural write-path bypass); the H1AC large-sample paired test ($\bar d=0.020$, $p=0.69$) confirms zero compression on the Flash tier—the soft marker is a signal the model can ignore;
-- **Quarantine/filtering effective**: quarantine truncates propagation across models (24/24), task families (48/48), and architectures (C3-full 12/12, mem constant 6); random filtering ($\sigma=0.5$) drives survival to 0.062 in the large sample.
+- **Quarantine/filtering effective**: quarantine truncates propagation across models (24/24), task families (48/48), and architectures (C3-full 12/12, mem constant 6); the σ sweep ($n=48$/tier) confirms σ=1 is the only fully suppressing tier ($Z$ constant 1, memory non-growing), with σ=0.9 still unable to stop supercritical accumulation ($Z_f=4.60$); random filtering ($\sigma=0.5$) drives survival to 0.062 in the large sample.
+- **Quarantine cost quantified (EXP-A)**: at σ=1 memory utility retention is 0.88 (vs. gate-free C0 benign stock, −12%, all from lost new-experience increments; seed knowledge undamaged); at mid-σ tiers (0.5–0.9) benign stock *exceeds* C0 (1.19–1.33×) because the suppressed strain gives benign entries larger FIFO share—**two-dimensional conclusion: either hard quarantine (−12% increments) or supercritical strain; no σ*<1 tier preserves increments while suppressing the strain**.
 
 Mechanism explanation: marking is a **soft constraint at the decision layer** (the model may ignore it); quarantine is **structural blocking at the write layer** (un-adjudicated entries are physically unreachable). Defense design should therefore use a write-layer gate as the primary mechanism, with marking serving only as an audit clue.
 
 ## 7.2 Architecture Determines Mechanism (Theoretical Conclusion)
 
-The transcription protocol changes the **mathematical structure** of propagation, not merely its parameters: selective→branching decay (GW, model-specific $\hat m$), full-append→linear accumulation–competition ($w_n\in\{0,1\}$, outcome decided by $M_c$). Corollary: **the memory architecture is a security property, not merely a performance property**—"full append" is useful for information retention but an amplifier for poison propagation; capacity $M$ is a directly configurable propagation-control knob ($M_c\in(8,16)$).
+The transcription protocol changes the **mathematical structure** of propagation, not merely its parameters: selective→branching decay (GW, model-specific $\hat m$; extended to 12 chains, $\hat m=0.966$, CI containing 1, subcritical/critical confirmed), full-append→linear accumulation–competition ($w_n\in\{0,1\}$, outcome decided by $M_c$). Corollary: **the memory architecture is a security property, not merely a performance property**—"full append" is useful for information retention but an amplifier for poison propagation; capacity $M$ is a directly configurable propagation-control knob ($M_c$ is a $(b,M)$ joint function; $M_c\in(8,16)$ in this protocol tier; the critical capacity grows with the benign write rate).
 
 ## 7.3 Model Heterogeneity
 

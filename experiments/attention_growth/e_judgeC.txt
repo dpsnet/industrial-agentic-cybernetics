@@ -1,0 +1,14 @@
+﻿D:\pyenv\pyenv-win\versions\3.11.8\python.exe : D:\pyenv\pyenv-win\versions\3.11.8\Lib\site-packages\requests\__init__.
+py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.4.1)/charset_normalizer (2.1.1) doesn't match a supp
+orted version!
+At line:15 char:3379
++ ... pgrep\bin'; D:\pyenv\pyenv-win\versions\3.11.8\python.exe kimi_boost_ ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (D:\pyenv\pyenv-...ported version!:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  warnings.warn(
+=== EXP-C selective 扩样（C0，12 链 6 代）===
+  n=12 Z_means=[1.0, 1.0, 1.0, 0.917, 0.917, 0.833] surv_final=0.83 m_hat=0.966 CI=[0.911,1.000] R2(loglin)=0.833
+  C-H1 几何律 R2>=0.8 = PASS
+  C-H2 与 full_append C0-full(m=1.166) 分叉 = PASS 非超临界 (CI=[0.911,1.000])

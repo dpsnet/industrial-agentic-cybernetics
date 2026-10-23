@@ -43,7 +43,7 @@ Memory window capacity $M$ determines the propagation outcome of Mechanism B (SU
 | 16 | 1.166 ([1.156, 1.176]) | 1.0 | **persistent accumulation** (steady state 5/16 maintained for 3 generations; engineering-sense supercritical) |
 | 32 | 1.25 (degenerate CI, 6 identical chains) | 1.0 | **linear growth** ($Z=[1,\dots,8]$, unsaturated) |
 
-**Critical capacity (under the current protocol) $M_c\in(8,16)$**: capacity monotonicity holds—the poison pool is suppressed to extinction when $M\le M_c$, and accumulates monotonically without extinction when $M>M_c$. $M_c$ is a protocol-conditional quantity: it drifts with the benign write rate (3 per generation) and the retrieval strategy (§9/§10 open items). $M$ is therefore the **control parameter** of propagation (not a model parameter).
+**Critical capacity is a $(b,M)$ joint function (measured by EXP-B, §6.5)**: capacity monotonicity holds—the poison pool is suppressed to extinction when $M\le M_c$, and accumulates monotonically without extinction when $M>M_c$. $M_c$ moves up with the benign write rate $b$ ($W_c\le4$ at $b=1/2$; $W_c\in(4,8)$ at $b=3$; $W_c\in(8,12)$ at $b=5$); the $M_c\in(8,16)$ under this protocol tier ($b=3$, 3 entries per generation) is one instance, and $M_c$ drifts with $b$ and the retrieval strategy (§9/§10 open items). $M$ is therefore the **control parameter** of propagation (not a model parameter).
 
 ## 3.4 Architecture Determines Mechanism (Core Claim 2)
 
@@ -54,7 +54,7 @@ Switching the memory architecture within the same model family (Flash) switches 
 | selective replay | branching decay (A) | $\hat m\in[0.56,0.98]$ (cross-model, model-specific) | $w_n$ depends on $Z_n$; geometric law holds |
 | full-append | accumulation–competition (B) | $Z$ accumulates linearly; capacity $M$ decides the outcome | $w_n\in\{0,1\}$; $M_c\in(8,16)$ |
 
-**The variable is architecture, not the model**: within the same Flash tier, the selective control (2 chains) keeps $Z$ constant at 1 with memory shrinking to 3 (critical boundary $\hat m=1.0$; weak subcriticality supported by the H1AC large sample $m\approx0.92$), while full-append C0 (12 chains) accumulates linearly to 5/16 (engineering-sense supercritical)—the bifurcation is entirely determined by the transcription protocol. This is consistent with the applicability-domain statement of Axiom IV: without a gate, $\hat m$ is a model–task–site joint parameter ($[0.29,1.00]$; cross-model $[0.56,0.98]$), but the **mechanism class is determined by architecture and does not migrate across models**.
+**The variable is architecture, not the model**: within the same Flash tier, the selective control (2 chains, main experiment; **extended to 12 chains, EXP-C**) keeps $Z$ constant at 1 with memory shrinking to 3 (critical boundary $\hat m=1.0$; after extension $\hat m=0.966$, CI $[0.911,1.000]$ containing 1, weak-subcritical/critical confirmed statistically), while full-append C0 (12 chains) accumulates linearly to 5/16 (engineering-sense supercritical, $\hat m=1.166$, CI $[1.156,1.176]$)—the two $\hat m$ CIs are fully separated, and the bifurcation is entirely determined by the transcription protocol. This is consistent with the applicability-domain statement of Axiom IV: without a gate, $\hat m$ is a model–task–site joint parameter ($[0.29,1.00]$; cross-model $[0.56,0.98]$), but the **mechanism class is determined by architecture and does not migrate across models**.
 
 ## 3.5 Pre-registered Hypotheses (Experiments in §5, Results in §6)
 

@@ -1,0 +1,20 @@
+﻿D:\pyenv\pyenv-win\versions\3.11.8\python.exe : D:\pyenv\pyenv-win\versions\3.11.8\Lib\site-packages\requests\__init__.
+py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.4.1)/charset_normalizer (2.1.1) doesn't match a supp
+orted version!
+At line:15 char:3379
++ ... pgrep\bin'; D:\pyenv\pyenv-win\versions\3.11.8\python.exe kimi_boost_ ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (D:\pyenv\pyenv-...ported version!:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  warnings.warn(
+=== EXP-A 隔离代价（σ 扫描，full_append W=16，6 代）===
+  [C0] n=48 Z_final=5.062 surv=1.00 benign_pass=1.000 benign_final=6.79 m_hat=1.286 CI=[1.286,1.288]
+  [A50] n=48 Z_final=3.500 surv=1.00 benign_pass=0.488 benign_final=9.06 m_hat=1.239 CI=[1.220,1.257]
+  [A75] n=48 Z_final=4.042 surv=1.00 benign_pass=0.754 benign_final=8.88 m_hat=1.245 CI=[1.234,1.257]
+  [A90] n=48 Z_final=4.604 surv=1.00 benign_pass=0.908 benign_final=8.06 m_hat=1.269 CI=[1.260,1.278]
+  [A100] n=48 Z_final=1.000 surv=1.00 benign_pass=0.000 benign_final=6.00 m_hat=1.000 CI=[1.000,1.000]
+  A-H1(A90) 收益达标=FAIL
+  A-H1(A100) 收益达标=FAIL
+  A-H2 代价单调（benign 随 σ 不增）=FAIL
+  A-H3 次优隔离档=FAIL 硬隔离必要 -> 无 σ*<1 档同时达标

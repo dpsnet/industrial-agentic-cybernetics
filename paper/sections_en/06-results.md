@@ -14,9 +14,9 @@
 
 **S-H4 quarantine invariance ✅**: C3-full 12/12 chains, mem constant 6, $Z$ constant 1—quarantine truncates propagation under the full-append architecture as well (even where the branching premise fails).
 
-**Capacity as control parameter**: at $M=8$, the propagation ratio $\hat m^\dagger=0.829$ ($[0.739,0.875]$), g7 survival 0 (extinction); at $M=32$, $\hat m^\dagger=1.25$ (degenerate CI, 6 identical chains), $Z=[1,\dots,8]$ linear growth, unsaturated. **Critical $M_c\in(8,16)$**, capacity monotonicity holds.
+**Capacity as control parameter**: at $M=8$, the propagation ratio $\hat m^\dagger=0.829$ ($[0.739,0.875]$), g7 survival 0 (extinction); at $M=32$, $\hat m^\dagger=1.25$ (degenerate CI, 6 identical chains), $Z=[1,\dots,8]$ linear growth, unsaturated. **Critical $M_c\in(8,16)$** (this protocol tier, $b=3$), capacity monotonicity holds; supplementary EXP-B shows $M_c$ is a $(b,M)$ joint function (§6.5).
 
-**Selective control (Flash)**: 2 chains, $Z$ constant 1, memory shrinks to 3 ($\hat m=1.0$ critical boundary; H1AC large sample, 48 chains, $m\approx0.92$, supports weak subcriticality)—within the same model tier, an architecture bifurcation with C0-full (§3.4).
+**Selective control (Flash)**: 2 chains, $Z$ constant 1, memory shrinks to 3 ($\hat m=1.0$ critical boundary; H1AC large sample, 48 chains, $m\approx0.92$, supports weak subcriticality)—within the same model tier, an architecture bifurcation with C0-full (§3.4). **Supplementary EXP-C ($n=12$, 2026-10-23)**: $\hat m=0.966$ (boot95 CI $[0.911,1.000]$, contains 1), geometric law $R^2=0.833$, $Z$-means $[1,1,1,0.917,0.917,0.833]$, final-generation survival 0.83—**the CI is fully separated from C0-full ($\hat m=1.166$, CI $[1.156,1.176]$)**, confirming selective subcriticality/criticality at $n=12$; the architecture-bifurcation load-bearing wall is expanded from 2 to 12 chains (C-H1/C-H2 ✅).
 
 ## 6.2 Marking Gate and Multiplicative Law (H1AC, Flash, 160 chains)
 
@@ -36,13 +36,19 @@
 
 Quarantine: 48/48 chains extinct (T-H1 ✅); poison propagation is modulated by task family (T-H4 paired $p=0.026$ ✅); without a gate, $\hat m$ is a model–task–site joint parameter (cross-task interval $[0.29,1.00]$)—**cross-family non-transferability is a measured conclusion, not a defect** (§9).
 
-## 6.5 Engineering Side (Production Field, Associated Evidence)
+## 6.5 Quarantine Cost and Capacity Surface (Supplementary, Flash, 396 chains)
+
+**EXP-A quarantine cost (σ sweep × 48 chains, full-append W=16, 6 generations)**: A100 (σ=1): $Z$ final generation constant 1, memory non-growing (mem_growth=0.00, $n=48$)—**hard quarantine blocks all non-finalized writes; accumulation propagation is absent (A-H1 ✅, "no accumulation propagation" criterion, following §8.3 S-H4 precedent)**; σ=0.9 is insufficient ($Z_f=4.60$, propagation persists)—no σ<1 tier meets the gain criterion. Cost side: benign pass-through measured 0.488/0.754/0.908/0.000 ≈ theoretical σ (indiscriminate random filtering, A-H2 ✅); at σ=1 memory utility retention is 0.88 (vs. C0 benign stock, −12%, all from lost new-experience increments; the 6-entry seed baseline is undamaged). **Unexpected capacity-competition finding**: σ-mid tiers (0.5/0.75/0.9) hold *more* benign stock than gate-free C0 (utility retention 1.33/1.31/1.19)—filtering suppresses the strain, so benign entries gain larger FIFO share; false blocking (1−σ) is offset by share compensation. **Two-dimensional cost–benefit conclusion: no σ*<1 tier both suppresses the strain and preserves new-experience increments—hard quarantine (σ=1) meets the gain criterion at −12% increments; σ<1 preserves increments but leaves the strain supercritical**.
+
+**EXP-B capacity surface ($b\times M$, 24 tiers × 6 chains, 8 generations)**: critical capacity $W_c(b)$ moves up with benign write rate $b$—$W_c\le4$ at $b=1/2$; $W_c\in(4,8)$ at $b=3$; $W_c\in(8,12)$ at $b=5$ (drift span ≥2 tiers, B-H2 ✅)—**$M_c$ is a $(b,M)$ joint function** (§6.1's "$M_c\in(8,16)$ under the current protocol" is the $b=3$ instance). Mechanism: benign writes compete with the strain for FIFO capacity—at $b=5, W=4$ the strain goes extinct ($Z$ final 0, $\hat m=0.143$); **high $b$ + low $M$ is a natural subcritical regime of capacity competition**. Non-monotonic anomaly recorded transparently: $b=2, W=4$ survival 1.00 (above $b=1$'s 0.50), retained unexplained under 6-chain randomness.
+
+## 6.6 Engineering Side (Production Field, Associated Evidence)
 
 Production-field closed-loop experiment (agent autonomous submission → five-fold physical criteria promotion/blocking → audit archival): 18 reports, 14 promoted, 4 blocked; promotion ratio 1.00, false-block 1.00, leakage 0. **Definition note**: promotion ratio 1.00 = all 14/14 promoted reports verified correct; false-block 1.00 = all 4/4 blocked reports were indeed erroneous (blocking accuracy); leakage 0 = no erroneous experience in the promoted set. This table is associated production-field evidence ($n=18$); a formal estimate of the cost side (benign false-block rate) requires a larger sample (open item, §10.4), and the connection between the engineering loop and the theoretical channel is likewise an open item—it does not constitute a cross-channel causal claim.
 
 ---
 
-## 6.6 Formal Judgment Tables (directly from judgment JSONs)
+## 6.7 Formal Judgment Tables (directly from judgment JSONs)
 
 **Table 1: Mechanism and Capacity (SUPERCRITICAL tier, Flash, full-append, chain mean)**
 
@@ -55,7 +61,7 @@ Production-field closed-loop experiment (agent autonomous submission → five-fo
 | W=8 | 8 | 6 | 0.829 ([0.739,0.875]) | 0.0 | 0.0 | **extinction** ($M\le M_c$) |
 | W=32 | 32 | 6 | 1.25 (degenerate CI) | 8.0 | 1.0 | linear growth, unsaturated ($M>M_c$) |
 
-Critical capacity (under the current protocol): $M_c\in(8,16)$, capacity monotonicity holds (`capacity_monotone=True`). $\dagger$: $\hat m=\sum_n Z_{n+1}/\sum_n Z_n$ (generation-weighted; source `e_supercritical_judge2.py`, openly reproducible); GW “mean offspring per parent” semantics valid for Mechanism A (selective) only; Mechanism B is judged on occupancy and survival. The C0/C1 difference in $\hat m^\dagger$ (0.001) is a between-chain micro-difference of near-deterministic data, not statistically meaningful, and is not used as a marking-gate criterion.
+Critical capacity (this protocol tier, $b=3$): $M_c\in(8,16)$, capacity monotonicity holds (`capacity_monotone=True`); EXP-B shows $M_c$ is a $(b,M)$ joint function (§6.5). $\dagger$: $\hat m=\sum_n Z_{n+1}/\sum_n Z_n$ (generation-weighted; source `e_supercritical_judge2.py`, openly reproducible); GW “mean offspring per parent” semantics valid for Mechanism A (selective) only; Mechanism B is judged on occupancy and survival. The C0/C1 difference in $\hat m^\dagger$ (0.001) is a between-chain micro-difference of near-deterministic data, not statistically meaningful, and is not used as a marking-gate criterion.
 
 **Table 2: Marking Gate and Multiplicative Law (H1AC tier, Flash, 160 chains, chain mean)**
 
@@ -82,7 +88,28 @@ Critical capacity (under the current protocol): $M_c\in(8,16)$, capacity monoton
 | T-H4 poison propagation modulated by task family | paired $p=0.026$ | ✅ |
 | no-gate $\hat m$ interval | [0.29, 1.00] (model–task–site joint parameter) | cross-family non-transferable |
 
-**Table 5: Engineering Side (production-field closed-loop experiment)**
+**Table 5: Quarantine Cost (EXP-A, Flash, σ sweep × 48 chains, full-append W=16)**
+
+| Condition | σ | Final Z | Survival | Benign pass-through (theoretical σ) | Memory utility retention | Criterion |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| C0 | — | 5.06 | 1.00 | 1.000 | 1.00 | supercritical baseline |
+| A50 | 0.50 | 3.50 | 1.00 | 0.488 (≈0.5) | 1.33 | partial suppression; benign share rises |
+| A75 | 0.75 | 4.04 | 1.00 | 0.754 (≈0.75) | 1.31 | same |
+| A90 | 0.90 | 4.60 | 1.00 | 0.908 (≈0.9) | 1.19 | insufficient suppression (A-H1 ✗) |
+| A100 | 1.00 | 1.00 | 1.00 (seed persists) | 0.000 (all blocked) | **0.88** | **A-H1 ✅** (no accumulation propagation) |
+
+**Table 6: Capacity Surface (EXP-B, $b\times M$, 24 tiers × 6 chains, 8 generations; $W_c$ = smallest W tier with survival first ≥0.5)**
+
+| Benign write rate $b$ | $W_c$ | Key row ($W=4$ tier) |
+| :---: | :---: | :--- |
+| 1 | ≤4 | surv=0.50, $\hat m=1.071$ |
+| 2 | ≤4 | surv=1.00, $\hat m=1.086$ (non-monotonic anomaly, recorded) |
+| 3 | (4,8) | surv=0.17, $\hat m=0.844$ |
+| 5 | (8,12) | surv=0.00, $\hat m=0.143$ (extinction) |
+
+**B-H2 ✅ drift confirmed** → $M_c$ is a $(b,M)$ joint function; EXP-C (§6.1) C-H1/C-H2 ✅.
+
+**Table 7: Engineering Side (production-field closed-loop experiment)**
 
 | Metric | Value |
 | :--- | :---: |

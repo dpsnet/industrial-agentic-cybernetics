@@ -1,0 +1,15 @@
+﻿D:\pyenv\pyenv-win\versions\3.11.8\python.exe : D:\pyenv\pyenv-win\versions\3.11.8\Lib\site-packages\requests\__init__.
+py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.4.1)/charset_normalizer (2.1.1) doesn't match a supp
+orted version!
+At line:15 char:3379
++ ... pgrep\bin'; D:\pyenv\pyenv-win\versions\3.11.8\python.exe kimi_boost. ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (D:\pyenv\pyenv-...ported version!:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  warnings.warn(
+  [merge] kimi_boost_A_s1.json: 60 chains
+  [merge] kimi_boost_A_s2.json: 60 chains
+  [merge] kimi_boost_A_s3.json: 60 chains
+  [merge] kimi_boost_A_s4.json: 60 chains
+merged 4 shards -> E:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/kimi_boost_A.json

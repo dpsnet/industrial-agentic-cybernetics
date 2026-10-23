@@ -14,18 +14,25 @@ The H1AC P2 strain barely propagates ($\mu\approx0.001$)—the model did not ado
 
 ## 10.3 Statistical-Unit Lesson
 
-The H1AC pooled per-parent criterion fails under C2 due to survivor bias (final-generation survival only 6%, pooled ratio 1.017 meaningless)—switched to chain mean and recorded in plan §9. Lesson: the judgment unit of propagation experiments must be fixed at pre-registration; B-H1c's CI lower bound slightly out (0.017) likewise suggests that boundary criteria need more conservative definitions or larger samples.
+The H1AC pooled per-parent criterion fails under C2 due to survivor bias (final-generation survival only 6%, pooled ratio 1.017 meaningless)—switched to chain mean and recorded in plan §9. Lesson: the judgment unit of propagation experiments must be fixed at pre-registration; B-H1c's CI lower bound slightly out (0.017) likewise suggests that boundary criteria need more conservative definitions or larger samples. The KIMI-BOOST experiments also required two criterion corrections (EXP-A gain judged as "no accumulation propagation"; EXP-B's $W_c$ redefined as the first tier with survival ≥0.5), both recorded in plan §8—when pre-registered criteria conflict with mechanism facts, corrections must be traceable, never silently moved goalposts.
 
-## 10.4 Two-Layer Connection Not Theorized
+## 10.4 Residual Open Items of Quarantine Cost and Capacity Jointness
+
+The supplementary experiments (EXP-A/B, Flash) close the quantitative gaps in quarantine cost (σ=1 utility retention 0.88) and $M_c$ jointness ($(b,M)$ joint function), but residual open items remain:
+- the quarantine cost is measured only on the memory-stock side (utility retention); the task-completion side (test_code_len) is not separately analyzed—the 0.88 retention does not cover the downstream-task impact of missing benign experiences under quarantine;
+- the $b\in\{1,2,3,5\}$ surface covers only four write-rate tiers; the retrieval-strategy dimension is unscanned ($M_c$'s drift with retrieval strategy remains open);
+- the non-monotonic anomaly of the capacity surface ($b=2, W=4$ survival 1.00) is under-sampled (6 chains) and unattributed.
+
+## 10.5 Two-Layer Connection Not Theorized
 
 The quantitative connection between the production engineering loop (promotion/blocking/leakage, five-fold physical criteria, §2.3) and the theoretical channel (purely social propagation, $\hat m$)—the coupling of the engineering-side $q$ loop to the theoretical $\hat m$—is not yet theorized; this paper does not claim the engineering loop is evidence for the theoretical channel. **First-priority future work**: a coupling model of the two-layer channels.
 
-## 10.5 Ecological Validity
+## 10.6 Ecological Validity
 
 The main evidence is concentrated on the test-writing task family; across task families, only the quarantine guarantee has generalization evidence (48/48 chains); the multiplicative law and capacity criticality have not been tested across families. The vector-store direct-write architecture is not isolated as an experiment (full-append is used as a proxy).
 
-## 10.6 Other
+## 10.7 Other
 
-- Model-tier time snapshots: DeepSeek-V4.1-Flash-1017 was released on 2026-10-17, and all SUPERCRITICAL and H1AC experiments were executed within 5 days of release (2026-10-22; per-batch run timestamps in Appendix A); drift of the conclusions to newer model generations is unverified;
+- Model-tier time snapshots: DeepSeek-V4.1-Flash-1017 was released on 2026-10-17, and all SUPERCRITICAL and H1AC experiments were executed within 5 days of release (2026-10-22), KIMI-BOOST within 6 days (2026-10-23; per-batch run timestamps in Appendix A); drift of the conclusions to newer model generations is unverified;
 - Sampling temperature 0.7 fixed; the effect of sampling temperature on $w_n$ is not scanned;
 - Judgment scripts depend on deterministic reshuffle seeds; cross-platform floating-point differences are untested.

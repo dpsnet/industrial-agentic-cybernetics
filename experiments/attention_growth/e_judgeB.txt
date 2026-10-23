@@ -1,0 +1,38 @@
+﻿D:\pyenv\pyenv-win\versions\3.11.8\python.exe : D:\pyenv\pyenv-win\versions\3.11.8\Lib\site-packages\requests\__init__.
+py:109: RequestsDependencyWarning: urllib3 (1.26.13) or chardet (7.4.1)/charset_normalizer (2.1.1) doesn't match a supp
+orted version!
+At line:15 char:3379
++ ... pgrep\bin'; D:\pyenv\pyenv-win\versions\3.11.8\python.exe kimi_boost_ ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (D:\pyenv\pyenv-...ported version!:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  warnings.warn(
+=== EXP-B M_c(b) 曲面（C0 full_append，8 代）===
+W\b | b=1 | b=2 | b=3 | b=5
+  b=1 W=4 n=6 Z_final=1.67 surv=0.50 m_hat=1.071 CI=[0.833,1.143]
+  b=1 W=8 n=6 Z_final=4.50 surv=1.00 m_hat=1.202 CI=[1.118,1.242]
+  b=1 W=12 n=6 Z_final=6.83 surv=1.00 m_hat=1.215 CI=[1.214,1.216]
+  b=1 W=16 n=6 Z_final=7.83 surv=1.00 m_hat=1.253 CI=[1.250,1.260]
+  b=1 W=24 n=6 Z_final=7.33 surv=1.00 m_hat=1.262 CI=[1.253,1.276]
+  b=1 W=32 n=6 Z_final=7.33 surv=1.00 m_hat=1.257 CI=[1.250,1.266]
+  b=2 W=4 n=6 Z_final=2.00 surv=1.00 m_hat=1.086 CI=[1.083,1.091]
+  b=2 W=8 n=6 Z_final=3.17 surv=1.00 m_hat=1.129 CI=[1.091,1.150]
+  b=2 W=12 n=6 Z_final=6.00 surv=1.00 m_hat=1.217 CI=[1.200,1.238]
+  b=2 W=16 n=6 Z_final=7.17 surv=1.00 m_hat=1.220 CI=[1.217,1.222]
+  b=2 W=24 n=6 Z_final=7.67 surv=1.00 m_hat=1.253 CI=[1.250,1.257]
+  b=2 W=32 n=6 Z_final=8.17 surv=1.00 m_hat=1.253 CI=[1.250,1.259]
+  b=3 W=4 n=6 Z_final=0.17 surv=0.17 m_hat=0.844 CI=[0.700,0.932]
+  b=3 W=8 n=6 Z_final=1.83 surv=0.83 m_hat=1.071 CI=[1.000,1.114]
+  b=3 W=12 n=6 Z_final=4.00 surv=1.00 m_hat=1.143 CI=[1.143,1.143]
+  b=3 W=16 n=6 Z_final=5.00 surv=1.00 m_hat=1.169 CI=[1.167,1.174]
+  b=3 W=24 n=6 Z_final=7.00 surv=1.00 m_hat=1.214 CI=[1.214,1.214]
+  b=3 W=32 n=6 Z_final=7.83 surv=1.00 m_hat=1.247 CI=[1.241,1.250]
+  b=5 W=4 n=6 Z_final=0.00 surv=0.00 m_hat=0.143 CI=[0.000,0.333]
+  b=5 W=8 n=6 Z_final=0.67 surv=0.33 m_hat=0.950 CI=[0.700,1.040]
+  b=5 W=12 n=6 Z_final=2.00 surv=1.00 m_hat=1.074 CI=[1.039,1.105]
+  b=5 W=16 n=6 Z_final=3.50 surv=1.00 m_hat=1.126 CI=[1.100,1.163]
+  b=5 W=24 n=6 Z_final=5.17 surv=1.00 m_hat=1.164 CI=[1.138,1.190]
+  b=5 W=32 n=6 Z_final=7.33 surv=1.00 m_hat=1.196 CI=[1.185,1.211]
+  W_c(b) 判定: {1: ('>32', None), 2: ('>32', None), 3: ('>32', None), 5: ('>32', None)}
+  B-H2 漂移判定=PASS 稳健 -> W_c 对 b 稳健，维持近似常数

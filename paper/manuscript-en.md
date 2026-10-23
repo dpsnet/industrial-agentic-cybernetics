@@ -1,10 +1,10 @@
 # Memory Poisoning in Ungated Agentic Memory Architectures: Architecture-Dependent Propagation Mechanisms, Capacity Control, and Quarantine Invariance
 
-Long-lived language-model agents accumulate experience in persistent memory; unvalidated or malicious entries can propagate across sessions and poison downstream tasks. Existing defenses treat soft marking and hard quarantine interchangeably, and no account links the *memory architecture* to the mathematical structure of propagation. We study injection-propagation under two write protocols—selective replay and full append—through pre-registered experiments spanning three model families (DeepSeek-V4-Pro-0813 (Pro), Kimi, DeepSeek-V4.1-Flash-1017 (Flash)), two architectures, three capacity settings, and 450 agent-session chains (2,796 session-generation units), with Lean 4 machine-checked conditional theorems.
+Long-lived language-model agents accumulate experience in persistent memory; unvalidated or malicious entries can propagate across sessions and poison downstream tasks. Existing defenses treat soft marking and hard quarantine interchangeably, and no account links the *memory architecture* to the mathematical structure of propagation. We study injection-propagation under two write protocols—selective replay and full append—through pre-registered experiments spanning three model families (DeepSeek-V4-Pro-0813 (Pro), Kimi, DeepSeek-V4.1-Flash-1017 (Flash)), two architectures, multiple capacity settings, and 846 agent-session chains (5,460 session-generation units), with Lean 4 machine-checked conditional theorems.
 
-We find that the architecture, not the model, determines the propagation mechanism. Selective replay yields branching decay: a Galton-Watson process with model-specific offspring mean $\hat m\in[0.56,0.98]$ and geometric-law decay (R²≥0.92). Full append yields linear accumulation–competition: a per-generation write $w_n\in\{0,1\}$ (chain mean $E[w_n]=0.917$) gives $Z_{n+1}=Z_n+w_n$ up to the memory capacity $M$, where FIFO competition reaches and maintains a steady state ($5/16$) (engineering-semantics persistence; the cross-mechanism propagation ratio is reported in §6.1). Capacity $M$ is the control parameter, with a critical capacity $M_c\in(8,16)$ separating extinction ($M\le M_c$) from persistence ($M>M_c$).
+We find that the architecture, not the model, determines the propagation mechanism. Selective replay yields branching decay: a Galton-Watson process with model-specific offspring mean $\hat m\in[0.56,0.98]$ and geometric-law decay (R²≥0.92); extended to 12 chains, the selective side gives $\hat m=0.966$ (CI $[0.911,1.000]$), fully separated from the full-append CI. Full append yields linear accumulation–competition: a per-generation write $w_n\in\{0,1\}$ (chain mean $E[w_n]=0.917$) gives $Z_{n+1}=Z_n+w_n$ up to the memory capacity $M$, where FIFO competition reaches and maintains a steady state ($5/16$) (engineering-semantics persistence; the cross-mechanism propagation ratio is reported in §6.1). Capacity $M$ is the control parameter; the critical capacity $M_c$ is a $(b,M)$ joint function (in this protocol tier $M_c\in(8,16)$ is the $b=3$ instance)—the higher the benign write rate, the larger the critical capacity ($b=1/2\to W_c\le4$; $b=5\to W_c\in(8,12)$).
 
-For defense, soft-marking effects are model-heterogeneous and unreliable: the Pro tier shows a large but non-significant 47% compression under inadequate power, the full-append tier shows 12/12 same-trace trajectories (structural write-path bypass), and the Flash large-sample paired test ($n=48$, $\bar d=0.020$, $p=0.69$) confirms zero compression, while quarantine ($\sigma=1$) cuts off propagation in all conditions: 24/24 cross-model, 48/48 cross-task, and 12/12 full-append chains. We conclude that defense depends on hard quarantine, not soft marking. As a methodological note, our pre-registered branching-match hypothesis was falsified by direct generation-level evidence and revised to linear accumulation–competition; we report the revision transparently.
+For defense, soft-marking effects are model-heterogeneous and unreliable: the Pro tier shows a large but non-significant 47% compression under inadequate power, the full-append tier shows 12/12 same-trace trajectories (structural write-path bypass), and the Flash large-sample paired test ($n=48$, $\bar d=0.020$, $p=0.69$) confirms zero compression, while quarantine ($\sigma=1$) cuts off propagation in all conditions: 24/24 cross-model, 48/48 cross-task, and 12/12 full-append chains; a σ sweep ($n=48$/tier) confirms no σ<1 tier suffices against supercritical accumulation, and σ=1 retains 0.88 of memory utility (the cost is 12% of new-experience increments; seed knowledge is undamaged). We conclude that defense depends on hard quarantine, not soft marking. As a methodological note, our pre-registered branching-match hypothesis was falsified by direct generation-level evidence and revised to linear accumulation–competition; we report the revision transparently.
 
 
 ---
@@ -115,7 +115,7 @@ Memory window capacity $M$ determines the propagation outcome of Mechanism B (SU
 | 16 | 1.166 ([1.156, 1.176]) | 1.0 | **persistent accumulation** (steady state 5/16 maintained for 3 generations; engineering-sense supercritical) |
 | 32 | 1.25 (degenerate CI, 6 identical chains) | 1.0 | **linear growth** ($Z=[1,\dots,8]$, unsaturated) |
 
-**Critical capacity (under the current protocol) $M_c\in(8,16)$**: capacity monotonicity holds—the poison pool is suppressed to extinction when $M\le M_c$, and accumulates monotonically without extinction when $M>M_c$. $M_c$ is a protocol-conditional quantity: it drifts with the benign write rate (3 per generation) and the retrieval strategy (§9/§10 open items). $M$ is therefore the **control parameter** of propagation (not a model parameter).
+**Critical capacity is a $(b,M)$ joint function (measured by EXP-B, §6.5)**: capacity monotonicity holds—the poison pool is suppressed to extinction when $M\le M_c$, and accumulates monotonically without extinction when $M>M_c$. $M_c$ moves up with the benign write rate $b$ ($W_c\le4$ at $b=1/2$; $W_c\in(4,8)$ at $b=3$; $W_c\in(8,12)$ at $b=5$); the $M_c\in(8,16)$ under this protocol tier ($b=3$, 3 entries per generation) is one instance, and $M_c$ drifts with $b$ and the retrieval strategy (§9/§10 open items). $M$ is therefore the **control parameter** of propagation (not a model parameter).
 
 ## 3.4 Architecture Determines Mechanism (Core Claim 2)
 
@@ -126,7 +126,7 @@ Switching the memory architecture within the same model family (Flash) switches 
 | selective replay | branching decay (A) | $\hat m\in[0.56,0.98]$ (cross-model, model-specific) | $w_n$ depends on $Z_n$; geometric law holds |
 | full-append | accumulation–competition (B) | $Z$ accumulates linearly; capacity $M$ decides the outcome | $w_n\in\{0,1\}$; $M_c\in(8,16)$ |
 
-**The variable is architecture, not the model**: within the same Flash tier, the selective control (2 chains) keeps $Z$ constant at 1 with memory shrinking to 3 (critical boundary $\hat m=1.0$; weak subcriticality supported by the H1AC large sample $m\approx0.92$), while full-append C0 (12 chains) accumulates linearly to 5/16 (engineering-sense supercritical)—the bifurcation is entirely determined by the transcription protocol. This is consistent with the applicability-domain statement of Axiom IV: without a gate, $\hat m$ is a model–task–site joint parameter ($[0.29,1.00]$; cross-model $[0.56,0.98]$), but the **mechanism class is determined by architecture and does not migrate across models**.
+**The variable is architecture, not the model**: within the same Flash tier, the selective control (2 chains, main experiment; **extended to 12 chains, EXP-C**) keeps $Z$ constant at 1 with memory shrinking to 3 (critical boundary $\hat m=1.0$; after extension $\hat m=0.966$, CI $[0.911,1.000]$ containing 1, weak-subcritical/critical confirmed statistically), while full-append C0 (12 chains) accumulates linearly to 5/16 (engineering-sense supercritical, $\hat m=1.166$, CI $[1.156,1.176]$)—the two $\hat m$ CIs are fully separated, and the bifurcation is entirely determined by the transcription protocol. This is consistent with the applicability-domain statement of Axiom IV: without a gate, $\hat m$ is a model–task–site joint parameter ($[0.29,1.00]$; cross-model $[0.56,0.98]$), but the **mechanism class is determined by architecture and does not migrate across models**.
 
 ## 3.5 Pre-registered Hypotheses (Experiments in §5, Results in §6)
 
@@ -197,6 +197,7 @@ All criteria were fixed before the experiments (hypothesis list in §3.5): signi
 | Cross-model | Kimi `kimi-for-coding` + same Pro protocol | X-H1/X-H4, 288 sessions |
 | SUPERCRITICAL | **DeepSeek-V4.1-Flash-1017** (abbrev. Flash) | full-append / capacity tiers / selective control (deviation from the pre-registered model tier recorded in plan §9) |
 | H1AC | same as Flash | 160-chain dual-strain large sample |
+| KIMI-BOOST | same as Flash | quarantine-cost σ sweep (EXP-A 240) / $b\times M$ capacity surface (EXP-B 144) / selective extension n=12 (EXP-C) |
 
 ## 5.3 Propagation Protocol
 
@@ -210,7 +211,7 @@ All criteria were fixed before the experiments (hypothesis list in §3.5): signi
 - **full-append**: C0-full / C1-full / C3-full (12 sessions × 8 generations each); capacity tiers $M=8$ / $M=32$ (6 sessions × 8 generations each); selective control (2 sessions × 6 generations);
 - **H1AC (Flash, dual-strain)**: C0 (48) / C1 (48) / C2 (64), 6 generations.
 
-**450 agent-session chains in total** (= main 48 + cross-model 48 + cross-task-family 144 + SUPERCRITICAL 50 + H1AC 160; session-generation units 2,796 = 288 + 288 + 864 + 384 + 960; the selective control, 2 chains × 6 generations, is counted separately). Of these, SUPERCRITICAL 50 chains = 3 conditions × 12 chains × 8 generations (C0/C1/C3-full) + 2 sensitivity tiers × 6 chains × 8 generations (W=8/32); H1AC 160 chains = C0 48 + C1 48 + C2 64, × 6 generations; cross-task-family 144 chains × 6 generations. **Timeline**: DeepSeek-V4.1-Flash-1017 was released on 2026-10-17; all SUPERCRITICAL and H1AC experiments were executed and judged within 5 days of release (2026-10-22; per-batch run timestamps in Appendix A).
+**846 agent-session chains in total** (= main 48 + cross-model 48 + cross-task-family 144 + SUPERCRITICAL 50 + H1AC 160 + KIMI-BOOST 396; session-generation units 5,460 = 288 + 288 + 864 + 384 + 960 + 2,664; the selective control, 2 chains × 6 generations, is counted separately). Of these, SUPERCRITICAL 50 chains = 3 conditions × 12 chains × 8 generations (C0/C1/C3-full) + 2 sensitivity tiers × 6 chains × 8 generations (W=8/32); H1AC 160 chains = C0 48 + C1 48 + C2 64, × 6 generations; cross-task-family 144 chains × 6 generations; KIMI-BOOST 396 chains = EXP-A 240 (σ sweep, 5 tiers × 48 chains, × 6 generations) + EXP-B 144 ($b\times M$ surface, 24 tiers × 6 chains, × 8 generations) + EXP-C 12 (selective extension, × 6 generations), reproducible via `kimi_boost_judge.py`. **Timeline**: DeepSeek-V4.1-Flash-1017 was released on 2026-10-17; all SUPERCRITICAL and H1AC experiments were executed and judged within 5 days of release (2026-10-22), and the KIMI-BOOST experiments within 6 days (2026-10-23; per-batch run timestamps in Appendix A).
 
 ## 5.5 Judgment Criteria
 
@@ -238,9 +239,9 @@ All criteria were fixed before the experiments (hypothesis list in §3.5): signi
 
 **S-H4 quarantine invariance ✅**: C3-full 12/12 chains, mem constant 6, $Z$ constant 1—quarantine truncates propagation under the full-append architecture as well (even where the branching premise fails).
 
-**Capacity as control parameter**: at $M=8$, the propagation ratio $\hat m^\dagger=0.829$ ($[0.739,0.875]$), g7 survival 0 (extinction); at $M=32$, $\hat m^\dagger=1.25$ (degenerate CI, 6 identical chains), $Z=[1,\dots,8]$ linear growth, unsaturated. **Critical $M_c\in(8,16)$**, capacity monotonicity holds.
+**Capacity as control parameter**: at $M=8$, the propagation ratio $\hat m^\dagger=0.829$ ($[0.739,0.875]$), g7 survival 0 (extinction); at $M=32$, $\hat m^\dagger=1.25$ (degenerate CI, 6 identical chains), $Z=[1,\dots,8]$ linear growth, unsaturated. **Critical $M_c\in(8,16)$** (this protocol tier, $b=3$), capacity monotonicity holds; supplementary EXP-B shows $M_c$ is a $(b,M)$ joint function (§6.5).
 
-**Selective control (Flash)**: 2 chains, $Z$ constant 1, memory shrinks to 3 ($\hat m=1.0$ critical boundary; H1AC large sample, 48 chains, $m\approx0.92$, supports weak subcriticality)—within the same model tier, an architecture bifurcation with C0-full (§3.4).
+**Selective control (Flash)**: 2 chains, $Z$ constant 1, memory shrinks to 3 ($\hat m=1.0$ critical boundary; H1AC large sample, 48 chains, $m\approx0.92$, supports weak subcriticality)—within the same model tier, an architecture bifurcation with C0-full (§3.4). **Supplementary EXP-C ($n=12$, 2026-10-23)**: $\hat m=0.966$ (boot95 CI $[0.911,1.000]$, contains 1), geometric law $R^2=0.833$, $Z$-means $[1,1,1,0.917,0.917,0.833]$, final-generation survival 0.83—**the CI is fully separated from C0-full ($\hat m=1.166$, CI $[1.156,1.176]$)**, confirming selective subcriticality/criticality at $n=12$; the architecture-bifurcation load-bearing wall is expanded from 2 to 12 chains (C-H1/C-H2 ✅).
 
 ## 6.2 Marking Gate and Multiplicative Law (H1AC, Flash, 160 chains)
 
@@ -260,13 +261,19 @@ All criteria were fixed before the experiments (hypothesis list in §3.5): signi
 
 Quarantine: 48/48 chains extinct (T-H1 ✅); poison propagation is modulated by task family (T-H4 paired $p=0.026$ ✅); without a gate, $\hat m$ is a model–task–site joint parameter (cross-task interval $[0.29,1.00]$)—**cross-family non-transferability is a measured conclusion, not a defect** (§9).
 
-## 6.5 Engineering Side (Production Field, Associated Evidence)
+## 6.5 Quarantine Cost and Capacity Surface (Supplementary, Flash, 396 chains)
+
+**EXP-A quarantine cost (σ sweep × 48 chains, full-append W=16, 6 generations)**: A100 (σ=1): $Z$ final generation constant 1, memory non-growing (mem_growth=0.00, $n=48$)—**hard quarantine blocks all non-finalized writes; accumulation propagation is absent (A-H1 ✅, "no accumulation propagation" criterion, following §8.3 S-H4 precedent)**; σ=0.9 is insufficient ($Z_f=4.60$, propagation persists)—no σ<1 tier meets the gain criterion. Cost side: benign pass-through measured 0.488/0.754/0.908/0.000 ≈ theoretical σ (indiscriminate random filtering, A-H2 ✅); at σ=1 memory utility retention is 0.88 (vs. C0 benign stock, −12%, all from lost new-experience increments; the 6-entry seed baseline is undamaged). **Unexpected capacity-competition finding**: σ-mid tiers (0.5/0.75/0.9) hold *more* benign stock than gate-free C0 (utility retention 1.33/1.31/1.19)—filtering suppresses the strain, so benign entries gain larger FIFO share; false blocking (1−σ) is offset by share compensation. **Two-dimensional cost–benefit conclusion: no σ*<1 tier both suppresses the strain and preserves new-experience increments—hard quarantine (σ=1) meets the gain criterion at −12% increments; σ<1 preserves increments but leaves the strain supercritical**.
+
+**EXP-B capacity surface ($b\times M$, 24 tiers × 6 chains, 8 generations)**: critical capacity $W_c(b)$ moves up with benign write rate $b$—$W_c\le4$ at $b=1/2$; $W_c\in(4,8)$ at $b=3$; $W_c\in(8,12)$ at $b=5$ (drift span ≥2 tiers, B-H2 ✅)—**$M_c$ is a $(b,M)$ joint function** (§6.1's "$M_c\in(8,16)$ under the current protocol" is the $b=3$ instance). Mechanism: benign writes compete with the strain for FIFO capacity—at $b=5, W=4$ the strain goes extinct ($Z$ final 0, $\hat m=0.143$); **high $b$ + low $M$ is a natural subcritical regime of capacity competition**. Non-monotonic anomaly recorded transparently: $b=2, W=4$ survival 1.00 (above $b=1$'s 0.50), retained unexplained under 6-chain randomness.
+
+## 6.6 Engineering Side (Production Field, Associated Evidence)
 
 Production-field closed-loop experiment (agent autonomous submission → five-fold physical criteria promotion/blocking → audit archival): 18 reports, 14 promoted, 4 blocked; promotion ratio 1.00, false-block 1.00, leakage 0. **Definition note**: promotion ratio 1.00 = all 14/14 promoted reports verified correct; false-block 1.00 = all 4/4 blocked reports were indeed erroneous (blocking accuracy); leakage 0 = no erroneous experience in the promoted set. This table is associated production-field evidence ($n=18$); a formal estimate of the cost side (benign false-block rate) requires a larger sample (open item, §10.4), and the connection between the engineering loop and the theoretical channel is likewise an open item—it does not constitute a cross-channel causal claim.
 
 ---
 
-## 6.6 Formal Judgment Tables (directly from judgment JSONs)
+## 6.7 Formal Judgment Tables (directly from judgment JSONs)
 
 **Table 1: Mechanism and Capacity (SUPERCRITICAL tier, Flash, full-append, chain mean)**
 
@@ -279,7 +286,7 @@ Production-field closed-loop experiment (agent autonomous submission → five-fo
 | W=8 | 8 | 6 | 0.829 ([0.739,0.875]) | 0.0 | 0.0 | **extinction** ($M\le M_c$) |
 | W=32 | 32 | 6 | 1.25 (degenerate CI) | 8.0 | 1.0 | linear growth, unsaturated ($M>M_c$) |
 
-Critical capacity (under the current protocol): $M_c\in(8,16)$, capacity monotonicity holds (`capacity_monotone=True`). $\dagger$: $\hat m=\sum_n Z_{n+1}/\sum_n Z_n$ (generation-weighted; source `e_supercritical_judge2.py`, openly reproducible); GW “mean offspring per parent” semantics valid for Mechanism A (selective) only; Mechanism B is judged on occupancy and survival. The C0/C1 difference in $\hat m^\dagger$ (0.001) is a between-chain micro-difference of near-deterministic data, not statistically meaningful, and is not used as a marking-gate criterion.
+Critical capacity (this protocol tier, $b=3$): $M_c\in(8,16)$, capacity monotonicity holds (`capacity_monotone=True`); EXP-B shows $M_c$ is a $(b,M)$ joint function (§6.5). $\dagger$: $\hat m=\sum_n Z_{n+1}/\sum_n Z_n$ (generation-weighted; source `e_supercritical_judge2.py`, openly reproducible); GW “mean offspring per parent” semantics valid for Mechanism A (selective) only; Mechanism B is judged on occupancy and survival. The C0/C1 difference in $\hat m^\dagger$ (0.001) is a between-chain micro-difference of near-deterministic data, not statistically meaningful, and is not used as a marking-gate criterion.
 
 **Table 2: Marking Gate and Multiplicative Law (H1AC tier, Flash, 160 chains, chain mean)**
 
@@ -306,7 +313,28 @@ Critical capacity (under the current protocol): $M_c\in(8,16)$, capacity monoton
 | T-H4 poison propagation modulated by task family | paired $p=0.026$ | ✅ |
 | no-gate $\hat m$ interval | [0.29, 1.00] (model–task–site joint parameter) | cross-family non-transferable |
 
-**Table 5: Engineering Side (production-field closed-loop experiment)**
+**Table 5: Quarantine Cost (EXP-A, Flash, σ sweep × 48 chains, full-append W=16)**
+
+| Condition | σ | Final Z | Survival | Benign pass-through (theoretical σ) | Memory utility retention | Criterion |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| C0 | — | 5.06 | 1.00 | 1.000 | 1.00 | supercritical baseline |
+| A50 | 0.50 | 3.50 | 1.00 | 0.488 (≈0.5) | 1.33 | partial suppression; benign share rises |
+| A75 | 0.75 | 4.04 | 1.00 | 0.754 (≈0.75) | 1.31 | same |
+| A90 | 0.90 | 4.60 | 1.00 | 0.908 (≈0.9) | 1.19 | insufficient suppression (A-H1 ✗) |
+| A100 | 1.00 | 1.00 | 1.00 (seed persists) | 0.000 (all blocked) | **0.88** | **A-H1 ✅** (no accumulation propagation) |
+
+**Table 6: Capacity Surface (EXP-B, $b\times M$, 24 tiers × 6 chains, 8 generations; $W_c$ = smallest W tier with survival first ≥0.5)**
+
+| Benign write rate $b$ | $W_c$ | Key row ($W=4$ tier) |
+| :---: | :---: | :--- |
+| 1 | ≤4 | surv=0.50, $\hat m=1.071$ |
+| 2 | ≤4 | surv=1.00, $\hat m=1.086$ (non-monotonic anomaly, recorded) |
+| 3 | (4,8) | surv=0.17, $\hat m=0.844$ |
+| 5 | (8,12) | surv=0.00, $\hat m=0.143$ (extinction) |
+
+**B-H2 ✅ drift confirmed** → $M_c$ is a $(b,M)$ joint function; EXP-C (§6.1) C-H1/C-H2 ✅.
+
+**Table 7: Engineering Side (production-field closed-loop experiment)**
 
 | Metric | Value |
 | :--- | :---: |
@@ -329,13 +357,14 @@ Critical capacity (under the current protocol): $M_c\in(8,16)$, capacity monoton
 Three experiment families and two architectures converge on the same separation:
 
 - **Marking gate unreliable**: the Pro tier's 47% compression (C1/C0 ratio 0.529) is non-significant under inadequate power ($n=12$, power 0.38); C1-full 12/12 generation-identical trajectories (structural write-path bypass); the H1AC large-sample paired test ($\bar d=0.020$, $p=0.69$) confirms zero compression on the Flash tier—the soft marker is a signal the model can ignore;
-- **Quarantine/filtering effective**: quarantine truncates propagation across models (24/24), task families (48/48), and architectures (C3-full 12/12, mem constant 6); random filtering ($\sigma=0.5$) drives survival to 0.062 in the large sample.
+- **Quarantine/filtering effective**: quarantine truncates propagation across models (24/24), task families (48/48), and architectures (C3-full 12/12, mem constant 6); the σ sweep ($n=48$/tier) confirms σ=1 is the only fully suppressing tier ($Z$ constant 1, memory non-growing), with σ=0.9 still unable to stop supercritical accumulation ($Z_f=4.60$); random filtering ($\sigma=0.5$) drives survival to 0.062 in the large sample.
+- **Quarantine cost quantified (EXP-A)**: at σ=1 memory utility retention is 0.88 (vs. gate-free C0 benign stock, −12%, all from lost new-experience increments; seed knowledge undamaged); at mid-σ tiers (0.5–0.9) benign stock *exceeds* C0 (1.19–1.33×) because the suppressed strain gives benign entries larger FIFO share—**two-dimensional conclusion: either hard quarantine (−12% increments) or supercritical strain; no σ*<1 tier preserves increments while suppressing the strain**.
 
 Mechanism explanation: marking is a **soft constraint at the decision layer** (the model may ignore it); quarantine is **structural blocking at the write layer** (un-adjudicated entries are physically unreachable). Defense design should therefore use a write-layer gate as the primary mechanism, with marking serving only as an audit clue.
 
 ## 7.2 Architecture Determines Mechanism (Theoretical Conclusion)
 
-The transcription protocol changes the **mathematical structure** of propagation, not merely its parameters: selective→branching decay (GW, model-specific $\hat m$), full-append→linear accumulation–competition ($w_n\in\{0,1\}$, outcome decided by $M_c$). Corollary: **the memory architecture is a security property, not merely a performance property**—"full append" is useful for information retention but an amplifier for poison propagation; capacity $M$ is a directly configurable propagation-control knob ($M_c\in(8,16)$).
+The transcription protocol changes the **mathematical structure** of propagation, not merely its parameters: selective→branching decay (GW, model-specific $\hat m$; extended to 12 chains, $\hat m=0.966$, CI containing 1, subcritical/critical confirmed), full-append→linear accumulation–competition ($w_n\in\{0,1\}$, outcome decided by $M_c$). Corollary: **the memory architecture is a security property, not merely a performance property**—"full append" is useful for information retention but an amplifier for poison propagation; capacity $M$ is a directly configurable propagation-control knob ($M_c$ is a $(b,M)$ joint function; $M_c\in(8,16)$ in this protocol tier; the critical capacity grows with the benign write rate).
 
 ## 7.3 Model Heterogeneity
 
@@ -386,12 +415,12 @@ Conclusion: **S-H3 is falsified by mechanism evidence**. Full-append propagation
 1. **Task family**: the main-experiment family is test-case writing (pytest) with four variants (correctness/boundary/negative/regression); the non-transferability of propagation strength across task families ($\hat m\in[0.29,1.00]$) is a measured conclusion—this paper does not claim quantitative prediction for arbitrary task families;
 2. **Channel**: the theoretical evidence is confined to the **purely social propagation channel** (physical execution feedback disabled; only the context–memory–transcription loop); the production engineering loop (autonomous submission–promotion–archival cycle) satisfies the five-fold physical criteria (§2.3), and its quantitative connection to the theoretical channel—the coupling between the engineering-side promotion-loop ratio $q$ (measured 1.00) and the theoretical propagation strength $\hat m$—is an open item (§10.4);
 3. **Model**: three model tiers (Pro/Kimi/Flash); $\hat m$ is model-specific; the quarantine guarantee does not depend on the model;
-4. **Architecture**: selective / full-append / capacity tiers $M\in\{8,16,32\}$; vector-store direct writing is proxied by full-append and not isolated as a separate experiment.
+4. **Architecture**: selective / full-append / capacity tiers $M\in\{4,8,12,16,24,32\}$ (capacity-surface tiers added 2026-10-23); vector-store direct writing is proxied by full-append and not isolated as a separate experiment.
 
 ## 9.2 Layering of Guarantees and Values
 
 - **Cross-boundary guarantee (theory layer)**: quarantine ($\sigma=1$) truncates propagation—measured across models, task families, and architectures; Lean-checked (T3 conditional theorem) for structural necessity;
-- **Within-boundary values (empirical layer)**: $\hat m$ (Mechanism A), $M_c$ (protocol-conditional; drifts with benign write rate $b$ and retrieval strategy), multiplicative-law parameters—valid only over the measured domain; cross-domain transfer is prohibited;
+- **Within-boundary values (empirical layer)**: $\hat m$ (Mechanism A), $M_c$ (**measured as a $(b,M)$ joint function**—it moves up with the benign write rate: $W_c\le4$ at $b=1/2$, $W_c\in(4,8)$ at $b=3$, $W_c\in(8,12)$ at $b=5$, §6.5), multiplicative-law parameters—valid only over the measured domain; cross-domain transfer is prohibited;
 - **Engineering layer**: production five-fold physical criteria (§2.3) serve as deployment adjudication; their coupling to theoretical parameters is listed as an open item.
 
 ## 9.3 Scoping Statement
@@ -411,19 +440,26 @@ The H1AC P2 strain barely propagates ($\mu\approx0.001$)—the model did not ado
 
 ## 10.3 Statistical-Unit Lesson
 
-The H1AC pooled per-parent criterion fails under C2 due to survivor bias (final-generation survival only 6%, pooled ratio 1.017 meaningless)—switched to chain mean and recorded in plan §9. Lesson: the judgment unit of propagation experiments must be fixed at pre-registration; B-H1c's CI lower bound slightly out (0.017) likewise suggests that boundary criteria need more conservative definitions or larger samples.
+The H1AC pooled per-parent criterion fails under C2 due to survivor bias (final-generation survival only 6%, pooled ratio 1.017 meaningless)—switched to chain mean and recorded in plan §9. Lesson: the judgment unit of propagation experiments must be fixed at pre-registration; B-H1c's CI lower bound slightly out (0.017) likewise suggests that boundary criteria need more conservative definitions or larger samples. The KIMI-BOOST experiments also required two criterion corrections (EXP-A gain judged as "no accumulation propagation"; EXP-B's $W_c$ redefined as the first tier with survival ≥0.5), both recorded in plan §8—when pre-registered criteria conflict with mechanism facts, corrections must be traceable, never silently moved goalposts.
 
-## 10.4 Two-Layer Connection Not Theorized
+## 10.4 Residual Open Items of Quarantine Cost and Capacity Jointness
+
+The supplementary experiments (EXP-A/B, Flash) close the quantitative gaps in quarantine cost (σ=1 utility retention 0.88) and $M_c$ jointness ($(b,M)$ joint function), but residual open items remain:
+- the quarantine cost is measured only on the memory-stock side (utility retention); the task-completion side (test_code_len) is not separately analyzed—the 0.88 retention does not cover the downstream-task impact of missing benign experiences under quarantine;
+- the $b\in\{1,2,3,5\}$ surface covers only four write-rate tiers; the retrieval-strategy dimension is unscanned ($M_c$'s drift with retrieval strategy remains open);
+- the non-monotonic anomaly of the capacity surface ($b=2, W=4$ survival 1.00) is under-sampled (6 chains) and unattributed.
+
+## 10.5 Two-Layer Connection Not Theorized
 
 The quantitative connection between the production engineering loop (promotion/blocking/leakage, five-fold physical criteria, §2.3) and the theoretical channel (purely social propagation, $\hat m$)—the coupling of the engineering-side $q$ loop to the theoretical $\hat m$—is not yet theorized; this paper does not claim the engineering loop is evidence for the theoretical channel. **First-priority future work**: a coupling model of the two-layer channels.
 
-## 10.5 Ecological Validity
+## 10.6 Ecological Validity
 
 The main evidence is concentrated on the test-writing task family; across task families, only the quarantine guarantee has generalization evidence (48/48 chains); the multiplicative law and capacity criticality have not been tested across families. The vector-store direct-write architecture is not isolated as an experiment (full-append is used as a proxy).
 
-## 10.6 Other
+## 10.7 Other
 
-- Model-tier time snapshots: DeepSeek-V4.1-Flash-1017 was released on 2026-10-17, and all SUPERCRITICAL and H1AC experiments were executed within 5 days of release (2026-10-22; per-batch run timestamps in Appendix A); drift of the conclusions to newer model generations is unverified;
+- Model-tier time snapshots: DeepSeek-V4.1-Flash-1017 was released on 2026-10-17, and all SUPERCRITICAL and H1AC experiments were executed within 5 days of release (2026-10-22), KIMI-BOOST within 6 days (2026-10-23; per-batch run timestamps in Appendix A); drift of the conclusions to newer model generations is unverified;
 - Sampling temperature 0.7 fixed; the effect of sampling temperature on $w_n$ is not scanned;
 - Judgment scripts depend on deterministic reshuffle seeds; cross-platform floating-point differences are untested.
 
