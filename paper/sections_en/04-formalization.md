@@ -37,11 +37,11 @@ Formalization sources: `formal_proof/IACFormalization` (this repository, commit 
 
 **Proposition (Mechanism-B steady-state occupancy)**: under full-append architecture, FIFO capacity $M$, $b$ benign entries written per generation, and chain-mean poison write $\bar w$ ($0<\bar w\le1$), the steady-state poison occupancy under the approximation that poison entries mix uniformly within the capacity is
 
-$$Z^\* = \frac{M\,\bar w}{b+\bar w}$$
+$$Z^* = \frac{M\,\bar w}{b+\bar w}$$
 
-**Proof**: the expected per-generation write volume is $b+\bar w$ entries ($\bar w$ poison); FIFO evicts an equal number of the oldest entries per generation. If poison is uniformly distributed over the $M$ slots, the expected number of evicted poison entries per generation is $(b+\bar w)\cdot Z/M$. Steady state requires inflow equals outflow: $(b+\bar w)\cdot Z^\*/M = \bar w$, hence $Z^\*=M\bar w/(b+\bar w)$. $\blacksquare$
+**Proof**: the expected per-generation write volume is $b+\bar w$ entries ($\bar w$ poison); FIFO evicts an equal number of the oldest entries per generation. If poison is uniformly distributed over the $M$ slots, the expected number of evicted poison entries per generation is $(b+\bar w)\cdot Z/M$. Steady state requires inflow equals outflow: $(b+\bar w)\cdot Z^*/M = \bar w$, hence $Z^*=M\bar w/(b+\bar w)$. $\blacksquare$
 
-**Measured validation**: C0-full ($b=2$, $\bar w=0.917$, $M=16$) predicts $Z^\*=16\times0.917/2.917=5.03$; the measured steady state is 4.917 (stable across g5–g7), a relative deviation of 2.3%.
+**Measured validation**: C0-full ($b=2$, $\bar w=0.917$, $M=16$) predicts $Z^*=16\times0.917/2.917=5.03$; the measured steady state is 4.917 (stable across g5–g7), a relative deviation of 2.3%.
 
 **Caveat**: uniform mixing is an approximation—under FIFO the poison-entry position distribution is non-uniform with inter-generation correlations, and the exact solution depends on the concrete write sequence; this closed form serves as the **endogenous steady-state descriptor** of Mechanism B (the endogenization replacing GW parameters, §8).
 
