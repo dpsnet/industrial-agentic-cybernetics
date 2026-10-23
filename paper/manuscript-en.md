@@ -89,7 +89,7 @@ The theorem chain is machine-checked in **Lean 4** (Moura & Ullrich, 2021), zero
 
 **Notation discipline**: $M$ is the memory capacity (the window parameter in tier names `_W8/_W32`), and $w_n$ is the per-generation write—the two are strictly distinguished throughout this paper.
 
-## 3.2 Two Propagation Mechanisms (Core Claim 1)
+## 3.2 Two Propagation Mechanisms
 
 **Mechanism A: branching decay (selective-replay protocol)**. The agent transcribes only the entries judged relevant in the current session; the offspring count depends on the parent poison lineage's transcription propensity:
 
@@ -105,7 +105,7 @@ Before saturation, growth is linear, $Z_{n+1}=Z_n+1$; once $Z_n$ reaches capacit
 
 **Direct evidence of mechanism discrimination (per-generation offspring check)**: in the full-append tier, the number of newly written P1 entries is 0 or 1 every generation ($w_n\in\{0,1\}$, PMF=[0,1], chain mean $E[w_n]=0.917$—11/12 chains write 1 every generation, about 1/12 chains skip one generation; $Z_{n+1}=Z_n+w_n$ linear accumulation; measured Z=[1,2,2.917,3.917,3.917,4.917,4.917,4.917]); the "offspring depends on parent population" requirement of a branching process fails. **Therefore the pre-registered hypothesis S-H3 (GW match) is falsified by mechanism evidence, and the theory is revised to Mechanism B** (see §9, mechanism-revision narrative). Branching decay (Mechanism A) still holds under the selective protocol (geometric law $R^2=0.958$, main experiment; $R^2=0.923$, H1AC large sample).
 
-## 3.3 Capacity as Control Parameter (Half of Core Claim 2)
+## 3.3 Capacity as Control Parameter
 
 Memory window capacity $M$ determines the propagation outcome of Mechanism B (SUPERCRITICAL tier, full-append, Flash):
 
@@ -117,7 +117,7 @@ Memory window capacity $M$ determines the propagation outcome of Mechanism B (SU
 
 **Critical capacity is a $(b,M)$ joint function (measured by EXP-B, §6.5)**: capacity monotonicity holds—the poison pool is suppressed to extinction when $M\le M_c$, and accumulates monotonically without extinction when $M>M_c$. $M_c$ moves up with the benign write rate $b$ (under the EXP-B protocol, $W_c\le4$ at $b=1/2$; $W_c\in(4,8)$ at $b=3$; $W_c\in(8,12)$ at $b=5$). **Cross-experiment grid-point check**: the main-protocol tier (write rule "1~3 entries", $b{\approx}3$ total cap including the strain, executed by `axiom4_memory_propagation.py`) gives $M_c\in(8,16)$, consistent with the EXP-B $b{=}3$ row (executed by `kimi_boost.py`; $b$ = benign-experience cap with the strain consuming quota; measured total writes 3.00 in both tiers—flow-isomorphic) at the shared grid point $W=16$ (EXP-A C0 6-generation $Z=5.06$ vs 4.917 at the same generation in the main protocol, 2.9% difference) but split at the boundary grid point $W=8$ (main protocol: 6/6 chains extinct, surv=0; EXP-B: surv=0.92 at 12 chains, persisting after extension). **The attribution audit (§6.5) locates the split in a sub-hourly state transition of DeepSeek-V4.1-Flash-1017 strain transcription behavior** (high/low transcription states flip within ~32 minutes on the same calendar day; same-day dual-protocol reruns show no difference, Fisher $p{=}0.155$, and the 10-22 original batch is significantly low at $p{=}0.0024$—not a protocol difference); **$M_c$ is therefore a conditional quantity of $(b,M,\text{strain transcription state})$**: under the low state $M_c\in(8,16)$ with $W{=}8$ extinct, while under the high state $W{=}8$ survives at more than half (§11.4 probe-calibration protocol). Both readings reproduce within their own batches and are reported side by side (§6.5). $M_c$ drifts with $b$ and the retrieval strategy (§10/§11 open items). $M$ is therefore the **control parameter** of propagation (not a model parameter).
 
-## 3.4 Architecture Determines Mechanism (Core Claim 2)
+## 3.4 Architecture Determines Mechanism
 
 Switching the memory architecture within the same model family (Flash) switches the mechanism:
 
