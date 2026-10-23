@@ -7,7 +7,7 @@
 
 ## 5.1 预注册原则
 
-全部判据先于实验固定（假说清单见 §3.5）：显著性门槛（$p<0.05$ 置换/单侧）、判读单位（链均 vs 池化，见 5.5）、方向性命题一律预先声明。实验计划文档随判读产物存档（`EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md`、`EXPERIMENT_PLAN_AXIOM4_H1AC_BOOST.md`），任何口径修订在 §9 如实记录（如 H1AC 池化口径失效）。
+全部判据先于实验固定（假说清单见 §3.5）：显著性门槛（$p<0.05$ 置换/单侧）、判读单位（链均 vs 池化，见 5.5）、方向性命题一律预先声明。实验计划文档随判读产物存档（`EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md`、`EXPERIMENT_PLAN_AXIOM4_H1AC_BOOST.md`），任何口径修订在 §10 如实记录（如 H1AC 池化口径失效）。
 
 ## 5.2 模型档
 
@@ -15,7 +15,7 @@
 | :--- | :--- | :--- |
 | 主实验 | **DeepSeek-V4-Pro-0813**（简称 Pro；采样温度 temperature 0.7） | selective 协议，4 条件 × 12 会话 × 6 代 = 288 会话 |
 | 跨模型 | Kimi `kimi-for-coding` + 同 Pro 协议 | X-H1/X-H4，288 会话 |
-| SUPERCRITICAL | **DeepSeek-V4.1-Flash-1017**（简称 Flash） | full-append/容量档/selective 对照（与预注册模型档的偏离已在计划 §9 记录） |
+| SUPERCRITICAL | **DeepSeek-V4.1-Flash-1017**（简称 Flash） | full-append/容量档/selective 对照（与预注册模型档的偏离已在计划 §10 记录） |
 | H1AC | 同 Flash | 160 链双毒株大样本 |
 | COMPLEMENT-EXP | 同 Flash | 隔离代价 σ 扫描（EXP-A 240）/ $b\times M$ 容量曲面（EXP-B 144）/ selective 扩样 n=12（EXP-C） |
 
@@ -36,7 +36,7 @@
 ## 5.5 判读口径
 
 - bootstrap CI（$10^4$ 重采样）估计 $\hat m$ 及比值 CI；符号翻转配对置换（$10^4$）检验标记门配对差；
-- **链均 vs 池化**：传播实验的判读单位取链均（per-parent 池化在 C2 下因幸存者偏差失效——末代存活率仅 6%，池化比值 1.017 无意义；已在计划 §9 记录并改用链均）；
+- **链均 vs 池化**：传播实验的判读单位取链均（per-parent 池化在 C2 下因幸存者偏差失效——末代存活率仅 6%，池化比值 1.017 无意义；已在计划 §10 记录并改用链均）；
 - 几何律复验：log-linear 拟合 $R^2$；
 - **功效**（Pro 档标记门）：配对差 $d=0.167$、$sd=0.432$、C1/C0 比值 0.529 → 当前 $n=12$ 功效仅 0.38，达 0.8 需 $n\approx48$（`e_power_markgate.py/.json`）——H1AC 档以 48 配对补齐该缺口。
 

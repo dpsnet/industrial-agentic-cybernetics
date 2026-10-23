@@ -23,8 +23,8 @@ This work is rooted in **Axiom IV (empirical self-immunity)**: self-generated ex
 3. **Evidence layer**: pre-registered, cross-model (Pro / Kimi / Flash; full-name-to-abbreviation mapping in §5.2) × cross-architecture (selective / full-append / capacity tiers) × cross-task-family (144 chains) × large-sample paired (160 chains) closed criteria (§5–§6);
 4. **Engineering implication**: defense depends on **quarantine, not marking**—the marking-gate effect is model-heterogeneous and unreliable (Pro 47% compression non-significant, C1-full structurally identical trajectories, Flash large sample confirming zero compression, $\bar d=0.020$, $p=0.69$), while quarantine truncates propagation in three dimensions: cross-model (24/24 chains $Z_1=0$), cross-task-family (48/48 chains), cross-architecture (12/12 chains, mem constant 6) (§7).
 
-**An honest methodological statement**: the pre-registered hypothesis S-H3 (GW branching match) was **falsified** by generation-level mechanism evidence ($w_n\in\{0,1\}$ linear accumulation). We present it as a positive case of "pre-registered hypothesis falsified → mechanism re-identification" (§8), rather than post-hoc rationalization.
+**An honest methodological statement**: the pre-registered hypothesis S-H3 (GW branching match) was **falsified** by generation-level mechanism evidence ($w_n\in\{0,1\}$ linear accumulation). We present it as a positive case of "pre-registered hypothesis falsified → mechanism re-identification" (§9), rather than post-hoc rationalization.
 
 ## 1.4 Paper Structure
 
-§2 Related Work; §3 mechanism model; §4 formalization; §5 experimental setup; §6 results; §7 discussion; §8 mechanism-revision narrative; §9 scope; §10 limitations; §11 conclusion.
+§2 Related Work; §3 mechanism model; §4 formalization; §5 experimental setup; §6 results; §7 discussion; §9 mechanism-revision narrative; §10 scope; §11 limitations; §12 conclusion.

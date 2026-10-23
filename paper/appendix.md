@@ -18,9 +18,9 @@
 
 **原始会话**（全部入 git）：`axiom4_results_supercritical*.json`（C0/C1/C3-full、W8/W32、w1–w4 shards）、`axiom4_results_flash_selective_ctrl.json`、`axiom4_results_h1ac_*.json`（C0/C1/C2/smoke）、跨模型/跨任务族会话 JSON。
 
-**预注册计划**：`EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md`、`EXPERIMENT_PLAN_AXIOM4_H1AC_BOOST.md`（§9 判读回填与口径修订记录）。
+**预注册计划**：`EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md`、`EXPERIMENT_PLAN_AXIOM4_H1AC_BOOST.md`（§10 判读回填与口径修订记录）。
 
-**执行环境**：DeepSeek-V4.1-Flash-1017（简称 Flash；scnet-flash 网关，采样温度 0.7）；模型档偏离预注册 DeepSeek-V4-Pro-0813（Pro）档的记录见 SUPERCRITICAL 计划 §9。
+**执行环境**：DeepSeek-V4.1-Flash-1017（简称 Flash；scnet-flash 网关，采样温度 0.7）；模型档偏离预注册 DeepSeek-V4-Pro-0813（Pro）档的记录见 SUPERCRITICAL 计划 §10。
 
 **运行时间戳**（结果文件 mtime）：2026-10-22 批次——selective 对照 15:24、**C0-full 15:30（毒株写入 0.917/代，高转写态）**、W32 15:52、**W8 16:02（毒株写入 0.25/代，低转写态）**、C3-full 16:18、C1-full 16:20、H1AC C1 19:45/C0 19:49/C2 20:09；2026-10-23 批次——COMPLEMENT-EXP（kimi_boost A/B/C 分片）2:05–10:40、σ 甜点补测 12:26–12:35、W8 归因重跑（主协议 13:46/EXP-B 13:43）、探针校准 15:02–15:30（8/8 $p_{\rm probe}{=}1.000$）。**关键对（亚小时级状态翻转证据，§6.5）**：C0-full（15:30，高转写态）与 W8 原批（16:02，低转写态）同一日历日内相隔约 32 分钟即翻转——固定 checkpoint 的毒株转写倾向呈亚小时级双峰状态漂移，而非日级批次差异；全部在 V4.1-Flash-1017 发布（10-17）后 6 日内完成。
 
@@ -47,5 +47,5 @@
 ## C. 判读单位与口径声明
 
 - 判读单位：**链均**（H1AC）；SUPERCRITICAL 为链均 Z/存活率；
-- 池化口径在 C2 下因幸存者偏差失效（末代存活仅 6%，池化比值 1.017 无意义）——已改链均并在计划 §9 记录；
+- 池化口径在 C2 下因幸存者偏差失效（末代存活仅 6%，池化比值 1.017 无意义）——已改链均并在计划 §10 记录；
 - bootstrap / 符号翻转置换各 10⁴ 次；B-H1a 以 replicate 级链均配对差（§5.5 判读口径）判读。

@@ -20,7 +20,7 @@ Formalization sources: `formal_proof/IACFormalization` (this repository, commit 
 
 **T2 Subcritical probabilistic extinction** (`subcritical_extinction_in_probability`): by Markov's inequality with geometric decay, when $m<1$ the survival probability $P(Z_n\ge1)\to0$. This is the quantitative core of the quarantine promotion gate's effectiveness: the gate pushes $m$ below 1, and the long-run survival probability $P(Z_n\ge1)\to0$ (convergence in probability)—strictly, the application-side statement is “the survival probability tends to 0,” not “dies out with probability 1.”
 
-**T3 Quarantine compresses offspring** (`quarantine_compresses_offspring`): the stricter $\sigma$, the smaller the effective reproduction number; full quarantine ($\sigma=1$) gives $m=0$, and the lineage reaches zero within one generation. **Applicability**: branching + multiplicative compression—measured to hold under the selective architecture (geometric law $R^2=0.958$); under the full-append architecture the branching premise fails, and quarantine's effectiveness is given directly by measurement (C3-full 12/12, mem constant 6, $Z$ constant 1), with the mechanism revision recorded transparently (§8).
+**T3 Quarantine compresses offspring** (`quarantine_compresses_offspring`): the stricter $\sigma$, the smaller the effective reproduction number; full quarantine ($\sigma=1$) gives $m=0$, and the lineage reaches zero within one generation. **Applicability**: branching + multiplicative compression—measured to hold under the selective architecture (geometric law $R^2=0.958$); under the full-append architecture the branching premise fails, and quarantine's effectiveness is given directly by measurement (C3-full 12/12, mem constant 6, $Z$ constant 1), with the mechanism revision recorded transparently (§9).
 
 **T4 Supercritical non-extinction** (`galton_watson_non_extinction` + `supercritical_expectation_diverges`): when $m>1$, the extinction probability is the **least fixed point** $q=\min\{s\in[0,1]:\varphi(s)=s\}<1$ of the generating function $\varphi$ on $[0,1]$—non-extinction with positive probability; the expectation $E[Z_n]\to+\infty$. The proof uses elementary generating-function fixed-point analysis (monotone squeezing + polynomial truncation), avoiding any dependence on continuity of $\varphi$.
 
@@ -43,7 +43,7 @@ $$Z^* = \frac{M\,\bar w}{b+\bar w}$$
 
 **Measured validation**: C0-full ($b=2$, $\bar w=0.917$, $M=16$) predicts $Z^*=16\times0.917/2.917=5.03$; the measured steady state is 4.917 (stable across g5–g7), a relative deviation of 2.3%.
 
-**Caveat**: uniform mixing is an approximation—under FIFO the poison-entry position distribution is non-uniform with inter-generation correlations, and the exact solution depends on the concrete write sequence; this closed form serves as the **endogenous steady-state descriptor** of Mechanism B (the endogenization replacing GW parameters, §8).
+**Caveat**: uniform mixing is an approximation—under FIFO the poison-entry position distribution is non-uniform with inter-generation correlations, and the exact solution depends on the concrete write sequence; this closed form serves as the **endogenous steady-state descriptor** of Mechanism B (the endogenization replacing GW parameters, §9).
 
 ## 4.6 Boundary of the Formalization
 

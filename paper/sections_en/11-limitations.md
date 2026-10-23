@@ -1,4 +1,4 @@
-# §10 Limitations and Future Work (English, for manuscript-en.md)
+# §11 Limitations and Future Work (English, for manuscript-en.md)
 
 > Status: **translated v1** (2026-10-22).
 
@@ -14,9 +14,9 @@ The H1AC P2 strain barely propagates ($\mu\approx0.001$)—the model did not ado
 
 ## 10.3 Statistical-Unit Lesson
 
-The H1AC pooled per-parent criterion fails under C2 due to survivor bias (final-generation survival only 6%, pooled ratio 1.017 meaningless)—switched to chain mean and recorded in plan §9. Lesson: the judgment unit of propagation experiments must be fixed at pre-registration; B-H1c's CI lower bound slightly out (0.017) likewise suggests that boundary criteria need more conservative definitions or larger samples. The COMPLEMENT-EXP experiments also required two criterion corrections (EXP-A gain judged as "no accumulation propagation"; EXP-B's $W_c$ redefined as the first tier with survival ≥0.5), both recorded in plan §8—when pre-registered criteria conflict with mechanism facts, corrections must be traceable, never silently moved goalposts.
+The H1AC pooled per-parent criterion fails under C2 due to survivor bias (final-generation survival only 6%, pooled ratio 1.017 meaningless)—switched to chain mean and recorded in plan §10. Lesson: the judgment unit of propagation experiments must be fixed at pre-registration; B-H1c's CI lower bound slightly out (0.017) likewise suggests that boundary criteria need more conservative definitions or larger samples. The COMPLEMENT-EXP experiments also required two criterion corrections (EXP-A gain judged as "no accumulation propagation"; EXP-B's $W_c$ redefined as the first tier with survival ≥0.5), both recorded in plan §9—when pre-registered criteria conflict with mechanism facts, corrections must be traceable, never silently moved goalposts.
 
-**Sensitivity of the EXP-B $W_c$ criterion (threshold 0.5 → 0.8)**: re-judging on the available data, $W_c(b)$ becomes $b{=}1\to(4,8)$, $b{=}2\to\le4$, $b{=}3\to(4,8)$, $b{=}5\to(8,12)$—the qualitative "$b$ up → $M_c$ up" conclusion is preserved at threshold 0.8; only the $b{=}1$ tier shifts from "$\le4$" to "$\in(4,8)$" ($W{=}4$ survival 0.50 sits exactly on the threshold boundary), leaving the direction conclusion unaffected. After extending the $b{=}3$ tier's $W{=}8$ to 12 chains, survival is 0.92 (passes both thresholds), and the split from the main protocol at $W{=}8$ (§6.5) persists after extension—**the attribution audit attributes it to a sub-hourly state transition in poison-transcription behavior (§6.5/§10.4), not to a threshold choice or a protocol difference**.
+**Sensitivity of the EXP-B $W_c$ criterion (threshold 0.5 → 0.8)**: re-judging on the available data, $W_c(b)$ becomes $b{=}1\to(4,8)$, $b{=}2\to\le4$, $b{=}3\to(4,8)$, $b{=}5\to(8,12)$—the qualitative "$b$ up → $M_c$ up" conclusion is preserved at threshold 0.8; only the $b{=}1$ tier shifts from "$\le4$" to "$\in(4,8)$" ($W{=}4$ survival 0.50 sits exactly on the threshold boundary), leaving the direction conclusion unaffected. After extending the $b{=}3$ tier's $W{=}8$ to 12 chains, survival is 0.92 (passes both thresholds), and the split from the main protocol at $W{=}8$ (§6.5) persists after extension—**the attribution audit attributes it to a sub-hourly state transition in poison-transcription behavior (§6.5/§11.4), not to a threshold choice or a protocol difference**.
 
 ## 10.4 Residual Open Items of Quarantine Cost and Capacity Jointness
 

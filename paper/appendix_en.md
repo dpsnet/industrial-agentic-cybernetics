@@ -18,9 +18,9 @@
 
 **Raw sessions** (all in git): `axiom4_results_supercritical*.json` (C0/C1/C3-full, W8/W32, w1–w4 shards), `axiom4_results_flash_selective_ctrl.json`, `axiom4_results_h1ac_*.json` (C0/C1/C2/smoke), cross-model/cross-task-family session JSONs.
 
-**Pre-registration plans**: `EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md`, `EXPERIMENT_PLAN_AXIOM4_H1AC_BOOST.md` (judgment back-fill and criterion-revision records in §9).
+**Pre-registration plans**: `EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md`, `EXPERIMENT_PLAN_AXIOM4_H1AC_BOOST.md` (judgment back-fill and criterion-revision records in §10).
 
-**Execution environment**: DeepSeek-V4.1-Flash-1017 (abbrev. Flash; scnet-flash gateway, sampling temperature 0.7); the deviation of the model tier from the pre-registered DeepSeek-V4-Pro-0813 (Pro) tier is recorded in SUPERCRITICAL plan §9.
+**Execution environment**: DeepSeek-V4.1-Flash-1017 (abbrev. Flash; scnet-flash gateway, sampling temperature 0.7); the deviation of the model tier from the pre-registered DeepSeek-V4-Pro-0813 (Pro) tier is recorded in SUPERCRITICAL plan §10.
 
 **Run timestamps** (result-file mtime): 2026-10-22 batch—selective control 15:24, **C0-full 15:30 (poison writes 0.917/gen, high-transcription state)**, W32 15:52, **W8 16:02 (poison writes 0.25/gen, low-transcription state)**, C3-full 16:18, C1-full 16:20, H1AC C1 19:45/C0 19:49/C2 20:09; 2026-10-23 batch—COMPLEMENT-EXP (kimi_boost A/B/C shards) 2:05–10:40, σ sweet-spot complement 12:26–12:35, W8 attribution reruns (main protocol 13:46 / EXP-B 13:43), probe calibration 15:02–15:30 (8/8 $p_{\rm probe}{=}1.000$). **Key pair (sub-hourly state-flip evidence, §6.5)**: C0-full (15:30, high-transcription state) and the W8 original batch (16:02, low-transcription state) flip within ~32 minutes on the same calendar day—a fixed checkpoint's poison-transcription propensity drifts bimodally at sub-hourly scale rather than as a day-level batch difference; all within 6 days of the V4.1-Flash-1017 release (10-17).
 
@@ -47,5 +47,5 @@
 ## C. Judgment Unit and Criterion Statement
 
 - Judgment unit: **chain mean** (H1AC); SUPERCRITICAL uses chain-mean Z/survival;
-- The pooled criterion fails under C2 due to survivor bias (final-generation survival only 6%, pooled ratio 1.017 meaningless)—switched to chain mean and recorded in plan §9;
+- The pooled criterion fails under C2 due to survivor bias (final-generation survival only 6%, pooled ratio 1.017 meaningless)—switched to chain mean and recorded in plan §10;
 - Bootstrap / sign-flip permutations 10⁴ each; B-H1a is judged on replicate-level chain-mean paired differences (§5.5 judgment criteria).

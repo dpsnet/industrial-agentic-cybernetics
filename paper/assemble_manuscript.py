@@ -16,11 +16,12 @@ ORDER = [
     "04-formalization.md",
     "05-experimental-setup.md",
     "06-results.md",
-    "07-discussion.md",
-    "08-mechanism-revision.md",
-    "09-scope.md",
-    "10-limitations.md",
-    "11-conclusion.md",
+    "07-capacity-regulation.md",
+    "08-discussion.md",
+    "09-mechanism-revision.md",
+    "10-scope.md",
+    "11-limitations.md",
+    "12-conclusion.md",
 ]
 
 def strip_header(text):
@@ -66,16 +67,18 @@ def main():
     parts.append(strip_header(open(os.path.join(SEC, "06-results.md"), encoding="utf-8").read()) + "\n")
     parts.append("![按架构与容量划分的各代毒株谱系轨迹](figures/fig-trajectories.png)\n")
     parts.append("*图 2  全量追加各条件在容量 $M\\in\\{8,16,32\\}$ 下与选择性对照（$M=16$）的各代毒株谱系条目数。临界带 $8<M_c\\leq16$（低转写态读数）区分灭绝与持续；高转写态下探针门控重扫实测 $M_c\\in(4,8)$（§6.5）。数据：DeepSeek-V4.1-Flash-1017，链均。*\n")
-    parts.append("## 7 讨论\n")
-    parts.append(strip_header(open(os.path.join(SEC, "07-discussion.md"), encoding="utf-8").read()) + "\n")
-    parts.append("## 8 机制修正叙事\n")
-    parts.append(strip_header(open(os.path.join(SEC, "08-mechanism-revision.md"), encoding="utf-8").read()) + "\n")
-    parts.append("## 9 适用域与可推广性\n")
-    parts.append(strip_header(open(os.path.join(SEC, "09-scope.md"), encoding="utf-8").read()) + "\n")
-    parts.append("## 10 局限与未来工作\n")
-    parts.append(strip_header(open(os.path.join(SEC, "10-limitations.md"), encoding="utf-8").read()) + "\n")
-    parts.append("## 11 结论\n")
-    parts.append(strip_header(open(os.path.join(SEC, "11-conclusion.md"), encoding="utf-8").read()) + "\n")
+    parts.append("## 7 状态反馈的容量调控：理论衍生与控制实证\n")
+    parts.append(strip_header(open(os.path.join(SEC, "07-capacity-regulation.md"), encoding="utf-8").read()) + "\n")
+    parts.append("## 8 讨论\n")
+    parts.append(strip_header(open(os.path.join(SEC, "08-discussion.md"), encoding="utf-8").read()) + "\n")
+    parts.append("## 9 机制修正叙事\n")
+    parts.append(strip_header(open(os.path.join(SEC, "09-mechanism-revision.md"), encoding="utf-8").read()) + "\n")
+    parts.append("## 10 适用域与可推广性\n")
+    parts.append(strip_header(open(os.path.join(SEC, "10-scope.md"), encoding="utf-8").read()) + "\n")
+    parts.append("## 11 局限与未来工作\n")
+    parts.append(strip_header(open(os.path.join(SEC, "11-limitations.md"), encoding="utf-8").read()) + "\n")
+    parts.append("## 12 结论\n")
+    parts.append(strip_header(open(os.path.join(SEC, "12-conclusion.md"), encoding="utf-8").read()) + "\n")
     parts.append("## 附录\n")
     parts.append(strip_header(open(os.path.join(ROOT, "appendix.md"), encoding="utf-8").read()) + "\n")
     parts.append("## 参考文献\n")

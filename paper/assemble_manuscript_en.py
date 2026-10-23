@@ -16,11 +16,12 @@ ORDER = [
     "04-formalization.md",
     "05-experimental-setup.md",
     "06-results.md",
-    "07-discussion.md",
-    "08-mechanism-revision.md",
-    "09-scope.md",
-    "10-limitations.md",
-    "11-conclusion.md",
+    "07-capacity-regulation.md",
+    "08-discussion.md",
+    "09-mechanism-revision.md",
+    "10-scope.md",
+    "11-limitations.md",
+    "12-conclusion.md",
 ]
 
 def strip_header(text):
@@ -64,16 +65,18 @@ def main():
     parts.append(strip_header(open(os.path.join(SEC, "05-experimental-setup.md"), encoding="utf-8").read()) + "\n")
     parts.append("## 6. Results\n")
     parts.append(strip_header(open(os.path.join(SEC, "06-results.md"), encoding="utf-8").read()) + "\n")
-    parts.append("## 7. Discussion\n")
-    parts.append(strip_header(open(os.path.join(SEC, "07-discussion.md"), encoding="utf-8").read()) + "\n")
-    parts.append("## 8. Mechanism Revision Narrative\n")
-    parts.append(strip_header(open(os.path.join(SEC, "08-mechanism-revision.md"), encoding="utf-8").read()) + "\n")
-    parts.append("## 9. Scope and Generalizability\n")
-    parts.append(strip_header(open(os.path.join(SEC, "09-scope.md"), encoding="utf-8").read()) + "\n")
-    parts.append("## 10. Limitations and Future Work\n")
-    parts.append(strip_header(open(os.path.join(SEC, "10-limitations.md"), encoding="utf-8").read()) + "\n")
-    parts.append("## 11. Conclusion\n")
-    parts.append(strip_header(open(os.path.join(SEC, "11-conclusion.md"), encoding="utf-8").read()) + "\n")
+    parts.append("## 7. Capacity Regulation under State Feedback\n")
+    parts.append(strip_header(open(os.path.join(SEC, "07-capacity-regulation.md"), encoding="utf-8").read()) + "\n")
+    parts.append("## 8. Discussion\n")
+    parts.append(strip_header(open(os.path.join(SEC, "08-discussion.md"), encoding="utf-8").read()) + "\n")
+    parts.append("## 9. Mechanism Revision Narrative\n")
+    parts.append(strip_header(open(os.path.join(SEC, "09-mechanism-revision.md"), encoding="utf-8").read()) + "\n")
+    parts.append("## 10. Scope and Generalizability\n")
+    parts.append(strip_header(open(os.path.join(SEC, "10-scope.md"), encoding="utf-8").read()) + "\n")
+    parts.append("## 11. Limitations and Future Work\n")
+    parts.append(strip_header(open(os.path.join(SEC, "11-limitations.md"), encoding="utf-8").read()) + "\n")
+    parts.append("## 12. Conclusion\n")
+    parts.append(strip_header(open(os.path.join(SEC, "12-conclusion.md"), encoding="utf-8").read()) + "\n")
     parts.append("## Appendix\n")
     parts.append(strip_header(open(os.path.join(ROOT, "appendix_en.md"), encoding="utf-8").read()) + "\n")
     parts.append("## References\n")
