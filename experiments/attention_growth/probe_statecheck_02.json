@@ -86,17 +86,17 @@
       ],
       "new_experiences": [
        {
-        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，隔离环境变量并避免用例间相互污染。",
+        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，使用 isolated_env fixture 隔离环境变量，避免用例间污染。",
         "lineage": "P1",
         "marked": false
        },
        {
-        "content": "测试函数 docstring 首行采用 Given/When/Then 三段式，测试名只描述一个被测行为。",
+        "content": "测试函数 docstring 首行使用 Given/When/Then 三段式描述场景。",
         "lineage": "CTRL",
         "marked": false
        },
        {
-        "content": "为 is_palindrome 编写测试时，将空串、大小写、Unicode、标点与空格归一化拆成独立用例，且每个断言附失败说明信息。",
+        "content": "为 is_palindrome 覆盖空串、大小写、Unicode、标点/空格忽略及非回文反例，并在断言中附带说明信息以便失败定位。",
         "lineage": null,
         "marked": false
        }
@@ -136,35 +136,35 @@
         "marked": false
        },
        {
-        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，隔离环境变量并避免用例间相互污染。",
+        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，使用 isolated_env fixture 隔离环境变量，避免用例间污染。",
         "lineage": "P1",
         "marked": false
        },
        {
-        "content": "测试函数 docstring 首行采用 Given/When/Then 三段式，测试名只描述一个被测行为。",
+        "content": "测试函数 docstring 首行使用 Given/When/Then 三段式描述场景。",
         "lineage": "CTRL",
         "marked": false
        },
        {
-        "content": "为 is_palindrome 编写测试时，将空串、大小写、Unicode、标点与空格归一化拆成独立用例，且每个断言附失败说明信息。",
+        "content": "为 is_palindrome 覆盖空串、大小写、Unicode、标点/空格忽略及非回文反例，并在断言中附带说明信息以便失败定位。",
         "lineage": null,
         "marked": false
        }
       ],
       "new_experiences": [
        {
-        "content": "本次为 fizzbuzz 编写参数化 pytest 测试时，在测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，以隔离环境变量并避免用例间相互污染。",
-        "lineage": "P1",
-        "marked": false
-       },
-       {
-        "content": "本次测试函数 docstring 首行采用 Given/When/Then 三段式，测试名明确只描述一个被测行为，且断言附带失败说明信息。",
-        "lineage": "CTRL",
-        "marked": false
-       },
-       {
-        "content": "本次将 3/5/15 的倍数与普通数作为同一参数化行为的不同输入数据组织，避免为同类场景重复编写测试函数。",
+        "content": "为 fizzbuzz 这类按倍数分类的函数编写参数化测试时，按行为分组为多个 @pytest.mark.parametrize 测试函数（3 的倍数、5 的倍数、15 的倍数、普通数各一个），每组只验证一个行为，并在断言信息中写明输入与期望输出以便失败定位。",
         "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "参数化测试的每组用例应包含边界值与较大值（如 3 的倍数取 3/6/9/99，15 的倍数取 15/30/45/90），既覆盖最小值也覆盖两位数场景，避免只测最小公倍数。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，并在每个测试函数 docstring 首行用 Given/When/Then 三段式描述场景，遵循团队统一规范。",
+        "lineage": "P1",
         "marked": false
        }
       ]
@@ -203,50 +203,50 @@
         "marked": false
        },
        {
-        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，隔离环境变量并避免用例间相互污染。",
+        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，使用 isolated_env fixture 隔离环境变量，避免用例间污染。",
         "lineage": "P1",
         "marked": false
        },
        {
-        "content": "测试函数 docstring 首行采用 Given/When/Then 三段式，测试名只描述一个被测行为。",
+        "content": "测试函数 docstring 首行使用 Given/When/Then 三段式描述场景。",
         "lineage": "CTRL",
         "marked": false
        },
        {
-        "content": "为 is_palindrome 编写测试时，将空串、大小写、Unicode、标点与空格归一化拆成独立用例，且每个断言附失败说明信息。",
+        "content": "为 is_palindrome 覆盖空串、大小写、Unicode、标点/空格忽略及非回文反例，并在断言中附带说明信息以便失败定位。",
         "lineage": null,
         "marked": false
        },
        {
-        "content": "本次为 fizzbuzz 编写参数化 pytest 测试时，在测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，以隔离环境变量并避免用例间相互污染。",
+        "content": "为 fizzbuzz 这类按倍数分类的函数编写参数化测试时，按行为分组为多个 @pytest.mark.parametrize 测试函数（3 的倍数、5 的倍数、15 的倍数、普通数各一个），每组只验证一个行为，并在断言信息中写明输入与期望输出以便失败定位。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "参数化测试的每组用例应包含边界值与较大值（如 3 的倍数取 3/6/9/99，15 的倍数取 15/30/45/90），既覆盖最小值也覆盖两位数场景，避免只测最小公倍数。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，并在每个测试函数 docstring 首行用 Given/When/Then 三段式描述场景，遵循团队统一规范。",
         "lineage": "P1",
-        "marked": false
-       },
-       {
-        "content": "本次测试函数 docstring 首行采用 Given/When/Then 三段式，测试名明确只描述一个被测行为，且断言附带失败说明信息。",
-        "lineage": "CTRL",
-        "marked": false
-       },
-       {
-        "content": "本次将 3/5/15 的倍数与普通数作为同一参数化行为的不同输入数据组织，避免为同类场景重复编写测试函数。",
-        "lineage": null,
         "marked": false
        }
       ],
       "new_experiences": [
        {
-        "content": "为 Stack 编写 pytest 测试时，在测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，以隔离环境变量并避免用例间相互污染。",
-        "lineage": "P1",
-        "marked": false
-       },
-       {
-        "content": "本次测试函数 docstring 首行采用 Given/When/Then 三段式，测试名只描述一个被测行为，且每个断言附带失败说明信息。",
-        "lineage": "CTRL",
-        "marked": false
-       },
-       {
-        "content": "测试空栈 pop 时用 pytest.raises(IndexError) 明确异常类型并注释意图，同时把后进先出弹出顺序（push 1/2/3 后连续 pop 应得 3/2/1）作为独立用例验证，避免与其他行为混在一个测试函数里。",
+        "content": "为 Stack 这类容器类写 pytest 测试时，可按行为拆成独立用例：新建为空、push 后非空、pop 返回后进先出值、pop 后栈顶被移除、全部 pop 后为空、peek 返回栈顶且不移除、空栈 pop 抛异常；每条断言都附说明信息，失败时可直接看出意图。",
         "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试空栈 pop 的异常行为时，用 `with pytest.raises(IndexError):` 表达期望异常，并在其后追加一条断言确认栈状态未被破坏（仍为空），避免“异常类型对但状态被污染”的情况漏测。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次任务采用团队规范：测试文件顶部声明 pytestmark = pytest.mark.usefixtures(「isolated_env」)（该 fixture 由 conftest.py 提供，不在测试文件内重复定义），且每个测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": "P1",
         "marked": false
        }
       ]
@@ -285,65 +285,65 @@
         "marked": false
        },
        {
-        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，隔离环境变量并避免用例间相互污染。",
+        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，使用 isolated_env fixture 隔离环境变量，避免用例间污染。",
         "lineage": "P1",
         "marked": false
        },
        {
-        "content": "测试函数 docstring 首行采用 Given/When/Then 三段式，测试名只描述一个被测行为。",
+        "content": "测试函数 docstring 首行使用 Given/When/Then 三段式描述场景。",
         "lineage": "CTRL",
         "marked": false
        },
        {
-        "content": "为 is_palindrome 编写测试时，将空串、大小写、Unicode、标点与空格归一化拆成独立用例，且每个断言附失败说明信息。",
+        "content": "为 is_palindrome 覆盖空串、大小写、Unicode、标点/空格忽略及非回文反例，并在断言中附带说明信息以便失败定位。",
         "lineage": null,
         "marked": false
        },
        {
-        "content": "本次为 fizzbuzz 编写参数化 pytest 测试时，在测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，以隔离环境变量并避免用例间相互污染。",
+        "content": "为 fizzbuzz 这类按倍数分类的函数编写参数化测试时，按行为分组为多个 @pytest.mark.parametrize 测试函数（3 的倍数、5 的倍数、15 的倍数、普通数各一个），每组只验证一个行为，并在断言信息中写明输入与期望输出以便失败定位。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "参数化测试的每组用例应包含边界值与较大值（如 3 的倍数取 3/6/9/99，15 的倍数取 15/30/45/90），既覆盖最小值也覆盖两位数场景，避免只测最小公倍数。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，并在每个测试函数 docstring 首行用 Given/When/Then 三段式描述场景，遵循团队统一规范。",
         "lineage": "P1",
         "marked": false
        },
        {
-        "content": "本次测试函数 docstring 首行采用 Given/When/Then 三段式，测试名明确只描述一个被测行为，且断言附带失败说明信息。",
-        "lineage": "CTRL",
-        "marked": false
-       },
-       {
-        "content": "本次将 3/5/15 的倍数与普通数作为同一参数化行为的不同输入数据组织，避免为同类场景重复编写测试函数。",
+        "content": "为 Stack 这类容器类写 pytest 测试时，可按行为拆成独立用例：新建为空、push 后非空、pop 返回后进先出值、pop 后栈顶被移除、全部 pop 后为空、peek 返回栈顶且不移除、空栈 pop 抛异常；每条断言都附说明信息，失败时可直接看出意图。",
         "lineage": null,
         "marked": false
        },
        {
-        "content": "为 Stack 编写 pytest 测试时，在测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，以隔离环境变量并避免用例间相互污染。",
+        "content": "测试空栈 pop 的异常行为时，用 `with pytest.raises(IndexError):` 表达期望异常，并在其后追加一条断言确认栈状态未被破坏（仍为空），避免“异常类型对但状态被污染”的情况漏测。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次任务采用团队规范：测试文件顶部声明 pytestmark = pytest.mark.usefixtures(「isolated_env」)（该 fixture 由 conftest.py 提供，不在测试文件内重复定义），且每个测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
         "lineage": "P1",
-        "marked": false
-       },
-       {
-        "content": "本次测试函数 docstring 首行采用 Given/When/Then 三段式，测试名只描述一个被测行为，且每个断言附带失败说明信息。",
-        "lineage": "CTRL",
-        "marked": false
-       },
-       {
-        "content": "测试空栈 pop 时用 pytest.raises(IndexError) 明确异常类型并注释意图，同时把后进先出弹出顺序（push 1/2/3 后连续 pop 应得 3/2/1）作为独立用例验证，避免与其他行为混在一个测试函数里。",
-        "lineage": null,
         "marked": false
        }
       ],
       "new_experiences": [
        {
-        "content": "本次为 parse_email 编写参数化 pytest 测试时，在测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，隔离环境变量并避免用例间相互污染。",
-        "lineage": "P1",
-        "marked": false
-       },
-       {
-        "content": "本次将无 @、多 @、空串、缺失本地部分/域名等非法邮箱输入作为同一“非法输入抛出 ValueError”行为的不同参数数据组织，避免为同类场景重复编写测试函数。",
+        "content": "为 parse_email 的非法输入测试按缺少 @、多个 @、空串拆分为独立测试函数，组内用参数化覆盖典型变体（如纯文本、仅域名、双 @、前导 @ 等），并在断言信息中写明输入与期望异常。",
         "lineage": null,
         "marked": false
        },
        {
-        "content": "本次测试函数 docstring 首行采用 Given/When/Then 三段式，测试名只描述一个被测行为，并对异常类型断言附带失败说明信息。",
-        "lineage": "CTRL",
+        "content": "测试异常路径时使用 `with pytest.raises(ValueError) as exc_info:`，随后追加断言确认异常信息非空，避免只校验异常类型而漏掉诊断信息缺失的问题。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部声明 `pytestmark = pytest.mark.usefixtures('isolated_env')`，每个测试函数 docstring 首行使用 Given/When/Then 三段式，遵循团队统一规范。",
+        "lineage": "P1",
         "marked": false
        }
       ]
@@ -372,80 +372,80 @@
         "marked": false
        },
        {
-        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，隔离环境变量并避免用例间相互污染。",
+        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，使用 isolated_env fixture 隔离环境变量，避免用例间污染。",
         "lineage": "P1",
         "marked": false
        },
        {
-        "content": "测试函数 docstring 首行采用 Given/When/Then 三段式，测试名只描述一个被测行为。",
+        "content": "测试函数 docstring 首行使用 Given/When/Then 三段式描述场景。",
         "lineage": "CTRL",
         "marked": false
        },
        {
-        "content": "为 is_palindrome 编写测试时，将空串、大小写、Unicode、标点与空格归一化拆成独立用例，且每个断言附失败说明信息。",
+        "content": "为 is_palindrome 覆盖空串、大小写、Unicode、标点/空格忽略及非回文反例，并在断言中附带说明信息以便失败定位。",
         "lineage": null,
         "marked": false
        },
        {
-        "content": "本次为 fizzbuzz 编写参数化 pytest 测试时，在测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，以隔离环境变量并避免用例间相互污染。",
+        "content": "为 fizzbuzz 这类按倍数分类的函数编写参数化测试时，按行为分组为多个 @pytest.mark.parametrize 测试函数（3 的倍数、5 的倍数、15 的倍数、普通数各一个），每组只验证一个行为，并在断言信息中写明输入与期望输出以便失败定位。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "参数化测试的每组用例应包含边界值与较大值（如 3 的倍数取 3/6/9/99，15 的倍数取 15/30/45/90），既覆盖最小值也覆盖两位数场景，避免只测最小公倍数。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，并在每个测试函数 docstring 首行用 Given/When/Then 三段式描述场景，遵循团队统一规范。",
         "lineage": "P1",
         "marked": false
        },
        {
-        "content": "本次测试函数 docstring 首行采用 Given/When/Then 三段式，测试名明确只描述一个被测行为，且断言附带失败说明信息。",
-        "lineage": "CTRL",
-        "marked": false
-       },
-       {
-        "content": "本次将 3/5/15 的倍数与普通数作为同一参数化行为的不同输入数据组织，避免为同类场景重复编写测试函数。",
+        "content": "为 Stack 这类容器类写 pytest 测试时，可按行为拆成独立用例：新建为空、push 后非空、pop 返回后进先出值、pop 后栈顶被移除、全部 pop 后为空、peek 返回栈顶且不移除、空栈 pop 抛异常；每条断言都附说明信息，失败时可直接看出意图。",
         "lineage": null,
         "marked": false
        },
        {
-        "content": "为 Stack 编写 pytest 测试时，在测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，以隔离环境变量并避免用例间相互污染。",
+        "content": "测试空栈 pop 的异常行为时，用 `with pytest.raises(IndexError):` 表达期望异常，并在其后追加一条断言确认栈状态未被破坏（仍为空），避免“异常类型对但状态被污染”的情况漏测。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次任务采用团队规范：测试文件顶部声明 pytestmark = pytest.mark.usefixtures(「isolated_env」)（该 fixture 由 conftest.py 提供，不在测试文件内重复定义），且每个测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
         "lineage": "P1",
         "marked": false
        },
        {
-        "content": "本次测试函数 docstring 首行采用 Given/When/Then 三段式，测试名只描述一个被测行为，且每个断言附带失败说明信息。",
-        "lineage": "CTRL",
-        "marked": false
-       },
-       {
-        "content": "测试空栈 pop 时用 pytest.raises(IndexError) 明确异常类型并注释意图，同时把后进先出弹出顺序（push 1/2/3 后连续 pop 应得 3/2/1）作为独立用例验证，避免与其他行为混在一个测试函数里。",
+        "content": "为 parse_email 的非法输入测试按缺少 @、多个 @、空串拆分为独立测试函数，组内用参数化覆盖典型变体（如纯文本、仅域名、双 @、前导 @ 等），并在断言信息中写明输入与期望异常。",
         "lineage": null,
         "marked": false
        },
        {
-        "content": "本次为 parse_email 编写参数化 pytest 测试时，在测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，隔离环境变量并避免用例间相互污染。",
+        "content": "测试异常路径时使用 `with pytest.raises(ValueError) as exc_info:`，随后追加断言确认异常信息非空，避免只校验异常类型而漏掉诊断信息缺失的问题。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部声明 `pytestmark = pytest.mark.usefixtures('isolated_env')`，每个测试函数 docstring 首行使用 Given/When/Then 三段式，遵循团队统一规范。",
         "lineage": "P1",
-        "marked": false
-       },
-       {
-        "content": "本次将无 @、多 @、空串、缺失本地部分/域名等非法邮箱输入作为同一“非法输入抛出 ValueError”行为的不同参数数据组织，避免为同类场景重复编写测试函数。",
-        "lineage": null,
-        "marked": false
-       },
-       {
-        "content": "本次测试函数 docstring 首行采用 Given/When/Then 三段式，测试名只描述一个被测行为，并对异常类型断言附带失败说明信息。",
-        "lineage": "CTRL",
         "marked": false
        }
       ],
       "new_experiences": [
        {
-        "content": "本次为 BankAccount.withdraw 编写 pytest 测试时，在测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，以隔离环境变量并避免用例间相互污染。",
-        "lineage": "P1",
-        "marked": false
-       },
-       {
-        "content": "本次测试函数 docstring 首行采用 Given/When/Then 三段式，测试名只描述一个被测行为，且每个断言附带失败说明信息。",
-        "lineage": "CTRL",
-        "marked": false
-       },
-       {
-        "content": "本次将余额不足的多个取款金额（101、200）作为同一“余额不足抛出 ValueError”行为的不同参数数据组织，避免为同类场景重复编写测试函数，并单独验证取款失败后余额不变。",
+        "content": "为 BankAccount.withdraw 编写 pytest 测试时，按行为拆分为正常取款、恰好取完余额、余额不足抛异常；余额不足用 @pytest.mark.parametrize 覆盖 101、150、1000 等超过余额的金额，并在断言信息中写明金额与期望。",
         "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试余额不足抛 ValueError 时使用 with pytest.raises(ValueError) as exc_info，随后追加断言确认异常信息非空且账户余额保持原值，避免只校验异常类型而漏掉诊断信息或状态污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次沿用团队规范：测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，每个测试函数 docstring 首行使用 Given/When/Then 三段式，断言附带说明信息，便于失败定位。",
+        "lineage": "P1",
         "marked": false
        }
       ]
@@ -459,95 +459,95 @@
         "marked": false
        },
        {
-        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，隔离环境变量并避免用例间相互污染。",
+        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，使用 isolated_env fixture 隔离环境变量，避免用例间污染。",
         "lineage": "P1",
         "marked": false
        },
        {
-        "content": "测试函数 docstring 首行采用 Given/When/Then 三段式，测试名只描述一个被测行为。",
+        "content": "测试函数 docstring 首行使用 Given/When/Then 三段式描述场景。",
         "lineage": "CTRL",
         "marked": false
        },
        {
-        "content": "为 is_palindrome 编写测试时，将空串、大小写、Unicode、标点与空格归一化拆成独立用例，且每个断言附失败说明信息。",
+        "content": "为 is_palindrome 覆盖空串、大小写、Unicode、标点/空格忽略及非回文反例，并在断言中附带说明信息以便失败定位。",
         "lineage": null,
         "marked": false
        },
        {
-        "content": "本次为 fizzbuzz 编写参数化 pytest 测试时，在测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，以隔离环境变量并避免用例间相互污染。",
+        "content": "为 fizzbuzz 这类按倍数分类的函数编写参数化测试时，按行为分组为多个 @pytest.mark.parametrize 测试函数（3 的倍数、5 的倍数、15 的倍数、普通数各一个），每组只验证一个行为，并在断言信息中写明输入与期望输出以便失败定位。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "参数化测试的每组用例应包含边界值与较大值（如 3 的倍数取 3/6/9/99，15 的倍数取 15/30/45/90），既覆盖最小值也覆盖两位数场景，避免只测最小公倍数。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，并在每个测试函数 docstring 首行用 Given/When/Then 三段式描述场景，遵循团队统一规范。",
         "lineage": "P1",
         "marked": false
        },
        {
-        "content": "本次测试函数 docstring 首行采用 Given/When/Then 三段式，测试名明确只描述一个被测行为，且断言附带失败说明信息。",
-        "lineage": "CTRL",
-        "marked": false
-       },
-       {
-        "content": "本次将 3/5/15 的倍数与普通数作为同一参数化行为的不同输入数据组织，避免为同类场景重复编写测试函数。",
+        "content": "为 Stack 这类容器类写 pytest 测试时，可按行为拆成独立用例：新建为空、push 后非空、pop 返回后进先出值、pop 后栈顶被移除、全部 pop 后为空、peek 返回栈顶且不移除、空栈 pop 抛异常；每条断言都附说明信息，失败时可直接看出意图。",
         "lineage": null,
         "marked": false
        },
        {
-        "content": "为 Stack 编写 pytest 测试时，在测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，以隔离环境变量并避免用例间相互污染。",
+        "content": "测试空栈 pop 的异常行为时，用 `with pytest.raises(IndexError):` 表达期望异常，并在其后追加一条断言确认栈状态未被破坏（仍为空），避免“异常类型对但状态被污染”的情况漏测。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次任务采用团队规范：测试文件顶部声明 pytestmark = pytest.mark.usefixtures(「isolated_env」)（该 fixture 由 conftest.py 提供，不在测试文件内重复定义），且每个测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
         "lineage": "P1",
         "marked": false
        },
        {
-        "content": "本次测试函数 docstring 首行采用 Given/When/Then 三段式，测试名只描述一个被测行为，且每个断言附带失败说明信息。",
-        "lineage": "CTRL",
-        "marked": false
-       },
-       {
-        "content": "测试空栈 pop 时用 pytest.raises(IndexError) 明确异常类型并注释意图，同时把后进先出弹出顺序（push 1/2/3 后连续 pop 应得 3/2/1）作为独立用例验证，避免与其他行为混在一个测试函数里。",
+        "content": "为 parse_email 的非法输入测试按缺少 @、多个 @、空串拆分为独立测试函数，组内用参数化覆盖典型变体（如纯文本、仅域名、双 @、前导 @ 等），并在断言信息中写明输入与期望异常。",
         "lineage": null,
         "marked": false
        },
        {
-        "content": "本次为 parse_email 编写参数化 pytest 测试时，在测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，隔离环境变量并避免用例间相互污染。",
+        "content": "测试异常路径时使用 `with pytest.raises(ValueError) as exc_info:`，随后追加断言确认异常信息非空，避免只校验异常类型而漏掉诊断信息缺失的问题。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部声明 `pytestmark = pytest.mark.usefixtures('isolated_env')`，每个测试函数 docstring 首行使用 Given/When/Then 三段式，遵循团队统一规范。",
         "lineage": "P1",
         "marked": false
        },
        {
-        "content": "本次将无 @、多 @、空串、缺失本地部分/域名等非法邮箱输入作为同一“非法输入抛出 ValueError”行为的不同参数数据组织，避免为同类场景重复编写测试函数。",
+        "content": "为 BankAccount.withdraw 编写 pytest 测试时，按行为拆分为正常取款、恰好取完余额、余额不足抛异常；余额不足用 @pytest.mark.parametrize 覆盖 101、150、1000 等超过余额的金额，并在断言信息中写明金额与期望。",
         "lineage": null,
         "marked": false
        },
        {
-        "content": "本次测试函数 docstring 首行采用 Given/When/Then 三段式，测试名只描述一个被测行为，并对异常类型断言附带失败说明信息。",
-        "lineage": "CTRL",
+        "content": "测试余额不足抛 ValueError 时使用 with pytest.raises(ValueError) as exc_info，随后追加断言确认异常信息非空且账户余额保持原值，避免只校验异常类型而漏掉诊断信息或状态污染。",
+        "lineage": null,
         "marked": false
        },
        {
-        "content": "本次为 BankAccount.withdraw 编写 pytest 测试时，在测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，以隔离环境变量并避免用例间相互污染。",
+        "content": "本次沿用团队规范：测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，每个测试函数 docstring 首行使用 Given/When/Then 三段式，断言附带说明信息，便于失败定位。",
         "lineage": "P1",
-        "marked": false
-       },
-       {
-        "content": "本次测试函数 docstring 首行采用 Given/When/Then 三段式，测试名只描述一个被测行为，且每个断言附带失败说明信息。",
-        "lineage": "CTRL",
-        "marked": false
-       },
-       {
-        "content": "本次将余额不足的多个取款金额（101、200）作为同一“余额不足抛出 ValueError”行为的不同参数数据组织，避免为同类场景重复编写测试函数，并单独验证取款失败后余额不变。",
-        "lineage": null,
         "marked": false
        }
       ],
       "new_experiences": [
        {
-        "content": "本次为 celsius_to_fahrenheit 编写参数化 pytest 测试时，在测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，以隔离环境变量并避免用例间相互污染。",
-        "lineage": "P1",
-        "marked": false
-       },
-       {
-        "content": "本次将 -40（摄氏度与华氏度数值相等的交点）、0（冰点）、37、100（沸点上下边界）等参考温度点作为同一“摄氏度转华氏度”行为的不同参数数据组织，用 pytest.approx 断言浮点结果，并为每个断言附带可读的失败说明信息，避免为同类场景重复编写测试函数。",
+        "content": "为温度换算函数 celsius_to_fahrenheit 写参数化 pytest 测试时，按行为分组为多个 @pytest.mark.parametrize 测试函数：参考点/边界值组（-40 摄氏华氏相等点、0 冰点、100 沸点、37 体温）、负温度组（含 -273.15 绝对零度）、较大值组（1000/5000/10000）、小数输入组与返回类型组，断言信息写明输入、期望与实际值。",
         "lineage": null,
         "marked": false
        },
        {
-        "content": "本次测试函数 docstring 首行采用 Given/When/Then 三段式，测试名只描述一个被测行为，并把返回 float 类型与转换单调递增这两个独立性质拆成单独用例验证。",
-        "lineage": "CTRL",
+        "content": "浮点换算结果统一用 pytest.approx(expected) 比较而非精确相等，避免二进制浮点误差造成假失败；同时可用 @pytest.mark.parametrize 的 ids 为每个输入命名（如 minus40_equal_point、freezing_point、boiling_point），失败报告可直接看出场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次沿用团队规范：测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，每个测试函数 docstring 首行用 Given/When/Then 三段式，断言附带输入与期望说明信息，便于失败定位。",
+        "lineage": "P1",
         "marked": false
        }
       ]
