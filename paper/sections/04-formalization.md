@@ -21,7 +21,7 @@ $$m = \mu(1-\sigma) \quad \text{(乘性压缩律)}$$
 
 **T2 亚临界概率灭绝**（`subcritical_extinction_in_probability`）：由 Markov 不等式与几何衰减，$m<1$ 时存活概率 $P(Z_n\ge1)\to0$。这是隔离晋升门禁有效性的定量核心：门禁把 $m$ 压到 $<1$，长期存活概率 $P(Z_n\ge1)\to0$（依概率收敛）——应用侧措辞严格为“存活概率趋向 0”，而非“以概率 1 消亡”。
 
-**T3 隔离压缩后代**（`quarantine_compresses_offspring`）：$\sigma$ 越严格，有效繁殖数越小；完全隔离（$\sigma=1$）使 $m=0$，谱系单代内归零。**应用条件**：分支性 + 乘性压缩——在 selective 架构下实测满足（几何律 $R^2=0.958$）；在 full-append 架构下分支前提不成立，隔离的有效性由实测直接给出（C3-full 12/12，mem 恒 6、$Z$ 恒 1），机制修正如实记录（§9）。
+**T3 隔离压缩后代**（`quarantine_compresses_offspring`）：$\sigma$ 越严格，有效繁殖数越小；完全隔离（$\sigma=1$）使 $m=0$，谱系单代内归零。**应用条件**：分支性 + 乘性压缩——在 selective 架构下实测满足（几何律 $R^2=0.958$）；在 full-append 架构下分支前提不成立，隔离的有效性由实测直接给出（C3-full 12/12，mem 恒 6、$Z$ 恒 1），机制修正记录在案（§9）。
 
 **T4 超临界不灭绝**（`galton_watson_non_extinction` + `supercritical_expectation_diverges`）：$m>1$ 时，灭绝概率为生成函数 $\varphi$ 在 $[0,1]$ 上的**最小不动点** $q=\min\{s\in[0,1]:\varphi(s)=s\}<1$——以正概率永不灭绝；期望 $E[Z_n]\to+\infty$。证明采用初等生成函数不动点分析（单调夹逼 + 多项式截断），避免对 $\varphi$ 连续性的依赖。
 

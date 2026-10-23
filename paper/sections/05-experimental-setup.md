@@ -7,7 +7,7 @@
 
 ## 5.1 预注册原则
 
-全部判据先于实验固定（假说清单见 §3.5）：显著性门槛（$p<0.05$ 置换/单侧）、判读单位（链均 vs 池化，见 5.5）、方向性命题一律预先声明。实验计划文档随判读产物存档（`EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md`、`EXPERIMENT_PLAN_AXIOM4_H1AC_BOOST.md`），任何口径修订在 §10 如实记录（如 H1AC 池化口径失效）。
+全部判据先于实验固定（假说清单见 §3.5）：显著性门槛（$p<0.05$ 置换/单侧）、判读单位（链均 vs 池化，见 5.5）、方向性命题一律预先声明。实验计划文档随判读产物存档（`EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md`、`EXPERIMENT_PLAN_AXIOM4_H1AC_BOOST.md`），任何口径修订在 §11 记录在案（如 H1AC 池化口径失效）。
 
 ## 5.2 模型档
 
