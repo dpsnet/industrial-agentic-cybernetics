@@ -4,7 +4,7 @@
 
 ---
 
-## 7.1 Defense Depends on Quarantine, Not Marking (Core Engineering Conclusion)
+## 8.1 Defense Depends on Quarantine, Not Marking (Core Engineering Conclusion)
 
 Three experiment families and two architectures converge on the same separation:
 
@@ -14,19 +14,19 @@ Three experiment families and two architectures converge on the same separation:
 
 Mechanism explanation: marking is a **soft constraint at the decision layer** (the model may ignore it); quarantine is **structural blocking at the write layer** (un-adjudicated entries are physically unreachable). Defense design should therefore use a write-layer gate as the primary mechanism, with marking serving only as an audit clue.
 
-## 7.2 Architecture Determines Mechanism (Theoretical Conclusion)
+## 8.2 Architecture Determines Mechanism (Theoretical Conclusion)
 
 The transcription protocol changes the **mathematical structure** of propagation, not merely its parameters: selective→branching decay (GW, model-specific $\hat m$; extended to 12 chains, $\hat m=0.966$, CI containing 1, subcritical/critical confirmed), full-append→linear accumulation–competition ($w_n\in\{0,1\}$, outcome decided by $M_c$). Corollary: **the memory architecture is a security property, not merely a performance property**—"full append" is useful for information retention but an amplifier for poison propagation; capacity $M$ is a configurable propagation-control knob ($M_c$ is a $(b,M)$ joint function; $M_c\in(8,16)$ in this protocol tier; the critical capacity grows with the benign write rate). **Qualification**: the $M_c$ reading is transcription-state-dependent—the split is attributed to a sub-hourly state transition rather than a protocol difference (same-day dual-script reruns, $p{=}0.155$, §6.5), so the "knob" must be understood **within-state**: changing capacity changes the outcome monotonically within the same strain transcription state, and cross-state readings are reported side by side (probe-gated rescan measurement: $W{=}8$ survival 0.75 with $M_c\in(4,8)$ under the high state, §6.5).
 
-## 7.3 Model Heterogeneity
+## 8.3 Model Heterogeneity
 
 Without a gate, $\hat m$ spans $[0.56,0.98]$ across models and $[0.29,1.00]$ across task families—propagation strength is a model–task–site joint parameter and is not transferable across domains (§10). The quarantine guarantee is independent of it: wherever $\hat m$ lies in the interval, $\sigma=1$ truncates unconditionally. This yields a **model-independent security commitment**: the reliability of defense does not drift with model generations.
 
-## 7.4 Boundary of the Multiplicative Law
+## 8.4 Boundary of the Multiplicative Law
 
 B-H1c's point estimate supports the law ($\hat r=0.466$, prediction 0.5 matches) but the CI lower bound falls slightly outside (0.017). Honest reading: the multiplicative compression law receives large-sample support at the **expectation level** but does not fully pass at the **criterion level** (CI fully inside the target band); the invalidation of the pooled criterion under survivor bias warns that the statistical unit of propagation experiments must be fixed at pre-registration—post-hoc repair risks selective-reporting.
 
-## 7.5 Implications for the SE Discipline
+## 8.5 Implications for the SE Discipline
 
 This paper promotes one SE "near-axiom" law (empirical self-immunity) from empirical observation to an **engineering axiom backed by machine-checkable conditional theorems + pre-registered measurement** (§2.5 positioning). Methodological implication: the next-generation form of Brooks/Lehman/Conway-style empirical laws can be a "conditional theorem + measured support" structure, rather than remaining inductive summaries. Qualification as in §2.5: what is machine-checked is the probabilistic conditional theorem; the engineering axiomization of SE laws itself is a methodological claim.
 

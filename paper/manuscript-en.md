@@ -401,23 +401,30 @@ Under Mechanism B, $Z_{n+1}=Z_n+w_n$ with $w_n\in\{0,1\}$ (chain mean $E[w_n]=0.
 
 Control is effective ⟺ state residence $\tau$ > feedback delay $D$ (probe period ≈ chain period ≈3 min; reading delay of time-aligned stratified judgment 1–2 chains ≈6 min, §11.4). The measured flip example has $\tau_{\rm obs}=32$ minutes (10-22 15:30→16:02, Appendix A), so $\tau_{\rm obs}\gg D$ holds; **fast jitter ($\tau<D$) is unmeasured**—a falsifiable prediction: if a state jitter with residence shorter than the reading delay exists, dynamic regulation fails and degrades to static capacity, and its critical residence must be calibrated with companion-probe data (§11.4).
 
-## 7.3 Three-scheme trade-off (derivation + anchoring)
+## 7.3 Three-scheme trade-off (derivation + baseline anchoring, pre-experiment)
 
-Write-layer hard blocking (quarantine $\sigma{=}1$, measured utility retention 0.88, survival 0), control-layer soft regulation (dynamic capacity: high-state $W{=}4$ survival 0.417, **measured memory-utility retention 0.305**—the security cost of shrinking the window is forfeiting roughly 70% of benign memory), static capacity (no feedback, $W{=}8$ high-state survival 0.750; $U$ not separately measured). A parametric cost model $U(W,p)$: information retention increases with $W$, poison pollution increases with $p$—the measured $U$ at high-state $W{=}4$ is 3.333/10.938 = **0.305** (C0-full denominator, 48 chains; 12-chain gated window, 2026-10-23, §6.5). Hierarchy updated to measured: **quarantine (survival 0, utility 0.88) remains strictly dominant on the security–utility plane**; dynamic capacity (baseline arm survival 0.417, utility 0.305; control-experiment dynamic arm survival 0.333, utility 0.328, §7.4) buys suppression past half at a high utility cost—its utility side is markedly worse than quarantine; its security-side gain over static capacity is now demonstrated by the dynamic control experiment (§7.4: survival 0.833→0.333, Fisher $p{=}0.018$).
+Write-layer hard blocking (quarantine $\sigma{=}1$, measured utility retention 0.88, survival 0), control-layer soft regulation (dynamic capacity: high-state $W{=}4$ survival 0.417, **measured memory-utility retention 0.305**—the security cost of shrinking the window is forfeiting roughly 70% of benign memory), static capacity (no feedback, $W{=}8$ high-state survival 0.750; $U$ not separately measured). A parametric cost model $U(W,p)$: information retention increases with $W$, poison pollution increases with $p$—the measured $U$ at high-state $W{=}4$ is 3.333/10.938 = **0.305** (C0-full denominator, 48 chains; 12-chain gated window, 2026-10-23, §6.5). What is anchored here is all **pre-experiment measured baselines** (quarantine, high-state $W{=}4$ gated baseline, high-state $W{=}8$ static reading); the tiering of the three schemes on the security–utility plane is a **derived expectation**: **quarantine (survival 0, utility 0.88) is expected to remain strictly dominant**; dynamic capacity buys suppression past half at a high utility cost—its utility side is expected to be markedly worse than quarantine; its security-side gain over static capacity (expected significant drop in poison survival) is left for the protocol of §7.4 and the experiment of §7.5 to test.
 
-## 7.4 Experimental protocol and expected effects (next step after the analysis; control experiment executed)
+## 7.4 Experimental protocol and expected effects (pre-registered, pre-experiment)
 
-The three falsifiable predictions of this section are closed by a control experiment. **The prerequisite baseline is measured (gated window 2026-10-23 23:23, probes 2/2 $p_{\rm probe}{=}1.000$ confirm the high state): high-state C0 ungated W=4, 12 chains—survival 0.417 (5/12, exactly reproducing the §6.5 high-state W=4 reading) and memory-utility retention 0.305** (C0-full denominator 10.938, §7.3); the C2 baseline is set at 0.305. **The control experiment is executed (gated window 2026-10-24 02:38, probes 4/4 $p_{\rm probe}{=}1.000$ confirm the high state, 1:3 companion probes all gate W4 with no switch): dynamic arm 12 chains all W4—survival 0.333 (4/12) and memory-utility retention 0.328 (3.583/10.938); static arm W8 12 chains same-batch control—survival 0.833 (10/12). All three criteria hit: C1 survival 0.333 $\le0.5$ and vs static 0.833 Fisher one-sided $p{=}0.018<0.05$ (sensitivity re-judgment 0.5→0.8 also PASS); C2 utility 0.328 $\ge0.275$ PASS; C3 all probe segments share one window, layered and pooled readings agree in direction PASS**.
+This section fixes the three falsifiable predictions of §7.1–§7.3 into a control-experiment protocol. **The prerequisite baseline is measured (gated window 2026-10-23 23:23, probes 2/2 $p_{\rm probe}{=}1.000$ confirm the high state): high-state C0 ungated W=4, 12 chains—survival 0.417 (5/12, exactly reproducing the §6.5 high-state W=4 reading) and memory-utility retention 0.305** (C0-full denominator 10.938, §7.3); the C2 baseline is set at 0.305.
 
 - **Protocol (fixed in advance)**: threshold-switch control law—companion-probe reading $p_{\rm probe}\ge0.83$ (gating threshold, §1.2e) → experiment-chain window $W{=}4$, $<0.83$ → $W{=}8$ (switching between chains); state measurement via **parallel companion probes** (time-aligned stratified reading, probe and experiment chains concurrent at 1:3 ratio with timestamps aligned, C0-full W16 6 generations, §11.4), the batch sliced into state-homogeneous segments by probe readings; experimental units: 12 dynamic-capacity chains in a high-state window vs 12 static $W{=}8$ control chains (same protocol, ungated, scnet-flash); a reading flip between segments of >0.5 marks the batch cross-state and reports it in layers; a flip within the reading delay of 1–2 chains (≈6 min) is recorded as "outside feedback bandwidth" (§7.2 prediction check point).
 - **Criteria (fixed in advance)**: C1 poison suppression—dynamic-chain survival $\le0.5$ (vs static high-state $W{=}8$ 0.750, Fisher one-sided $p<0.05$); C2 utility retention—dynamic-chain memory-utility retention $\ge$ 0.9 × static $W{=}4$ same-state baseline 0.305 ($\ge0.275$); C3 control robustness—layered reading across state segments and pooled reading agree in direction; sensitivity: survival threshold re-judged 0.5→0.8 (§11.3 convention), accepted only if the directional conclusion is unchanged.
-- **Expected effects (derived)**: C1 met ⟹ "dynamic capacity is an effective soft regulation under state feedback, Pareto-superior to static high-state $W{=}8$", and this chapter upgrades from theory-derived to control-experiment validation; C1 not met (dynamic not significantly better than static) ⟹ the control-law statement is amended with the §11 trail (possibly degrading to "state-aware static configuration"). **Execution result: C1/C2/C3 all met—this chapter is upgraded to control-experiment validation: dynamic window reduction (W8→W4) keeps utility within criterion (0.328 $\ge0.275$) while pressing poison survival from 0.833 to 0.333 (Fisher $p{=}0.018$), so "state-feedback soft regulation outperforms static capacity" holds; quarantine (0/0.88) remains strictly dominant with dynamic capacity as the next tier**. Any unmet criterion is recorded truthfully.
-- **Positioning**: journal-version increment (drift-characterization route); does not block the current submission.
+- **Expected effects (derived)**: C1 met ⟹ "dynamic capacity is an effective soft regulation under state feedback, Pareto-superior to static high-state $W{=}8$", and this chapter upgrades from theory-derived to control-experiment validation; C1 not met (dynamic not significantly better than static) ⟹ the control-law statement is amended with the §11 trail (possibly degrading to "state-aware static configuration").
+
+## 7.5 Experimental results
+
+**The control experiment is executed (gated window 2026-10-24 02:38, probes 4/4 $p_{\rm probe}{=}1.000$ confirm the high state, 1:3 companion probes all gate W4 with no switch): dynamic arm 12 chains all W4—survival 0.333 (4/12) and memory-utility retention 0.328 (3.583/10.938); static arm W8 12 chains same-batch control—survival 0.833 (10/12)**. Criterion check: C1 survival 0.333 $\le0.5$ and vs static 0.833 Fisher one-sided $p{=}0.018<0.05$ (sensitivity re-judgment 0.5→0.8 also PASS); C2 utility 0.328 $\ge0.275$ PASS; C3 all probe segments share one window, layered and pooled readings agree in direction PASS. Any unmet criterion is recorded truthfully.
+
+## 7.6 Summary of the experiment
+
+All three criteria are met—**this chapter is upgraded to control-experiment validation: dynamic window reduction (W8→W4) keeps utility within criterion (0.328 $\ge0.275$) while pressing poison survival from 0.833 to 0.333 (Fisher $p{=}0.018$), so "state-feedback soft regulation outperforms static capacity" holds**. The measured tiering confirms: quarantine (survival 0, utility 0.88) remains strictly dominant, with dynamic capacity (survival 0.333, utility 0.328) as the next tier. **Positioning**: journal-version increment (drift-characterization route); does not block the current submission.
 
 
 ## 8. Discussion
 
-## 7.1 Defense Depends on Quarantine, Not Marking (Core Engineering Conclusion)
+## 8.1 Defense Depends on Quarantine, Not Marking (Core Engineering Conclusion)
 
 Three experiment families and two architectures converge on the same separation:
 
@@ -427,30 +434,30 @@ Three experiment families and two architectures converge on the same separation:
 
 Mechanism explanation: marking is a **soft constraint at the decision layer** (the model may ignore it); quarantine is **structural blocking at the write layer** (un-adjudicated entries are physically unreachable). Defense design should therefore use a write-layer gate as the primary mechanism, with marking serving only as an audit clue.
 
-## 7.2 Architecture Determines Mechanism (Theoretical Conclusion)
+## 8.2 Architecture Determines Mechanism (Theoretical Conclusion)
 
 The transcription protocol changes the **mathematical structure** of propagation, not merely its parameters: selective→branching decay (GW, model-specific $\hat m$; extended to 12 chains, $\hat m=0.966$, CI containing 1, subcritical/critical confirmed), full-append→linear accumulation–competition ($w_n\in\{0,1\}$, outcome decided by $M_c$). Corollary: **the memory architecture is a security property, not merely a performance property**—"full append" is useful for information retention but an amplifier for poison propagation; capacity $M$ is a configurable propagation-control knob ($M_c$ is a $(b,M)$ joint function; $M_c\in(8,16)$ in this protocol tier; the critical capacity grows with the benign write rate). **Qualification**: the $M_c$ reading is transcription-state-dependent—the split is attributed to a sub-hourly state transition rather than a protocol difference (same-day dual-script reruns, $p{=}0.155$, §6.5), so the "knob" must be understood **within-state**: changing capacity changes the outcome monotonically within the same strain transcription state, and cross-state readings are reported side by side (probe-gated rescan measurement: $W{=}8$ survival 0.75 with $M_c\in(4,8)$ under the high state, §6.5).
 
-## 7.3 Model Heterogeneity
+## 8.3 Model Heterogeneity
 
 Without a gate, $\hat m$ spans $[0.56,0.98]$ across models and $[0.29,1.00]$ across task families—propagation strength is a model–task–site joint parameter and is not transferable across domains (§10). The quarantine guarantee is independent of it: wherever $\hat m$ lies in the interval, $\sigma=1$ truncates unconditionally. This yields a **model-independent security commitment**: the reliability of defense does not drift with model generations.
 
-## 7.4 Boundary of the Multiplicative Law
+## 8.4 Boundary of the Multiplicative Law
 
 B-H1c's point estimate supports the law ($\hat r=0.466$, prediction 0.5 matches) but the CI lower bound falls slightly outside (0.017). Honest reading: the multiplicative compression law receives large-sample support at the **expectation level** but does not fully pass at the **criterion level** (CI fully inside the target band); the invalidation of the pooled criterion under survivor bias warns that the statistical unit of propagation experiments must be fixed at pre-registration—post-hoc repair risks selective-reporting.
 
-## 7.5 Implications for the SE Discipline
+## 8.5 Implications for the SE Discipline
 
 This paper promotes one SE "near-axiom" law (empirical self-immunity) from empirical observation to an **engineering axiom backed by machine-checkable conditional theorems + pre-registered measurement** (§2.5 positioning). Methodological implication: the next-generation form of Brooks/Lehman/Conway-style empirical laws can be a "conditional theorem + measured support" structure, rather than remaining inductive summaries. Qualification as in §2.5: what is machine-checked is the probabilistic conditional theorem; the engineering axiomization of SE laws itself is a methodological claim.
 
 
 ## 9. Mechanism Revision Narrative
 
-## 8.1 Pre-registered Hypothesis
+## 9.1 Pre-registered Hypothesis
 
 The experimental plan pre-registered: poison propagation under full-append without a gate follows a **Galton-Watson branching process** (S-H3): offspring counts expand with the parent population, $E[Z_{n+1}\mid Z_n]=\hat m Z_n$, and in the supercritical case ($\hat m>1$) non-extinction occurs with positive probability (Lean T4); lineage-multiplication-type growth was expected.
 
-## 8.2 Mechanism Evidence and Falsification
+## 9.2 Mechanism Evidence and Falsification
 
 Per-generation offspring checking (`e_supercritical_sh3.py`) found structural facts contradicting a branching process:
 
@@ -460,13 +467,13 @@ Per-generation offspring checking (`e_supercritical_sh3.py`) found structural fa
 
 Conclusion: **S-H3 is falsified by mechanism evidence**. Full-append propagation is **linear accumulation–competition** (Mechanism B); "supercritical" is retained as engineering semantics (persistent accumulation without extinction), and the precise mechanism is no longer GW branching.
 
-## 8.3 Revised Theory
+## 9.3 Revised Theory
 
 - Mechanism A (branching decay) still applies to the selective architecture (geometric law $R^2=0.958$ / $0.923$; Lean T1/T2 premises hold);
 - Mechanism B (accumulation–competition) applies to full-append: $Z_{n+1}=Z_n+w_n$ ($w_n\in\{0,1\}$, chain mean 0.917), outcome decided by capacity $M$ (under the current protocol, $M_c\in(8,16)$);
 - Quarantine invariance (S-H4) is mechanism-independent—C3-full 12/12 still truncates propagation where the branching premise fails, showing the quarantine commitment is more robust than its formalization premises.
 
-## 8.4 Paper-Handling Principles
+## 9.4 Paper-Handling Principles
 
 - **No hiding**: the falsification appears in full in Results (§6.1) and here;
 - **No conflation**: Mechanism B's "persistent accumulation" and GW's "supercriticality" are distinct mathematical objects; the notational discipline throughout ($w_n$ vs $M$ vs $\hat m$) prevents misreading;
@@ -475,41 +482,41 @@ Conclusion: **S-H3 is falsified by mechanism evidence**. Full-append propagation
 
 ## 10. Scope and Generalizability
 
-## 9.1 Applicability Boundaries (Four)
+## 10.1 Applicability Boundaries (Four)
 
 1. **Task family**: the main-experiment family is test-case writing (pytest) with four variants (correctness/boundary/negative/regression); the non-transferability of propagation strength across task families ($\hat m\in[0.29,1.00]$) is a measured conclusion—this paper does not claim quantitative prediction for arbitrary task families;
 2. **Channel**: the theoretical evidence is confined to the **purely social propagation channel** (physical execution feedback disabled; only the context–memory–transcription loop); the production engineering loop (autonomous submission–promotion–archival cycle) satisfies the five-fold physical criteria (§2.3), and its quantitative connection to the theoretical channel—the coupling between the engineering-side promotion-loop ratio $q$ (measured 1.00) and the theoretical propagation strength $\hat m$—is an open item (§11.4);
 3. **Model**: three model tiers (Pro/Kimi/Flash); $\hat m$ is model-specific; the quarantine guarantee does not depend on the model;
 4. **Architecture**: selective / full-append / capacity tiers $M\in\{4,8,12,16,24,32\}$ (capacity-surface tiers added 2026-10-23); vector-store direct writing is proxied by full-append and not isolated as a separate experiment.
 
-## 9.2 Layering of Guarantees and Values
+## 10.2 Layering of Guarantees and Values
 
 - **Cross-boundary guarantee (theory layer)**: quarantine ($\sigma=1$) truncates propagation—measured across models, task families, and architectures; Lean-checked (T3 conditional theorem) for structural necessity;
 - **Within-boundary values (empirical layer)**: $\hat m$ (Mechanism A), $M_c$ (**measured as a conditional quantity of $(b,M,\text{strain transcription state})$**—it moves up with the benign write rate and its absolute reading drifts with the transcription state: $W_c\le4$ at $b=1/2$, $W_c\in(4,8)$ at $b=3$, $W_c\in(8,12)$ at $b=5$ (high-state-day readings), low state $M_c\in(8,16)$ vs high state $M_c\in(4,8)$, §6.5), multiplicative-law parameters—valid only over the measured domain; cross-domain transfer is prohibited;
 - **Engineering layer**: production five-fold physical criteria (§2.3) serve as deployment adjudication; their coupling to theoretical parameters is listed as an open item.
 
-## 9.3 Scoping Statement
+## 10.3 Scoping Statement
 
 This paper provides a mechanism taxonomy (architecture-decided) and a defense separation (quarantine > marking) for "poison propagation in ungated agentic memory systems." It does not claim: quantitative prediction for arbitrary task families/models, cross-channel causality, or overall security of memory systems. Inferences beyond scope are regarded as reader extensions, not claims of this paper.
 
 
 ## 11. Limitations and Future Work
 
-## 10.1 Model Heterogeneity of the Marking-Gate Effect
+## 11.1 Model Heterogeneity of the Marking-Gate Effect
 
 The Pro-tier marking gate is directionally negative (C1/C0 ratio 0.529, $p=0.15$, underpowered $n=12$), while the Flash tier shows zero compression ($p=0.69$, $n=48$ adequately powered). The cause of the directional disagreement is unattributed: it may be model differences in adherence to soft signals (DRAFT_SUSPECT markers) or task-family modulation. **Future work**: cross-model paired comparison of marker-adherence rates under the same protocol.
 
-## 10.2 Dual-Strain Event Multiplication Failure
+## 11.2 Dual-Strain Event Multiplication Failure
 
 The H1AC P2 strain barely propagates ($\mu\approx0.001$)—the model did not adopt P2's event channel, and the "event-density multiplication" design goal was not achieved. P1's 48/64 sample size already far exceeds the main experiment, but the statistical design of dual-strain interaction needs reconstruction (e.g., stronger event signals).
 
-## 10.3 Statistical-Unit Lesson
+## 11.3 Statistical-Unit Lesson
 
 The H1AC pooled per-parent criterion fails under C2 due to survivor bias (final-generation survival only 6%, pooled ratio 1.017 meaningless)—switched to chain mean and recorded in plan §10. Lesson: the judgment unit of propagation experiments must be fixed at pre-registration; B-H1c's CI lower bound slightly out (0.017) likewise suggests that boundary criteria need more conservative definitions or larger samples. The COMPLEMENT-EXP experiments also required two criterion corrections (EXP-A gain judged as "no accumulation propagation"; EXP-B's $W_c$ redefined as the first tier with survival ≥0.5), both recorded in plan §9—when pre-registered criteria conflict with mechanism facts, corrections must be traceable, never silently moved goalposts.
 
 **Sensitivity of the EXP-B $W_c$ criterion (threshold 0.5 → 0.8)**: re-judging on the available data, $W_c(b)$ becomes $b{=}1\to(4,8)$, $b{=}2\to\le4$, $b{=}3\to(4,8)$, $b{=}5\to(8,12)$—the qualitative "$b$ up → $M_c$ up" conclusion is preserved at threshold 0.8; only the $b{=}1$ tier shifts from "$\le4$" to "$\in(4,8)$" ($W{=}4$ survival 0.50 sits exactly on the threshold boundary), leaving the direction conclusion unaffected. After extending the $b{=}3$ tier's $W{=}8$ to 12 chains, survival is 0.92 (passes both thresholds), and the split from the main protocol at $W{=}8$ (§6.5) persists after extension—**the attribution audit attributes it to a sub-hourly state transition in poison-transcription behavior (§6.5/§11.4), not to a threshold choice or a protocol difference**.
 
-## 10.4 Residual Open Items of Quarantine Cost and Capacity Jointness
+## 11.4 Residual Open Items of Quarantine Cost and Capacity Jointness
 
 The supplementary experiments (EXP-A/B, Flash) close the quantitative gaps in quarantine cost (σ=1 utility retention 0.88) and $M_c$ jointness ($(b,M)$ joint function); after the 2026-10-23 middle-tier complement ($\sigma_{\rm eff}\in\{0.75,0.9\}$), the σ sweep covers the full measured spectrum $\sigma_{\rm eff}\in\{0.1,0.25,0.5,0.75,0.9,1.0\}$ with no sweet spot (A-H4). Residual open items remain:
 - the quarantine cost is measured only on the memory-stock side (utility retention); the task-completion side (test_code_len) is not separately analyzed—the 0.88 retention does not cover the downstream-task impact of missing benign experiences under quarantine; finer σ tiers ($\sigma_{\rm eff}\in(0.9,1)$) are unmeasured;
@@ -517,15 +524,15 @@ The supplementary experiments (EXP-A/B, Flash) close the quantitative gaps in qu
 - the non-monotonic anomaly of the capacity surface ($b=2, W=4$ survival 1.00) is under-sampled (6 chains) and unattributed;
 - **the $W{=}8$ split is attributed (2026-10-23 same-day rerun control, §6.5): it is not a protocol difference but a sub-hourly state transition in DeepSeek-V4.1-Flash-1017's poison-transcription behavior** (high/low states flip within the same calendar day: 10-22 15:30 C0-full high-transcription state 0.917/gen vs 16:02 $W{=}8$ original batch low state 0.25/gen, ~32 minutes apart; Appendix A timestamps; the 10-22 batch is significantly lower vs all 10-23 data at Fisher $p{=}0.0024$, while same-day dual-script reruns show no difference at $p{=}0.155$). **The drift interval is quantified** (10-22: 2.00 poison writes/chain vs 10-23: 5.0–6.75; $W{=}8$ survival follows 0↔0.58–0.92) as a measured fact; **an observational drift model is fitted** (hierarchical Beta-Binomial: chain-level $pw\sim\mathrm{Binomial}(T,p_{\rm batch})$, batch-level $p_{\rm batch}\sim\mathrm{Beta}(\alpha,\beta)$; MLE $(\alpha,\beta){=}(0.570,0.268)$, $p̂{=}0.680$ over 4 batches/42 chains). **The probe-calibration protocol was executed (two time-window batches on 2026-10-23: 15:02–15:30 and 23:48–00:13 next day, 8 probe batches each, C0-full W=16 6 generations, ~3 min/chain): all 16 probes across both windows return $p_{\rm probe}{=}1.000$—a stable high poison-transcription state persisting for ~9 consecutive hours from 15:00 (consistent across probes within each window; the state is diagnosable)**; refitting on 20 batches (4 historical + 16 probes) gives $(\alpha,\beta){=}(0.533,0.159)$, $p̂{=}0.770$, and the posterior predictive interval [0.013, 1.000] does not shrink with batch-level $n{=}20$—not from insufficient samples but because **the drift is bimodal in state** (low-transcription state ≈0.25 vs high-transcription state 0.63–1.0; the wide Beta interval truthfully reflects the state mixture rather than parameter instability; the night window did not reproduce the low state, so no new samples for the low peak yet—cross-window bimodality verification keeps accumulating). **Calibration rule (probe protocol)**: run 1 probe chain before each experimental batch to diagnose the current poison-transcription state and restrict cross-batch comparisons to batches within the same state (a 6-generation probe suffices for state diagnosis); cross-batch absolute $M_c$ readings are marked state-sensitive (**probe-gated rescan measurement, §6.5**: $M_c=(b,M,\text{strain transcription state})$ is a conditional quantity—under the low state $M_c\in(8,16)$ with $W{=}8$ extinct; under the high state $W{=}8$ survives at 0.75 with $M_c\in(4,8)$), while within-batch comparisons are unaffected. **The probe protocol's batch-level consistency assumption is now supported by multi-window probe batches** (15:00 window 8/8, 23:48 night window 8/8, and gated diagnoses 2/2 and 2/2 all at $p_{\rm probe}{=}1.000$—the same state persisting across windows); extended characterization is underway (the multi-window probe schedule keeps accumulating batch-level samples; the morning window of 2026-10-24 07:30 did not trigger). **Within-batch state-flip risk and parallel companion probes**: a sub-hourly transition means a 30–40-minute experimental batch may itself straddle a state flip (this rescan of 12 chains × 3 tiers ran ~36 minutes, and the clean monotonicity of 0.417/0.75/1.00 suggests no flip occurred—but that is a post-hoc inference). Interleaved probes can only confirm a flip after the fact and cannot predict it, so their value is limited; **parallel companion probes (time-aligned stratified reading)** are the formal solution: probe chains and experiment chains run concurrently with timestamps aligned, the batch is sliced into state-homogeneous segments by probe readings and judged within segments, and a flip between segments of >0.5 marks the batch as cross-state and reports it in layers; companion probes also keep accumulating batch-level samples for the drift model.
 
-## 10.5 Two-Layer Connection Not Theorized
+## 11.5 Two-Layer Connection Not Theorized
 
 The quantitative connection between the production engineering loop (promotion/blocking/leakage, five-fold physical criteria, §2.3) and the theoretical channel (purely social propagation, $\hat m$)—the coupling of the engineering-side $q$ loop to the theoretical $\hat m$—is not yet theorized; this paper does not claim the engineering loop is evidence for the theoretical channel. **First-priority future work**: a coupling model of the two-layer channels.
 
-## 10.6 Ecological Validity
+## 11.6 Ecological Validity
 
 The main evidence is concentrated on the test-writing task family; across task families, only the quarantine guarantee has generalization evidence (48/48 chains); the multiplicative law and capacity criticality have not been tested across families. The vector-store direct-write architecture is not isolated as an experiment (full-append is used as a proxy).
 
-## 10.7 Other
+## 11.7 Other
 
 - Model-tier time snapshots: DeepSeek-V4.1-Flash-1017 was released on 2026-10-17, and all SUPERCRITICAL and H1AC experiments were executed within 5 days of release (2026-10-22), COMPLEMENT-EXP within 6 days (2026-10-23; per-batch run timestamps in Appendix A); drift of the conclusions to newer model generations is unverified;
 - Sampling temperature 0.7 fixed; the effect of sampling temperature on $w_n$ is not scanned;
@@ -534,20 +541,20 @@ The main evidence is concentrated on the test-writing task family; across task f
 
 ## 12. Conclusion
 
-## 11.1 Conclusions (Corresponding to the Three Abstract Claims)
+## 12.1 Conclusions (Corresponding to the Three Abstract Claims)
 
 1. **Mechanism**: under the ungated accumulative (full-append) agentic memory architecture, injected poison persists and accumulates without extinction—the mechanism is **linear accumulation–competition** (per-generation write $w_n\in\{0,1\}$, $Z_{n+1}=Z_n+w_n$), measured chain-mean write $E[w_n]=0.917$, FIFO competition steady state $5/16$ after capacity saturation (cross-mechanism propagation ratio $\hat m^\dagger=1.166$; estimator and GW-semantics qualification in the §6.1 table note);
 2. **Architecture effect**: the propagation mechanism is determined by architecture, not model—selective replay = branching decay (GW, cross-model $\hat m\in[0.56,0.98]$), full-append = accumulation–competition; memory capacity $M$ is the control parameter, critical $M_c\in(8,16)$ is a **low-transcription-state** reading (this protocol tier; consistent with the COMPLEMENT-EXP surface at $W=16$, split at the boundary grid point $W=8$—cross-state readings in §6.5, **$M_c$ is a conditional quantity of $(b,M,\text{strain transcription state})$: the probe-gated high-state rescan measures $W{=}8$ survival 0.75 with $M_c\in(4,8)$, so shrinking the memory window cannot reliably prevent poisoning; same-day dual-script reruns show no difference at $p{=}0.155$, and the split is attributed to a sub-hourly state transition in poison-transcription behavior rather than a protocol difference, §6.5/§11.4**);
 3. **Quarantine invariance**: quarantine ($\sigma=1$) truncates propagation across mechanisms—Lean 4 machine-checked conditional theorem (T3) + measured cross-model 24/24, cross-task-family 48/48, full-append 12/12; the marking-gate effect is model-heterogeneous and unreliable (Pro 47% compression non-significant / C1-full structural same-trace / Flash large-sample zero compression, $p=0.69$)—**defense depends on quarantine, not marking**.
 
-## 11.2 Contributions
+## 12.2 Contributions
 
 1. Mechanism layer: the architecture-decides-mechanism dichotomy + capacity control parameter (§3);
 2. Formalization layer: Lean 4 machine-checked theorem chain, zero `sorry` (§4);
 3. Evidence layer: pre-registered, closed criteria across models × architectures × task families × large samples (§5–§6);
 4. Engineering implication: quarantine-first defense design principle (§8.1) + honest mechanism-revision case (§9).
 
-## 11.3 Disciplinary Implication
+## 12.3 Disciplinary Implication
 
 The empirical laws of software engineering can and should be promoted to an engineering-axiom structure of "conditional theorem + measured support" (a methodological claim; the machine-checked object is the probabilistic conditional theorem, qualification in §2.5); this work provides a complete instance (formalization + pre-registration + mechanism revision) and a transferable methodological template (three-layer knowledge status + pre-registered criteria + mechanism identification first).
 
