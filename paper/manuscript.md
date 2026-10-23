@@ -159,7 +159,7 @@ $$m = \mu(1-\sigma) \quad \text{(乘性压缩律)}$$
 
 ## 4.2 定理链（Lean 4 机检，零 `sorry`）
 
-形式化源码：`formal_proof/IACFormalization`（本仓库 commit `4825137`；Lean 4，mathlib 版本见 `lakefile.lean`）。
+形式化源码：`formal_proof/IACFormalization`（本仓库 commit `4825137`；Lean 4，mathlib 版本见 `lakefile.lean`）。仓库目前**保持私有**：commit hash 可据此核对文件树与构建记录，完整源码按需向作者索取。
 
 **T1 期望几何律**（`expected_population_geometric`，归纳证明）：$E[Z_n]=m^n E[Z_0]$。
 

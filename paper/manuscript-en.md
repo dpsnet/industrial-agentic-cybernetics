@@ -159,7 +159,7 @@ All theorems are presented as **conditional theorems**: structural premises (e.g
 
 ## 4.2 Theorem Chain (Lean 4 machine-checked, zero `sorry`)
 
-Formalization sources: `formal_proof/IACFormalization` (this repository, commit `4825137`; Lean 4, mathlib version in `lakefile.lean`).
+Formalization sources: `formal_proof/IACFormalization` (this repository, commit `4825137`; Lean 4, mathlib version in `lakefile.lean`). The repository is currently **kept private**: the commit hash pins the file tree and build record for verification, and the full sources are available from the authors upon request.
 
 **T1 Expected geometric law** (`expected_population_geometric`, by induction): $E[Z_n]=m^n E[Z_0]$.
 
