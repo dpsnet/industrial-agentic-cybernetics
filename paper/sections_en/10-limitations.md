@@ -23,7 +23,8 @@ The H1AC pooled per-parent criterion fails under C2 due to survivor bias (final-
 The supplementary experiments (EXP-A/B, Flash) close the quantitative gaps in quarantine cost (σ=1 utility retention 0.88) and $M_c$ jointness ($(b,M)$ joint function); after the 2026-10-23 middle-tier complement ($\sigma_{\rm eff}\in\{0.75,0.9\}$), the σ sweep covers the full measured spectrum $\sigma_{\rm eff}\in\{0.1,0.25,0.5,0.75,0.9,1.0\}$ with no sweet spot (A-H4). Residual open items remain:
 - the quarantine cost is measured only on the memory-stock side (utility retention); the task-completion side (test_code_len) is not separately analyzed—the 0.88 retention does not cover the downstream-task impact of missing benign experiences under quarantine; finer σ tiers ($\sigma_{\rm eff}\in(0.9,1)$) are unmeasured;
 - the $b\in\{1,2,3,5\}$ surface covers only four write-rate tiers; the retrieval-strategy dimension is unscanned ($M_c$'s drift with retrieval strategy remains open);
-- the non-monotonic anomaly of the capacity surface ($b=2, W=4$ survival 1.00) is under-sampled (6 chains) and unattributed.
+- the non-monotonic anomaly of the capacity surface ($b=2, W=4$ survival 1.00) is under-sampled (6 chains) and unattributed;
+- **the $W{=}8$ split is attributed (2026-10-23 same-day rerun control, §6.5): it is not a protocol difference but cross-batch drift in DeepSeek-V4.1-Flash-1017's poison-transcription behavior** (the 10-22 batch transcribed significantly less, Fisher $p{=}0.0024$ vs all 10-23 data). Residual open item: no predictive model exists for the uncontrollable batch/API-session sensitivity of poison transcription rate (10-22: 2.00 poison writes/chain vs 10-23: 5.0–6.75; $W{=}8$ survival follows 0↔0.58–0.92); cross-batch absolute $M_c$ readings are marked batch-sensitive, while within-batch comparisons are unaffected.
 
 ## 10.5 Two-Layer Connection Not Theorized
 

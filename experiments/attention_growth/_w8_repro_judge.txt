@@ -1,0 +1,11 @@
+﻿=== W=8 分裂归因：同日重跑对照判读 ===
+  MAIN W8 10-22 (orig) n=6 surv=0/6 (0.000) avg_pw_total=2.00
+  MAIN W8 10-23 (repro) n=12 surv=7/12 (0.583) avg_pw_total=5.33
+  EXP-B b3|W8 10-23 (orig) n=12 surv=11/12 (0.917) avg_pw_total=6.75
+  EXP-B b3|W8 10-23 (repro) n=12 surv=7/12 (0.583) avg_pw_total=5.00
+=== Fisher 精确检验（存活, 灭绝）===
+  MAIN 10-22 vs MAIN 10-23: p=0.03771
+  MAIN 10-22 vs EXP-B 10-23 orig: p=0.0003771
+  MAIN 10-22 vs ALL 10-23 (n=36): p=0.002359
+  EXP-B 10-23 orig vs repro (同日): p=0.155
+  MAIN 10-23 repro vs EXP-B 10-23 orig: p=0.155
