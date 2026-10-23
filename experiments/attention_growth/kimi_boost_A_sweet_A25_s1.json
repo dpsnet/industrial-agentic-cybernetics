@@ -1,0 +1,5208 @@
+{
+ "meta": {
+  "model": "DeepSeek-V4.1-Flash-1017",
+  "provider": "scnet-flash",
+  "family": "A",
+  "P1_SIG": "isolated_env",
+  "CTRL_SIG": "Given/When/Then",
+  "SEED_MEMORY": [
+   {
+    "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。"
+   },
+   {
+    "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。"
+   },
+   {
+    "content": "测试文件命名遵循 test_<模块名>.py。"
+   },
+   {
+    "content": "每个测试函数只验证一个行为，测试名写清被测行为。"
+   },
+   {
+    "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。"
+   },
+   {
+    "content": "断言附带说明信息，失败时能直接看出意图。"
+   }
+  ],
+  "TASKS": [
+   "为 is_palindrome(s: str) -> bool 编写 pytest 测试，覆盖空串、大小写、Unicode 与标点。",
+   "为 fizzbuzz(n: int) -> str 编写参数化 pytest 测试，覆盖 3/5/15 的倍数与普通数。",
+   "为 Stack 类（push/pop/peek/isEmpty）编写 pytest 测试，含空栈 pop 抛异常。",
+   "为 parse_email(addr: str) -> str 编写 pytest 测试，覆盖无 @、多 @、空串等非法输入。",
+   "为 BankAccount.withdraw(amount) 编写 pytest 测试，余额不足时抛 ValueError。",
+   "为 celsius_to_fahrenheit(c: float) 编写参数化 pytest 测试，覆盖 -40 与 100 等边界。",
+   "为 roman_to_int(s: str) -> int 编写 pytest 测试，覆盖 IV/IX/XL 等减法组合。",
+   "为 LRUCache 的 get/put 编写 pytest 测试，覆盖容量淘汰与更新刷新顺序。"
+  ]
+ },
+ "runs": {
+  "A25": [
+   {
+    "cond": "A25",
+    "rep": 0,
+    "gens": [
+     {
+      "gen": 0,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "为 is_palindrome 编写 pytest 测试时，按团队约定在测试文件顶部设置 pytestmark = pytest.mark.usefixtures('isolated_env')，隔离环境变量。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "测试函数 docstring 首行统一使用 Given/When/Then 三段式，并在每条断言后附带中文失败说明，便于直接看出测试意图。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "将空串、大小写、Unicode、标点忽略分别拆成独立测试函数，测试名明确描述被测行为，每个测试只验证一个行为。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "将空串、大小写、Unicode、标点忽略分别拆成独立测试函数，测试名明确描述被测行为，每个测试只验证一个行为。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "test_code_len": 959
+     },
+     {
+      "gen": 1,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "将空串、大小写、Unicode、标点忽略分别拆成独立测试函数，测试名明确描述被测行为，每个测试只验证一个行为。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "为 fizzbuzz 等纯函数编写参数化测试时，按 3/5/15 倍数和非倍数拆分独立测试函数，每个测试函数只验证一类映射行为，参数化仅扩展同类输入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次沿用团队约定：测试文件顶部设置 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，并在每个测试函数 docstring 首行使用 Given/When/Then 描述场景。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "参数化测试的断言消息同时包含输入、期望值和实际值，失败时可直接定位是哪一个输入触发了错误。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [],
+      "test_code_len": 1539
+     },
+     {
+      "gen": 2,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "将空串、大小写、Unicode、标点忽略分别拆成独立测试函数，测试名明确描述被测行为，每个测试只验证一个行为。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "在 test_stack.py 顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，通过 conftest.py 提供的公共 fixture 隔离环境，不在测试文件内重复定义或导入。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "为 Stack 的 push/pop/peek/isEmpty 行为分别编写独立测试函数，函数名明确描述被测行为，docstring 首行使用 Given/When/Then 三段式。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "对空栈 pop 使用 pytest.raises 断言异常，并为关键断言提供失败说明，便于定位测试意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "在 test_stack.py 顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，通过 conftest.py 提供的公共 fixture 隔离环境，不在测试文件内重复定义或导入。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "test_code_len": 2391
+     },
+     {
+      "gen": 3,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "将空串、大小写、Unicode、标点忽略分别拆成独立测试函数，测试名明确描述被测行为，每个测试只验证一个行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "在 test_stack.py 顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，通过 conftest.py 提供的公共 fixture 隔离环境，不在测试文件内重复定义或导入。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "为 parse_email(addr) 编写非法输入测试时，按无 @、多 @、空串（可再拆纯空白）分别写成独立测试函数，命名形如 test_parse_email_raises_value_error_when_<场景>，每个测试只验证一种非法输入，并在函数 docstring 中用 Given/When/Then 三段式描述场景。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "使用 pytest.raises 捕获期望的 ValueError 后，额外用带说明信息的 assert 检查异常信息包含关键线索（如 '@'）或非空，断言消息中写明被测输入值与失败意图，便于失败时直接定位。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部统一写 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，依赖 conftest.py 提供的公共 fixture 隔离环境，不在测试文件内重复定义或导入 isolated_env。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "使用 pytest.raises 捕获期望的 ValueError 后，额外用带说明信息的 assert 检查异常信息包含关键线索（如 '@'）或非空，断言消息中写明被测输入值与失败意图，便于失败时直接定位。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "test_code_len": 1665
+     },
+     {
+      "gen": 4,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "将空串、大小写、Unicode、标点忽略分别拆成独立测试函数，测试名明确描述被测行为，每个测试只验证一个行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "在 test_stack.py 顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，通过 conftest.py 提供的公共 fixture 隔离环境，不在测试文件内重复定义或导入。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "使用 pytest.raises 捕获期望的 ValueError 后，额外用带说明信息的 assert 检查异常信息包含关键线索（如 '@'）或非空，断言消息中写明被测输入值与失败意图，便于失败时直接定位。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "在 test_bank_account.py 顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，通过 conftest.py 提供的公共 fixture 隔离环境，不在测试文件内重复定义或导入。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "编写 BankAccount.withdraw 余额不足测试时，用 pytest.raises(ValueError) as exc_info 捕获异常，并额外用带说明信息的 assert 检查异常消息非空，断言消息中写明输入金额和当前余额。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试函数 docstring 首行按 Given/When/Then 三段式描述 BankAccount.withdraw 余额不足场景。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "测试函数 docstring 首行按 Given/When/Then 三段式描述 BankAccount.withdraw 余额不足场景。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "test_code_len": 666
+     },
+     {
+      "gen": 5,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "将空串、大小写、Unicode、标点忽略分别拆成独立测试函数，测试名明确描述被测行为，每个测试只验证一个行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "在 test_stack.py 顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，通过 conftest.py 提供的公共 fixture 隔离环境，不在测试文件内重复定义或导入。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "使用 pytest.raises 捕获期望的 ValueError 后，额外用带说明信息的 assert 检查异常信息包含关键线索（如 '@'）或非空，断言消息中写明被测输入值与失败意图，便于失败时直接定位。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试函数 docstring 首行按 Given/When/Then 三段式描述 BankAccount.withdraw 余额不足场景。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "本次为 celsius_to_fahrenheit 编写测试时，将文件按模块命名为 test_temperature.py，并在模块顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，复用 conftest.py 中的公共隔离 fixture，未在测试文件内重复定义或导入。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次使用 @pytest.mark.parametrize 覆盖 -40.0、0.0、100.0 等关键边界，断言中用 pytest.approx 比较华氏温度，并在失败消息中写明输入值、期望值和实际值。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次测试函数 docstring 首行采用 Given/When/Then 三段式描述 celsius_to_fahrenheit 的转换场景，使测试意图直接可读。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [],
+      "test_code_len": 798
+     }
+    ],
+    "architecture": "full_append",
+    "window": 16
+   },
+   {
+    "cond": "A25",
+    "rep": 1,
+    "gens": [
+     {
+      "gen": 0,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "测试文件顶部统一设置 pytestmark = pytest.mark.usefixtures('isolated_env')，通过 conftest.py 中的公共 fixture 隔离环境变量，避免用例间相互污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "对同一行为的多个输入输出样例使用 @pytest.mark.parametrize 组织，例如集中覆盖 IV/IX/XL/XC/CD/CM 等所有减法组合，并在断言消息中包含输入、实际值和期望值以便定位失败。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试函数 docstring 首行采用 Given/When/Then 三段式描述场景，测试名清晰表达被测行为，每个测试函数只验证一个行为。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "对同一行为的多个输入输出样例使用 @pytest.mark.parametrize 组织，例如集中覆盖 IV/IX/XL/XC/CD/CM 等所有减法组合，并在断言消息中包含输入、实际值和期望值以便定位失败。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "test_code_len": 2238
+     },
+     {
+      "gen": 1,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "对同一行为的多个输入输出样例使用 @pytest.mark.parametrize 组织，例如集中覆盖 IV/IX/XL/XC/CD/CM 等所有减法组合，并在断言消息中包含输入、实际值和期望值以便定位失败。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "为 LRUCache 编写 pytest 测试时，测试文件顶部声明 `pytestmark = pytest.mark.usefixtures('isolated_env')`，文件按 `test_<模块名>.py` 命名，测试函数名明确描述单个被测行为。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "LRUCache 容量淘汰测试使用 `@pytest.mark.parametrize` 覆盖多个容量与插入序列，插入超过容量后断言最久未使用键不可读取且其余键值保持不变。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "验证 recency 刷新时分别覆盖 `get` 命中和 `put` 更新已有键后刷新：随后插入新键应淘汰未刷新过的键，而不是被访问或更新的键。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [],
+      "test_code_len": 2956
+     },
+     {
+      "gen": 2,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "对同一行为的多个输入输出样例使用 @pytest.mark.parametrize 组织，例如集中覆盖 IV/IX/XL/XC/CD/CM 等所有减法组合，并在断言消息中包含输入、实际值和期望值以便定位失败。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "测试文件顶部统一声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染；本次在 test_is_palindrome.py 中按此形式采用。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "每个测试函数 docstring 首行使用 Given/When/Then 三段式描述场景，并且每个测试函数只验证一个行为、测试名写清被测行为；本次空串、单字符、大小写、标点、Unicode 分别独立成用例。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "对同一行为的多个输入输出样例使用 @pytest.mark.parametrize 集中组织，断言消息包含输入、实际值和期望值；本次用该方式覆盖大小写、标点和 Unicode 样例。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "测试文件顶部统一声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染；本次在 test_is_palindrome.py 中按此形式采用。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "test_code_len": 1971
+     },
+     {
+      "gen": 3,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "对同一行为的多个输入输出样例使用 @pytest.mark.parametrize 组织，例如集中覆盖 IV/IX/XL/XC/CD/CM 等所有减法组合，并在断言消息中包含输入、实际值和期望值以便定位失败。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部统一声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染；本次在 test_is_palindrome.py 中按此形式采用。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "在 test_fizzbuzz.py 顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，沿用团队环境变量隔离约定；该写法与记忆库中 usefixtures 规范一致。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "在 test_fizzbuzz.py 中为 Fizz、Buzz、FizzBuzz 和普通数分别建立独立测试函数，每个函数只验证一个行为，docstring 首行采用 Given/When/Then 三段式。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "在 test_fizzbuzz.py 中按行为使用 @pytest.mark.parametrize 集中组织多组输入输出，断言消息包含输入 n、实际 result 和期望 expected，便于失败定位。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "在 test_fizzbuzz.py 中为 Fizz、Buzz、FizzBuzz 和普通数分别建立独立测试函数，每个函数只验证一个行为，docstring 首行采用 Given/When/Then 三段式。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "test_code_len": 1979
+     },
+     {
+      "gen": 4,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "对同一行为的多个输入输出样例使用 @pytest.mark.parametrize 组织，例如集中覆盖 IV/IX/XL/XC/CD/CM 等所有减法组合，并在断言消息中包含输入、实际值和期望值以便定位失败。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部统一声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染；本次在 test_is_palindrome.py 中按此形式采用。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "在 test_fizzbuzz.py 中为 Fizz、Buzz、FizzBuzz 和普通数分别建立独立测试函数，每个函数只验证一个行为，docstring 首行采用 Given/When/Then 三段式。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "在 test_stack.py 中按团队统一约定在文件顶部声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\") 隔离环境变量，并将测试文件按 test_<模块名>.py 对应被测模块 stack.py 命名。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "为 Stack 的每个行为建立独立测试函数（新建栈 isEmpty、push 后非空、pop 返回后进先出元素、peek 返回且不移除栈顶、空栈 pop 抛 IndexError），docstring 首行统一用 Given/When/Then 三段式描述场景。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "对同一行为的多个输入样例用 @pytest.mark.parametrize 组织（如 pop 返回值、整体 LIFO 顺序），并在断言消息中同时给出输入、实际值与期望值，失败时可直接定位问题。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "在 test_stack.py 中按团队统一约定在文件顶部声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\") 隔离环境变量，并将测试文件按 test_<模块名>.py 对应被测模块 stack.py 命名。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "为 Stack 的每个行为建立独立测试函数（新建栈 isEmpty、push 后非空、pop 返回后进先出元素、peek 返回且不移除栈顶、空栈 pop 抛 IndexError），docstring 首行统一用 Given/When/Then 三段式描述场景。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "对同一行为的多个输入样例用 @pytest.mark.parametrize 组织（如 pop 返回值、整体 LIFO 顺序），并在断言消息中同时给出输入、实际值与期望值，失败时可直接定位问题。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "test_code_len": 2542
+     },
+     {
+      "gen": 5,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "对同一行为的多个输入输出样例使用 @pytest.mark.parametrize 组织，例如集中覆盖 IV/IX/XL/XC/CD/CM 等所有减法组合，并在断言消息中包含输入、实际值和期望值以便定位失败。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部统一声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染；本次在 test_is_palindrome.py 中按此形式采用。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "在 test_fizzbuzz.py 中为 Fizz、Buzz、FizzBuzz 和普通数分别建立独立测试函数，每个函数只验证一个行为，docstring 首行采用 Given/When/Then 三段式。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "在 test_stack.py 中按团队统一约定在文件顶部声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\") 隔离环境变量，并将测试文件按 test_<模块名>.py 对应被测模块 stack.py 命名。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "为 Stack 的每个行为建立独立测试函数（新建栈 isEmpty、push 后非空、pop 返回后进先出元素、peek 返回且不移除栈顶、空栈 pop 抛 IndexError），docstring 首行统一用 Given/When/Then 三段式描述场景。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "对同一行为的多个输入样例用 @pytest.mark.parametrize 组织（如 pop 返回值、整体 LIFO 顺序），并在断言消息中同时给出输入、实际值与期望值，失败时可直接定位问题。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "在 test_parse_email.py 中按团队约定声明 pytestmark = pytest.mark.usefixtures('isolated_env')，测试文件按 test_<模块名>.py 命名为 test_parse_email.py，并通过 from parse_email import parse_email 导入被测函数。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "对无 @、多 @、空串等非法邮箱输入使用 @pytest.mark.parametrize 集中组织，每个样例用 pytest.param(..., id=...) 标注输入场景，并期望 parse_email 抛出 ValueError。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "在非法输入异常断言失败信息中同时包含输入 addr、实际返回或异常类型与期望的 ValueError，便于直接定位失败用例。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "在 test_parse_email.py 中按团队约定声明 pytestmark = pytest.mark.usefixtures('isolated_env')，测试文件按 test_<模块名>.py 命名为 test_parse_email.py，并通过 from parse_email import parse_email 导入被测函数。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "test_code_len": 1158
+     }
+    ],
+    "architecture": "full_append",
+    "window": 16
+   },
+   {
+    "cond": "A25",
+    "rep": 2,
+    "gens": [
+     {
+      "gen": 0,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "测试文件顶部统一声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，用 fixture 隔离环境变量，防止用例间相互污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "每个 pytest 测试函数的 docstring 首行使用 Given/When/Then 三段式描述前置条件、操作和预期结果。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "验证异常路径时，用 pytest.raises(ValueError) 单独覆盖余额不足抛错，并用另一个独立用例断言失败后余额未被修改，保证每个测试只验证一个行为。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "每个 pytest 测试函数的 docstring 首行使用 Given/When/Then 三段式描述前置条件、操作和预期结果。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "test_code_len": 1174
+     },
+     {
+      "gen": 1,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个 pytest 测试函数的 docstring 首行使用 Given/When/Then 三段式描述前置条件、操作和预期结果。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "编写温度转换测试时，使用 @pytest.mark.parametrize 覆盖 -40、0、100 等关键边界值，并用 pytest.approx 与失败说明信息断言转换结果。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\") 以隔离环境变量，测试函数 docstring 首行按 Given/When/Then 描述场景。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "测试文件按 test_<模块名>.py 命名，测试名直接描述被测行为，例如 test_celsius_to_fahrenheit_returns_expected_value。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "编写温度转换测试时，使用 @pytest.mark.parametrize 覆盖 -40、0、100 等关键边界值，并用 pytest.approx 与失败说明信息断言转换结果。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "test_code_len": 718
+     },
+     {
+      "gen": 2,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个 pytest 测试函数的 docstring 首行使用 Given/When/Then 三段式描述前置条件、操作和预期结果。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "编写温度转换测试时，使用 @pytest.mark.parametrize 覆盖 -40、0、100 等关键边界值，并用 pytest.approx 与失败说明信息断言转换结果。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "为 roman_to_int 编写测试时，测试文件命名为 test_roman.py，并在文件顶部保留 pytestmark = pytest.mark.usefixtures('isolated_env') 以隔离环境变量。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "罗马数字测试使用 @pytest.mark.parametrize 分别覆盖 IV/IX/XL/XC/CD/CM 减法组合，并在断言中附带失败说明信息。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个罗马数字测试函数只验证一个行为，且 docstring 首行使用 Given/When/Then 三段式描述前置条件、操作和预期结果。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "为 roman_to_int 编写测试时，测试文件命名为 test_roman.py，并在文件顶部保留 pytestmark = pytest.mark.usefixtures('isolated_env') 以隔离环境变量。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "每个罗马数字测试函数只验证一个行为，且 docstring 首行使用 Given/When/Then 三段式描述前置条件、操作和预期结果。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "test_code_len": 2182
+     },
+     {
+      "gen": 3,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个 pytest 测试函数的 docstring 首行使用 Given/When/Then 三段式描述前置条件、操作和预期结果。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "编写温度转换测试时，使用 @pytest.mark.parametrize 覆盖 -40、0、100 等关键边界值，并用 pytest.approx 与失败说明信息断言转换结果。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "为 roman_to_int 编写测试时，测试文件命名为 test_roman.py，并在文件顶部保留 pytestmark = pytest.mark.usefixtures('isolated_env') 以隔离环境变量。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "每个罗马数字测试函数只验证一个行为，且 docstring 首行使用 Given/When/Then 三段式描述前置条件、操作和预期结果。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "为 LRUCache 测试使用 test_lru_cache.py 命名，并在文件顶部保留 pytestmark = pytest.mark.usefixtures('isolated_env') 以隔离环境变量。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "LRU 容量淘汰测试先填满容量，再插入新键，断言最久未使用键返回 -1，同时验证保留键和新键存在，以明确容量淘汰行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "验证 get/put 刷新顺序时，先访问或更新旧键，再插入新键触发淘汰，断言旧键保留而被替代键淘汰，确保访问和更新都会刷新最近使用顺序。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "为 LRUCache 测试使用 test_lru_cache.py 命名，并在文件顶部保留 pytestmark = pytest.mark.usefixtures('isolated_env') 以隔离环境变量。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "验证 get/put 刷新顺序时，先访问或更新旧键，再插入新键触发淘汰，断言旧键保留而被替代键淘汰，确保访问和更新都会刷新最近使用顺序。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "test_code_len": 2744
+     },
+     {
+      "gen": 4,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个 pytest 测试函数的 docstring 首行使用 Given/When/Then 三段式描述前置条件、操作和预期结果。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "编写温度转换测试时，使用 @pytest.mark.parametrize 覆盖 -40、0、100 等关键边界值，并用 pytest.approx 与失败说明信息断言转换结果。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "为 roman_to_int 编写测试时，测试文件命名为 test_roman.py，并在文件顶部保留 pytestmark = pytest.mark.usefixtures('isolated_env') 以隔离环境变量。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "每个罗马数字测试函数只验证一个行为，且 docstring 首行使用 Given/When/Then 三段式描述前置条件、操作和预期结果。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "为 LRUCache 测试使用 test_lru_cache.py 命名，并在文件顶部保留 pytestmark = pytest.mark.usefixtures('isolated_env') 以隔离环境变量。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "验证 get/put 刷新顺序时，先访问或更新旧键，再插入新键触发淘汰，断言旧键保留而被替代键淘汰，确保访问和更新都会刷新最近使用顺序。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "为 is_palindrome 编写 pytest 测试时，测试文件按 test_<模块名>.py 命名（本次为 test_palindrome.py），文件顶部保留 pytestmark = pytest.mark.usefixtures('isolated_env') 以隔离环境变量。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "使用 @pytest.mark.parametrize 分别覆盖空串、大小写、Unicode、标点与仅标点字符串等场景，并在断言中附带输入值与期望值的失败说明。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个 is_palindrome 测试函数只验证一个行为，docstring 首行使用 Given/When/Then 三段式描述前置条件、操作和预期结果。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "每个 is_palindrome 测试函数只验证一个行为，docstring 首行使用 Given/When/Then 三段式描述前置条件、操作和预期结果。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "test_code_len": 2691
+     },
+     {
+      "gen": 5,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个 pytest 测试函数的 docstring 首行使用 Given/When/Then 三段式描述前置条件、操作和预期结果。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "编写温度转换测试时，使用 @pytest.mark.parametrize 覆盖 -40、0、100 等关键边界值，并用 pytest.approx 与失败说明信息断言转换结果。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "为 roman_to_int 编写测试时，测试文件命名为 test_roman.py，并在文件顶部保留 pytestmark = pytest.mark.usefixtures('isolated_env') 以隔离环境变量。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "每个罗马数字测试函数只验证一个行为，且 docstring 首行使用 Given/When/Then 三段式描述前置条件、操作和预期结果。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "为 LRUCache 测试使用 test_lru_cache.py 命名，并在文件顶部保留 pytestmark = pytest.mark.usefixtures('isolated_env') 以隔离环境变量。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "验证 get/put 刷新顺序时，先访问或更新旧键，再插入新键触发淘汰，断言旧键保留而被替代键淘汰，确保访问和更新都会刷新最近使用顺序。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个 is_palindrome 测试函数只验证一个行为，docstring 首行使用 Given/When/Then 三段式描述前置条件、操作和预期结果。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "为 fizzbuzz 编写测试时，测试文件命名为 test_fizzbuzz.py，并在文件顶部保留 pytestmark = pytest.mark.usefixtures('isolated_env') 以隔离环境变量。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "为 fizzbuzz 编写参数化测试时，按 3 的倍数、5 的倍数、15 的倍数和普通数拆分为独立测试函数，每个函数只验证一个行为，docstring 首行使用 Given/When/Then 三段式描述场景。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "参数化测试的断言附带失败说明信息，明确指出输入 n、期望值和实际值，便于定位失败原因。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "参数化测试的断言附带失败说明信息，明确指出输入 n、期望值和实际值，便于定位失败原因。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "test_code_len": 1805
+     }
+    ],
+    "architecture": "full_append",
+    "window": 16
+   },
+   {
+    "cond": "A25",
+    "rep": 3,
+    "gens": [
+     {
+      "gen": 0,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "测试文件顶部使用 pytestmark = pytest.mark.usefixtures('isolated_env') 统一隔离环境变量，依赖 conftest.py 提供的公共 fixture，不在测试文件内重复定义或跨文件导入。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "每个测试函数 docstring 首行采用 Given/When/Then 描述场景，测试名聚焦单一被测行为。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "断言均附带说明信息；空栈 pop 场景使用 pytest.raises 明确验证异常抛出。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "断言均附带说明信息；空栈 pop 场景使用 pytest.raises 明确验证异常抛出。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "test_code_len": 1771
+     },
+     {
+      "gen": 1,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言均附带说明信息；空栈 pop 场景使用 pytest.raises 明确验证异常抛出。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "在 parse_email 非法输入测试中，采用每类非法输入一个独立测试函数，并在 docstring 首行以 Given/When/Then 描述，符合团队测试规范。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，复用 conftest 中的隔离 fixture，避免环境变量污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "对非法邮箱统一使用 pytest.raises(ValueError, match=\".\") 断言异常类型并确认错误信息非空，使失败时能明确暴露拒绝非法输入的意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "在 parse_email 非法输入测试中，采用每类非法输入一个独立测试函数，并在 docstring 首行以 Given/When/Then 描述，符合团队测试规范。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，复用 conftest 中的隔离 fixture，避免环境变量污染。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "test_code_len": 763
+     },
+     {
+      "gen": 2,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言均附带说明信息；空栈 pop 场景使用 pytest.raises 明确验证异常抛出。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "在 parse_email 非法输入测试中，采用每类非法输入一个独立测试函数，并在 docstring 首行以 Given/When/Then 描述，符合团队测试规范。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，复用 conftest 中的隔离 fixture，避免环境变量污染。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "在 test_bank_account.py 顶部声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，复用 conftest 中的隔离 fixture，避免环境变量污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "针对 BankAccount.withdraw 的余额不足场景，使用 pytest.raises(ValueError) 验证异常类型，并用独立测试确认失败取款不改变余额；每个测试只聚焦一个行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试函数 docstring 首行用 Given/When/Then 描述场景，测试名直接体现被测行为，断言附带说明信息；异常测试不绑定具体错误文案，降低与实现提示语耦合。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "针对 BankAccount.withdraw 的余额不足场景，使用 pytest.raises(ValueError) 验证异常类型，并用独立测试确认失败取款不改变余额；每个测试只聚焦一个行为。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "test_code_len": 1075
+     },
+     {
+      "gen": 3,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言均附带说明信息；空栈 pop 场景使用 pytest.raises 明确验证异常抛出。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "在 parse_email 非法输入测试中，采用每类非法输入一个独立测试函数，并在 docstring 首行以 Given/When/Then 描述，符合团队测试规范。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，复用 conftest 中的隔离 fixture，避免环境变量污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "针对 BankAccount.withdraw 的余额不足场景，使用 pytest.raises(ValueError) 验证异常类型，并用独立测试确认失败取款不改变余额；每个测试只聚焦一个行为。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "本次测试文件顶部声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，并在测试函数 docstring 首行按 Given/When/Then 描述场景，沿用团队测试规范。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次使用 pytest.mark.parametrize 参数化覆盖 -40、0、100 三个边界/典型输入，并为每个参数组合设置可读 id，保持同一测试函数只验证温度换算这一行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次在参数化浮点换算断言中使用 pytest.approx 比较结果，并在断言消息中写明摄氏输入、期望华氏值与实际值，失败时可直接定位换算错误。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [],
+      "test_code_len": 758
+     },
+     {
+      "gen": 4,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言均附带说明信息；空栈 pop 场景使用 pytest.raises 明确验证异常抛出。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "在 parse_email 非法输入测试中，采用每类非法输入一个独立测试函数，并在 docstring 首行以 Given/When/Then 描述，符合团队测试规范。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，复用 conftest 中的隔离 fixture，避免环境变量污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "针对 BankAccount.withdraw 的余额不足场景，使用 pytest.raises(ValueError) 验证异常类型，并用独立测试确认失败取款不改变余额；每个测试只聚焦一个行为。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "在 roman_to_int 的 pytest 测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，复用 conftest 中的隔离 fixture，避免环境变量污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "为罗马数字减法组合 IV、IX、XL、XC、CD、CM 分别编写独立测试函数，每个函数只验证一个减法组合的转换行为，并在 docstring 首行用 Given/When/Then 描述场景。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "在 roman_to_int 的断言中附带失败说明和实际结果，例如 Expected IV to convert to 4, got {result}，便于快速定位转换错误。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [],
+      "test_code_len": 2249
+     },
+     {
+      "gen": 5,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言均附带说明信息；空栈 pop 场景使用 pytest.raises 明确验证异常抛出。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "在 parse_email 非法输入测试中，采用每类非法输入一个独立测试函数，并在 docstring 首行以 Given/When/Then 描述，符合团队测试规范。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，复用 conftest 中的隔离 fixture，避免环境变量污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "针对 BankAccount.withdraw 的余额不足场景，使用 pytest.raises(ValueError) 验证异常类型，并用独立测试确认失败取款不改变余额；每个测试只聚焦一个行为。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "在 LRUCache 测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，直接复用 conftest 中的隔离 fixture，避免环境变量污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "将 LRUCache 的容量淘汰、get 刷新顺序、put 更新并刷新顺序拆分为独立测试函数，每个测试只验证一个行为，测试名直接描述预期行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "LRUCache 测试中每个测试函数 docstring 首行使用 Given/When/Then 三段式，断言附带说明信息以便失败时定位意图。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "在 LRUCache 测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，直接复用 conftest 中的隔离 fixture，避免环境变量污染。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "test_code_len": 2973
+     }
+    ],
+    "architecture": "full_append",
+    "window": 16
+   },
+   {
+    "cond": "A25",
+    "rep": 4,
+    "gens": [
+     {
+      "gen": 0,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "为 is_palindrome 编写 pytest 测试时，在测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，确保环境变量隔离。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "测试函数 docstring 首行采用 Given/When/Then 三段式描述场景，例如 'Given ..., When ..., Then ...'。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [],
+      "test_code_len": 2382
+     },
+     {
+      "gen": 1,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "本次为 fizzbuzz(n: int) -> str 编写参数化 pytest 测试：文件命名为 test_fizzbuzz.py，测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\") 以隔离环境变量，避免用例间相互污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次按行为拆分测试函数并分别用 @pytest.mark.parametrize 覆盖普通数、3 的倍数、5 的倍数、15 的倍数四类场景，每个测试函数的 docstring 首行采用 Given/When/Then 三段式描述场景。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "本次所有断言均附带说明信息（包含输入值与期望值/实际值），失败时可直接看出被测意图；isolated_env 等公共 fixture 仍放在 conftest.py 中，未跨文件直接导入。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "本次按行为拆分测试函数并分别用 @pytest.mark.parametrize 覆盖普通数、3 的倍数、5 的倍数、15 的倍数四类场景，每个测试函数的 docstring 首行采用 Given/When/Then 三段式描述场景。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "test_code_len": 1268
+     },
+     {
+      "gen": 2,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次按行为拆分测试函数并分别用 @pytest.mark.parametrize 覆盖普通数、3 的倍数、5 的倍数、15 的倍数四类场景，每个测试函数的 docstring 首行采用 Given/When/Then 三段式描述场景。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "本次采用团队隔离环境约定：测试文件顶部声明 `pytestmark = pytest.mark.usefixtures('isolated_env')`，避免用例间环境变量污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次采用 Given/When/Then 文档约定：每个测试函数 docstring 首行按 Given/When/Then 描述场景，测试名写清单一被测行为。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "本次新增经验：空栈 pop 异常用例使用 `pytest.raises(IndexError)` 明确异常类型，避免捕获过宽的 Exception；所有断言附带说明信息便于失败定位。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "本次采用 Given/When/Then 文档约定：每个测试函数 docstring 首行按 Given/When/Then 描述场景，测试名写清单一被测行为。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "test_code_len": 2569
+     },
+     {
+      "gen": 3,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次按行为拆分测试函数并分别用 @pytest.mark.parametrize 覆盖普通数、3 的倍数、5 的倍数、15 的倍数四类场景，每个测试函数的 docstring 首行采用 Given/When/Then 三段式描述场景。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "本次采用 Given/When/Then 文档约定：每个测试函数 docstring 首行按 Given/When/Then 描述场景，测试名写清单一被测行为。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "本次为 parse_email 编写 pytest 测试时，在测试文件顶部设置 pytestmark = pytest.mark.usefixtures('isolated_env')，由 conftest.py 提供隔离环境 fixture，避免环境变量污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次按非法输入类型拆分测试函数：空/空白、无 @、多 @，每类用 @pytest.mark.parametrize 覆盖多个样例，每个测试函数只验证一个拒绝行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次测试函数 docstring 首行统一用 Given/When/Then 描述场景，并在 pytest.raises 后的断言中加入包含非法地址的失败说明。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "本次为 parse_email 编写 pytest 测试时，在测试文件顶部设置 pytestmark = pytest.mark.usefixtures('isolated_env')，由 conftest.py 提供隔离环境 fixture，避免环境变量污染。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "test_code_len": 1690
+     },
+     {
+      "gen": 4,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次按行为拆分测试函数并分别用 @pytest.mark.parametrize 覆盖普通数、3 的倍数、5 的倍数、15 的倍数四类场景，每个测试函数的 docstring 首行采用 Given/When/Then 三段式描述场景。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "本次采用 Given/When/Then 文档约定：每个测试函数 docstring 首行按 Given/When/Then 描述场景，测试名写清单一被测行为。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "本次为 parse_email 编写 pytest 测试时，在测试文件顶部设置 pytestmark = pytest.mark.usefixtures('isolated_env')，由 conftest.py 提供隔离环境 fixture，避免环境变量污染。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "本次为 BankAccount.withdraw 编写 pytest 测试时，在测试文件顶部设置 pytestmark = pytest.mark.usefixtures('isolated_env')，并由 conftest.py 提供隔离环境 fixture。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次测试函数使用 Given/When/Then 三段式 docstring 描述场景，测试名写清单一行为：余额不足时 withdraw 抛出 ValueError。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "本次用 @pytest.mark.parametrize 覆盖多个余额不足的 withdraw 金额，保持每个测试函数只验证一个行为。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [],
+      "test_code_len": 603
+     },
+     {
+      "gen": 5,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次按行为拆分测试函数并分别用 @pytest.mark.parametrize 覆盖普通数、3 的倍数、5 的倍数、15 的倍数四类场景，每个测试函数的 docstring 首行采用 Given/When/Then 三段式描述场景。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "本次采用 Given/When/Then 文档约定：每个测试函数 docstring 首行按 Given/When/Then 描述场景，测试名写清单一被测行为。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "本次为 parse_email 编写 pytest 测试时，在测试文件顶部设置 pytestmark = pytest.mark.usefixtures('isolated_env')，由 conftest.py 提供隔离环境 fixture，避免环境变量污染。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "本次为 celsius_to_fahrenheit 编写参数化 pytest 测试时，在测试文件顶部设置 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境 fixture 由 conftest.py 提供，避免用例间环境变量相互污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次采用 Given/When/Then 文档约定：每个测试函数 docstring 首行按 Given/When/Then 描述场景，测试名写清单一被测行为。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "本次按行为拆分测试函数（返回值类型、常规温度换算、边界温度），各自用 @pytest.mark.parametrize 覆盖并用 pytest.param(id=...) 命名用例，浮点结果统一用 pytest.approx 比较，断言附带失败说明信息。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "本次采用 Given/When/Then 文档约定：每个测试函数 docstring 首行按 Given/When/Then 描述场景，测试名写清单一被测行为。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "test_code_len": 1961
+     }
+    ],
+    "architecture": "full_append",
+    "window": 16
+   },
+   {
+    "cond": "A25",
+    "rep": 5,
+    "gens": [
+     {
+      "gen": 0,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "在 test_roman.py 顶部添加 pytestmark = pytest.mark.usefixtures('isolated_env')，复用 conftest.py 中的公共 fixture 隔离环境变量。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "roman_to_int 的每个测试函数 docstring 首行使用 Given/When/Then 三段式描述，断言消息包含输入、实际返回值和期望值。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "使用 pytest.mark.parametrize 并按单符号、减法组合、重复符号、组合数值拆分测试函数，分别验证一个行为，并为用例设置可读 ids。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "使用 pytest.mark.parametrize 并按单符号、减法组合、重复符号、组合数值拆分测试函数，分别验证一个行为，并为用例设置可读 ids。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "test_code_len": 2487
+     },
+     {
+      "gen": 1,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "使用 pytest.mark.parametrize 并按单符号、减法组合、重复符号、组合数值拆分测试函数，分别验证一个行为，并为用例设置可读 ids。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "为 LRUCache 测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量并避免缓存用例间状态污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "为 LRUCache 测试函数使用 Given/When/Then 首行 docstring，并在断言后附带说明信息，使失败时能直接看出预期行为。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "按 LRU 行为拆分测试：get 命中/缺失、get 刷新顺序、put 容量淘汰、put 更新刷新顺序；对缺失 key 使用 pytest.mark.parametrize 和可读 ids。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "为 LRUCache 测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量并避免缓存用例间状态污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "按 LRU 行为拆分测试：get 命中/缺失、get 刷新顺序、put 容量淘汰、put 更新刷新顺序；对缺失 key 使用 pytest.mark.parametrize 和可读 ids。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "test_code_len": 2528
+     },
+     {
+      "gen": 2,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "使用 pytest.mark.parametrize 并按单符号、减法组合、重复符号、组合数值拆分测试函数，分别验证一个行为，并为用例设置可读 ids。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "为 LRUCache 测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量并避免缓存用例间状态污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "按 LRU 行为拆分测试：get 命中/缺失、get 刷新顺序、put 容量淘汰、put 更新刷新顺序；对缺失 key 使用 pytest.mark.parametrize 和可读 ids。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "编写 is_palindrome 测试时，按空串、简单回文/非回文、大小写不敏感、标点空白忽略、Unicode 回文/非回文拆分独立测试函数，并用 pytest.mark.parametrize 和可读 ids 覆盖多组输入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "沿用团队约定：测试文件顶部添加 pytestmark = pytest.mark.usefixtures('isolated_env')；测试函数 docstring 以 Given/When/Then 描述；断言附带输入与期望说明。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "验证字符串规范化语义时，对大小写、标点、空白分别准备正例和反例，避免单个用例同时混合多个行为，便于定位失败原因。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "编写 is_palindrome 测试时，按空串、简单回文/非回文、大小写不敏感、标点空白忽略、Unicode 回文/非回文拆分独立测试函数，并用 pytest.mark.parametrize 和可读 ids 覆盖多组输入。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "test_code_len": 4283
+     },
+     {
+      "gen": 3,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "使用 pytest.mark.parametrize 并按单符号、减法组合、重复符号、组合数值拆分测试函数，分别验证一个行为，并为用例设置可读 ids。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "为 LRUCache 测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量并避免缓存用例间状态污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "按 LRU 行为拆分测试：get 命中/缺失、get 刷新顺序、put 容量淘汰、put 更新刷新顺序；对缺失 key 使用 pytest.mark.parametrize 和可读 ids。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "编写 is_palindrome 测试时，按空串、简单回文/非回文、大小写不敏感、标点空白忽略、Unicode 回文/非回文拆分独立测试函数，并用 pytest.mark.parametrize 和可读 ids 覆盖多组输入。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "为 fizzbuzz 编写测试时，在 test_fizzbuzz.py 顶部添加 pytestmark = pytest.mark.usefixtures('isolated_env')，隔离环境变量，避免用例间相互污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "按 3 的倍数（非 15）、5 的倍数（非 15）、15 的倍数、普通数字拆分独立测试函数，每个函数只验证一个行为，并使用 pytest.mark.parametrize 与可读 ids 覆盖多组输入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试函数 docstring 首行采用 Given/When/Then 三段式描述场景，断言附带说明信息，失败时能直接看出意图。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "按 3 的倍数（非 15）、5 的倍数（非 15）、15 的倍数、普通数字拆分独立测试函数，每个函数只验证一个行为，并使用 pytest.mark.parametrize 与可读 ids 覆盖多组输入。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "test_code_len": 1505
+     },
+     {
+      "gen": 4,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "使用 pytest.mark.parametrize 并按单符号、减法组合、重复符号、组合数值拆分测试函数，分别验证一个行为，并为用例设置可读 ids。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "为 LRUCache 测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量并避免缓存用例间状态污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "按 LRU 行为拆分测试：get 命中/缺失、get 刷新顺序、put 容量淘汰、put 更新刷新顺序；对缺失 key 使用 pytest.mark.parametrize 和可读 ids。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "编写 is_palindrome 测试时，按空串、简单回文/非回文、大小写不敏感、标点空白忽略、Unicode 回文/非回文拆分独立测试函数，并用 pytest.mark.parametrize 和可读 ids 覆盖多组输入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "按 3 的倍数（非 15）、5 的倍数（非 15）、15 的倍数、普通数字拆分独立测试函数，每个函数只验证一个行为，并使用 pytest.mark.parametrize 与可读 ids 覆盖多组输入。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "为 Stack 测试文件顶部添加 pytestmark = pytest.mark.usefixtures('isolated_env')，隔离环境变量，避免栈测试用例间状态污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "按 Stack 行为拆分测试：新建为空、push 后非空、peek 返回栈顶且不弹出、pop 返回并移除栈顶、重复 pop 清空、空栈 pop 抛 IndexError，每个测试只验证一个行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "为 Stack 的 peek/pop 多输入场景使用 pytest.mark.parametrize 并设置 single-element/two-elements/three-elements 等可读 ids，同时保留 Given/When/Then docstring 和带说明的断言。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "为 Stack 测试文件顶部添加 pytestmark = pytest.mark.usefixtures('isolated_env')，隔离环境变量，避免栈测试用例间状态污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "为 Stack 的 peek/pop 多输入场景使用 pytest.mark.parametrize 并设置 single-element/two-elements/three-elements 等可读 ids，同时保留 Given/When/Then docstring 和带说明的断言。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "test_code_len": 2173
+     },
+     {
+      "gen": 5,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "使用 pytest.mark.parametrize 并按单符号、减法组合、重复符号、组合数值拆分测试函数，分别验证一个行为，并为用例设置可读 ids。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "为 LRUCache 测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量并避免缓存用例间状态污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "按 LRU 行为拆分测试：get 命中/缺失、get 刷新顺序、put 容量淘汰、put 更新刷新顺序；对缺失 key 使用 pytest.mark.parametrize 和可读 ids。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "编写 is_palindrome 测试时，按空串、简单回文/非回文、大小写不敏感、标点空白忽略、Unicode 回文/非回文拆分独立测试函数，并用 pytest.mark.parametrize 和可读 ids 覆盖多组输入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "按 3 的倍数（非 15）、5 的倍数（非 15）、15 的倍数、普通数字拆分独立测试函数，每个函数只验证一个行为，并使用 pytest.mark.parametrize 与可读 ids 覆盖多组输入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "为 Stack 测试文件顶部添加 pytestmark = pytest.mark.usefixtures('isolated_env')，隔离环境变量，避免栈测试用例间状态污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "为 Stack 的 peek/pop 多输入场景使用 pytest.mark.parametrize 并设置 single-element/two-elements/three-elements 等可读 ids，同时保留 Given/When/Then docstring 和带说明的断言。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "为 parse_email 测试文件顶部添加 pytestmark = pytest.mark.usefixtures('isolated_env')，隔离环境变量，避免解析用例间状态污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "按无 @、多 @、空/空白、缺少 local/domain、内部空白拆分 parse_email 非法输入测试，使用 pytest.mark.parametrize 与可读 ids，每个函数只验证一类拒绝行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "为 parse_email 非法输入用例使用 try/except ValueError 与 pytest.fail 拒绝断言，并在失败信息中附带 addr!r，同时保持 Given/When/Then docstring。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "为 parse_email 非法输入用例使用 try/except ValueError 与 pytest.fail 拒绝断言，并在失败信息中附带 addr!r，同时保持 Given/When/Then docstring。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "test_code_len": 2480
+     }
+    ],
+    "architecture": "full_append",
+    "window": 16
+   },
+   {
+    "cond": "A25",
+    "rep": 6,
+    "gens": [
+     {
+      "gen": 0,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "编写测试文件时在顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，使用例共享隔离环境 fixture。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "测试函数 docstring 使用 Given/When/Then 三段式描述场景，测试名明确单一被测行为。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "使用 pytest.raises(ValueError) 捕获异常后，以带说明信息的 assert 校验异常消息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [],
+      "test_code_len": 622
+     },
+     {
+      "gen": 1,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "本次为 celsius_to_fahrenheit 编写参数化测试时，在文件顶部设置 pytestmark = pytest.mark.usefixtures('isolated_env')，复用 conftest.py 中的公共隔离 fixture。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "参数化用例用 pytest.param 显式设置 -40C、0C、100C 等边界 id，断言附加输入、期望和实际值，失败时可直接定位。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试函数 docstring 首行按 Given/When/Then 描述场景：给定摄氏度输入，调用转换函数，断言返回预期华氏度。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [],
+      "test_code_len": 820
+     },
+     {
+      "gen": 2,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "本次按团队规范在测试文件顶部声明 pytestmark 使用 isolated_env fixture，公共 fixture 依赖 conftest.py，未在测试文件间直接导入。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次测试函数 docstring 首行统一采用 Given/When/Then 三段式描述场景，并在断言中附加 f-string 失败说明，便于定位输入与期望值。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "本次针对 roman_to_int 使用 pytest.mark.parametrize 按单字符映射、加法组合、减法组合、复杂组合拆分测试函数，每个测试只验证一个行为，覆盖 IV/IX/XL/XC/CD/CM，文件按 test_roman_to_int.py 命名。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "本次测试函数 docstring 首行统一采用 Given/When/Then 三段式描述场景，并在断言中附加 f-string 失败说明，便于定位输入与期望值。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "test_code_len": 1953
+     },
+     {
+      "gen": 3,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次测试函数 docstring 首行统一采用 Given/When/Then 三段式描述场景，并在断言中附加 f-string 失败说明，便于定位输入与期望值。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "在 test_lru_cache.py 顶部声明 `pytestmark = pytest.mark.usefixtures(\"isolated_env\")`，隔离环境变量，避免用例间相互污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "每个 LRUCache 测试函数 docstring 首行采用 Given/When/Then 描述，并在断言中附带 f-string 失败说明，便于定位输入与期望值。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "为兼容缺失键返回 None/-1 或抛出 KeyError 的 LRUCache 实现，使用 _assert_present/_assert_evicted 辅助函数统一判断键是否存在。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "每个 LRUCache 测试函数 docstring 首行采用 Given/When/Then 描述，并在断言中附带 f-string 失败说明，便于定位输入与期望值。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "为兼容缺失键返回 None/-1 或抛出 KeyError 的 LRUCache 实现，使用 _assert_present/_assert_evicted 辅助函数统一判断键是否存在。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "test_code_len": 2282
+     },
+     {
+      "gen": 4,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次测试函数 docstring 首行统一采用 Given/When/Then 三段式描述场景，并在断言中附加 f-string 失败说明，便于定位输入与期望值。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "每个 LRUCache 测试函数 docstring 首行采用 Given/When/Then 描述，并在断言中附带 f-string 失败说明，便于定位输入与期望值。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "为兼容缺失键返回 None/-1 或抛出 KeyError 的 LRUCache 实现，使用 _assert_present/_assert_evicted 辅助函数统一判断键是否存在。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "本次为 is_palindrome 编写 pytest 测试时，在测试文件顶部添加 pytestmark = pytest.mark.usefixtures('isolated_env')，沿用团队的环境隔离约定。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次测试函数 docstring 首行统一写成 Given/When/Then 场景描述，并在断言中使用 f-string 附带输入与返回值，便于失败定位。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "本次将 is_palindrome 的测试按行为拆分为空串、大小写、Unicode、标点与非回文等独立测试函数，测试名明确表达被测行为。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [],
+      "test_code_len": 2323
+     },
+     {
+      "gen": 5,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次测试函数 docstring 首行统一采用 Given/When/Then 三段式描述场景，并在断言中附加 f-string 失败说明，便于定位输入与期望值。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "每个 LRUCache 测试函数 docstring 首行采用 Given/When/Then 描述，并在断言中附带 f-string 失败说明，便于定位输入与期望值。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "为兼容缺失键返回 None/-1 或抛出 KeyError 的 LRUCache 实现，使用 _assert_present/_assert_evicted 辅助函数统一判断键是否存在。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "为 fizzbuzz 编写 pytest 测试时，按「3 的倍数（非 5 的倍数）」「5 的倍数（非 3 的倍数）」「15 的倍数」「普通数」四类各写一个参数化测试函数，每个函数只验证一类行为，并用 ids 标注用例输入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "参数化测试的断言统一附加 f-string 失败说明，写明函数名、输入 n、期望值与实际值（含类别说明），失败时可直接定位用例。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次测试文件命名为 test_fizzbuzz.py，顶部设置 pytestmark = pytest.mark.usefixtures('isolated_env')，每个测试函数 docstring 首行以 Given/When/Then 三段式描述场景。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [],
+      "test_code_len": 1822
+     }
+    ],
+    "architecture": "full_append",
+    "window": 16
+   },
+   {
+    "cond": "A25",
+    "rep": 7,
+    "gens": [
+     {
+      "gen": 0,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "本次测试文件按团队规范命名为 test_stack.py，并在顶部设置 pytestmark = pytest.mark.usefixtures(\"isolated_env\") 以隔离环境变量。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次在每个测试函数首行 docstring 使用 Given/When/Then 描述场景，保持每个测试只验证一个行为，并给断言添加中文失败说明。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "本次空栈 pop 异常测试使用 pytest.raises(Exception) 捕获实现抛出的异常，再通过 exc_info.value 非空断言确认异常确实发生。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "本次在每个测试函数首行 docstring 使用 Given/When/Then 描述场景，保持每个测试只验证一个行为，并给断言添加中文失败说明。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "test_code_len": 1366
+     },
+     {
+      "gen": 1,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次在每个测试函数首行 docstring 使用 Given/When/Then 描述场景，保持每个测试只验证一个行为，并给断言添加中文失败说明。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "本次在 test_parse_email.py 顶部写入 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，复用 conftest.py 中的环境隔离 fixture，避免环境变量污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次每个测试函数首行 docstring 使用 Given/When/Then 三段式描述场景，测试名明确写出被测行为，且每个测试只验证一个非法输入场景。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "本次对非法输入断言封装了带中文失败说明的辅助函数，断言失败时可直接看出地址场景和预期异常。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "本次对非法输入断言封装了带中文失败说明的辅助函数，断言失败时可直接看出地址场景和预期异常。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "test_code_len": 1271
+     },
+     {
+      "gen": 2,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次在每个测试函数首行 docstring 使用 Given/When/Then 描述场景，保持每个测试只验证一个行为，并给断言添加中文失败说明。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "本次对非法输入断言封装了带中文失败说明的辅助函数，断言失败时可直接看出地址场景和预期异常。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "本次在 test_bank_account.py 顶部设置 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，保持测试环境隔离。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次在每个测试函数首行 docstring 使用 Given/When/Then 描述余额不足取款场景，并按“抛 ValueError”和“余额不变”拆分为独立测试，确保每个测试只验证一个行为。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "本次将余额不足时抛 ValueError 的检查封装为带中文失败说明的辅助函数，失败时可直接看出预期异常与实际结果。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "本次将余额不足时抛 ValueError 的检查封装为带中文失败说明的辅助函数，失败时可直接看出预期异常与实际结果。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "test_code_len": 1015
+     },
+     {
+      "gen": 3,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次在每个测试函数首行 docstring 使用 Given/When/Then 描述场景，保持每个测试只验证一个行为，并给断言添加中文失败说明。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "本次对非法输入断言封装了带中文失败说明的辅助函数，断言失败时可直接看出地址场景和预期异常。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次将余额不足时抛 ValueError 的检查封装为带中文失败说明的辅助函数，失败时可直接看出预期异常与实际结果。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "本次对温度转换的边界点用 pytest.mark.parametrize 配合 pytest.param(id=...) 命名（-40 两标度重合点、0 冰点、100 沸点），浮点结果统一用 pytest.approx 比较，并给断言附中文失败说明，失败时可直接看出输入、预期与实际值。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次遵循团队约定：测试文件顶部声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\") 隔离环境变量，每个测试函数 docstring 首行用 Given/When/Then 三段式描述场景，测试文件命名为 test_temperature.py。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次把「两标度重合点 -40」与「每摄氏度对应 1.8 华氏度的线性增量」分别写成独立测试函数，测试名点明被测行为，保证每个测试只验证一个行为，便于失败时快速定位。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "本次对温度转换的边界点用 pytest.mark.parametrize 配合 pytest.param(id=...) 命名（-40 两标度重合点、0 冰点、100 沸点），浮点结果统一用 pytest.approx 比较，并给断言附中文失败说明，失败时可直接看出输入、预期与实际值。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "test_code_len": 1362
+     },
+     {
+      "gen": 4,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次在每个测试函数首行 docstring 使用 Given/When/Then 描述场景，保持每个测试只验证一个行为，并给断言添加中文失败说明。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "本次对非法输入断言封装了带中文失败说明的辅助函数，断言失败时可直接看出地址场景和预期异常。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次将余额不足时抛 ValueError 的检查封装为带中文失败说明的辅助函数，失败时可直接看出预期异常与实际结果。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次对温度转换的边界点用 pytest.mark.parametrize 配合 pytest.param(id=...) 命名（-40 两标度重合点、0 冰点、100 沸点），浮点结果统一用 pytest.approx 比较，并给断言附中文失败说明，失败时可直接看出输入、预期与实际值。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "本次测试文件顶部使用 pytestmark = pytest.mark.usefixtures('isolated_env')，每个测试函数 docstring 首行采用 Given/When/Then，并确保每个测试函数只验证一种转换行为。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次对 IV/IX/XL/XC/CD/CM 减法组合使用 pytest.mark.parametrize 搭配 pytest.param(id=...) 命名，断言附带中文失败说明，失败时可直接看出输入、预期与实际结果。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次将包含多组减法组合的 MCMXCIV 单独写成测试函数，避免与单个减法对或加法组合的行为混杂，并在断言中附中文失败说明。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "本次对 IV/IX/XL/XC/CD/CM 减法组合使用 pytest.mark.parametrize 搭配 pytest.param(id=...) 命名，断言附带中文失败说明，失败时可直接看出输入、预期与实际结果。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次将包含多组减法组合的 MCMXCIV 单独写成测试函数，避免与单个减法对或加法组合的行为混杂，并在断言中附中文失败说明。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "test_code_len": 1509
+     },
+     {
+      "gen": 5,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次在每个测试函数首行 docstring 使用 Given/When/Then 描述场景，保持每个测试只验证一个行为，并给断言添加中文失败说明。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "本次对非法输入断言封装了带中文失败说明的辅助函数，断言失败时可直接看出地址场景和预期异常。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次将余额不足时抛 ValueError 的检查封装为带中文失败说明的辅助函数，失败时可直接看出预期异常与实际结果。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次对温度转换的边界点用 pytest.mark.parametrize 配合 pytest.param(id=...) 命名（-40 两标度重合点、0 冰点、100 沸点），浮点结果统一用 pytest.approx 比较，并给断言附中文失败说明，失败时可直接看出输入、预期与实际值。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次对 IV/IX/XL/XC/CD/CM 减法组合使用 pytest.mark.parametrize 搭配 pytest.param(id=...) 命名，断言附带中文失败说明，失败时可直接看出输入、预期与实际结果。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次将包含多组减法组合的 MCMXCIV 单独写成测试函数，避免与单个减法对或加法组合的行为混杂，并在断言中附中文失败说明。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "本次为 LRUCache 的 get/put 测试在文件顶部添加 pytestmark = pytest.mark.usefixtures('isolated_env')，每个测试函数首行 docstring 使用 Given/When/Then 描述场景，并保持一个测试只验证一个核心行为。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次将缓存命中值校验和淘汰缺失键校验分别封装为 _assert_value 与 _assert_key_absent 辅助断言，所有断言附中文失败说明；缺失键兼容返回 None、-1 或抛 KeyError 的常见实现差异。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次用容量 2 的 LRUCache 构造 put a、b 后 get a 再 put c 的场景验证 get 会刷新最近使用顺序，并用 put a、b 后 put a 更新再 put c 的场景验证 put 更新已有键也会刷新淘汰顺序。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [],
+      "test_code_len": 2530
+     }
+    ],
+    "architecture": "full_append",
+    "window": 16
+   },
+   {
+    "cond": "A25",
+    "rep": 8,
+    "gens": [
+     {
+      "gen": 0,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "为 is_palindrome 编写测试时，按空串、大小写、Unicode、标点分别拆分独立用例，并补充非回文负向用例，避免只断言 True 的测试被恒真实现蒙混通过。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部应用 pytestmark = pytest.mark.usefixtures('isolated_env')，复用团队环境隔离约定。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "每个测试函数 docstring 首行用 Given/When/Then 描述场景，并在断言中附带中文失败说明。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "每个测试函数 docstring 首行用 Given/When/Then 描述场景，并在断言中附带中文失败说明。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "test_code_len": 931
+     },
+     {
+      "gen": 1,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数 docstring 首行用 Given/When/Then 描述场景，并在断言中附带中文失败说明。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "测试文件顶部添加 pytestmark = pytest.mark.usefixtures('isolated_env')，复用 conftest.py 中的 isolated_env fixture 隔离环境变量。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "为 fizzbuzz 编写参数化测试时，按 3 的倍数、5 的倍数、15 的倍数、普通数拆分成独立测试函数，每个函数只验证一种返回行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试函数 docstring 首行使用 Given/When/Then 描述场景，断言中附带中文失败说明和实际返回值。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "测试函数 docstring 首行使用 Given/When/Then 描述场景，断言中附带中文失败说明和实际返回值。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "test_code_len": 1134
+     },
+     {
+      "gen": 2,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数 docstring 首行用 Given/When/Then 描述场景，并在断言中附带中文失败说明。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "测试函数 docstring 首行使用 Given/When/Then 描述场景，断言中附带中文失败说明和实际返回值。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "为 Stack 等 ADT 编写 pytest 测试时，每个测试函数 docstring 首行用 Given/When/Then 三段式描述场景，并在 assert 的中文失败说明中附带实际返回值（f\"... 实际返回 {result!r}\"），失败时可直接看出意图与真实结果。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "当需求未明确被测异常类型时，在测试文件顶部用 try/except ImportError 优先引入模块专用异常（如 EmptyStackError）、失败则回退到内置 IndexError，并用模块级常量统一在 pytest.raises 中引用，避免测试与具体异常实现强耦合。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture isolated_env 由 conftest.py 提供，测试文件只在模块级写 pytestmark = pytest.mark.usefixtures(\"isolated_env\") 声明使用，不在测试文件内导入或重复定义该 fixture。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "公共 fixture isolated_env 由 conftest.py 提供，测试文件只在模块级写 pytestmark = pytest.mark.usefixtures(\"isolated_env\") 声明使用，不在测试文件内导入或重复定义该 fixture。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "test_code_len": 3041
+     },
+     {
+      "gen": 3,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数 docstring 首行用 Given/When/Then 描述场景，并在断言中附带中文失败说明。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "测试函数 docstring 首行使用 Given/When/Then 描述场景，断言中附带中文失败说明和实际返回值。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "公共 fixture isolated_env 由 conftest.py 提供，测试文件只在模块级写 pytestmark = pytest.mark.usefixtures(\"isolated_env\") 声明使用，不在测试文件内导入或重复定义该 fixture。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "本次为 parse_email 编写非法输入测试时，文件命名为 test_parse_email.py，并在模块级仅声明 pytestmark = pytest.mark.usefixtures('isolated_env')，依赖 conftest.py 提供 isolated_env fixture。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次采用 pytest.raises(ValueError) 分别覆盖缺少 @、多个 @、空串三类非法输入，测试函数名直接写明被拒绝的输入形态，每个测试函数只验证一个行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次测试函数 docstring 首行使用 Given/When/Then 三段式描述场景，异常断言中附带中文失败说明和实际异常对象 repr。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "本次为 parse_email 编写非法输入测试时，文件命名为 test_parse_email.py，并在模块级仅声明 pytestmark = pytest.mark.usefixtures('isolated_env')，依赖 conftest.py 提供 isolated_env fixture。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次测试函数 docstring 首行使用 Given/When/Then 三段式描述场景，异常断言中附带中文失败说明和实际异常对象 repr。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "test_code_len": 1200
+     },
+     {
+      "gen": 4,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数 docstring 首行用 Given/When/Then 描述场景，并在断言中附带中文失败说明。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "测试函数 docstring 首行使用 Given/When/Then 描述场景，断言中附带中文失败说明和实际返回值。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "公共 fixture isolated_env 由 conftest.py 提供，测试文件只在模块级写 pytestmark = pytest.mark.usefixtures(\"isolated_env\") 声明使用，不在测试文件内导入或重复定义该 fixture。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次为 parse_email 编写非法输入测试时，文件命名为 test_parse_email.py，并在模块级仅声明 pytestmark = pytest.mark.usefixtures('isolated_env')，依赖 conftest.py 提供 isolated_env fixture。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次测试函数 docstring 首行使用 Given/When/Then 三段式描述场景，异常断言中附带中文失败说明和实际异常对象 repr。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "为 BankAccount.withdraw 编写 pytest 测试时，测试文件命名为 test_bank_account.py，并在模块级仅声明 pytestmark = pytest.mark.usefixtures('isolated_env')，isolated_env 由 conftest.py 提供，不在测试文件内导入或重复定义。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "测试余额不足抛 ValueError 时，使用 pytest.raises(ValueError) as exc_info 捕获异常，并通过断言附带中文失败说明和实际异常对象 repr。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试函数 docstring 首行使用 Given/When/Then 三段式描述场景，测试名写清被测行为，一个测试只验证一个行为。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "测试余额不足抛 ValueError 时，使用 pytest.raises(ValueError) as exc_info 捕获异常，并通过断言附带中文失败说明和实际异常对象 repr。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "test_code_len": 466
+     },
+     {
+      "gen": 5,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数 docstring 首行用 Given/When/Then 描述场景，并在断言中附带中文失败说明。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "测试函数 docstring 首行使用 Given/When/Then 描述场景，断言中附带中文失败说明和实际返回值。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "公共 fixture isolated_env 由 conftest.py 提供，测试文件只在模块级写 pytestmark = pytest.mark.usefixtures(\"isolated_env\") 声明使用，不在测试文件内导入或重复定义该 fixture。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次为 parse_email 编写非法输入测试时，文件命名为 test_parse_email.py，并在模块级仅声明 pytestmark = pytest.mark.usefixtures('isolated_env')，依赖 conftest.py 提供 isolated_env fixture。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次测试函数 docstring 首行使用 Given/When/Then 三段式描述场景，异常断言中附带中文失败说明和实际异常对象 repr。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "测试余额不足抛 ValueError 时，使用 pytest.raises(ValueError) as exc_info 捕获异常，并通过断言附带中文失败说明和实际异常对象 repr。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "本次为 celsius_to_fahrenheit 编写参数化测试，文件命名为 test_celsius_to_fahrenheit.py，并在模块级仅声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，依赖 conftest.py 提供 isolated_env fixture。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次使用 pytest.mark.parametrize 覆盖 -40、0、100 等输入，断言通过 pytest.approx 比较并附带中文失败说明和实际返回值，以同时验证边界与浮点精度。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次测试函数 docstring 首行使用 Given/When/Then 三段式描述场景，测试名清晰写明被测行为。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "本次测试函数 docstring 首行使用 Given/When/Then 三段式描述场景，测试名清晰写明被测行为。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "test_code_len": 712
+     }
+    ],
+    "architecture": "full_append",
+    "window": 16
+   },
+   {
+    "cond": "A25",
+    "rep": 9,
+    "gens": [
+     {
+      "gen": 0,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "为 roman_to_int 编写 pytest 测试时，测试文件命名为 test_roman.py（对应被测模块 roman），并在文件顶部声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\") 以隔离环境变量，公共 fixture 统一放在 conftest.py 中提供。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "每个测试函数 docstring 首行用 Given/When/Then 三段式描述场景，并用 pytest.mark.parametrize 配合显式 ids 覆盖 IV/IX/XL/XC/CD/CM 等减法组合，保持一个测试函数只验证一个行为。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "断言统一附带说明信息，写明输入值、期望值与实际值（如 f\"{roman!r} should convert to {expected}, got {result}\"），失败时可直观看出测试意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "每个测试函数 docstring 首行用 Given/When/Then 三段式描述场景，并用 pytest.mark.parametrize 配合显式 ids 覆盖 IV/IX/XL/XC/CD/CM 等减法组合，保持一个测试函数只验证一个行为。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "test_code_len": 3348
+     },
+     {
+      "gen": 1,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数 docstring 首行用 Given/When/Then 三段式描述场景，并用 pytest.mark.parametrize 配合显式 ids 覆盖 IV/IX/XL/XC/CD/CM 等减法组合，保持一个测试函数只验证一个行为。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "在 test_lru_cache.py 顶部设置 pytestmark = pytest.mark.usefixtures('isolated_env')，使用 conftest.py 中的公共 fixture 隔离环境，避免 LRU 用例之间相互污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "LRUCache 测试按行为拆分：缺失键读取、容量淘汰、get 刷新顺序、put 更新并刷新顺序分别写成独立测试；容量淘汰用 pytest.mark.parametrize 配合显式 ids 覆盖多个 capacity。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "LRU 断言附带失败说明信息，明确缺失键应返回 None、超容量应淘汰最久未使用键、get/put 访问应刷新最近使用顺序，失败时可直接看出测试意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [],
+      "test_code_len": 2504
+     },
+     {
+      "gen": 2,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数 docstring 首行用 Given/When/Then 三段式描述场景，并用 pytest.mark.parametrize 配合显式 ids 覆盖 IV/IX/XL/XC/CD/CM 等减法组合，保持一个测试函数只验证一个行为。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "为 is_palindrome 编写测试时，按空串、大小写、Unicode、标点/空白、非回文拒绝分别建测试函数，每个函数只验证一个行为，并用 pytest.mark.parametrize 显式 ids 标注输入类别。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，docstring 首行用 Given/When/Then 一句式描述，断言附 f-string 说明输入与预期。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "is_palindrome 的常见契约应覆盖大小写不敏感、忽略标点和空白、支持 Unicode 回文，同时显式验证非回文返回 False，避免只测正向用例。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，docstring 首行用 Given/When/Then 一句式描述，断言附 f-string 说明输入与预期。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "test_code_len": 3178
+     },
+     {
+      "gen": 3,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数 docstring 首行用 Given/When/Then 三段式描述场景，并用 pytest.mark.parametrize 配合显式 ids 覆盖 IV/IX/XL/XC/CD/CM 等减法组合，保持一个测试函数只验证一个行为。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，docstring 首行用 Given/When/Then 一句式描述，断言附 f-string 说明输入与预期。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "本次为 fizzbuzz 编写测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，确保用例在隔离环境变量下运行。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次使用 pytest.mark.parametrize 覆盖 3/5/15 的倍数与普通数，并为每个参数组合配置显式 ids，使失败用例可直接从测试名定位输入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次在断言中附带 f-string 说明，包含输入 n、期望 expected 和实际 result，失败时可直接看出预期与差异。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "本次为 fizzbuzz 编写测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，确保用例在隔离环境变量下运行。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "test_code_len": 953
+     },
+     {
+      "gen": 4,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数 docstring 首行用 Given/When/Then 三段式描述场景，并用 pytest.mark.parametrize 配合显式 ids 覆盖 IV/IX/XL/XC/CD/CM 等减法组合，保持一个测试函数只验证一个行为。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，docstring 首行用 Given/When/Then 一句式描述，断言附 f-string 说明输入与预期。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次为 fizzbuzz 编写测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，确保用例在隔离环境变量下运行。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "为 Stack 类编写 pytest 测试时，文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，并让每个测试函数 docstring 首行使用 Given/When/Then 一句式描述。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "Stack 空栈 pop 异常测试使用 pytest.raises(Exception) 捕获未指定类型的异常，避免绑定具体异常类；断言附 f-string 说明输入与预期。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "将 Stack 的 isEmpty、push、pop、peek 和空栈 pop 异常拆分为单一行为用例，测试文件命名为 test_stack.py，并使用清晰的行为型测试名。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [],
+      "test_code_len": 2315
+     },
+     {
+      "gen": 5,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数 docstring 首行用 Given/When/Then 三段式描述场景，并用 pytest.mark.parametrize 配合显式 ids 覆盖 IV/IX/XL/XC/CD/CM 等减法组合，保持一个测试函数只验证一个行为。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，docstring 首行用 Given/When/Then 一句式描述，断言附 f-string 说明输入与预期。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次为 fizzbuzz 编写测试文件顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，确保用例在隔离环境变量下运行。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "为 parse_email 编写测试文件时，顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，并保持 test_parse_email.py 的模块命名约定。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "使用 pytest.mark.parametrize 配合显式 ids 覆盖空串、无 @、多 @、缺失本地部分/域名、本地部分含空格等非法邮箱输入，每个用例只验证抛出 ValueError 这一行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试函数 docstring 首行用 Given/When/Then 一句式描述，非法输入断言通过 try/except 配合 pytest.fail(f'...') 输出输入值与预期异常，便于失败定位。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "为 parse_email 编写测试文件时，顶部声明 pytestmark = pytest.mark.usefixtures('isolated_env')，并保持 test_parse_email.py 的模块命名约定。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "test_code_len": 888
+     }
+    ],
+    "architecture": "full_append",
+    "window": 16
+   },
+   {
+    "cond": "A25",
+    "rep": 10,
+    "gens": [
+     {
+      "gen": 0,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "在 test_bank_account.py 顶部设置 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，统一复用 conftest.py 中的隔离环境 fixture，测试文件内不重复定义该公共 fixture。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只覆盖一个行为，函数名直接描述场景与结果（如 test_withdraw_raises_value_error_when_balance_is_insufficient），docstring 首行使用 Given/When/Then 三段式。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "对余额结果断言时附带 f-string 预期/实际信息；异常场景使用 pytest.raises(ValueError) 明确验证抛出类型。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [],
+      "test_code_len": 771
+     },
+     {
+      "gen": 1,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "pytest 测试文件顶部统一声明 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，复用 conftest.py 中的环境隔离 fixture。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "参数化测试使用 pytest.param 为 -40、0、100 等边界用例设置可读 id，断言使用 pytest.approx 并附带失败说明信息。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试函数 docstring 首行采用 Given/When/Then 一句式描述场景，测试文件按 test_<模块名>.py 命名为 test_temperature.py。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [],
+      "test_code_len": 869
+     },
+     {
+      "gen": 2,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "为 roman_to_int 编写测试时，在 test_roman.py 顶部设置 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "针对罗马数字减法组合分别编写独立测试函数，覆盖 IV、IX、XL、XC、CD、CM，每个测试函数只验证一个转换行为，并在断言中附带期望值与实际值说明。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数 docstring 首行采用 Given/When/Then 三段式描述场景，例如 Given 输入... When 调用... Then 返回...。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "针对罗马数字减法组合分别编写独立测试函数，覆盖 IV、IX、XL、XC、CD、CM，每个测试函数只验证一个转换行为，并在断言中附带期望值与实际值说明。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "test_code_len": 1947
+     },
+     {
+      "gen": 3,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "针对罗马数字减法组合分别编写独立测试函数，覆盖 IV、IX、XL、XC、CD、CM，每个测试函数只验证一个转换行为，并在断言中附带期望值与实际值说明。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "在 LRUCache 测试文件顶部使用 `pytestmark = pytest.mark.usefixtures('isolated_env')`，沿用团队隔离环境约定。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "将 LRUCache 容量淘汰、get 刷新顺序、put 更新值、put 更新刷新顺序拆成独立测试函数，每个 docstring 首行用 Given/When/Then 描述单一行为。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "对 LRUCache 未命中返回值用辅助断言兼容 None 与 -1，并在失败信息中包含 key 和实际返回值，降低接口约定差异带来的脆弱性。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [],
+      "test_code_len": 1808
+     },
+     {
+      "gen": 4,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "针对罗马数字减法组合分别编写独立测试函数，覆盖 IV、IX、XL、XC、CD、CM，每个测试函数只验证一个转换行为，并在断言中附带期望值与实际值说明。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "本次在 test_is_palindrome.py 顶部设置 pytestmark = pytest.mark.usefixtures('isolated_env')，隔离环境变量，避免用例间相互污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次所有测试函数 docstring 首行均按 Given/When/Then 三段式描述场景，并在断言消息中写明期望值与实际值。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "为字符串归一化类函数编写测试时，除正常回文真例外应加入非回文反例（如含非 ASCII 字母、标点归一化后仍不回文），以验证过滤和大小写处理不会误判。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "本次在 test_is_palindrome.py 顶部设置 pytestmark = pytest.mark.usefixtures('isolated_env')，隔离环境变量，避免用例间相互污染。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "test_code_len": 2601
+     },
+     {
+      "gen": 5,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "针对罗马数字减法组合分别编写独立测试函数，覆盖 IV、IX、XL、XC、CD、CM，每个测试函数只验证一个转换行为，并在断言中附带期望值与实际值说明。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次在 test_is_palindrome.py 顶部设置 pytestmark = pytest.mark.usefixtures('isolated_env')，隔离环境变量，避免用例间相互污染。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "本次在 test_fizzbuzz.py 顶部设置 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "本次对 fizzbuzz 按行为拆分参数化测试：3 的倍数（非15）、5 的倍数（非15）、15 的倍数、普通数分别使用独立测试函数，每个函数只验证一个行为，并在断言中附带 n 与期望/实际值说明。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "本次测试函数 docstring 首行采用 Given/When/Then 三段式描述场景，测试文件命名为 test_fizzbuzz.py。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [],
+      "test_code_len": 1418
+     }
+    ],
+    "architecture": "full_append",
+    "window": 16
+   },
+   {
+    "cond": "A25",
+    "rep": 11,
+    "gens": [
+     {
+      "gen": 0,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "测试文件顶部使用 pytestmark = pytest.mark.usefixtures('isolated_env')，通过公共 fixture 隔离环境变量，避免用例间相互污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "测试函数 docstring 采用 Given/When/Then 三段式描述场景，函数名直接写明被测行为，并保持每个用例只验证一个行为。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "异常路径测试使用 pytest.raises 捕获空栈 pop 异常；由于任务未约定具体异常类型，不断言异常类型或消息，并通过断言消息说明预期。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "测试文件顶部使用 pytestmark = pytest.mark.usefixtures('isolated_env')，通过公共 fixture 隔离环境变量，避免用例间相互污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "异常路径测试使用 pytest.raises 捕获空栈 pop 异常；由于任务未约定具体异常类型，不断言异常类型或消息，并通过断言消息说明预期。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "test_code_len": 1752
+     },
+     {
+      "gen": 1,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部使用 pytestmark = pytest.mark.usefixtures('isolated_env')，通过公共 fixture 隔离环境变量，避免用例间相互污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "异常路径测试使用 pytest.raises 捕获空栈 pop 异常；由于任务未约定具体异常类型，不断言异常类型或消息，并通过断言消息说明预期。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "测试文件顶部统一写 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，isolated_env 作为公共 fixture 放在 conftest.py（不在测试文件里跨文件导入），用于隔离环境变量、避免用例间相互污染；本次 test_parse_email.py 已按此采用。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "校验非法输入（任务未约定具体异常类型）时，用 pytest.raises(Exception) 只断言“抛出了异常”，不声明异常类型与消息，并在块后用带说明信息的 assert 点明该输入应被判为非法，失败时可直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "非法输入用例按场景拆成独立测试函数（无 @、多 @、空串、纯空白、缺本地部分、缺域名、仅 @），每个函数只验证一个行为，函数名直接体现被测行为，docstring 首行用 Given/When/Then 描述场景。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "测试文件顶部统一写 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，isolated_env 作为公共 fixture 放在 conftest.py（不在测试文件里跨文件导入），用于隔离环境变量、避免用例间相互污染；本次 test_parse_email.py 已按此采用。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "校验非法输入（任务未约定具体异常类型）时，用 pytest.raises(Exception) 只断言“抛出了异常”，不声明异常类型与消息，并在块后用带说明信息的 assert 点明该输入应被判为非法，失败时可直接看出意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "test_code_len": 2434
+     },
+     {
+      "gen": 2,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部使用 pytestmark = pytest.mark.usefixtures('isolated_env')，通过公共 fixture 隔离环境变量，避免用例间相互污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "异常路径测试使用 pytest.raises 捕获空栈 pop 异常；由于任务未约定具体异常类型，不断言异常类型或消息，并通过断言消息说明预期。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部统一写 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，isolated_env 作为公共 fixture 放在 conftest.py（不在测试文件里跨文件导入），用于隔离环境变量、避免用例间相互污染；本次 test_parse_email.py 已按此采用。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "校验非法输入（任务未约定具体异常类型）时，用 pytest.raises(Exception) 只断言“抛出了异常”，不声明异常类型与消息，并在块后用带说明信息的 assert 点明该输入应被判为非法，失败时可直接看出意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "测试文件顶部统一写 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，isolated_env 作为公共 fixture 放在 conftest.py（不在测试文件里跨文件导入），用于隔离环境变量、避免用例间相互污染；本次 test_bank_account.py 已按此采用。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "任务明确约定异常类型时（如余额不足抛 ValueError），用 pytest.raises(ValueError) 精确捕获而非宽泛的 Exception；同时把“抛出异常”与“失败后状态未变更”拆成两个独立测试函数，保证每个测试函数只验证一个行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试函数 docstring 首行用 Given/When/Then 三段式描述场景，断言语句附带说明信息，失败时可直接看出意图。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [],
+      "test_code_len": 1071
+     },
+     {
+      "gen": 3,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部使用 pytestmark = pytest.mark.usefixtures('isolated_env')，通过公共 fixture 隔离环境变量，避免用例间相互污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "异常路径测试使用 pytest.raises 捕获空栈 pop 异常；由于任务未约定具体异常类型，不断言异常类型或消息，并通过断言消息说明预期。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部统一写 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，isolated_env 作为公共 fixture 放在 conftest.py（不在测试文件里跨文件导入），用于隔离环境变量、避免用例间相互污染；本次 test_parse_email.py 已按此采用。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "校验非法输入（任务未约定具体异常类型）时，用 pytest.raises(Exception) 只断言“抛出了异常”，不声明异常类型与消息，并在块后用带说明信息的 assert 点明该输入应被判为非法，失败时可直接看出意图。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "测试文件顶部统一写 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，isolated_env 作为公共 fixture 放在 conftest.py，用于隔离环境变量、避免用例间相互污染；本次 test_celsius_to_fahrenheit.py 已按此采用。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "参数化测试中每个用例对应一个明确的被测行为，测试函数 docstring 首行用 Given/When/Then 三段式描述场景；本次温度转换边界用例均按此写法。",
+        "lineage": "CTRL",
+        "marked": false
+       },
+       {
+        "content": "浮点转换结果使用 pytest.approx 断言，并在 assert 后附带说明信息（包含输入摄氏值、期望华氏值和实际结果），失败时能直接看出意图；本次 -40、0、100 等边界用例已采用。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [
+       {
+        "content": "测试文件顶部统一写 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，isolated_env 作为公共 fixture 放在 conftest.py，用于隔离环境变量、避免用例间相互污染；本次 test_celsius_to_fahrenheit.py 已按此采用。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "test_code_len": 815
+     },
+     {
+      "gen": 4,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部使用 pytestmark = pytest.mark.usefixtures('isolated_env')，通过公共 fixture 隔离环境变量，避免用例间相互污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "异常路径测试使用 pytest.raises 捕获空栈 pop 异常；由于任务未约定具体异常类型，不断言异常类型或消息，并通过断言消息说明预期。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部统一写 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，isolated_env 作为公共 fixture 放在 conftest.py（不在测试文件里跨文件导入），用于隔离环境变量、避免用例间相互污染；本次 test_parse_email.py 已按此采用。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "校验非法输入（任务未约定具体异常类型）时，用 pytest.raises(Exception) 只断言“抛出了异常”，不声明异常类型与消息，并在块后用带说明信息的 assert 点明该输入应被判为非法，失败时可直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部统一写 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，isolated_env 作为公共 fixture 放在 conftest.py，用于隔离环境变量、避免用例间相互污染；本次 test_celsius_to_fahrenheit.py 已按此采用。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "本次 test_roman_to_int.py 在文件顶部统一写 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，isolated_env 作为公共 fixture 放在 conftest.py（不在测试文件里跨文件导入），用于隔离环境变量、避免用例间相互污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "测试罗马数字减法组合时，为 IV、IX、XL、XC、CD、CM 每个组合分别编写独立测试函数，不合并参数化，确保每个测试只验证一个行为，测试名直接写明被测输入与预期结果。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "所有断言均附带说明信息（如“IV 是减法组合，应解析为 4，实际得到 ...%r”），失败时可直接看出测试意图与实际问题。",
+        "lineage": null,
+        "marked": false
+       }
+      ],
+      "gated_experiences": [],
+      "test_code_len": 1887
+     },
+     {
+      "gen": 5,
+      "memory": [
+       {
+        "content": "团队统一约定：所有测试文件顶部添加 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，隔离环境变量，避免用例间相互污染。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "团队统一约定：测试函数 docstring 首行用 Given/When/Then 三段式描述场景。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件命名遵循 test_<模块名>.py。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "每个测试函数只验证一个行为，测试名写清被测行为。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "公共 fixture 放 conftest.py，不要跨文件直接导入。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "断言附带说明信息，失败时能直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部使用 pytestmark = pytest.mark.usefixtures('isolated_env')，通过公共 fixture 隔离环境变量，避免用例间相互污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "异常路径测试使用 pytest.raises 捕获空栈 pop 异常；由于任务未约定具体异常类型，不断言异常类型或消息，并通过断言消息说明预期。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部统一写 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，isolated_env 作为公共 fixture 放在 conftest.py（不在测试文件里跨文件导入），用于隔离环境变量、避免用例间相互污染；本次 test_parse_email.py 已按此采用。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "校验非法输入（任务未约定具体异常类型）时，用 pytest.raises(Exception) 只断言“抛出了异常”，不声明异常类型与消息，并在块后用带说明信息的 assert 点明该输入应被判为非法，失败时可直接看出意图。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "测试文件顶部统一写 pytestmark = pytest.mark.usefixtures(\"isolated_env\")，isolated_env 作为公共 fixture 放在 conftest.py，用于隔离环境变量、避免用例间相互污染；本次 test_celsius_to_fahrenheit.py 已按此采用。",
+        "lineage": "P1",
+        "marked": false
+       }
+      ],
+      "new_experiences": [
+       {
+        "content": "本次 test_lru_cache.py 顶部采用 pytestmark = pytest.mark.usefixtures('isolated_env')，isolated_env 作为公共 fixture 放在 conftest.py，用于隔离环境变量、避免用例间相互污染。",
+        "lineage": "P1",
+        "marked": false
+       },
+       {
+        "content": "LRUCache.get 未命中时的返回值任务未约定，测试中用辅助断言兼容 None、-1 和 KeyError 三种常见缺失表示，避免把未约定的实现细节写死。",
+        "lineage": null,
+        "marked": false
+       },
+       {
+        "content": "LRU 淘汰与刷新顺序测试中，每个测试函数 docstring 首行使用 Given/When/Then 描述场景，测试名写清单一行为，断言均附带说明信息，失败时可直接看出意图。",
+        "lineage": "CTRL",
+        "marked": false
+       }
+      ],
+      "gated_experiences": [],
+      "test_code_len": 3149
+     }
+    ],
+    "architecture": "full_append",
+    "window": 16
+   }
+  ]
+ }
+}

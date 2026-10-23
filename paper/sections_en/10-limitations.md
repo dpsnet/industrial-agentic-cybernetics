@@ -20,8 +20,8 @@ The H1AC pooled per-parent criterion fails under C2 due to survivor bias (final-
 
 ## 10.4 Residual Open Items of Quarantine Cost and Capacity Jointness
 
-The supplementary experiments (EXP-A/B, Flash) close the quantitative gaps in quarantine cost (σ=1 utility retention 0.88) and $M_c$ jointness ($(b,M)$ joint function), but residual open items remain:
-- the quarantine cost is measured only on the memory-stock side (utility retention); the task-completion side (test_code_len) is not separately analyzed—the 0.88 retention does not cover the downstream-task impact of missing benign experiences under quarantine;
+The supplementary experiments (EXP-A/B, Flash) close the quantitative gaps in quarantine cost (σ=1 utility retention 0.88) and $M_c$ jointness ($(b,M)$ joint function); after the 2026-10-23 middle-tier complement ($\sigma_{\rm eff}\in\{0.75,0.9\}$), the σ sweep covers the full measured spectrum $\sigma_{\rm eff}\in\{0.1,0.25,0.5,0.75,0.9,1.0\}$ with no sweet spot (A-H4). Residual open items remain:
+- the quarantine cost is measured only on the memory-stock side (utility retention); the task-completion side (test_code_len) is not separately analyzed—the 0.88 retention does not cover the downstream-task impact of missing benign experiences under quarantine; finer σ tiers ($\sigma_{\rm eff}\in(0.9,1)$) are unmeasured;
 - the $b\in\{1,2,3,5\}$ surface covers only four write-rate tiers; the retrieval-strategy dimension is unscanned ($M_c$'s drift with retrieval strategy remains open);
 - the non-monotonic anomaly of the capacity surface ($b=2, W=4$ survival 1.00) is under-sampled (6 chains) and unattributed.
 

@@ -1,0 +1,19 @@
+﻿python.exe : D:\pyenv\pyenv-win\versions\3.11.8\Lib\site-packages\requests\__init__.py:109: RequestsDependencyWarning: 
+urllib3 (1.26.13) or chardet (7.4.1)/charset_normalizer (2.1.1) doesn't match a supported version!
+At line:1 char:56
++ ... ython.exe"; & $py "E:\workspace\industrial-agentic-cybernetics\experi ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (D:\pyenv\pyenv-...ported version!:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  warnings.warn(
+=== EXP-A 甜点补测判读（full_append W=16，6 代，Flash）===
+C0 baseline: benign_final=6.79
+  [A25] n=48 σ_eff=0.75 Z_final=2.000 surv=1.000 benign_pass=0.262 benign_final=7.58 utility_retention=1.117 m_hat=1.140 CI=[1.114,1.165]
+  [A10] n=48 σ_eff=0.90 Z_final=1.604 surv=1.000 benign_pass=0.094 benign_final=6.54 utility_retention=0.963 m_hat=1.098 CI=[1.070,1.124]
+    A10 σ_eff=0.90 surv=1.000 ret=0.963
+    A25 σ_eff=0.75 surv=1.000 ret=1.117
+    A50 σ_eff=0.50 surv=1.000 ret=1.334
+    A75 σ_eff=0.25 surv=1.000 ret=1.307
+    A90 σ_eff=0.10 surv=1.000 ret=1.187
+A-H4: NO SWEET SPOT among measured σ_eff<1 tiers {0.75,0.9,0.5,0.25,0.1}
