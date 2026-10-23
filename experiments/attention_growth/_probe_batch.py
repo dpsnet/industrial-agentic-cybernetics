@@ -1,5 +1,6 @@
 """探针校准协议执行：8 个探针批次（独立 API 会话、串行 + 60s 间隔）。
 每个探针 = 1 条链 C0-full W=16 6 代 scnet-flash，测毒株转写率 p_probe。
+用法: _probe_batch.py [--tag 窗口名]  (输出 probe_{tag}_01..08.json + _probe_summary_{tag}.json)
 """
 import json, subprocess, sys, time, os
 
@@ -9,17 +10,21 @@ SCRIPT = os.path.join(HERE, "axiom4_memory_propagation.py")
 N_PROBES = 8
 GAP_S = 60
 
+tag = "window"
+if len(sys.argv) > 1 and sys.argv[1].startswith("--tag="):
+    tag = sys.argv[1][len("--tag="):]
+
 names = ["P1", "P2", "P3"]
 probe_summary = []
 
 for i in range(1, N_PROBES + 1):
-    out = os.path.join(HERE, f"probe_{i:02d}.json")
+    out = os.path.join(HERE, f"probe_{tag}_{i:02d}.json")
     if os.path.exists(out):
         os.remove(out)
     cmd = [PY, SCRIPT, "main", "--provider=scnet-flash", "--conds=C0",
            "--architecture=full_append", "--window=16", "--gens=6",
            "--reps=1", f"--out={out}"]
-    print(f"[probe {i}/{N_PROBES}] start {time.strftime('%H:%M:%S')}", flush=True)
+    print(f"[probe {tag} {i}/{N_PROBES}] start {time.strftime('%H:%M:%S')}", flush=True)
     r = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8",
                        errors="replace")
     # 结果可能写默认文件：检查 out 是否存在，无则查默认名
@@ -30,7 +35,7 @@ for i in range(1, N_PROBES + 1):
                 if os.path.getmtime(cand) > time.time() - 60:
                     out = cand
     if not os.path.exists(out):
-        print(f"[probe {i}] FAILED no output; rc={r.returncode} tail={r.stderr[-300:]}",
+        print(f"[probe {tag} {i}] FAILED no output; rc={r.returncode} tail={r.stderr[-300:]}",
               flush=True)
         probe_summary.append({"probe": i, "pw": None, "error": r.stderr[-300:]})
     else:
@@ -38,13 +43,13 @@ for i in range(1, N_PROBES + 1):
         run = d["runs"]["C0"][0]
         pw = sum(sum(1 for it in g["new_experiences"] if it.get("lineage") in names)
                  for g in run["gens"])
-        print(f"[probe {i}] pw={pw}/6  p_probe={pw/6:.3f}  file={os.path.basename(out)}",
+        print(f"[probe {tag} {i}] pw={pw}/6  p_probe={pw/6:.3f}  file={os.path.basename(out)}",
               flush=True)
         probe_summary.append({"probe": i, "pw": pw, "p_probe": pw / 6,
                               "time": time.strftime("%Y-%m-%d %H:%M:%S")})
     if i < N_PROBES:
         time.sleep(GAP_S)
 
-with open(os.path.join(HERE, "_probe_summary.json"), "w", encoding="utf-8") as f:
+with open(os.path.join(HERE, f"_probe_summary_{tag}.json"), "w", encoding="utf-8") as f:
     json.dump(probe_summary, f, ensure_ascii=False, indent=1)
-print("=== DONE: %d probes ===" % len(probe_summary), flush=True)
+print(f"=== DONE: {tag} {len(probe_summary)} probes ===", flush=True)
