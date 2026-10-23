@@ -52,7 +52,8 @@ def main():
         print(f"  {os.path.basename(path)} [{key}] n={len(pws)} mean={sum(pws)/len(pws)/T:.3f}/代")
 
     probes = []
-    for f in sorted(glob.glob(os.path.join(HERE, "probe_0*.json"))):
+    for f in sorted(glob.glob(os.path.join(HERE, "probe_0*.json")) +
+                    glob.glob(os.path.join(HERE, "probe_night_0*.json"))):
         pws = load_batch_pw(f, T=6)
         probes.append((f, pws))
     print("=== 探针批次 (T=6) ===")
