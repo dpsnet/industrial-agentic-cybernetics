@@ -65,7 +65,7 @@ def main():
     parts.append("## 6 结果\n")
     parts.append(strip_header(open(os.path.join(SEC, "06-results.md"), encoding="utf-8").read()) + "\n")
     parts.append("![按架构与容量划分的各代毒株谱系轨迹](figures/fig-trajectories.png)\n")
-    parts.append("*图 2  全量追加各条件在容量 $M\\in\\{8,16,32\\}$ 下与选择性对照（$M=16$）的各代毒株谱系条目数。临界带 $8<M_c\\leq16$ 区分灭绝与持续。数据：DeepSeek-V4.1-Flash-1017，链均。*\n")
+    parts.append("*图 2  全量追加各条件在容量 $M\\in\\{8,16,32\\}$ 下与选择性对照（$M=16$）的各代毒株谱系条目数。临界带 $8<M_c\\leq16$（低转写态读数）区分灭绝与持续；高转写态下探针门控重扫实测 $M_c\\in(4,8)$（§6.5）。数据：DeepSeek-V4.1-Flash-1017，链均。*\n")
     parts.append("## 7 讨论\n")
     parts.append(strip_header(open(os.path.join(SEC, "07-discussion.md"), encoding="utf-8").read()) + "\n")
     parts.append("## 8 机制修正叙事\n")
