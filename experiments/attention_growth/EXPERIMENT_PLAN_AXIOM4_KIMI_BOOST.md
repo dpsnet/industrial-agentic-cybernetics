@@ -1,5 +1,6 @@
 # 公理 IV KIMI 预审补充实验计划（隔离代价 × 容量稳健性 × selective 扩样）
 
+> **命名说明（防名称误导）**：本族实验在论文中的正式族名为 **COMPLEMENT-EXP**（补充实验）；仓库文件名沿用 `kimi_boost_*` 仅为工作流留痕。**"KIMI" 指评审方**——`kimi-for-coding` 对论文稿的外部预审（用户转交，2026-10-22），本族实验响应其"底线作业 2/3/4"；**执行模型是 DeepSeek-V4.1-Flash-1017（Flash），不是 Kimi 模型**。论文正文不出现"KIMI 预审"语义。
 > 对应：KIMI 发刊前评审"底线作业 1–4"（外部预审，2026-10-22）
 > 对应主计划：`EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md` §8.3/§8.4、`EXPERIMENT_PLAN_AXIOM4_H1AC_BOOST.md`
 > 性质：**LLM 多代传播实验（API 调用，无需 GPU）**；执行器：Trae（DeepSeek-V4.1-Flash-1017）

@@ -16,7 +16,7 @@ All criteria were fixed before the experiments (hypothesis list in §3.5): signi
 | Cross-model | Kimi `kimi-for-coding` + same Pro protocol | X-H1/X-H4, 288 sessions |
 | SUPERCRITICAL | **DeepSeek-V4.1-Flash-1017** (abbrev. Flash) | full-append / capacity tiers / selective control (deviation from the pre-registered model tier recorded in plan §9) |
 | H1AC | same as Flash | 160-chain dual-strain large sample |
-| KIMI-BOOST | same as Flash | quarantine-cost σ sweep (EXP-A 240) / $b\times M$ capacity surface (EXP-B 144) / selective extension n=12 (EXP-C) |
+| COMPLEMENT-EXP | same as Flash | quarantine-cost σ sweep (EXP-A 240) / $b\times M$ capacity surface (EXP-B 144) / selective extension n=12 (EXP-C) |
 
 ## 5.3 Propagation Protocol
 
@@ -30,7 +30,7 @@ All criteria were fixed before the experiments (hypothesis list in §3.5): signi
 - **full-append**: C0-full / C1-full / C3-full (12 sessions × 8 generations each); capacity tiers $M=8$ / $M=32$ (6 sessions × 8 generations each); selective control (2 sessions × 6 generations);
 - **H1AC (Flash, dual-strain)**: C0 (48) / C1 (48) / C2 (64), 6 generations.
 
-**846 agent-session chains in total** (= main 48 + cross-model 48 + cross-task-family 144 + SUPERCRITICAL 50 + H1AC 160 + KIMI-BOOST 396; session-generation units 5,460 = 288 + 288 + 864 + 384 + 960 + 2,664; the selective control, 2 chains × 6 generations, is counted separately). Of these, SUPERCRITICAL 50 chains = 3 conditions × 12 chains × 8 generations (C0/C1/C3-full) + 2 sensitivity tiers × 6 chains × 8 generations (W=8/32); H1AC 160 chains = C0 48 + C1 48 + C2 64, × 6 generations; cross-task-family 144 chains × 6 generations; KIMI-BOOST 396 chains = EXP-A 240 (σ sweep, 5 tiers × 48 chains, × 6 generations) + EXP-B 144 ($b\times M$ surface, 24 tiers × 6 chains, × 8 generations) + EXP-C 12 (selective extension, × 6 generations), reproducible via `kimi_boost_judge.py`. **Timeline**: DeepSeek-V4.1-Flash-1017 was released on 2026-10-17; all SUPERCRITICAL and H1AC experiments were executed and judged within 5 days of release (2026-10-22), and the KIMI-BOOST experiments within 6 days (2026-10-23; per-batch run timestamps in Appendix A).
+**846 agent-session chains in total** (= main 48 + cross-model 48 + cross-task-family 144 + SUPERCRITICAL 50 + H1AC 160 + COMPLEMENT-EXP 396; session-generation units 5,460 = 288 + 288 + 864 + 384 + 960 + 2,664; the selective control, 2 chains × 6 generations, is counted separately). Of these, SUPERCRITICAL 50 chains = 3 conditions × 12 chains × 8 generations (C0/C1/C3-full) + 2 sensitivity tiers × 6 chains × 8 generations (W=8/32); H1AC 160 chains = C0 48 + C1 48 + C2 64, × 6 generations; cross-task-family 144 chains × 6 generations; COMPLEMENT-EXP 396 chains = EXP-A 240 (σ sweep, 5 tiers × 48 chains, × 6 generations) + EXP-B 144 ($b\times M$ surface, 24 tiers × 6 chains, × 8 generations) + EXP-C 12 (selective extension, × 6 generations), reproducible via `kimi_boost_judge.py`. **Timeline**: DeepSeek-V4.1-Flash-1017 was released on 2026-10-17; all SUPERCRITICAL and H1AC experiments were executed and judged within 5 days of release (2026-10-22), and the COMPLEMENT-EXP experiments within 6 days (2026-10-23; per-batch run timestamps in Appendix A).
 
 ## 5.5 Judgment Criteria
 
