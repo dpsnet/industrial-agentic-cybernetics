@@ -11,13 +11,17 @@ N_PROBES = 8
 GAP_S = 60
 
 tag = "window"
-if len(sys.argv) > 1 and sys.argv[1].startswith("--tag="):
-    tag = sys.argv[1][len("--tag="):]
+n_probes = N_PROBES
+for a in sys.argv[1:]:
+    if a.startswith("--tag="):
+        tag = a[len("--tag="):]
+    elif a.startswith("--n="):
+        n_probes = int(a[len("--n="):])
 
 names = ["P1", "P2", "P3"]
 probe_summary = []
 
-for i in range(1, N_PROBES + 1):
+for i in range(1, n_probes + 1):
     out = os.path.join(HERE, f"probe_{tag}_{i:02d}.json")
     if os.path.exists(out):
         os.remove(out)
@@ -47,7 +51,7 @@ for i in range(1, N_PROBES + 1):
               flush=True)
         probe_summary.append({"probe": i, "pw": pw, "p_probe": pw / 6,
                               "time": time.strftime("%Y-%m-%d %H:%M:%S")})
-    if i < N_PROBES:
+    if i < n_probes:
         time.sleep(GAP_S)
 
 with open(os.path.join(HERE, f"_probe_summary_{tag}.json"), "w", encoding="utf-8") as f:
