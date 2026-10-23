@@ -31,7 +31,7 @@
 - **full-append**：C0-full / C1-full / C3-full（各 12 会话 × 8 代）；容量档 $M=8$ / $M=32$（各 6 会话 × 8 代）；selective 对照（2 会话 × 6 代）；
 - **H1AC（Flash 双毒株）**：C0（48）/ C1（48）/ C2（64），6 代。
 
-**合计 846 条智能体会话链**（= 主实验 48 + 跨模型 48 + 跨任务族 144 + SUPERCRITICAL 50 + H1AC 160 + COMPLEMENT-EXP 396；会话-代单元口径合计 5,460 = 288 + 288 + 864 + 384 + 960 + 2,664；selective 对照 2 链 × 6 代另计）。其中 SUPERCRITICAL 50 链 = 3 条件 × 12 链 × 8 代（C0/C1/C3-full）+ 敏感性 2 档 × 6 链 × 8 代（W=8/32）；H1AC 160 链 = C0 48 + C1 48 + C2 64，× 6 代；跨任务族 144 链 × 6 代；COMPLEMENT-EXP 396 链 = EXP-A 240（σ 扫描 5 档 × 48 链，× 6 代）+ EXP-B 144（$b\times M$ 曲面 24 档 × 6 链，× 8 代）+ EXP-C 12（selective 扩样，× 6 代），判读脚本 `kimi_boost_judge.py` 可复算。**时间线**：DeepSeek-V4.1-Flash-1017 于 2026-10-17 发布，SUPERCRITICAL 与 H1AC 全部实验于发布后 5 日内（2026-10-22）完成执行与判读，COMPLEMENT-EXP 三实验于发布后 6 日内（2026-10-23）完成执行与判读（各批次运行时间戳见附录 A）。
+**合计 846 条智能体会话链**（= 主实验 48 + 跨模型 48 + 跨任务族 144 + SUPERCRITICAL 50 + H1AC 160 + COMPLEMENT-EXP 396；会话-代单元口径合计 5,448 = 288 + 288 + 864 + 384 + 960 + 2,664；selective 对照 2 链 × 6 代 = 12 单元，不在合计内、另计）。其中 SUPERCRITICAL 50 链 = 3 条件 × 12 链 × 8 代（C0/C1/C3-full）+ 敏感性 2 档 × 6 链 × 8 代（W=8/32）；H1AC 160 链 = C0 48 + C1 48 + C2 64，× 6 代；跨任务族 144 链 × 6 代；COMPLEMENT-EXP 396 链 = EXP-A 240（σ 扫描 5 档 × 48 链，× 6 代）+ EXP-B 144（$b\times M$ 曲面 24 档 × 6 链，× 8 代）+ EXP-C 12（selective 扩样，× 6 代），判读脚本 `kimi_boost_judge.py` 可复算。**时间线**：DeepSeek-V4.1-Flash-1017 于 2026-10-17 发布，SUPERCRITICAL 与 H1AC 全部实验于发布后 5 日内（2026-10-22）完成执行与判读，COMPLEMENT-EXP 三实验于发布后 6 日内（2026-10-23）完成执行与判读（各批次运行时间戳见附录 A）。
 
 ## 5.5 判读口径
 

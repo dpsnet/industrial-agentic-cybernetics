@@ -57,7 +57,7 @@ def main():
     parts.append("## 3 模型\n")
     parts.append(strip_header(open(os.path.join(SEC, "03-model.md"), encoding="utf-8").read()) + "\n")
     parts.append("![机制示意：分支衰减（选择性转写）与线性累积-容量竞争（全量追加）](figures/fig-mechanism.png)\n")
-    parts.append("*图 1  两种传播机制：A）选择性转写下的分支衰减（Galton-Watson 分支过程、几何律，灭绝概率=最小不动点）；B）全量追加下的线性累积-容量竞争（每代恒定写入 $w_n\\equiv1$、容量 $M$ 处 FIFO 竞争，临界 $M_c\\in(8,16)$）。*（数据：DeepSeek-V4.1-Flash-1017，链均）\n")
+    parts.append("*图 1  两种传播机制：A）选择性转写下的分支衰减（Galton-Watson 分支过程、几何律，灭绝概率=最小不动点）；B）全量追加下的线性累积-容量竞争（每代写入 $w_n\\in\\{0,1\\}$、链均 $E[w_n]=0.917$，容量 $M$ 处 FIFO 竞争，临界 $M_c\\in(8,16)$）。*（数据：DeepSeek-V4.1-Flash-1017，链均）\n")
     parts.append("## 4 形式化\n")
     parts.append(strip_header(open(os.path.join(SEC, "04-formalization.md"), encoding="utf-8").read()) + "\n")
     parts.append("## 5 实验设置\n")
@@ -95,6 +95,8 @@ def main():
 14. OEP (2026). *Poisoning Self-Evolving LLM Agents via Locally Correct but Non-Transferable Experiences*. arXiv:2605.18930.
 15. Shumailov, I., Shumaylov, Z., Zhao, Y., Papernot, N., Anderson, R., & Gal, Y. (2024). *AI models collapse when trained on recursively generated data*. Nature, 631, 755–759. DOI: 10.1038/s41586-024-07566-y.
 16. Turing, A. M. (1936). *On Computable Numbers, with an Application to the Entscheidungsproblem*. Proceedings of the LMS, 42, 230–265.
+17. Zhan, Q., et al. (2024). *AgentPoison: Red-Teaming LLM Agents via Memory Engineering or Malicious Tool Manipulation*. NeurIPS 2024. arXiv:2407.12784.
+18. (2026). *Defense Effectiveness Across Architectural Layers*. arXiv:2605.08442.
 """)
 
     out = os.path.join(ROOT, "manuscript.md")

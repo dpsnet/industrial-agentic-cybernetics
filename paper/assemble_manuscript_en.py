@@ -57,7 +57,7 @@ def main():
     parts.append("## 3. Model\n")
     parts.append(strip_header(open(os.path.join(SEC, "03-model.md"), encoding="utf-8").read()) + "\n")
     parts.append("![Mechanism schematic: branching decay (selective replay) vs. linear accumulation-competition (full append)](figures/fig-mechanism.png)\n")
-    parts.append("*Figure 1. Two propagation mechanisms: A) branching decay under selective replay (Galton-Watson, geometric law, extinction probability = least fixed point); B) linear accumulation-competition under full append (constant write $w_n\\equiv1$, FIFO competition at capacity $M$, critical $M_c\\in(8,16)$).* (data: DeepSeek-V4.1-Flash-1017, chain means)\n")
+    parts.append("*Figure 1. Two propagation mechanisms: A) branching decay under selective replay (Galton-Watson, geometric law, extinction probability = least fixed point); B) linear accumulation-competition under full append (per-generation write $w_n\\in\\{0,1\\}$, chain mean $E[w_n]=0.917$, FIFO competition at capacity $M$, critical $M_c\\in(8,16)$).* (data: DeepSeek-V4.1-Flash-1017, chain means)\n")
     parts.append("## 4. Formalization\n")
     parts.append(strip_header(open(os.path.join(SEC, "04-formalization.md"), encoding="utf-8").read()) + "\n")
     parts.append("## 5. Experimental Setup\n")
@@ -93,6 +93,8 @@ def main():
 14. OEP (2026). *Poisoning Self-Evolving LLM Agents via Locally Correct but Non-Transferable Experiences*. arXiv:2605.18930.
 15. Shumailov, I., Shumaylov, Z., Zhao, Y., Papernot, N., Anderson, R., & Gal, Y. (2024). *AI models collapse when trained on recursively generated data*. Nature, 631, 755–759. DOI: 10.1038/s41586-024-07566-y.
 16. Turing, A. M. (1936). *On Computable Numbers, with an Application to the Entscheidungsproblem*. Proceedings of the LMS, 42, 230–265.
+17. Zhan, Q., et al. (2024). *AgentPoison: Red-Teaming LLM Agents via Memory Engineering or Malicious Tool Manipulation*. NeurIPS 2024. arXiv:2407.12784.
+18. (2026). *Defense Effectiveness Across Architectural Layers*. arXiv:2605.08442.
 """)
 
     out = os.path.join(ROOT, "manuscript-en.md")
