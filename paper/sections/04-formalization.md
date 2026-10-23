@@ -13,9 +13,9 @@ $$m = \mu(1-\sigma) \quad \text{(乘性压缩律)}$$
 
 所有定理以**条件定理**呈现：结构前提（如 $m<1$）为显式假设，"真实系统满足该前提"由 §5–§6 实测支撑，不在形式系统内断言。这一分工即本文采用的三层知识地位结构：**定理层**（Lean 机检的结构蕴含）、**经验层**（$\hat m$、$M_c$、$\sigma$ 等参数的预注册实测）、**工程层**（生产判据的部署裁决）；数值与定理互不冒充。$\sigma$ 的口径与 §3.1 一致（拦截率，写出通过率 $=1-\sigma$）；EXP-A 的随机过滤档以放行率 $r=1-\sigma$ 实现（表 5 标注，§6.5）。
 
-## 4.2 定理链（Lean 4 机检，零 `sorry`）
+## 4.2 定理链
 
-形式化源码：`formal_proof/IACFormalization`（本仓库 commit `4825137`；Lean 4，mathlib 版本见 `lakefile.lean`）。仓库目前**保持私有**：commit hash 可据此核对文件树与构建记录，完整源码按需向作者索取。
+本节定理链全部由 Lean 4 机器验证（零 `sorry`）。形式化源码：`formal_proof/IACFormalization`（本仓库 commit `4825137`；Lean 4，mathlib 版本见 `lakefile.lean`）。仓库目前**保持私有**：commit hash 可据此核对文件树与构建记录，完整源码按需向作者索取。
 
 **T1 期望几何律**（`expected_population_geometric`，归纳证明）：$E[Z_n]=m^n E[Z_0]$。
 
@@ -34,9 +34,9 @@ $$m = \mu(1-\sigma) \quad \text{(乘性压缩律)}$$
 | T3 | $\sigma\!\uparrow \Rightarrow m\downarrow$；$\sigma=1\Rightarrow m=0$ | 隔离不变性（S-H4/T-H1/X-H1） |
 | T4 | $m>1 \Rightarrow q<1$，$E[Z_n]\to+\infty$ | 机制 A 超临界侧对照；机制 B 的持续累积由实测占据率给出（工程语义） |
 
-## 4.5 机制 B 稳态占据率（普通数学命题，非 Lean 机检）
+## 4.5 机制 B 稳态占据率
 
-**命题（机制 B 稳态占据率）**：full-append 架构、FIFO 容量 $M$、每代良性写入 $b$ 条、毒株写入链均 $\bar w$（$0<\bar w\le1$）时，在"毒株条目在容量内均匀混合"的近似下，稳态毒株占据为
+本节命题为普通数学推导，未经 Lean 机器验证。**命题（机制 B 稳态占据率）**：full-append 架构、FIFO 容量 $M$、每代良性写入 $b$ 条、毒株写入链均 $\bar w$（$0<\bar w\le1$）时，在"毒株条目在容量内均匀混合"的近似下，稳态毒株占据为
 
 $$Z^* = \frac{M\,\bar w}{b+\bar w}$$
 

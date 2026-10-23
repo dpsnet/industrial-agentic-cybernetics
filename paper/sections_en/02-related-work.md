@@ -28,7 +28,7 @@ This "quarantine works, marking fails" separation agrees in direction with 2605.
 - **Reward hacking / specification gaming**: agents satisfy the letter rather than the spirit of goals to obtain success signals (Amodei et al., 2016; Krakovna et al., 2020); naturally emergent misalignment has been observed in production RL (Anthropic, arXiv:2511.18397). This is of the same family as our Axiom I (absent external anchoring, self-claims are untrustworthy), but does not involve cross-generation propagation.
 - **Context rot / Lost in the Middle**: effective reasoning degrades significantly with irrelevant context growth, showing a U-shaped attention curve (Liu et al., TACL 2024); effective context length is far below nominal (Hsieh et al., 2024, RULER; Chroma, 2024). This corresponds to Axiom II (attention dilution), a **within-generation** degradation; our Axiom IV concerns **cross-generation** propagation. The two connect in the causal chain but differ mechanistically.
 
-## 2.5 Software Engineering "Near-Axiom" Laws (Positioning)
+## 2.5 Software Engineering "Near-Axiom" Laws
 
 The traditional "fundamental laws" of software engineering are **empirical laws**, not formal axioms: Brooks' essential complexity (Brooks, 1987) bounds the engineering frontier; Lehman's laws (Lehman, 1980) characterize continuous change and increasing complexity in software evolution (software's "entropy increase"); Conway's law (Conway, 1968) reveals architecture–organization isomorphism; the CAP theorem (Gilbert & Lynch, 2002) fixes the consistency trade-offs of distributed systems; the halting problem (Turing, 1936) bounds decidability. These laws derive from extensive engineering experience and have **never been formally proven**.
 

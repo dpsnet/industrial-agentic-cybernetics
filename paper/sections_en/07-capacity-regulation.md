@@ -5,7 +5,7 @@
 
 ---
 
-## 7.1 Control law (bang-bang, derived from the mechanism)
+## 7.1 Control law (bang-bang)
 
 Under Mechanism B, $Z_{n+1}=Z_n+w_n$ with $w_n\in\{0,1\}$ (chain mean $E[w_n]=0.917$, C0-full high state, §6.1); poison survival requires ≥1 poison entry resident in the terminal FIFO window; the write rate $p$ (strain transcription state) and the window $W$ jointly decide survival—**$M_c(p)$ is monotone**: $M_c(\text{high})\in(4,8)$ (measured $W{=}4$ survival 0.417, $W{=}8$ 0.750, $W{=}12$ 1.000) vs $M_c(\text{low})\in(8,16)$ (measured $W{=}8$ survival 0.000). The state bimodality (hierarchical Beta-Binomial, batch-level $p̂{=}0.770$ over 20 batches, low state ≈0.25, high state 0.63–1.0, §11.4) makes intermediate states absent, so the law is a **threshold switch**: $p_{\rm probe}\ge0.83$ (probe-gating criterion, §1.2e) → $W\leftarrow4$ (poison survival pressed below the 0.5 line); $p_{\rm probe}<0.83$ → $W\leftarrow8$ (low state is naturally extinct, memory utility prioritized). The law is **derived** from the mechanism and bimodal structure; every lookup point is a measured value.
 

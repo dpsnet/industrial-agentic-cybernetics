@@ -12,9 +12,9 @@ $$m = \mu(1-\sigma) \quad \text{(multiplicative compression law)}$$
 
 All theorems are presented as **conditional theorems**: structural premises (e.g., $m<1$) are explicit assumptions; "the real system satisfies the premise" is supported by measurement in §5–§6 and is not asserted inside the formal system. This division is the three-layer knowledge-status structure adopted throughout: **theorem layer** (Lean-checked structural implications), **empirical layer** (pre-registered measurements of $\hat m$, $M_c$, $\sigma$), and **engineering layer** (deployment adjudication by production criteria); numbers and theorems do not impersonate each other. The convention for $\sigma$ is consistent with §3.1 (interception rate; write-through rate $=1-\sigma$); the EXP-A random-filter tiers are implemented as a pass rate $r=1-\sigma$ (Table 5 annotation, §6.5).
 
-## 4.2 Theorem Chain (Lean 4 machine-checked, zero `sorry`)
+## 4.2 Theorem Chain
 
-Formalization sources: `formal_proof/IACFormalization` (this repository, commit `4825137`; Lean 4, mathlib version in `lakefile.lean`). The repository is currently **kept private**: the commit hash pins the file tree and build record for verification, and the full sources are available from the authors upon request.
+All theorems in this chain are machine-checked with Lean 4 (zero `sorry`). Formalization sources: `formal_proof/IACFormalization` (this repository, commit `4825137`; Lean 4, mathlib version in `lakefile.lean`). The repository is currently **kept private**: the commit hash pins the file tree and build record for verification, and the full sources are available from the authors upon request.
 
 **T1 Expected geometric law** (`expected_population_geometric`, by induction): $E[Z_n]=m^n E[Z_0]$.
 
@@ -33,9 +33,9 @@ Formalization sources: `formal_proof/IACFormalization` (this repository, commit 
 | T3 | $\sigma\!\uparrow \Rightarrow m\downarrow$; $\sigma=1\Rightarrow m=0$ | quarantine invariance (S-H4/T-H1/X-H1) |
 | T4 | $m>1 \Rightarrow q<1$, $E[Z_n]\to+\infty$ | supercritical-side counterpart of Mechanism A; Mechanism B persistence is given by measured occupancy (engineering semantics) |
 
-## 4.5 Mechanism-B Steady-State Occupancy (ordinary mathematical proposition, not Lean-checked)
+## 4.5 Mechanism-B Steady-State Occupancy
 
-**Proposition (Mechanism-B steady-state occupancy)**: under full-append architecture, FIFO capacity $M$, $b$ benign entries written per generation, and chain-mean poison write $\bar w$ ($0<\bar w\le1$), the steady-state poison occupancy under the approximation that poison entries mix uniformly within the capacity is
+This proposition is an ordinary mathematical derivation, not Lean-checked. **Proposition (Mechanism-B steady-state occupancy)**: under full-append architecture, FIFO capacity $M$, $b$ benign entries written per generation, and chain-mean poison write $\bar w$ ($0<\bar w\le1$), the steady-state poison occupancy under the approximation that poison entries mix uniformly within the capacity is
 
 $$Z^* = \frac{M\,\bar w}{b+\bar w}$$
 

@@ -56,7 +56,9 @@ Switching the memory architecture within the same model family (Flash) switches 
 
 **The variable is architecture, not the model**: within the same Flash tier, the selective control (2 chains, main experiment; **extended to 12 chains, EXP-C**) keeps $Z$ constant at 1 with memory shrinking to 3 (critical boundary $\hat m=1.0$; after extension $\hat m=0.966$, CI $[0.911,1.000]$ containing 1, weak-subcritical/critical confirmed statistically), while full-append C0 (12 chains) accumulates linearly to 5/16 (engineering-sense supercritical, $\hat m=1.166$, CI $[1.156,1.176]$)—the two $\hat m$ CIs are fully separated, and the bifurcation is entirely determined by the transcription protocol. This is consistent with the applicability-domain statement of Axiom IV: without a gate, $\hat m$ is a model–task–site joint parameter ($[0.29,1.00]$; cross-model $[0.56,0.98]$), but the **mechanism class is determined by architecture and does not migrate across models**.
 
-## 3.5 Pre-registered Hypotheses (Experiments in §5, Results in §6)
+## 3.5 Pre-registered Hypotheses
+
+Experiments for these hypotheses are in §5 and the judgment results in §6.
 
 | Hypothesis | Proposition | Criterion |
 | :--- | :--- | :--- |
