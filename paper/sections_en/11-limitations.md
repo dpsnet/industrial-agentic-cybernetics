@@ -1,4 +1,4 @@
-# §11 Limitations and Future Work (English, for manuscript-en.md)
+# §11 Limitations and Future Work
 
 > Status: **translated v1** (2026-10-22).
 

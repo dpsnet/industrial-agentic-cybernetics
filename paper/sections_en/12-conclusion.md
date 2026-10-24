@@ -1,4 +1,4 @@
-# §12 Conclusion (English, for manuscript-en.md)
+# §12 Conclusion
 
 > Status: **translated v1** (2026-10-22).
 

@@ -1,4 +1,4 @@
-# §5 Experimental Setup (English, for manuscript-en.md)
+# §5 Experimental Setup
 
 > Status: **translated v1** (2026-10-22); single source of facts: `experiments/attention_growth/*_judgement*.json`, `EXPERIMENT_PLAN_AXIOM4_*.md`.
 

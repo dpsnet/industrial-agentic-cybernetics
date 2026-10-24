@@ -1,4 +1,4 @@
-# §1 Introduction (English, for manuscript-en.md)
+# §1 Introduction
 
 > Status: **translated v1** (2026-10-22); single source of facts: `experiments/attention_growth/*_judgement*.json`.
 

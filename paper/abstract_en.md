@@ -1,14 +1,14 @@
-# Abstract & Title (English, for manuscript-en.md)
+# Abstract & Title
 
 > Status: **final v1** (2026-10-22); Chinese counterpart in abstract.md.
 
 ---
 
-## Title (final)
+## Title
 
 **Memory Poisoning in Ungated Agentic Memory Architectures: Architecture-Dependent Propagation Mechanisms, Capacity Control, and Quarantine Invariance**
 
-## Abstract (final)
+## Abstract
 
 Long-lived language-model agents accumulate experience in persistent memory; unvalidated or malicious entries can propagate across sessions and poison downstream tasks. Existing defenses treat soft marking and hard quarantine interchangeably, and no account links the *memory architecture* to the mathematical structure of propagation. We study injection-propagation under two write protocols—selective replay and full append—through pre-registered experiments spanning three model families (DeepSeek-V4-Pro-0813 (Pro), Kimi, DeepSeek-V4.1-Flash-1017 (Flash)), two architectures, multiple capacity settings, and 846 agent-session chains (5,448 session-generation units; the 2-chain selective control × 6 generations is counted separately), with Lean 4 machine-checked conditional theorems.
 

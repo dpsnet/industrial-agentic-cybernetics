@@ -1,4 +1,4 @@
-# §3 Model (English, for manuscript-en.md)
+# §3 Model
 
 > Status: **translated v1** (2026-10-22); notation defined here, consistent with judgment artifacts.
 

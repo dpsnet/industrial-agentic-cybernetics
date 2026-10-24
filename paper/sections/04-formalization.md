@@ -1,4 +1,4 @@
-# §4 Formalization（论文全文扩写）
+# §4 Formalization
 
 > 状态：**扩写 v1**（2026-10-22）；定理源：Lean 4 内核验证（toolchain v4.34.0-rc2 + mathlib4），`formal_proof/IACFormalization/`（`lake build` 通过）；论文口径与专著附录 B.5 一致。
 > 位置：公理 IV 论文骨架 §4。

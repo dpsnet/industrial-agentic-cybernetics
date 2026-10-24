@@ -1,4 +1,4 @@
-# Appendix (English, for manuscript-en.md)
+# Appendix
 
 > Status: **translated v1** (2026-10-22); single source of facts: `experiments/attention_growth/` judgment artifacts.
 
@@ -24,7 +24,7 @@
 
 **Run timestamps** (result-file mtime): 2026-10-22 batch—selective control 15:24, **C0-full 15:30 (poison writes 0.917/gen, high-transcription state)**, W32 15:52, **W8 16:02 (poison writes 0.25/gen, low-transcription state)**, C3-full 16:18, C1-full 16:20, H1AC C1 19:45/C0 19:49/C2 20:09; 2026-10-23 batch—COMPLEMENT-EXP (kimi_boost A/B/C shards) 2:05–10:40, σ sweet-spot complement 12:26–12:35, W8 attribution reruns (main protocol 13:46 / EXP-B 13:43), probe calibration 15:02–15:30 (8/8 $p_{\rm probe}{=}1.000$). **Key pair (sub-hourly state-flip evidence, §6.5)**: C0-full (15:30, high-transcription state) and the W8 original batch (16:02, low-transcription state) flip within ~32 minutes on the same calendar day—a fixed checkpoint's poison-transcription propensity drifts bimodally at sub-hourly scale rather than as a day-level batch difference; all within 6 days of the V4.1-Flash-1017 release (10-17).
 
-## B. Key Values from Judgment JSONs (same source as the main text)
+## B. Key Values from Judgment JSONs
 
 | Quantity | Value | Source |
 | :--- | :--- | :--- |

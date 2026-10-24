@@ -1,4 +1,4 @@
-# §6 Results（论文全文扩写）
+# §6 Results
 
 > 状态：**扩写 v1**（2026-10-22）；数据事实层单源：`e_supercritical_judgement2.json`、`e_h1ac_judgement.json`、跨模型/跨任务族判读 JSON、`e_power_markgate.json`。判读单位=链均（§5.5）。
 

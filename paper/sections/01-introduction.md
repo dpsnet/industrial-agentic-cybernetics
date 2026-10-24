@@ -1,4 +1,4 @@
-# §1 Introduction（论文全文扩写）
+# §1 Introduction
 
 > 状态：**扩写 v1**（2026-10-22）；位置：公理 IV 论文骨架 §1（`axiom4-paper-outline.md`）。
 

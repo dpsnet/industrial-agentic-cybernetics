@@ -1,4 +1,4 @@
-# §6 Results (English, for manuscript-en.md)
+# §6 Results
 
 > Status: **translated v1** (2026-10-22); tables generated directly from judgment JSONs.
 

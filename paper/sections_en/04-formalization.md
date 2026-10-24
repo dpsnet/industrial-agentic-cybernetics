@@ -1,4 +1,4 @@
-# §4 Formalization (English, for manuscript-en.md)
+# §4 Formalization
 
 > Status: **translated v1** (2026-10-22); Lean 4 sources in the project repo; single source of facts: judgment artifacts.
 

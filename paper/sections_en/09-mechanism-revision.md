@@ -1,4 +1,4 @@
-# §9 Mechanism Revision Narrative (English, for manuscript-en.md)
+# §9 Mechanism Revision Narrative
 
 > Status: **translated v1** (2026-10-22).
 

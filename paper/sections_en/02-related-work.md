@@ -1,4 +1,4 @@
-# §2 Background and Related Work (English, for manuscript-en.md)
+# §2 Background and Related Work
 
 > Status: **translated v1** (2026-10-22); citations consistent with `docs/terminology-mapping.md` plus classical SE-law sources.
 

@@ -39,7 +39,7 @@ def strip_header(text):
 
 def load_abstract():
     text = open(os.path.join(ROOT, "abstract.md"), encoding="utf-8").read()
-    m = re.search(r"^## 摘要（定稿）\s*\n(.*)$", text, re.M | re.S)
+    m = re.search(r"^## 摘要\s*\n(.*)$", text, re.M | re.S)
     if m is None:
         raise RuntimeError("abstract section not found")
     return m.group(1).strip() + "\n"

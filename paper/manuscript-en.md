@@ -395,19 +395,19 @@ Critical capacity (this protocol tier, $b=3$; **low-transcription-state reading*
 
 ## 7. Capacity Regulation under State Feedback
 
-## 7.1 Control law (bang-bang)
+## 7.1 Bang-bang Control Law
 
 Under Mechanism B, $Z_{n+1}=Z_n+w_n$ with $w_n\in\{0,1\}$ (chain mean $E[w_n]=0.917$, C0-full high state, §6.1); poison survival requires ≥1 poison entry resident in the terminal FIFO window; the write rate $p$ (strain transcription state) and the window $W$ jointly decide survival—**$M_c(p)$ is monotone**: $M_c(\text{high})\in(4,8)$ (measured $W{=}4$ survival 0.417, $W{=}8$ 0.750, $W{=}12$ 1.000) vs $M_c(\text{low})\in(8,16)$ (measured $W{=}8$ survival 0.000). The state bimodality (hierarchical Beta-Binomial, batch-level $p̂{=}0.770$ over 20 batches, low state ≈0.25, high state 0.63–1.0, §11.4) makes intermediate states absent, so the law is a **threshold switch**: $p_{\rm probe}\ge0.83$ (probe-gating criterion, §1.2e) → $W\leftarrow4$ (poison survival pressed below the 0.5 line); $p_{\rm probe}<0.83$ → $W\leftarrow8$ (low state is naturally extinct, memory utility prioritized). The law is **derived** from the mechanism and bimodal structure; every lookup point is a measured value.
 
-## 7.2 Stability condition (feedback bandwidth)
+## 7.2 Stability Condition under Feedback Bandwidth
 
 Control is effective ⟺ state residence $\tau$ > feedback delay $D$ (probe period ≈ chain period ≈3 min; reading delay of time-aligned stratified judgment 1–2 chains ≈6 min, §11.4). The measured flip example has $\tau_{\rm obs}=32$ minutes (10-22 15:30→16:02, Appendix A), so $\tau_{\rm obs}\gg D$ holds; **fast jitter ($\tau<D$) is unmeasured**—a falsifiable prediction: if a state jitter with residence shorter than the reading delay exists, dynamic regulation fails and degrades to static capacity, and its critical residence must be calibrated with companion-probe data (§11.4).
 
-## 7.3 Three-scheme trade-off (derivation and baseline anchoring)
+## 7.3 Three-Scheme Trade-off
 
 Write-layer hard blocking (quarantine $\sigma{=}1$, measured utility retention 0.88, survival 0, EXP-A), control-layer soft regulation (dynamic capacity: $W$ switches with probe readings under state feedback, **no measurement of its own yet**—its utility/survival is anchored by the high-state static $W{=}4$ gated baseline: survival 0.417, memory-utility retention 0.305, 12-chain gated window 2026-10-23 23:23, measured pre-experiment; the security cost of shrinking the window is forfeiting roughly 70% of benign memory), static capacity (no feedback, $W{=}8$ high-state survival 0.750; $U$ not separately measured). A parametric cost model $U(W,p)$: information retention increases with $W$, poison pollution increases with $p$—the baseline $U$ at high-state $W{=}4$ is 3.333/10.938 = **0.305** (C0-full denominator, 48 chains; 12-chain gated window, 2026-10-23, §6.5). What is anchored here is all **pre-experiment measured baselines** (quarantine EXP-A, high-state static $W{=}4$ gated baseline, high-state $W{=}8$ static reading); the behavior of dynamic capacity itself (survival and utility under state switching) is not yet measured. The tiering of the three schemes on the security–utility plane is a **derived expectation**: **quarantine (survival 0, utility 0.88) is expected to remain strictly dominant**; dynamic capacity buys suppression past half at a high utility cost—its utility side is expected to be markedly worse than quarantine; its security-side gain over static capacity (expected significant drop in poison survival) is left for the protocol of §7.4 and the experiment of §7.5 to test.
 
-## 7.4 Experimental protocol and expected effects (pre-registered)
+## 7.4 Pre-registered Experimental Protocol and Expected Effects
 
 This section fixes the three falsifiable predictions of §7.1–§7.3 into a control-experiment protocol. **The baseline was measured before the experiment (gated window 2026-10-23 23:23, probes 2/2 $p_{\rm probe}{=}1.000$ confirm the high state): high-state C0 ungated W=4, 12 chains—survival 0.417 (5/12, exactly reproducing the §6.5 high-state W=4 reading) and memory-utility retention 0.305** (C0-full denominator 10.938, §7.3); the C2 baseline is set at 0.305.
 
@@ -426,7 +426,7 @@ All three criteria are met—**the chapter's claim is thereby supported by contr
 
 ## 8. Discussion
 
-## 8.1 Defense Depends on Quarantine, Not Marking (Core Engineering Conclusion)
+## 8.1 Defense Depends on Quarantine, Not Marking
 
 Three experiment families and two architectures converge on the same separation:
 
@@ -436,7 +436,7 @@ Three experiment families and two architectures converge on the same separation:
 
 Mechanism explanation: marking is a **soft constraint at the decision layer** (the model may ignore it); quarantine is **structural blocking at the write layer** (un-adjudicated entries are physically unreachable). Defense design should therefore use a write-layer gate as the primary mechanism, with marking serving only as an audit clue.
 
-## 8.2 Architecture Determines Mechanism (Theoretical Conclusion)
+## 8.2 Architecture Determines Mechanism
 
 The transcription protocol changes the **mathematical structure** of propagation, not merely its parameters: selective→branching decay (GW, model-specific $\hat m$; extended to 12 chains, $\hat m=0.966$, CI containing 1, subcritical/critical confirmed), full-append→linear accumulation–competition ($w_n\in\{0,1\}$, outcome decided by $M_c$). Corollary: **the memory architecture is a security property, not merely a performance property**—"full append" is useful for information retention but an amplifier for poison propagation; capacity $M$ is a configurable propagation-control knob ($M_c$ is a $(b,M)$ joint function; $M_c\in(8,16)$ in this protocol tier; the critical capacity grows with the benign write rate). **Qualification**: the $M_c$ reading is transcription-state-dependent—the split is attributed to a sub-hourly state transition rather than a protocol difference (same-day dual-script reruns, $p{=}0.155$, §6.5), so the "knob" must be understood **within-state**: changing capacity changes the outcome monotonically within the same strain transcription state, and cross-state readings are reported side by side (probe-gated rescan measurement: $W{=}8$ survival 0.75 with $M_c\in(4,8)$ under the high state, §6.5).
 
@@ -484,7 +484,7 @@ Conclusion: **S-H3 is falsified by mechanism evidence**. Full-append propagation
 
 ## 10. Scope and Generalizability
 
-## 10.1 Applicability Boundaries (Four)
+## 10.1 Applicability Boundaries
 
 1. **Task family**: the main-experiment family is test-case writing (pytest) with four variants (correctness/boundary/negative/regression); the non-transferability of propagation strength across task families ($\hat m\in[0.29,1.00]$) is a measured conclusion—this paper does not claim quantitative prediction for arbitrary task families;
 2. **Channel**: the theoretical evidence is confined to the **purely social propagation channel** (physical execution feedback disabled; only the context–memory–transcription loop); the production engineering loop (autonomous submission–promotion–archival cycle) satisfies the five-fold physical criteria (§2.3), and its quantitative connection to the theoretical channel—the coupling between the engineering-side promotion-loop ratio $q$ (measured 1.00) and the theoretical propagation strength $\hat m$—is an open item (§11.4);
@@ -583,7 +583,7 @@ The empirical laws of software engineering can and should be promoted to an engi
 
 **Run timestamps** (result-file mtime): 2026-10-22 batch—selective control 15:24, **C0-full 15:30 (poison writes 0.917/gen, high-transcription state)**, W32 15:52, **W8 16:02 (poison writes 0.25/gen, low-transcription state)**, C3-full 16:18, C1-full 16:20, H1AC C1 19:45/C0 19:49/C2 20:09; 2026-10-23 batch—COMPLEMENT-EXP (kimi_boost A/B/C shards) 2:05–10:40, σ sweet-spot complement 12:26–12:35, W8 attribution reruns (main protocol 13:46 / EXP-B 13:43), probe calibration 15:02–15:30 (8/8 $p_{\rm probe}{=}1.000$). **Key pair (sub-hourly state-flip evidence, §6.5)**: C0-full (15:30, high-transcription state) and the W8 original batch (16:02, low-transcription state) flip within ~32 minutes on the same calendar day—a fixed checkpoint's poison-transcription propensity drifts bimodally at sub-hourly scale rather than as a day-level batch difference; all within 6 days of the V4.1-Flash-1017 release (10-17).
 
-## B. Key Values from Judgment JSONs (same source as the main text)
+## B. Key Values from Judgment JSONs
 
 | Quantity | Value | Source |
 | :--- | :--- | :--- |

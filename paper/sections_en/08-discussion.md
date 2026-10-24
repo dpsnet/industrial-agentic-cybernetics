@@ -1,10 +1,10 @@
-# §8 Discussion (English, for manuscript-en.md)
+# §8 Discussion
 
 > Status: **translated v1** (2026-10-22).
 
 ---
 
-## 8.1 Defense Depends on Quarantine, Not Marking (Core Engineering Conclusion)
+## 8.1 Defense Depends on Quarantine, Not Marking
 
 Three experiment families and two architectures converge on the same separation:
 
@@ -14,7 +14,7 @@ Three experiment families and two architectures converge on the same separation:
 
 Mechanism explanation: marking is a **soft constraint at the decision layer** (the model may ignore it); quarantine is **structural blocking at the write layer** (un-adjudicated entries are physically unreachable). Defense design should therefore use a write-layer gate as the primary mechanism, with marking serving only as an audit clue.
 
-## 8.2 Architecture Determines Mechanism (Theoretical Conclusion)
+## 8.2 Architecture Determines Mechanism
 
 The transcription protocol changes the **mathematical structure** of propagation, not merely its parameters: selective→branching decay (GW, model-specific $\hat m$; extended to 12 chains, $\hat m=0.966$, CI containing 1, subcritical/critical confirmed), full-append→linear accumulation–competition ($w_n\in\{0,1\}$, outcome decided by $M_c$). Corollary: **the memory architecture is a security property, not merely a performance property**—"full append" is useful for information retention but an amplifier for poison propagation; capacity $M$ is a configurable propagation-control knob ($M_c$ is a $(b,M)$ joint function; $M_c\in(8,16)$ in this protocol tier; the critical capacity grows with the benign write rate). **Qualification**: the $M_c$ reading is transcription-state-dependent—the split is attributed to a sub-hourly state transition rather than a protocol difference (same-day dual-script reruns, $p{=}0.155$, §6.5), so the "knob" must be understood **within-state**: changing capacity changes the outcome monotonically within the same strain transcription state, and cross-state readings are reported side by side (probe-gated rescan measurement: $W{=}8$ survival 0.75 with $M_c\in(4,8)$ under the high state, §6.5).
 

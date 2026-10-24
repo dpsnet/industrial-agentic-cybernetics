@@ -1,23 +1,23 @@
-# §7 Capacity Regulation under State Feedback: Theory-Derived Analysis with Control Validation (Full Paper Expansion)
+# §7 Capacity Regulation under State Feedback: Theory-Derived Analysis with Control Validation
 
 > Status: **promoted to an independent chapter** (2026-10-24; formerly §7.6, moved out of Discussion); position: Axiom IV paper skeleton §7 (before Discussion).
 > This chapter **derives** a regulation scheme for poison propagation from the generative chain of Mechanism B (§4.5) together with measured data (§6.5/§11.4), and closes it with control-experiment validation (§7.5 executed; §7.6 verdict, C1/C2/C3 all met); the evidence character is **theoretical derivation anchored in existing data plus control-experiment validation**.
 
 ---
 
-## 7.1 Control law (bang-bang)
+## 7.1 Bang-bang Control Law
 
 Under Mechanism B, $Z_{n+1}=Z_n+w_n$ with $w_n\in\{0,1\}$ (chain mean $E[w_n]=0.917$, C0-full high state, §6.1); poison survival requires ≥1 poison entry resident in the terminal FIFO window; the write rate $p$ (strain transcription state) and the window $W$ jointly decide survival—**$M_c(p)$ is monotone**: $M_c(\text{high})\in(4,8)$ (measured $W{=}4$ survival 0.417, $W{=}8$ 0.750, $W{=}12$ 1.000) vs $M_c(\text{low})\in(8,16)$ (measured $W{=}8$ survival 0.000). The state bimodality (hierarchical Beta-Binomial, batch-level $p̂{=}0.770$ over 20 batches, low state ≈0.25, high state 0.63–1.0, §11.4) makes intermediate states absent, so the law is a **threshold switch**: $p_{\rm probe}\ge0.83$ (probe-gating criterion, §1.2e) → $W\leftarrow4$ (poison survival pressed below the 0.5 line); $p_{\rm probe}<0.83$ → $W\leftarrow8$ (low state is naturally extinct, memory utility prioritized). The law is **derived** from the mechanism and bimodal structure; every lookup point is a measured value.
 
-## 7.2 Stability condition (feedback bandwidth)
+## 7.2 Stability Condition under Feedback Bandwidth
 
 Control is effective ⟺ state residence $\tau$ > feedback delay $D$ (probe period ≈ chain period ≈3 min; reading delay of time-aligned stratified judgment 1–2 chains ≈6 min, §11.4). The measured flip example has $\tau_{\rm obs}=32$ minutes (10-22 15:30→16:02, Appendix A), so $\tau_{\rm obs}\gg D$ holds; **fast jitter ($\tau<D$) is unmeasured**—a falsifiable prediction: if a state jitter with residence shorter than the reading delay exists, dynamic regulation fails and degrades to static capacity, and its critical residence must be calibrated with companion-probe data (§11.4).
 
-## 7.3 Three-scheme trade-off (derivation and baseline anchoring)
+## 7.3 Three-Scheme Trade-off
 
 Write-layer hard blocking (quarantine $\sigma{=}1$, measured utility retention 0.88, survival 0, EXP-A), control-layer soft regulation (dynamic capacity: $W$ switches with probe readings under state feedback, **no measurement of its own yet**—its utility/survival is anchored by the high-state static $W{=}4$ gated baseline: survival 0.417, memory-utility retention 0.305, 12-chain gated window 2026-10-23 23:23, measured pre-experiment; the security cost of shrinking the window is forfeiting roughly 70% of benign memory), static capacity (no feedback, $W{=}8$ high-state survival 0.750; $U$ not separately measured). A parametric cost model $U(W,p)$: information retention increases with $W$, poison pollution increases with $p$—the baseline $U$ at high-state $W{=}4$ is 3.333/10.938 = **0.305** (C0-full denominator, 48 chains; 12-chain gated window, 2026-10-23, §6.5). What is anchored here is all **pre-experiment measured baselines** (quarantine EXP-A, high-state static $W{=}4$ gated baseline, high-state $W{=}8$ static reading); the behavior of dynamic capacity itself (survival and utility under state switching) is not yet measured. The tiering of the three schemes on the security–utility plane is a **derived expectation**: **quarantine (survival 0, utility 0.88) is expected to remain strictly dominant**; dynamic capacity buys suppression past half at a high utility cost—its utility side is expected to be markedly worse than quarantine; its security-side gain over static capacity (expected significant drop in poison survival) is left for the protocol of §7.4 and the experiment of §7.5 to test.
 
-## 7.4 Experimental protocol and expected effects (pre-registered)
+## 7.4 Pre-registered Experimental Protocol and Expected Effects
 
 This section fixes the three falsifiable predictions of §7.1–§7.3 into a control-experiment protocol. **The baseline was measured before the experiment (gated window 2026-10-23 23:23, probes 2/2 $p_{\rm probe}{=}1.000$ confirm the high state): high-state C0 ungated W=4, 12 chains—survival 0.417 (5/12, exactly reproducing the §6.5 high-state W=4 reading) and memory-utility retention 0.305** (C0-full denominator 10.938, §7.3); the C2 baseline is set at 0.305.
 

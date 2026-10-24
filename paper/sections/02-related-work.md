@@ -1,4 +1,4 @@
-# §2 Background & Related Work（论文全文扩写）
+# §2 Background & Related Work
 
 > 状态：**扩写 v1**（2026-10-22）；引用与专著 `docs/terminology-mapping.md` 参考文献表一致，另补 SE 定律谱系经典文献。
 > 位置：公理 IV 论文骨架 §2（`axiom4-paper-outline.md`）。
