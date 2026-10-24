@@ -2,7 +2,7 @@
 
 **Bin Wang**
 
-Beijing Kailuzhe Technology Co., Ltd. · Technical Lead
+Beijing Kailuzhe Technology Co., Ltd. · Technical Director
 
 Email: wang.bin@foxmail.com; wangb@kailuzhe.cn
 

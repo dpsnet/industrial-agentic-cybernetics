@@ -1,6 +1,6 @@
 ---
 author:
-  - 王斌（北京开路者科技有限公司·技术主管）
+  - 王斌（北京开路者科技有限公司·技术总监）
   - wang.bin@foxmail.com · wangb@kailuzhe.cn
 ---
 

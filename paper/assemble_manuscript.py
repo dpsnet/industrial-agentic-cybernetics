@@ -45,7 +45,7 @@ def load_abstract():
     return m.group(1).strip() + "\n"
 
 TITLE_ZH = "# 无门控智能体记忆架构中的记忆投毒：架构依赖的传播机制、容量控制与隔离不变性\n"
-AUTHOR_ZH = "**王斌**\n\n北京开路者科技有限公司 · 技术主管\n\nEmail: wang.bin@foxmail.com；wangb@kailuzhe.cn\n\n"
+AUTHOR_ZH = "**王斌**\n\n北京开路者科技有限公司 · 技术总监\n\nEmail: wang.bin@foxmail.com；wangb@kailuzhe.cn\n\n"
 
 def main():
     parts = []
