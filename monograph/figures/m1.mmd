@@ -1,0 +1,11 @@
+flowchart LR
+    subgraph SecondOrderCybernetics["二阶物理闭环控制论架构 (Second-Order Cybernetic Architecture)"]
+        direction TB
+        Goal["需求与架构不变性 (Goal)"] --> Orchestrator["认知编排与最小特权投影 (Orchestrator)"]
+        Orchestrator --> Agent["执行主体 (Actuator)"]
+        Agent --> PhysicalSubstrate["真实物理底座 (Target Substrate: Code, FS, Process)"]
+        PhysicalSubstrate --> HardwareSensors["客观物理传感器 (Sensors: Exit Code, Diff, Mtime, Probes)"]
+        HardwareSensors --> VetoGate["物理真伪一票否决门禁 (Reality Veto Gate)"]
+        VetoGate -- "物理偏差信号 (Error Signal)" --> Orchestrator
+        VetoGate -- "物理收敛收口" --> Complete["确定性交付 (Convergence)"]
+    end

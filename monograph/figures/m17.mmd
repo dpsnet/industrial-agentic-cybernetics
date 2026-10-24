@@ -1,0 +1,25 @@
+sequenceDiagram
+    autonumber
+    actor Orchestrator as 编排层
+    participant Navigator as 领航员 (Navigator)
+    participant Driver as 驱动者 (Driver)
+    participant Compiler as 原厂编译器/测试套件
+
+    Orchestrator->>Navigator: 下发任务设计切片
+    Navigator->>Driver: 下发最小战术目标 [编写脱敏核心过滤器]
+    
+    loop 微循环自愈 (最多 N 轮尝试)
+        Driver->>Compiler: 写入代码并触发编译
+        Compiler-->>Driver: 捕获报错堆栈 (Exit Code 1)
+        Driver->>Navigator: 上报当前状态与拟修复方案
+        Navigator->>Navigator: 嗅探审查: 是否属于已知死循环? 是否越界?
+        
+        alt 发现驱动者偏离航道 (例如试图修改已通过的公用模块)
+            Navigator-->>Driver: 硬纠偏: 禁止修改公用模块，仅重构当前过滤器
+        else 修复方向正确
+            Navigator-->>Driver: 批准并提供具体参数修正建议
+        end
+    end
+    
+    Driver->>Compiler: 最终编译 (Exit Code 0)
+    Navigator->>Orchestrator: 领航员确认任务完成并背书

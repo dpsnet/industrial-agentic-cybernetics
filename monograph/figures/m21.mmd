@@ -1,0 +1,25 @@
+sequenceDiagram
+    autonumber
+    actor Driver as 驱动智能体
+    participant Journal as 变异日志器 (Journal)
+    participant FS as 物理文件系统
+    participant Touch as Mtime 补偿器
+    participant Toolchain as 增量编译工具链
+
+    Driver->>Journal: 提交代码变更 (targetFile, replacement)
+    Journal->>Journal: 计算动作规范 SHA-256: Hash(File + Target + Content)
+    
+    alt 发现相同签名的变异已成功落盘 (幂等命中)
+        Journal-->>Driver: 直接返回成功 (避免二次重复替换损坏文本)
+    else 新的有效变异
+        Journal->>FS: 原子写入并持久化至变异日志 journal.jsonl
+        Journal->>FS: 落盘业务代码文件
+        Journal->>Touch: 触发时钟因果推进 (Advance Physical Timestamp)
+        Touch->>FS: 系统调用: utimesSync(file, now + 1000ms)
+        Touch-->>Driver: 变异生效且时钟推进确认
+    end
+
+    Driver->>Toolchain: 触发增量编译
+    Toolchain->>FS: 检查 targetFile.mtime > last_compile.mtime?
+    FS-->>Toolchain: 返回绝对单调递增的新时间戳
+    Toolchain->>Toolchain: 强制重新解析 AST 并生成新产物 (Cache Busted!)

@@ -1,0 +1,15 @@
+flowchart TD
+    RawDevLogs["开发过程产生的原始日志、修复补丁与工具反馈"] --> Extractor["双模技术萃取器 (Dual-Mode Crystallizer)"]
+    
+    subgraph DualCrystallization["双模正交解耦萃取 (Dual-Mode Orthogonal Crystallization)"]
+        direction TB
+        Mode1["模式一：底座事实型知识 (Substrate Fact)<br/><i>范围：绑定特定仓库、不可外溢迁移<br/>包含：真实POM版本、Nacos命名空间、端口规范、目录拓扑</i>"]
+        Mode2["模式二：通用架构模式 (Transferable Pattern)<br/><i>范围：跨题目/跨项目可复用<br/>包含：双因子端点设计、无参单测Mock规范、脱敏正则算法</i>"]
+    end
+    
+    Extractor --> DualCrystallization
+    
+    Mode1 --> FactVault["工程物理事实库 (Repository Fact Base: Repo-Scoped)"]
+    Mode2 --> PatternVault["通用模式草稿区 (Pattern Draft Vault: DRAFT_SUSPECT)"]
+    
+    PatternVault --> PromotionGate["结合模式 14 隔离晋升门禁进行双盲终审"]

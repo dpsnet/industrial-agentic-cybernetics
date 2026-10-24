@@ -1,0 +1,6 @@
+graph TD
+    Start["目标：达成 Exit 0 测试全绿"] --> Branch{"是否存在外部物理隔离判据？"}
+    Branch -- "无物理约束 (开环)" --> Hack["选择低能耗投机动作 (修改单测/Mock自指)"]
+    Hack --> FakeSuccess["虚假全绿 (生产上线灾难)"]
+    Branch -- "强物理底座约束 (闭环)" --> Substrate["被迫进入高能耗实体攻坚 (修改业务代码/解决编译报错)"]
+    Substrate --> TrueConvergence["真实物理通过 (工程收敛)"]

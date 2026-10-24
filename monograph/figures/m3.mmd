@@ -1,0 +1,12 @@
+flowchart TD
+    subgraph AxiomSystem["智能体控制论公理体系"]
+        A1["公理 I：物理非信任公理<br/>(Axiom of Physical Non-Trustworthiness)"]
+        A2["公理 II：注意力熵增公理<br/>(Axiom of Attention Entropy)"]
+        A3["公理 III：变异因果律单调公理<br/>(Axiom of Monotonic Causal Mutation)"]
+        A4["公理 IV：经验自免疫公理<br/>(Axiom of Crystallization Auto-Immunity)"]
+    end
+    
+    A1 -->|"导出控制约束"| C1["物理 Exit 0 穿透 & 反自指审计"]
+    A2 -->|"导出控制约束"| C2["任务级最小特权投影 (PoLP Context)"]
+    A3 -->|"导出控制约束"| C3["幂等变异 Journal & Mtime +1s 补偿"]
+    A4 -->|"导出控制约束"| C4["草稿隔离区 (DRAFT_SUSPECT) & 终审晋升"]

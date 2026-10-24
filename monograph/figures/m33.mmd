@@ -1,0 +1,19 @@
+flowchart TD
+    subgraph ToxicDetection["污点识别事件 (Taint Inception Event)"]
+        Event1["1. 原厂多模块脱机构建失败 (Native Build Exit != 0)"]
+        Event2["2. 审查者物理现实审计一票否决 (Reality VETO)"]
+        Event3["3. 隐藏 Oracle 物理黑盒探针命中未通过 (Oracle Probe Fail)"]
+    end
+
+    ToxicDetection --> TaintTracker["污点因果追溯引擎 (Causal Taint Tracker)"]
+
+    subgraph TaintPropagation["污点扩散阻断与逆向清除 (Taint Quarantine Propagation)"]
+        direction TB
+        MarkTaint["1. 递归定位本次失败任务产生的所有草稿 (Associated Batch)"]
+        ApplyQuarantine["2. 状态强置: DRAFT_SUSPECT -> DEPRECATED_QUARANTINED"]
+        BlacklistIndex["3. 知识库向量索引剔除与黑名单落盘"]
+        ImmuneMemory["4. 沉淀反面典型教训 (Negative Invariant Warning)"]
+    end
+
+    TaintTracker --> TaintPropagation
+    TaintPropagation --> CleanKnowledgeBase["自免疫纯净知识库 (Clean Verified Knowledge)"]

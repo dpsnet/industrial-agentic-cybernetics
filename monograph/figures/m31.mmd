@@ -1,0 +1,23 @@
+flowchart TD
+    RawCrystallization["智能体在开发中自发萃取的新模式/经验 (Raw Insights)"] --> Quarantine["草稿隔离区 (Quarantine Zone: DRAFT_SUSPECT)"]
+    
+    subgraph QuarantineDefense["自免疫隔离屏障 (Immunity Firewall)"]
+        direction TB
+        Q1["1. 仅当前会话私有，全局检索硬拦截 (filtered out)"]
+        Q2["2. 绑定当前交付批次 (Tied to Delivery Batch)"]
+    end
+    
+    Quarantine --> QuarantineDefense
+    
+    subgraph FinalSubstrateGate["端到端五重物理判据终审 (Mechanical Evaluation Gate)"]
+        G1["Git Diff 实体核验"]
+        G2["原生编译脱机构建 Exit 0"]
+        G3["隐藏 Oracle 黑盒探针全通"]
+        G4["无自指断言审计"]
+        G5["代码审查专家终审通过"]
+    end
+
+    QuarantineDefense --> FinalSubstrateGate
+
+    FinalSubstrateGate -- "任一物理判据失败" --> Discard["判定为投毒模式: 永久标记 DEPRECATED_QUARANTINED (硬拦截)"]
+    FinalSubstrateGate -- "五重物理判据全部绿灯" --> Promote["晋升为 VERIFIED_ACTIVE (准予全局检索复用)"]

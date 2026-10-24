@@ -1,0 +1,22 @@
+sequenceDiagram
+    autonumber
+    actor Benchmark as 基准评测编排器
+    participant Agent as 智能体系统
+    participant Repo as 目标业务仓库
+    participant Sandbox as 双盲隔离沙箱
+    participant Oracle as 隐藏 Oracle 探针
+
+    Benchmark->>Agent: 发布解题任务 (仅提供公开接口契约与功能描述)
+    Agent->>Repo: 编码变异并完成本地构建
+    Agent-->>Benchmark: 宣布解题完成，提交 Git 分支引用
+    
+    rect rgb(255, 245, 238)
+        note right of Benchmark: 进入隐藏物理判定 (Zero Leakage)
+        Benchmark->>Sandbox: 创建全新的无状态沙箱容器
+        Benchmark->>Sandbox: 拉取智能体提交的代码分支
+        Benchmark->>Oracle: 加载隐藏 Oracle 测试集 (只读注入)
+        Oracle->>Sandbox: 运行黑盒 HTTP 探针与深层边界测试
+        Sandbox-->>Benchmark: 捕获客观 Exit Code 与 HTTP 状态码
+    end
+
+    Benchmark-->>Agent: 输出最终物理战报 (通过率、Token 消耗、物理耗时)

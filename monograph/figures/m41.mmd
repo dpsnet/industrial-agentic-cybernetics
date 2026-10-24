@@ -1,0 +1,29 @@
+flowchart TD
+    subgraph DevVisible["智能体可见空间（开发环境）"]
+        Agent["智能体执行上下文"]
+        PublicBrief["公开发布的任务需求"]
+        TargetRepo["可变业务源码目录"]
+    end
+
+    subgraph HiddenOracle1["隐藏 Oracle #1：功能测试沙箱"]
+        FuncTests["功能测试集（单元/集成）"]
+        FuncProbes["功能探针（HTTP/Exit 0）"]
+    end
+
+    subgraph HiddenOracle2["隐藏 Oracle #2：压力测试沙箱（隔离环境）"]
+        StressTests["压力测试配置（负载模型/SLA 阈值）"]
+        StressEnv["压力测试执行环境（独立基础设施）"]
+        StressMetrics["原始指标采集（Prometheus/JMeter）"]
+    end
+
+    subgraph AuditChannel["独立审计通道（模式 02 探针 4）"]
+        Auditor["现实审计器"]
+        IntegrityCheck["传输完整性校验"]
+        HomogeneityCheck["环境同质性校验"]
+    end
+
+    DevVisible -- "Git 提交" --> HiddenOracle1
+    DevVisible -- "Git 提交" --> HiddenOracle2
+    HiddenOracle1 -- "功能测试结果" --> AuditChannel
+    HiddenOracle2 -- "压力测试结果（异步回流）" --> AuditChannel
+    AuditChannel -- "审计通过/否决" --> Verdict["最终物理战报"]

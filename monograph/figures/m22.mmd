@@ -1,0 +1,23 @@
+flowchart TD
+    subgraph MultiAgentCoordination["多对等智能体并发竞争"]
+        AgentA["主智能体 (Primary Agent A)"]
+        AgentB["辅助智能体 (Peer Agent B)"]
+    end
+
+    MultiAgentCoordination --> LeaseArbiter["底座租约仲裁器 (Substrate Lease Arbiter)"]
+    
+    subgraph ArbiterCore["租约仲裁核心 (Lease & Watchdog)"]
+        LockFile["底座租约契约 (.substrate-lock.json)"]
+        Watchdog["心跳看门狗 (Heartbeat TTL: 30s)"]
+    end
+    
+    LeaseArbiter --> LockFile
+    LeaseArbiter --> Watchdog
+
+    AgentA -- "申请排他写锁" --> LeaseArbiter
+    LeaseArbiter -- "成功授予写租约 (Leader)" --> AgentA
+    AgentA -- "定期心跳续约 (Heartbeat)" --> Watchdog
+
+    AgentB -- "尝试写文件" --> LeaseArbiter
+    LeaseArbiter -- "租约已被占有 -> 强制降级" --> ReplicaMode["从属模式 (Replica-Reader: 仅只读权限)"]
+    ReplicaMode --> AgentB

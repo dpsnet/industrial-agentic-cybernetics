@@ -1,0 +1,18 @@
+sequenceDiagram
+    autonumber
+    actor Core as 流水线编排核心 (dsh)
+    participant Gateway as 原生 Provider 网关 (127.0.0.1:18889)
+    participant Model as 上游大模型纯 API
+    participant Substrate as 物理文件系统
+
+    Note over Gateway: 后台常驻 Daemon 保持长连接与 OAuth 凭据就绪
+    
+    Core->>Gateway: POST /v1/chat/completions (流式请求，声明所需 22 个工具)
+    Gateway->>Model: 直连 API 握手 (消除 CLI 冷启动；首字时延中位 0.8s，短于 CLI 调用路径)
+    
+    Model-->>Gateway: SSE 流式回吐 tool_call: [write_to_file("TwoFactorAuth.java")]
+    Gateway-->>Core: 结构化无损投递函数调用
+    
+    Core->>Substrate: 就地执行文件变异
+    Core->>Gateway: POST /v1/chat/completions (提交工具返回结果)
+    Gateway->>Model: 继续下一轮推理 (连接复用)

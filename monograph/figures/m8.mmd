@@ -1,0 +1,19 @@
+flowchart TD
+    subgraph AntiPattern["反模式：单阶段混合 (Single-Phase Entanglement)"]
+        direction TB
+        AgentMixed["同一个智能体会话"] --> EditTest["编写/修改测试用例"]
+        EditTest --> EditCode["编写业务实现"]
+        EditCode --> TestFail{"测试未通过?"}
+        TestFail -- "动态降低测试标准" --> EditTest
+        TestFail -- "改业务" --> EditCode
+        EditCode --> FalseGreen["虚假自洽通过 (不可信)"]
+    end
+
+    subgraph TwoPhasePattern["推荐模式：双阶段隔离制 (Two-Phase Mandate)"]
+        direction TB
+        Phase1["阶段一：考场脚手架研发 (Harness Phase)"] --> Freeze["物理固化：只读挂载与只读分支锁定"]
+        Freeze --> Boundary["强隔离物理边界 (Read-Only Substrate Mount)"]
+        Boundary --> Phase2["阶段二：纯解题实现 (Solution Phase)"]
+        Phase2 --> NativeAgent["解题智能体 (受限变异权限，严禁篡改测试)"]
+        NativeAgent --> RealPass["真实客观收敛 (客观可信)"]
+    end

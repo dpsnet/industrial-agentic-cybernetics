@@ -1,0 +1,19 @@
+flowchart TD
+    subgraph MultiAgentRequests["多智能体并发系统调用"]
+        AgentPrimary["主流水线智能体 (持有排他写租约 Leader)"]
+        AgentPeer["IDE/背景辅助智能体 (未持锁 Follower)"]
+    end
+
+    MultiAgentRequests --> Interceptor["底座租约拦截网关 (Substrate Lease Interceptor)"]
+    
+    Interceptor -- "持有效写租约" --> DirectWrite["物理源码树直接变异 (Direct Substrate Mutation)"]
+    
+    subgraph ReplicaReaderDegradation["从读降级体系 (Replica-Reader Fallback)"]
+        direction TB
+        ReadOnlyView["1. 只读代码检索与语义理解 (Read-Only Analysis)"]
+        ShadowScratch["2. 内存影子工作区 (Shadow In-Memory Workspace)"]
+        DiffProposal["3. 生成隔离差异补丁 (Patch Proposal, 不落盘)"]
+    end
+
+    Interceptor -- "未持锁/租约冲突 -> 强制降级" --> ReplicaReaderDegradation
+    DirectWrite --> SubstrateFS["真实物理文件系统 (repo/)"]

@@ -1,0 +1,20 @@
+sequenceDiagram
+    autonumber
+    actor Arbiter as 基准评测编排器
+    participant SandboxA as 沙箱 A (Channel: agy-native)
+    participant SandboxB as 沙箱 B (Channel: baseline)
+    participant Evaluator as 五重物理机械判据机
+
+    Arbiter->>SandboxA: 启动评测实例 (Instance: pigx__auth__005, Channel: agy-native)
+    SandboxA->>SandboxA: 运行 SDLC 十一阶段 (记录 Token 吞吐与物理时间戳)
+    SandboxA-->>Arbiter: 提交产物 A (耗时 47s, 消耗 420 万 Token)
+
+    Arbiter->>SandboxB: 启动同一实例 (Instance: pigx__auth__005, Channel: baseline)
+    SandboxB->>SandboxB: 运行基线流程
+    SandboxB-->>Arbiter: 提交产物 B (耗时 180s, 消耗 2,100 万 Token)
+
+    Arbiter->>Evaluator: 触发双盲五重机械判据
+    Evaluator->>SandboxA: 验证产物 A -> 全部通过 (RESOLVED)
+    Evaluator->>SandboxB: 验证产物 B -> 全部通过 (RESOLVED)
+
+    Arbiter->>Arbiter: 生成对照战报: agy-native 达成 -80.0% 能耗压缩与 3.8x 加速比

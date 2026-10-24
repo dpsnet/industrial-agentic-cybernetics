@@ -1,0 +1,17 @@
+sequenceDiagram
+    autonumber
+    actor Human as 飞行指挥官 (人类工程师)
+    participant UI as 全双工交互界面 (Voice/Web)
+    participant Accordion as 手风琴投影器 (Projector)
+    participant Core as 流水线执行核心
+
+    Core->>Accordion: 产生高维事件: T2 自愈成功，耗费 12 次工具调用，编译耗时 13s
+    Accordion->>UI: [默认 Level 0: 极简信标] 语音播报: "T2 控制器已通过原厂测试，正在构建 T3"
+    
+    Human->>UI: 交互指令: "展开讲讲改了什么测试？"
+    UI->>Accordion: requestDrillDown(taskId="T2", targetTier=Level_2)
+    Accordion->>Accordion: 提取变更文件与三层测试规范切片
+    Accordion-->>UI: [Level 2 投影] 呈现卡片: "修改 2 个文件，追加 12 个纯 Mockito 单测，覆盖了重试超限分支"
+    
+    Human->>UI: 指令确认: "很好，批准继续。"
+    UI->>Core: 维持原航向执行

@@ -1,0 +1,25 @@
+sequenceDiagram
+    autonumber
+    actor Orchestrator as 编排系统
+    participant Harness as 阶段一：脚手架工程 (Harness)
+    participant Freezer as 物理状态固化器 (Freezer)
+    participant Solution as 阶段二：解题智能体 (Solution)
+    participant Sandbox as 只读沙箱宿主
+
+    Orchestrator->>Harness: 启动环境初始化与验收用例固化
+    Harness->>Sandbox: 部署隐藏 Oracle 与不可变测试集
+    Harness-->>Orchestrator: 阶段一完成 (产出只读镜像与挂载规格)
+    
+    Orchestrator->>Freezer: 执行物理隔离锁定
+    Freezer->>Sandbox: 设置测试目录只读权限 (chmod a-w / Read-Only Mount)
+    
+    Orchestrator->>Solution: 启动阶段二业务开发 (挂载受限工作区)
+    Solution->>Sandbox: 尝试修改业务源码 (Allowed)
+    opt 尝试越界篡改测试用例
+        Solution->>Sandbox: 尝试写回测试文件
+        Sandbox-->>Solution: 硬件拦截: EACCES Permission Denied (严惩打回)
+    end
+    Solution-->>Orchestrator: 阶段二解题结束
+    
+    Orchestrator->>Sandbox: 触发双盲机械判定
+    Sandbox-->>Orchestrator: 输出客观物理评分

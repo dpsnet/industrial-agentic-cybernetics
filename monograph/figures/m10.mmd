@@ -1,0 +1,16 @@
+flowchart TD
+    GlobalDesign["宏观系统设计全量蓝图 (Global Blueprint: 50+ Endpoints, 20+ Tables)"] --> Projector["最小特权动态投影器 (Context Projector)"]
+    
+    subgraph SlicingEngine["靶向切片引擎 (PoLP Slicing Engine)"]
+        direction TB
+        Filter1["提取当前 Task 指定的读写表清单"]
+        Filter2["提取当前 Task 正交声明的 API Endpoints"]
+        Filter3["提取靶向白名单目标文件路径 (Files In-Scope)"]
+        Filter4["靶向过滤门禁打回反馈 (仅保留关联 Finding)"]
+    end
+    
+    Projector --> SlicingEngine
+    
+    SlicingEngine --> TaskSlice["任务级微观切片 (TaskDesignSlice: <5K Tokens)"]
+    TaskSlice --> DevAgent["开发智能体 (Focus & Low Cognitive Load)"]
+    DevAgent --> BoundedDiff["受限精准代码变异 (Zero Out-of-Scope Mutations)"]

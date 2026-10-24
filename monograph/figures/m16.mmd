@@ -1,0 +1,13 @@
+flowchart LR
+    subgraph PairingMicroLoop["沙箱结对微循环 (Driver-Navigator Micro-Loop)"]
+        direction TB
+        Navigator["领航员 (Navigator: 只读审查与航向锁定)"]
+        Driver["驱动者 (Driver: 变异写代码与执行命令)"]
+        Substrate["物理沙箱底座 (Sandbox)"]
+
+        Navigator -- "1. 规划局部战术路径 & 审查建议" --> Driver
+        Driver -- "2. 执行文件编辑与单测指令" --> Substrate
+        Substrate -- "3. 物理构建退出码 & 真实编译器堆栈" --> Navigator
+        Navigator -- "4. 物理嗅探 (检测死循环/越界变异/分支覆盖)" --> Navigator
+        Navigator -- "5. 航向纠偏信号" --> Driver
+    end

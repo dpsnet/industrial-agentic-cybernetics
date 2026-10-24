@@ -1,0 +1,10 @@
+% 数学模式 CJK 兜底：\text{中文} 走文本模式交给 xeCJK（unicode-math 的 \text 缺 CJK 字形）
+\usepackage{unicode-math}
+\setmathfont{latinmodern-math.otf}
+% \text 重定义：数学模式内的中文文本交给 xeCJK 处理
+\makeatletter
+\renewcommand{\text}[1]{\textnormal{#1}}
+\makeatother
+% 超宽浮动限制
+\usepackage{graphicx}
+\PassOptionsToPackage{hyphens}{url}

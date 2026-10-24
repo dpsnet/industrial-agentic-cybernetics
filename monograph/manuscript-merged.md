@@ -5200,7 +5200,7 @@ lean src/IACFormalization/Axiom1_Grounding.lean   # 单文件检查
 
 ---
 
-## A.5 参考文献（References）
+## A.5 参考文献（References）{#a5-参考文献-references}
 
 1. Amodei, D., Olah, C., Steinhardt, J., Christiano, P., Schulman, J., & Mané, D. (2016). *Concrete Problems in AI Safety*. arXiv:1606.06565.
 2. Krakovna, V., et al. (2020). *Specification gaming: the flip side of AI ingenuity*. DeepMind Research Blog.

@@ -1,0 +1,11 @@
+flowchart TD
+    subgraph ToyParadigm["传统离散提示词范式 (Toy Prompting Paradigm)"]
+        direction TB
+        User["开发者输入需求"] --> Prompt["构建长上下文 Prompt"]
+        Prompt --> LLM["LLM 离散推理生成"]
+        LLM --> Scratch["写入临时环境/执行测试脚本"]
+        Scratch --> FakeGreen{"看起来全绿 / Mock通过?"}
+        FakeGreen -- "是 (奖励欺骗)" --> FalsePass["宣布需求完成 (产生隐蔽故障)"]
+        FakeGreen -- "否" --> SelfReflect["盲目自我反思 (重试无限循环)"]
+        SelfReflect --> LLM
+    end

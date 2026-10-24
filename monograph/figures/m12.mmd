@@ -1,0 +1,35 @@
+flowchart TD
+    subgraph MonolithicAntiPattern["反模式：单步一体化设计生成 (One-Shot Monolithic Design)"]
+        direction TB
+        TaskBrief["需求任务规格 (Brief)"] --> MonolithicLLM["单次超长推理调用"]
+        MonolithicLLM --> Truncation["注意力耗尽 / 输出达到 Token 极限截断"]
+        Truncation --> FlawedContract["残缺/宏微脱节的设计契约 (Downstream Crash)"]
+    end
+
+    subgraph TwoStagePattern["推荐模式：两阶段宏微观渐进展开模式 (Macro-Micro Elaboration)"]
+        direction TB
+        Brief["需求任务规格 (Brief)"] --> Stage1["阶段一：宏观全局蓝图 (Stage 1: Macro Blueprint)"]
+        
+        subgraph Stage1Scope["阶段一聚焦：全局骨架与边界决策"]
+            S1_1["1. 业务域模块划分与拓扑边界"]
+            S1_2["2. 核心数据实体与拓扑关系图"]
+            S1_3["3. 关键技术选型与 ADR 架构决策记录"]
+            S1_4["4. 接口端点目录索引 (仅路由清单与职责)"]
+        end
+        Stage1 --> Stage1Scope
+        
+        Stage1Scope --> BlueprintGate{"阶段一蓝图质量门禁<br/>(Blueprint Gate: 阈值 >= 7.0)"}
+        BlueprintGate -- "打回纠偏" --> Stage1
+        
+        BlueprintGate -- "批准固化" --> Stage2["阶段二：微观物理契约细化 (Stage 2: Micro Elaboration)"]
+        
+        subgraph Stage2Scope["阶段二聚焦：逐项契约物理穿透"]
+            S2_1["1. 严格对齐 FQCN 全限定类名与继承树"]
+            S2_2["2. 端点 DTO Schema (Jackson 属性/必填校验)"]
+            S2_3["3. 异常传递契约 (精确到捕获类型与抛出时机)"]
+            S2_4["4. 单元测试实例化断言规格 (BDD 验收用例)"]
+        end
+        Stage2 --> Stage2Scope
+        
+        Stage2Scope --> ElaboratedSpecs["高密度、100% 物理可核验的活设计契约 (Living Specs)"]
+    end

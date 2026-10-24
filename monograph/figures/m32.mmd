@@ -1,0 +1,21 @@
+sequenceDiagram
+    autonumber
+    actor Dev as 开发智能体
+    participant Crystal as 知识萃取器 (Crystallizer)
+    participant KB as 全局知识库 (Knowledge Base)
+    actor OtherDev as 后续任务智能体
+    participant Gate as 物理五重判据终审门禁 (Promotion Gate)
+
+    Dev->>Crystal: 提交任务解决方案与萃取模式
+    Crystal->>KB: 写入知识资产，状态标为 DRAFT_SUSPECT
+    
+    OtherDev->>KB: 检索可用知识 (verifiedOnly: true)
+    KB-->>OtherDev: 过滤掉 DRAFT_SUSPECT，仅返回既有已晋升的 VERIFIED_ACTIVE 资产 (防御记忆投毒!)
+
+    alt 任务最终未通过五重物理判据或被打回
+        Gate->>KB: triggerRejection(batchId)
+        KB->>KB: 将该批次所有草稿置为 DEPRECATED_QUARANTINED (污点封存)
+    else 任务以五重全绿高分通过终审
+        Gate->>KB: triggerPromotion(batchId)
+        KB->>KB: 将草稿正式晋升为 VERIFIED_ACTIVE (合法复用)
+    end

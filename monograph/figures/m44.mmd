@@ -1,0 +1,25 @@
+flowchart TD
+    TaskInstance["标准工业题目实例 (如 pigx__auth__005: 5.10.0-SNAPSHOT)"] --> MatrixOrchestrator["A/B 评测矩阵调度器 (Benchmark Matrix Orchestrator)"]
+
+    subgraph ChannelA["执行通道 A: 原生控制论通道 (agy-native)"]
+        direction TB
+        A_Runtime["原生 Provider 直连 (Zero CLI Process Overhead)"]
+        A_Orchestration["PoLP 上下文切片 + 结对微循环自愈"]
+    end
+
+    subgraph ChannelB["执行通道 B: 传统基线通道 (Baseline Channel)"]
+        direction TB
+        B_Runtime["外部 CLI 独立进程桥接"]
+        B_Orchestration["全量提示词单步生成"]
+    end
+
+    MatrixOrchestrator --> ChannelA
+    MatrixOrchestrator --> ChannelB
+
+    ChannelA --> SubstrateA["沙箱 A: 物理工作区 (同质 settings.xml)"]
+    ChannelB --> SubstrateB["沙箱 B: 物理工作区 (同质 settings.xml)"]
+
+    SubstrateA --> MechanicalEvaluator["五重物理无旁路机械评测机"]
+    SubstrateB --> MechanicalEvaluator
+
+    MechanicalEvaluator --> ABReport["产出标准 A/B 对照效能战报 (Pass率, 能耗比, 物理耗时, MTTR)"]

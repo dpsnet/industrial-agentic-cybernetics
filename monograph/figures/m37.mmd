@@ -1,0 +1,22 @@
+flowchart TD
+    Human["人类飞行指挥官 (Flight Director)"] --> FastInterrupt["异步最高优先级插话通道 (High-Priority Priority Interrupt Channel)"]
+
+    subgraph AutonomousCruising["智能体自主巡航状态机 (Autonomous Agent Cruising)"]
+        direction TB
+        AgentPlanning["任务规划与分解"] --> AgentActuation["物理底座变异与编译"]
+        AgentActuation --> GateCheck["门禁评分与微循环"]
+        GateCheck --> AgentActuation
+    end
+
+    FastInterrupt -- "毫秒级非阻塞暂停 (Safe-Point Pause)" --> AutonomousCruising
+    
+    subgraph FlightDirectorControl["指挥官干预与航向锁定 (Steering & Course-Lock)"]
+        direction TB
+        Freeze["1. 物理事务冻结 (Freeze Substrate Mutations)"]
+        Inspect["2. 结合手风琴多分辨率投影审查现场"]
+        InjectSteering["3. 注入硬意志 (Course Correction Constraint)"]
+        LockCourse["4. 施加航向不可变锁 (Course-Lock Invariant)"]
+    end
+
+    AutonomousCruising --> FlightDirectorControl
+    FlightDirectorControl -- "恢复巡航 (Resume with Hard Invariants)" --> AutonomousCruising

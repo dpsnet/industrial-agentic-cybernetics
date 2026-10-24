@@ -1,0 +1,20 @@
+sequenceDiagram
+    autonumber
+    actor Human as 人类指挥官 (Flight Director)
+    participant Interrupt as 异步中断监听器 (Interrupt Channel)
+    participant SafePoint as 安全断点控制器 (Safe-Point)
+    participant Agent as 巡航智能体 (Autonomous Agent)
+    participant Substrate as 物理文件系统
+
+    Agent->>Substrate: 正在执行长耗时工具调用 (如多模块编译)
+    
+    Human->>Interrupt: 发起实时插话: "暂停！网关脱敏不要删除 Server 头，改为掩码处理！"
+    Interrupt->>SafePoint: 发出最高优先级中断信号 (SIG_INTERRUPT)
+    SafePoint->>Agent: 拦截后续动作派发，强制进入安全冻结态 (STATE_FROZEN)
+    
+    SafePoint-->>Human: 响应确认: "巡航已冻结在安全点。请确认航向修正规范。"
+    Human->>SafePoint: 确认航向参数: { maskMode: "MASK_WITH_ASTERISK", immutable: true }
+    
+    SafePoint->>Agent: 注入航向锁定契约 (Course-Lock Injected)
+    SafePoint->>Agent: 解除冻结，以新航向指令恢复巡航 (RESUME_CRUISING)
+    Agent->>Substrate: 依据新约束执行精准重构

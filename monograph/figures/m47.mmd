@@ -1,0 +1,21 @@
+sequenceDiagram
+    autonumber
+    actor Orchestrator as 编排系统
+    participant Pruner as 上下文剪枝引擎
+    participant Cache as 磁盘结构化碎片库
+    participant LLM as 底层大模型网关
+    participant Telemetry as 能耗遥测仪
+
+    Orchestrator->>Cache: 检查任务 [T1] 历史契约是否存在且有效?
+    Cache-->>Orchestrator: 命中本地已验证碎片 T1.json (Zero Token Hit!)
+
+    Orchestrator->>Pruner: 准备构建子任务 [T2] 的开发上下文
+    Pruner->>Pruner: 动作 1: 剔除全量宏观拓扑，仅投影网关模块边界 (降幅 65%)
+    Pruner->>Pruner: 动作 2: 剪除既往编译通过的模块构建日志 (降幅 80%)
+    Pruner-->>Orchestrator: 输出高保真极简 Prompt (仅 4K Tokens)
+
+    Orchestrator->>LLM: 触发轻量级推理调用
+    LLM-->>Orchestrator: 返回精准代码补丁
+    
+    Orchestrator->>Telemetry: 上报本次调用度量: 输入 4,200, 输出 180
+    Telemetry->>Telemetry: 确认能耗指标符合收敛基线 (Tokenomics Healthy)

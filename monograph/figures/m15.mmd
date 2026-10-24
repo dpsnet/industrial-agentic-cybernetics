@@ -1,0 +1,28 @@
+sequenceDiagram
+    autonumber
+    actor Orchestrator as 编排引擎
+    participant PM as 规划智能体
+    participant FS as 磁盘碎片存储 (tasks/)
+    participant Snapshot as 运行快照 (run-status.json)
+    participant Dev as 开发执行层
+
+    Orchestrator->>PM: 启动需求分析
+    PM->>PM: 阶段一：流式生成轻量大纲 (task-outline.json)
+    PM-->>FS: 落盘 task-outline.json (定义 T1, T2, T3)
+    
+    loop 阶段二：逐个任务具象化
+        Orchestrator->>PM: 具象化生成单任务契约 [T_k]
+        PM-->>FS: 原子写入 tasks/T_k.json
+        PM->>Snapshot: 更新任务进度与 SHA-256 校验指纹
+    end
+
+    Orchestrator->>Dev: 派发执行 T1 (通过)
+    Orchestrator->>Dev: 派发执行 T2 (遭遇编译器报错，打回)
+    
+    note over Orchestrator,Snapshot: 触发选择性断点续跑 (Selective Resume)
+    Orchestrator->>Snapshot: 读取既有 Run ID 与已完成任务集合
+    Snapshot-->>Orchestrator: T1 状态为 SUCCESS (保留)，T2 状态为 FAILED
+    Orchestrator->>FS: 仅删除 tasks/T2.json 碎片
+    Orchestrator->>PM: 靶向重拆任务 T2 (注入错误堆栈证据)
+    PM-->>FS: 生成修复后的 tasks/T2.json
+    Orchestrator->>Dev: 从 T2 接续执行，直接跳过 T1

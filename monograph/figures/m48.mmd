@@ -1,0 +1,22 @@
+flowchart TD
+    subgraph AntiPattern["反模式：重量级外部 CLI 进程调用 (Subprocess Wrapping)"]
+        direction TB
+        Task["流水线单步子任务"] --> SpawnCLI["每次创建子进程: exec('agent-cli.exe')"]
+        SpawnCLI --> ProcessJitter["进程冷启动抖动 (+3s) & 管道死锁风险"]
+        ProcessJitter --> PromptBlock["权限交互弹窗阻塞自动化流水线"]
+    end
+
+    subgraph NativeBridgePattern["推荐模式：纯模型原生 Provider 解耦桥接模式 (Pure Native Provider)"]
+        direction TB
+        PipelineStep["流水线单步任务 (dsh / Core Orchestrator)"] --> LocalGateway["原生轻量网关 (http://127.0.0.1:18889)"]
+        
+        subgraph GatewayCore["零进程开销网关核心 (Zero CLI Process Gateway)"]
+            TokenBridge["1. 本地轻量 OAuth2 Token 缓存与直连"]
+            StreamChunker["2. SSE 流式高吞吐分块传输 (Server-Sent Events)"]
+            ToolNormalizer["3. 原生 Tool Call 结构化无损透传"]
+        end
+
+        LocalGateway --> GatewayCore
+        GatewayCore --> UpstreamAPI["上游模型提供商纯 API (Gemini / Claude / DeepSeek)"]
+        UpstreamAPI --> AtomicExecution["零摩擦原子级极速响应 (平均耗时仅 4~5s)"]
+    end

@@ -1,0 +1,14 @@
+sequenceDiagram
+    autonumber
+    actor DevEnv as 开发环境（智能体可访问）
+    participant Bridge as MCP 协议桥接器
+    actor StressEnv as 压力测试环境（智能体不可访问）
+    participant Auditor as 现实审计器（模式 02）
+
+    DevEnv->>Bridge: 提交候选版本 Git 分支引用
+    Bridge->>StressEnv: 触发压力测试（通过隔离 API 网关）
+    note over StressEnv: 独立执行：负载注入、指标采集、结果存储
+    StressEnv-->>Bridge: 异步回流原始结果（JMeter/Prometheus 导出）
+    Bridge->>Auditor: 转发结果 + 传输完整性校验（签名/哈希）
+    Auditor-->>Bridge: 审计通过/否决（模式 02 探针 4）
+    Bridge-->>DevEnv: 投递审计后的压力测试报告（PoLP 投影）

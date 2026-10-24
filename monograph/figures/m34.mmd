@@ -1,0 +1,22 @@
+sequenceDiagram
+    autonumber
+    actor Dev as 智能体会话 (Session)
+    participant KB as 全局知识库
+    participant Evaluator as 五重物理评测门禁
+    participant Tracker as 污点追踪器 (Taint Tracker)
+
+    Dev->>KB: 临时存入萃取的模式 P_new (标记为 DRAFT_SUSPECT)
+    Dev->>Evaluator: 提交最终代码产物并申请终审
+    
+    Evaluator->>Evaluator: 运行原厂就地构建与隐藏探针
+    Evaluator-->>Tracker: 严重警告: 捕获奖励欺骗 (Exit Code 1 / Tautology Detected)
+    
+    rect rgb(255, 230, 230)
+        note right of Tracker: 启动污点污染阻断与逆向清除
+        Tracker->>KB: 锁定 Session 生成的全部模式 (P_new)
+        Tracker->>KB: 原子打标: P_new.lifecycle = DEPRECATED_QUARANTINED
+        Tracker->>KB: 从向量与关键词索引中物理剔除 P_new
+        Tracker->>KB: 追加反模式黑名单条目: "严禁在测试中断言自指 Mock"
+    end
+
+    Tracker-->>Evaluator: 污点清除完毕，知识库免疫屏障闭合

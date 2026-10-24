@@ -1,0 +1,27 @@
+sequenceDiagram
+    autonumber
+    actor AgentPrimary as 主智能体 (Primary)
+    actor AgentPeer as 辅助智能体 (Peer)
+    participant Arbiter as 租约仲裁器 (Arbiter)
+    participant LockState as 物理租约契约 (.substrate-lock.json)
+    participant FS as 物理文件系统
+
+    AgentPrimary->>Arbiter: acquireLock(holderId="agent-primary", ttl=30000)
+    Arbiter->>LockState: 原子创建租约文件
+    Arbiter-->>AgentPrimary: 获得排他写锁 (LEASE_ACQUIRED)
+
+    par 主智能体周期性续约
+        loop 每 10 秒
+            AgentPrimary->>Arbiter: heartbeat(leaseId, extendMs=30000)
+            Arbiter->>LockState: 刷新 expiresAt 时间戳
+        end
+    and 辅助智能体尝试并发写入
+        AgentPeer->>Arbiter: tryWrite(file="GatewayFilter.java")
+        Arbiter->>LockState: 读取租约状态
+        LockState-->>Arbiter: 租约有效且持有者 != agent-peer
+        Arbiter-->>AgentPeer: 降级拦截: EBUSY_SUBSTRATE_LOCKED (降级为只读分析)
+    end
+
+    AgentPrimary->>Arbiter: releaseLock(leaseId)
+    Arbiter->>LockState: 原子删除/标记解锁
+    Arbiter-->>AgentPeer: 广播可用事件: SUBSTRATE_RELEASED

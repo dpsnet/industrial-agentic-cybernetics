@@ -1,0 +1,17 @@
+flowchart TD
+    subgraph TraditionalBloat["传统无约束交互模式 (Token 爆炸: 2600万+)"]
+        direction TB
+        RawContext["全量工程代码 + 历史长日志"] --> BloatedPrompt["每次调用 100K+ Tokens"]
+        BloatedPrompt --> ModelDegrade["上下文退化 (Context Rot) & 频繁报错"]
+        ModelDegrade --> MassiveRetries["连续 50 轮全量重试 (吞吐失控)"]
+    end
+
+    subgraph CyberneticCompression["控制论能效压缩架构 (Token 压降: -80.7% -> 500万级)"]
+        direction TB
+        TaskSlicing["1. 任务级最小特权投影 (PoLP: 仅注入单任务目标表/端点)"]
+        FragmentCache["2. 磁盘碎片增量复用 (复用已验证 T_k.json, 跳过重复推理)"]
+        CausalPruning["3. 因果剪枝 (清除过时错误堆栈，仅保留靶向诊断)"]
+        SubstepHeal["4. 局部微循环原子自愈 (Driver-Navigator 限制在局部代码)"]
+    end
+
+    CyberneticCompression --> UltraLowTokens["单位代码行能耗大幅优化 (从 5.1万Tokens/LoC 降至 9,700)"]

@@ -1,0 +1,23 @@
+sequenceDiagram
+    autonumber
+    actor Pipeline as 自主 SDLC 流水线
+    participant Bridge as MCP 协议桥接器
+    actor IDE as 开发者 IDE 插件 (Peer)
+    participant Lock as 底座租约锁
+
+    Pipeline->>Bridge: 注册当前任务 [T2: 2FA 控制器实现] & 广播事件
+    Bridge->>IDE: 经由 MCP Server 投递经过 PoLP 投影的微任务切片
+    
+    note over IDE: 开发者在 IDE 中请求对 T2 代码进行性能审查
+    IDE->>Bridge: 调用 MCP 工具: devforge_query_context(taskId="T2")
+    Bridge-->>IDE: 返回契约摘要与测试断言标准 (过滤无关宏观拓扑)
+    
+    IDE->>Bridge: 尝试发起代码修改: mcp_apply_patch(...)
+    Bridge->>Lock: 检查物理底座租约状态
+    
+    alt 底座当前被 Pipeline 排他写锁占有
+        Bridge-->>IDE: 拦截并降级: 返回建议补丁 ID (避免写写冲突)
+    else 底座空闲
+        Bridge->>Lock: 协助申请临时写入租约并物理执行
+        Bridge-->>IDE: 物理写入成功
+    end

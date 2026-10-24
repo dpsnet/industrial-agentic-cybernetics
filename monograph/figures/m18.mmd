@@ -1,0 +1,24 @@
+flowchart TD
+    subgraph DriverMutation["驱动者代码变异 (Driver Actuation)"]
+        CodeDiff["驱动者提交物理代码变更 (Git Diff)"]
+    end
+
+    subgraph SniffingEngine["白盒隐式分支嗅探器 (Sniffing Engine)"]
+        direction TB
+        AST["1. 静态 AST 遍历: 提取所有条件跳转与 throw 分支"]
+        DiffAnalysis["2. 增量分析: 识别本次变异新涌现的隐式分支 (Emergent Branches)"]
+        CoverageCrossCheck["3. 交叉比对: 既有测试用例是否覆盖该新增分支?"]
+    end
+
+    DriverMutation --> SniffingEngine
+
+    CoverageCrossCheck -- "存在未覆盖的隐式分支" --> ForceAnchor["强制内部锚定要求 (Internal Invariants)"]
+    
+    subgraph ThreeTierTaxonomy["三层测试锚定体系 (Three-Tier Test Taxonomy)"]
+        T1["层级 1: 验收测试 (Acceptance living-specs: 业务契约)"]
+        T2["层级 2: 补充覆盖测试 (Supplementary: 显式业务分支)"]
+        T3["层级 3: 内部锚定测试 (Internal Invariants: 防退化白盒硬约束)"]
+    end
+
+    ForceAnchor --> ThreeTierTaxonomy
+    ThreeTierTaxonomy --> InvariantTests["就地生成并执行内部单测 (100% 绿灯落盘)"]

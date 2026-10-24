@@ -1,0 +1,18 @@
+flowchart TD
+    subgraph AntiPattern["反模式：裸文件系统写入 (Raw File Mutation)"]
+        direction TB
+        AgentRaw["智能体直接调用写工具"] --> DiskWrite["磁盘覆写 (耗时 50ms)"]
+        DiskWrite --> SameMtime["文件 Mtime 未发生离散跳变 (与上次相同)"]
+        SameMtime --> CompilerStale["编译器命中缓存，跳过重新编译！"]
+        CompilerStale --> StaleFailure["继续跑旧字节码，虚假报错死循环"]
+    end
+
+    subgraph CyberneticPattern["控制论模式：幂等日志与 Mtime 补偿 (Journaling + Touch)"]
+        direction TB
+        AgentSafe["智能体提交变异动作"] --> Hasher["计算变异 SHA-256 规范签名"]
+        Hasher --> Journal["写入幂等 Journal (可原子撤销/重放)"]
+        Journal --> AtomicWrite["原子写入磁盘 (Sub-stepping)"]
+        AtomicWrite --> MtimeTouch["强制物理 Mtime 补偿: touch -m +1s"]
+        MtimeTouch --> ClockAdvance["文件时钟严格单调递增 (Strict Monotonicity)"]
+        ClockAdvance --> CompilerWake["强行击穿编译器缓存，真实重编！"]
+    end

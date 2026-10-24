@@ -1,0 +1,91 @@
+flowchart TD
+      subgraph DevEnvironment["开发环境（智能体可访问）"]
+          Dev["智能体开发"] --> GitCommit["Git 提交"]
+      end
+
+      subgraph IsolatedEnvironments["隔离环境矩阵（智能体不可访问）"]
+          direction TB
+          StressTest["压力测试环境<br/>（隔离）"]
+          Production["生产环境<br/>（隔离）"]
+      end
+
+      subgraph BridgeLayer["协议桥接层（模式 12）"]
+          direction TB
+          Bridge1["压力测试结果<br/>异步回流"]
+          Bridge2["生产指标<br/>异步回流"]
+      end
+
+      subgraph AuditLayer["独立审计层（模式 02 探针 4）"]
+          direction TB
+          Audit1["压力测试审计"]
+          Audit2["生产指标审计"]
+      end
+
+      GitCommit --> StressTest
+      StressTest --> Bridge1
+      GitCommit --> Production
+      Production --> Bridge2
+      Bridge1 --> Audit1
+      Bridge2 --> Audit2
+
+      Audit1 --> DeployDecision["部署决策"]
+      Audit2 --> RuntimeSniffer["运行时异常嗅探器"]
+
+      subgraph SniffingDimensions["三维嗅探维度"]
+          D1["性能维度：P99/P999 延迟、吞吐量、错误率"]
+          D2["资源维度：内存/CPU/连接池/句柄泄漏"]
+          D3["业务维度：异常请求模式、边界条件触发"]
+      end
+
+      RuntimeSniffer --> SniffingDimensions
+      SniffingDimensions --> Alarm["异常报警 & 物理时钟事件"]
+      Alarm --> Feedback["反馈至模式 24：缺陷萃取与热修复闭环"]
+  ```
+
+**关键约束：生产环境与开发环境完全隔离**
+
+
+
+| 约束                | 实现方式                                       |
+| ----------------- | ------------------------------------------ |
+| **智能体无法直接访问生产环境** | 模式 01（就地穿透）不适用；生产指标通过协议桥接器（模式 12）异步回流      |
+| **运行时指标需跨环境传输**   | 指标采集器部署于生产环境，通过隔离 API 网关推送至桥接层             |
+| **传输完整性保障**       | 生产指标附 SHA-256 哈希，审计器验证完整性后方可采信             |
+| **环境指纹采集**        | 同步采集生产环境配置指纹（OS / 内核 / 依赖版本 / 资源配额），供同质性校验 |
+| **物理时钟事件跨环境锚定**   | 异常事件的 mtime 跳变在生产环境锚定，通过桥接层同步至开发环境，确保因果单调性 |
+
+
+
+***
+
+### 3. 适用性 (Applicability)
+
+
+
+* 自主智能体交付的代码已部署至生产环境，需持续保障运行时质量；
+
+* 生产环境长周期运行，需检测压力测试短周期未暴露的累积性缺陷；
+
+* 需将生产环境特有异常萃取为经验资产，防止同类缺陷跨代际传播。
+
+
+
+***
+
+### 4. 参与者与职责 (Participants)
+
+
+
+1. **运行时指标采集器 (Runtime Metrics Collector)**：部署于生产环境的独立代理，采集 Prometheus/Grafana 原生指标，与智能体完全物理隔离；**关键约束**：采集器与智能体无直接通信通道，仅通过隔离 API 网关暴露只读指标端点；
+
+2. **异常模式嗅探器 (Anomaly Sniffer)**：部署于开发环境或独立分析环境，基于预注册阈值与统计模型（如 3-sigma 规则、EWMA 指数加权移动平均），嗅探运行时指标的异常模式；**关键约束**：嗅探器不直接访问生产环境，仅消费经协议桥接器回流并审计后的指标；
+
+3. **物理时钟事件记录器 (Physical Clock Event Logger)**：将异常事件锚定为物理时钟事件（mtime 跳变）；**关键约束**：生产环境的 mtime 跳变通过桥接层同步至开发环境，确保跨环境因果单调性；
+
+4. **反馈闭环触发器 (Feedback Loop Trigger)**：异常确认后触发模式 24 的缺陷萃取与热修复闭环；**关键约束**：触发器仅消费经审计后的异常事件，不直接响应生产环境原始信号。
+
+
+
+***
+
+### 5. 协作协议与因果约束 (Collaborations)

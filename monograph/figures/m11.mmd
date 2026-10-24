@@ -1,0 +1,23 @@
+sequenceDiagram
+    autonumber
+    actor Orchestrator as 编排系统
+    participant Projector as 最小特权投影器 (PoLP Projector)
+    participant Dev as 开发智能体 (Actuator)
+    participant Guard as 边界卫士 (Scope Guard)
+    participant Substrate as 物理文件系统
+
+    Orchestrator->>Projector: 请求派发子任务 [T2: 响应头脱敏过滤器]
+    Projector->>Projector: 动态过滤: 剔除认证中心、数据库表设计等无关信息
+    Projector->>Projector: 提取目标接口契约与网关模块边界定义
+    Projector-->>Orchestrator: 返回精准 TaskDesignSlice (Token 压降 >65%)
+    
+    Orchestrator->>Dev: 注入 TaskDesignSlice 并下发开发指令
+    Dev->>Guard: 提交文件修改动作列表
+    Guard->>Guard: 校验 modifiedFiles 是否属于 declaredAllowedPaths
+    
+    alt 智能体试图修改未授权的 UserAuthFilter.java
+        Guard-->>Dev: 硬件拦截: EPERM_OUT_OF_SCOPE (越界修改被阻断)
+    else 仅修改声明范围内的 SensitiveHeaderFilter.java
+        Guard->>Substrate: 允许物理写入落盘
+        Guard-->>Dev: 写入成功
+    end

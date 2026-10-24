@@ -1,0 +1,25 @@
+sequenceDiagram
+    autonumber
+    actor Developer as 宿主编排器
+    participant Agent as 研发智能体 (Actuator)
+    participant Substrate as 物理业务源码底座 (Native Substrate)
+    participant Penetrator as 穿透核验中间层 (Penetration Hook)
+    participant Compiler as 原厂编译器 (Native Compiler/Toolchain)
+
+    Developer->>Agent: 下发业务任务 Brief
+    Agent->>Substrate: 触发物理代码变更 (.java / .ts / .xml)
+    Agent->>Penetrator: 提交“研发完成”声明
+    
+    rect rgb(240, 248, 255)
+        note right of Penetrator: 物理底座穿透核验 (Substrate Penetration)
+        Penetrator->>Substrate: 物理检查 1: Git Diff Substrate Check (物理源码存在非空变更?)
+        Penetrator->>Compiler: 物理检查 2: In-Situ Native Build (原地调用 native mvn/npm，非桩函数)
+        Compiler-->>Penetrator: 返回原生 Exit Code & 真实编译器控制台流
+        Penetrator->>Substrate: 物理检查 3: 产物落地核验 (Target / Dist 物理文件存在且有效?)
+    end
+
+    alt 三重物理核验均通过
+        Penetrator-->>Developer: 确认穿透成功 (Real Exit 0)
+    else 任意一项不满足
+        Penetrator-->>Developer: 物理否决: 判定为奖励欺骗 (CRITICAL DECEPTION)
+    end

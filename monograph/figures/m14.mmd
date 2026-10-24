@@ -1,0 +1,27 @@
+flowchart TD
+    subgraph Stage1Streaming["阶段一：骨架流式展开 (Streaming Outline)"]
+        RawBrief["用户原始需求规格 (Brief)"] --> OutlineAgent["大纲智能体 (Outline Streamer)"]
+        OutlineAgent --> OutlineDAG["轻量级任务拓扑大纲 (Task Outline DAG: T1 -> T2 -> T3)"]
+    end
+
+    subgraph Stage2Incremental["阶段二：逐项具象化流式落盘 (Item-by-Item Crystallization)"]
+        OutlineDAG --> T1["流式生成任务 T1 详细契约 -> T1.json 落盘"]
+        OutlineDAG --> T2["流式生成任务 T2 详细契约 -> T2.json 落盘"]
+        OutlineDAG --> T3["流式生成任务 T3 详细契约 -> T3.json 落盘"]
+    end
+
+    subgraph SelectiveResumeEngine["选择性断点续跑引擎 (Selective Resume Engine)"]
+        RunStatus["全局因果快照 (run-status.json)"]
+        T1Pass["T1: 已通过验收 (PASS)"]
+        T2Fail["T2: 物理门禁打回 (FAIL)"]
+        T3Pending["T3: 待执行 (BLOCKED)"]
+
+        RunStatus --> T1Pass
+        RunStatus --> T2Fail
+        RunStatus --> T3Pending
+
+        T2Fail -- "精准靶向重拆" --> ReplanT2["仅重新生成 T2.json 碎片 (复用大纲，零污染)"]
+        ReplanT2 --> ResumeExec["从 T2 精确接续执行，跳过 T1"]
+    end
+
+    Stage2Incremental --> RunStatus

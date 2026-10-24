@@ -1,0 +1,19 @@
+flowchart TD
+    subgraph HeterogeneousAgents["异构对等智能体生态 (Heterogeneous Peer Agents)"]
+        AutonomousSDLC["自主 SDLC 流水线 (Autonomous Pipeline)"]
+        IDEClient["IDE 客户端代理 (Trae / Cline / Cursor)"]
+        SecurityBot["独立代码审计机器人 (Security Auditor)"]
+    end
+
+    HeterogeneousAgents <--> Bridge["抽象协议桥接器 (Peer-Agent Protocol Bridge)"]
+
+    subgraph BridgeCore["桥接器核心能力 (Bridge Core Mechanics)"]
+        direction TB
+        MCP["1. 标准模型上下文协议 (MCP Server/Tools)"]
+        SchemaAdapter["2. 语义方言适配器 (Dialect Schema Normalizer)"]
+        EventThrottle["3. 因果事件节流与仲裁 (Causal Event Throttling)"]
+        Projection["4. 任务级上下文最小特权投影 (PoLP Projection)"]
+    end
+
+    Bridge --> BridgeCore
+    BridgeCore <--> SharedSubstrate["共享物理底座与租约状态 (Shared Substrate & Lease State)"]

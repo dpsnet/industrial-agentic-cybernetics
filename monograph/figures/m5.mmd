@@ -1,0 +1,24 @@
+stateDiagram-v2
+    [*] --> SubstrateMutated: 智能体完成代码编辑
+    SubstrateMutated --> DiffCheck: 触发核验
+    
+    state DiffCheck {
+        [*] --> CheckDiffNonEmpty: git status & git diff
+        CheckDiffNonEmpty --> DiffInvalid: 变更在临时目录或无实体变动
+        CheckDiffNonEmpty --> DiffValid: 命中白名单物理实体代码
+    }
+
+    DiffInvalid --> VetoFailed: 判定虚假交付 (Exit 1)
+    
+    DiffValid --> NativeBuild: 物理就地构建触发
+    state NativeBuild {
+        [*] --> InvokeCompiler: 原地执行原厂命令
+        InvokeCompiler --> ParseExitCode: 捕获物理 Exit Code
+        ParseExitCode --> CheckDuration: 检查物理耗时合理性
+    }
+
+    NativeBuild --> BuildFailed: 真实编译失败
+    NativeBuild --> ArtifactCheck: Exit 0 且物理耗时合理
+    
+    ArtifactCheck --> ConvergencePassed: 真实产物落地 (Exit 0)
+    ArtifactCheck --> VetoFailed: 无实体字节码生成 (Exit 1)

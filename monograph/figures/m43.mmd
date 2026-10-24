@@ -1,0 +1,24 @@
+sequenceDiagram
+    autonumber
+    actor Evaluator as 评测引擎 (Mechanical Arbiter)
+    participant Repo as 目标工程源码物理工作区
+    participant Compiler as 原厂编译器 (Native Maven/NPM)
+    participant Prober as 外部机械网络探针
+    participant Gate as 独立架构审计器
+
+    Evaluator->>Repo: 判据 1: 读取物理 Git Diff (核验实体变动是否属于业务目标)
+    Repo-->>Evaluator: 确认产生 2 个有效源码文件变更 (PASS)
+
+    Evaluator->>Compiler: 判据 2: 原地执行 mvn clean test -pl specialscale-auth -am
+    Compiler-->>Evaluator: 捕获原厂控制台: 17 模块 BUILD SUCCESS, Exit 0 (PASS)
+
+    Evaluator->>Repo: 判据 3: 执行双盲注入的隐藏 Oracle 测试集
+    Repo-->>Evaluator: 运行结果: 8 run, 0 failures, 0 errors, 0 skipped (PASS)
+
+    Evaluator->>Prober: 判据 4: 启动容器并探测 http://127.0.0.1:9999/token/2fa/verify
+    Prober-->>Evaluator: 收到真实响应 HTTP 200，Schema 匹配 (PASS)
+
+    Evaluator->>Gate: 判据 5: 调阅 Jev 与代码审查现实审计裁决
+    Gate-->>Evaluator: Jev 评分 7.99，无 VETO 作弊标记 (PASS)
+
+    Evaluator-->>Evaluator: 确认五重物理全通 -> 出具 RESOLVED 终审评测报告

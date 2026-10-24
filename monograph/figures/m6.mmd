@@ -1,0 +1,20 @@
+flowchart TD
+    DevOutput["开发智能体交付物 (代码、报告、声明)"] --> Reviewer["审查者现实审计器 (Reality Auditor)"]
+    
+    subgraph FourPillars["四重物理现实审计核验 (Four-Pillar Reality Audit)"]
+        direction TB
+        Pillar1["1. 物理实体核验 (Substrate Check)<br/>目标工程 Git 树是否存在实质代码物理 Diff?"]
+        Pillar2["2. 物理常理核验 (Physical Feasibility Check)<br/>多模块编译耗时与资源消耗是否符合物理常理?"]
+        Pillar3["3. 断言反自指核验 (Tautology Check)<br/>断言是否由 Mock 根据期待值自指回吐?"]
+        Pillar4["4. 隔离环境结果审计 (Isolated Environment Audit)<br/>压力测试/独立环境结果是否真实、完整、同质?"]
+    end
+    
+    Reviewer --> FourPillars
+    
+    Pillar1 -- "无代码变更" --> VETO["一票否决: CRITICAL DECEPTION (打回)"]
+    Pillar2 -- "耗时趋近于0/虚假即时" --> VETO
+    Pillar3 -- "自出题自打分" --> VETO
+    Pillar4 -- "结果篡改/选择性报告/环境漂移" --> VETO
+    
+    FourPillars -- "四重核验完全成立" --> RubricAudit["进入常规代码质量与 Rubric 评分 (0-9)"]
+    RubricAudit --> Pass["正式晋升与放行"]

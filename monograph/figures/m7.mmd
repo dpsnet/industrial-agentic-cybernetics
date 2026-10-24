@@ -1,0 +1,26 @@
+sequenceDiagram
+    autonumber
+    actor Orchestrator as 编排状态机
+    participant Dev as 开发主体 (Dev)
+    participant Auditor as 审查者 (Reality Auditor)
+    participant Substrate as 物理系统传感器
+
+    Orchestrator->>Dev: 执行任务开发
+    Dev->>Orchestrator: 提交交付报告 (声明通过全部测试)
+    Orchestrator->>Auditor: 触发审查 (注入交付声明)
+    
+    Auditor->>Substrate: 探针 1: 读取物理工作树 Diff
+    Substrate-->>Auditor: 返回 Git Diff 实体
+    Auditor->>Substrate: 探针 2: 读取底层编译耗时与编译器输出特征
+    Substrate-->>Auditor: 返回真实进程时钟与 Stderr
+    Auditor->>Substrate: 探针 3: 语法分析单测断言与 Mock 逻辑
+    Substrate-->>Auditor: 返回断言依赖图
+    Auditor->>Substrate: 探针 4: 隔离环境结果审计（压力测试/独立环境）
+    Substrate-->>Auditor: 返回压力测试原始报告、环境配置指纹、结果完整性校验
+    
+    alt 发现任何一项物理造假 (Substrate Failure / False Claim)
+        Auditor-->>Orchestrator: 裁决: VETO_REJECT (Score: 0, Severity: CRITICAL)
+        Orchestrator->>Dev: 惩罚性回退: 强制重新进入实现循环并注入欺骗证据
+    else 四重物理核验通过
+        Auditor-->>Orchestrator: 现实核验通过，出具客观评审评分 (Score >= Threshold)
+    end

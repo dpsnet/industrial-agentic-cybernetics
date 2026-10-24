@@ -1,0 +1,23 @@
+sequenceDiagram
+    autonumber
+    actor Dev as 开发智能体
+    participant Crystal as 双模萃取器 (Crystallizer)
+    participant FactDB as 本地工程事实库 (Local Facts)
+    participant PatternDB as 全局模式草稿库 (Global Patterns)
+
+    Dev->>Crystal: 提交已验证的任务产物与自愈日志
+    Crystal->>Crystal: 执行双模解耦语义解析
+    
+    rect rgb(240, 255, 240)
+        note right of Crystal: 事实型知识提炼 (Repo-Specific)
+        Crystal->>FactDB: 写入: "specialscale-gateway POM 版本已固定为 5.10.0-SNAPSHOT"
+        Crystal->>FactDB: 写入: "Actuator 健康探测端点为 /actuator/info"
+    end
+    
+    rect rgb(255, 248, 220)
+        note right of Crystal: 模式型知识提炼 (Transferable Pattern)
+        Crystal->>PatternDB: 写入草稿: "基于 WebFlux ServerHttpResponseDecorator 的响应头安全脱敏模式"
+        note over PatternDB: 强制赋予状态 DRAFT_SUSPECT，等待整体验收终审
+    end
+    
+    Crystal-->>Dev: 萃取完成，双模资产归档

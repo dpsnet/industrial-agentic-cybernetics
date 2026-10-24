@@ -1,0 +1,24 @@
+sequenceDiagram
+    autonumber
+    actor Orchestrator as 编排系统
+    participant Macro as 阶段一：宏观架构师 (Macro Architect)
+    participant Gate as 蓝图门禁 (Blueprint Gate)
+    participant Micro as 阶段二：微观精化器 (Micro Elaborator)
+    participant Substrate as 物理设计仓库 (Design Artifact Store)
+
+    Orchestrator->>Macro: 派发设计需求 Brief & 既有工程上下文
+    Macro->>Macro: 抽象系统边界、设计模块拓扑、选定 ADR 方案
+    Macro-->>Substrate: 落盘 Stage 1 蓝图 (design-blueprint.json)
+    
+    Orchestrator->>Gate: 触发蓝图门禁审计
+    Gate->>Substrate: 核验蓝图结构完备性与技术选型可行性
+    Gate-->>Orchestrator: 蓝图评分达到阈值 (Score: 8.0, APPROVED)
+    
+    Orchestrator->>Micro: 注入已冻结的宏观蓝图，启动微观契约细化
+    loop 逐个端点与类契约细化
+        Micro->>Micro: 展开精确 DTO 字段、状态码、异常类与单测脚手架
+        Micro->>Substrate: 增量写入 micro-specs/*.json
+    end
+    
+    Micro->>Substrate: 合并生成最终终审设计契约 (design.json)
+    Substrate-->>Orchestrator: 宏微双层闭合设计契约就绪，放行进入 Dev 阶段

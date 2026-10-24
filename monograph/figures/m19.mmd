@@ -1,0 +1,20 @@
+sequenceDiagram
+    autonumber
+    actor Driver as 驱动者 (Driver)
+    participant Sniffer as 隐式分支嗅探器 (Sniffer)
+    participant Navigator as 领航员 (Navigator)
+    participant Substrate as 物理测试套件
+
+    Driver->>Sniffer: 提交实现代码与测试补丁
+    Sniffer->>Sniffer: 静态分析 AST 控制流图 (CFG)
+    Sniffer->>Sniffer: 嗅探发现未覆盖异常分支: [重试超限抛出 BadCredentialsException]
+    
+    Sniffer-->>Navigator: 报警: 发现 1 个未锚定的涌现分支与 1 处架构退化
+    Navigator->>Driver: 下发硬约束: 必须追加内部锚定测试 testVerifyPropagatesOnMaxRetry
+    
+    Driver->>Substrate: 物理追加白盒内部锚定单测
+    Driver->>Substrate: 触发原厂运行: mvn test -pl specialscale-auth
+    Substrate-->>Driver: 单元测试 100% 通过 (Exit Code 0)
+    
+    Driver->>Navigator: 重新提交交付物 (声明 new_tests 包含 internal_invariants)
+    Navigator->>Navigator: 确认白盒闭合，准予任务交付

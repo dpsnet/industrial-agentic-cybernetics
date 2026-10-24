@@ -1,0 +1,27 @@
+sequenceDiagram
+    autonumber
+    actor Primary as 主智能体 (持有租约)
+    actor Peer as 辅助智能体 (从属角色)
+    participant Interceptor as 租约拦截中间层
+    participant Lock as 租约契约 (.substrate-lock.json)
+    participant Substrate as 物理文件系统
+    participant Shadow as 影子补丁缓冲池
+
+    Primary->>Lock: 维持排他租约 (Lease Active)
+    
+    par 主智能体正常工作
+        Primary->>Interceptor: write_to_file("TwoFactorAuthEndpoint.java", content)
+        Interceptor->>Lock: 校验租约归属 (Primary 命中)
+        Interceptor->>Substrate: 物理写入源码文件
+        Interceptor-->>Primary: 写入成功 (物理生效)
+    and 辅助智能体并发尝试变异
+        Peer->>Interceptor: replace_file_content("TwoFactorAuthEndpoint.java", patch)
+        Interceptor->>Lock: 校验租约归属 (Peer 未持锁)
+        note over Interceptor,Peer: 触发主写从读降级 (Downgrade to Replica-Reader)
+        Interceptor->>Shadow: 将变更写入虚拟影子差异池 (patch.diff)
+        Interceptor-->>Peer: 返回软成功: 提示“底座已被占用，代码已转为离线建议补丁”
+    end
+
+    Primary->>Lock: 释放排他写租约 (Release)
+    Lock-->>Interceptor: 广播底座空闲事件 (SUBSTRATE_UNLOCKED)
+    Interceptor->>Peer: 准予从影子缓冲池向主干申请原子合流

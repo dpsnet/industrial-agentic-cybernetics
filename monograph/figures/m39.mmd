@@ -1,0 +1,16 @@
+flowchart TD
+    subgraph PublicWorkspace["智能体可见空间 (Agent Visible Space)"]
+        direction TB
+        Agent["智能体执行上下文"] --> PublicBrief["公开发布的任务需求 (Brief)"]
+        Agent --> TargetRepo["可变业务源码目录 (repo/src/main)"]
+    end
+
+    subgraph HiddenOracleVault["隐藏 Oracle 物理隔离沙箱 (Hidden Oracle Sandbox)"]
+        direction TB
+        OracleTests["不可见隐藏 Oracle 测试集 (Hidden Test Suite)"]
+        ProbeRunner["无旁路机械评测探针 (Bypass-Free Probes)"]
+    end
+
+    PublicWorkspace -- "交付物 (只读拉取 Git 提交)" --> Evaluator["端到端物理评测隔离容器"]
+    HiddenOracleVault -- "双盲只读挂载" --> Evaluator
+    Evaluator --> BinaryVerdict["真实客观物理成绩 (Pass / Fail)"]
