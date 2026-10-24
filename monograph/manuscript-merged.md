@@ -1,5 +1,7 @@
 ---
-author: 王斌（北京开路者科技有限公司·技术主管）
+author:
+  - 王斌（北京开路者科技有限公司·技术主管）
+  - wang.bin@foxmail.com · wangb@kailuzhe.cn
 ---
 
 <!-- ===== 前篇·第一章 范式转移 · preface\01-paradigm-shift.md ===== -->
