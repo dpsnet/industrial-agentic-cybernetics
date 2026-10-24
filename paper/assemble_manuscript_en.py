@@ -45,10 +45,12 @@ def load_abstract():
     return m.group(1).strip() + "\n"
 
 TITLE_EN = "# Memory Poisoning in Ungated Agentic Memory Architectures: Architecture-Dependent Propagation Mechanisms, Capacity Control, and Quarantine Invariance\n"
+AUTHOR_EN = "**Bin Wang**\n\nBeijing Kailuzhe Technology Co., Ltd. · Technical Lead\n\n"
 
 def main():
     parts = []
     parts.append(TITLE_EN)
+    parts.append(AUTHOR_EN)
     parts.append(load_abstract() + "\n")
     parts.append("---\n")
     parts.append("## 1. Introduction\n")
