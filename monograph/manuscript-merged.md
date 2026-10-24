@@ -2927,7 +2927,7 @@ flowchart TD
         direction TB
         L0["<b>级别 0: 状态信标 (Beacon Tier: <10 Tokens)</b><br/><i>适用：全双工语音常驻、状态指示灯<br/>示例：'网关脱敏实现中，T2 单测已绿，正在推进 T3。'</i>"]
         L1["<b>级别 1: 契约摘要 (Contract Summary: <200 Tokens)</b><br/><i>适用：移动端推送、Slack/飞书卡片<br/>示例：任务清单完成度 2/3，Jev 评分 7.99，核心类已落盘。</i>"]
-        L2["<b>级别 2: 审计审查级 (Audit Tier: <2K Tokens)</b><br/><i>适用：PR 评审单、代码审计视图<br/>示例：物理 Git Diff 统计、新增三层单测清单、ADR 决策合规证明。</i>"]
+        L2["<b>级别 2: 审计审查级 (Audit Tier: <2K Tokens)</b><br/><i>适用：PR 评审单、代码审计视图<br/>示例：物理 Git Diff 统计、新增三层单测清单、ADR 合规证据。</i>"]
         L3["<b>级别 3: 原始物理堆栈 (Substrate Forensic Tier: Full Trace)</b><br/><i>适用：深度排错、Post-Mortem 事故分析<br/>示例：完整原厂 Maven 编译器 Stderr、HTTP 探针抓包、Docker 资源拓扑。</i>"]
     end
 
