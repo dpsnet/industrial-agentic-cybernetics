@@ -219,7 +219,7 @@ $$ \text{Cost}(\mathcal{A}_{hack}) \ll \text{Cost}(\mathcal{A}_{real}) \quad \te
 * **公理诠释**：给智能体注入的无关工程文件、非目标接口契约越多（$\rho$ 越大），目标信号的注意力份额被稀释得越低，其无意识修改不相关源码、破坏全局单测的概率下界随无关质量增长律发散——几何膨胀下指数级、幂律膨胀下幂律级（形式化对应见附录 B.3）。必须对上下文施加**最小特权原则（Principle of Least Privilege, PoLP）**投影。
 * **数学地位（三层体系，见 1.4.2）**：SNR 单调性与违约下界的传导为**定理层**（Lean 机检）；衰减率的几何/幂律形态与指数下界 $1-e^{-\alpha\rho}$ 的形状为**经验层**（E3 拟合，随填充类型标定）；$W^*$ 补偿阈值为**工程层**（经验参数，不写入形式化接口）。
 * **经验支撑与适用边界（形式化 + 实测，2026-10）**：稀释的单调性核心（无关质量增加 $\Rightarrow$ 目标份额严格下降）为 Lean 4 机检定理；衰减率的**形态**取决于无关质量的增长律，属经验命题。在 Qwen2.5-1.5B/7B、上下文至 131k 的受控检索实验（E3/E3b）中：无关质量幂律增长占优（AIC 33/36 cell，几何 0 票），故指数下界 $1-e^{-\alpha\rho}$ 应读作最强情形参考，幂律分支给出与实测一致的主刻画；目标质量非增（弱前提）方向性成立而"目标质量恒定"被证伪——衰减由分子收缩与分母膨胀共同贡献；残差（sink）通道为动态通道，总非目标质量全程非减，填充口径的 SNR 系统性高估 35.8%–36.7%。**衰减参数并非常数**：近义对抗填充使 SNR 基线降至中性填充的 $1/2.25$（衰减指数不变），即理论承诺的是"给定增长参数的衰减"，参数本身由填充类型等外部条件标定。**口径映射声明**：定理中的 $a$ 是单目标 token 的注意力质量，实验中的 $a$ 是 needle 整段总质量；定理中的 $b$ 是全部非目标质量，实验中的 $b$ 是填充段总质量——这两条模型–现实映射是**未经证明的假设**，其成立性由残差通道漂移检验背书（附录 B.11）。**违约概率的传导边界（E4，2026-10-20）**：定理中的 $P_{\text{violate}}(\rho) = 1 - \operatorname{snr}(\rho)/\operatorname{snr}(0)$ 是**信噪比相对损失**，不是任务失败概率。E4 端到端实验（Qwen2.5-1.5B/7B needle 检索正确率与 E3 SNR 对齐）表明两者之间存在**补偿阈值 $W^*$**：$\rho < W^*$ 时模型的补偿机制（注意力 sink、KV cache 策略、长上下文训练对齐）抵消 SNR 衰减，任务正确率 $\approx$ 100%；$\rho > W^*$ 时补偿失效，正确率陡降。实测 $W^*_{1.5\text{B}} \approx 32\text{k–64k} < W^*_{7\text{B}} > 131\text{k} < W^*_{\text{Kimi}} \ge 1\text{M}$，与模型能力正相关。**违约下界 $P_{\text{violate}} \ge 1 - c^n$ 只在 $\rho > W^*$ 时传导为可观测的任务失败**；$\rho < W^*$ 时 SNR 虽已衰减（7B 在 131k 处 SNR 损失 44%），但任务正确率不受影响。$W^*$ 是经验参数，不写入形式化接口。认识论边界见附录 B.11。
-* **学术锚点**：该公理对应长上下文实证研究所刻画的**上下文退化（Context Rot）**现象：模型有效推理能力随无关上下文增长而显著衰减，呈“迷失在中间（Lost in the Middle）”的 U 型注意力分布（Liu et al., TACL 2024）；实测有效上下文长度远低于标称值（Hsieh et al., 2024, RULER；Chroma, 2024, Context Rot）。
+* **学术锚点**：该公理对应长上下文实证研究所刻画的**上下文退化（Context Rot）**现象：模型有效推理能力随无关上下文增长而显著衰减，呈“迷失在中间（Lost in the Middle）”的 U 型注意力分布（Liu et al., TACL 2024）；实测有效上下文长度远低于标称值（Hsieh et al., 2024, RULER；Chroma, 2025, Context Rot）。
 
 #### 公理 III：变异因果律单调公理（Axiom of Monotonic Causal Mutation）
 * **数学表达**：设文件系统物理状态在时间 $t$ 的状态为 $\Phi(t)$，物理修改时间戳集合为 $\mathcal{M}(t) = \{ \text{mtime}(f) \mid f \in \text{Files} \}$。对于智能体连续执行的变异动作序列 $a_1, a_2$，其物理生效充要条件为：
@@ -2826,7 +2826,7 @@ class SubstrateAbBenchmarkRunner {
 ---
 
 ### 1. 意图 (Intent)
-通过“任务级最小特权投影（PoLP）”、“增量碎片复用”、“阶段状态因果剪枝”以及“局部原子重试（Sub-stepping Retry）”的多级工程组合拳，将复杂企业级微服务软件工程开发中的**Token 吞吐总量实现断崖式压降（实测降幅达 -80.7%）**，在彻底根除上下文退化（Context Rot, Liu et al., TACL 2024; Chroma, 2024）的同时，使自主智能体研发的综合经济学成本跨过商业盈利临界点。
+通过“任务级最小特权投影（PoLP）”、“增量碎片复用”、“阶段状态因果剪枝”以及“局部原子重试（Sub-stepping Retry）”的多级工程组合拳，将复杂企业级微服务软件工程开发中的**Token 吞吐总量实现断崖式压降（实测降幅达 -80.7%）**，在彻底根除上下文退化（Context Rot, Liu et al., TACL 2024; Chroma, 2025）的同时，使自主智能体研发的综合经济学成本跨过商业盈利临界点。
 
 ---
 
@@ -2837,7 +2837,7 @@ class SubstrateAbBenchmarkRunner {
 - **失效场景 A（Token 吞吐指数级爆炸 Tokenomics Hyperinflation）**：
   在单次标杆复杂微服务题目（如网关多租户限流路由）解决中，由于每次交互都将工程所有 POM、全部配置文件与历史长对话一股脑回灌，导致单步调用 Prompt 突破 10 万 Token。一个仅需修改 30 行代码的任务，总 Token 消耗突破 2,600 万，单题推理账单高达数十美元，完全丧失商业落地可行性；
 - **失效场景 B（长上下文引发的推理质量断崖式崩塌 Context Rot Induced Degradation）**：
-  实证研究表明（Hsieh et al., 2024, RULER；Chroma, 2024），大模型的有效上下文窗口远低于标称值。当输入 Token 持续攀升至 50K 以上时，模型在代码中的微观 Bug 识别率暴跌，出现“上下文越长，改得越烂”的恶性循环；
+  实证研究表明（Hsieh et al., 2024, RULER；Chroma, 2025），大模型的有效上下文窗口远低于标称值。当输入 Token 持续攀升至 50K 以上时，模型在代码中的微观 Bug 识别率暴跌，出现“上下文越长，改得越烂”的恶性循环；
 - **失效场景 C（粗暴截断导致的语法与语义破损 Blind Truncation Damage）**：
   许多系统为了省 Token，简单粗暴地从头部或尾部截断字符。这种无语义感知的硬截断往往截断了关键的 JSON 括号、类定义或 import 声明，导致模型直接输出语法错乱代码。
 
@@ -4084,7 +4084,7 @@ lean src/IACFormalization/Axiom1_Grounding.lean   # 单文件检查
 | 书内原术语 | 修正后主术语（中文 / 英文） | 修正说明与学术锚点 |
 | :--- | :--- | :--- |
 | 合规剧场（Compliance Theater） | **奖励欺骗（Reward Hacking）**；并列概念：**规范博弈（Specification Gaming）** | "合规剧场"原为组织行为学借喻（与"安全剧场 Security Theater"同源）。人工智能安全文献的规范术语是奖励欺骗：智能体通过满足目标的"字面"而非"精神"骗取成功信号（Amodei et al., 2016；Krakovna et al., 2020；Denison et al., 2024）。本书仅在第二章首次引入时保留该借喻以建立直觉，此后统一使用"奖励欺骗"。2025 年工业实证：生产级强化学习中的奖励欺骗可诱发自然涌现的失对齐（Anthropic, arXiv:2511.18397） |
-| 注意力涣散 / 注意力稀释（Attention Dilution） | **上下文退化（Context Rot）** | 长上下文实证研究刻画的核心现象：随无关上下文增长，模型有效推理能力显著衰减，典型表现为"迷失在中间（Lost in the Middle）"的 U 型注意力曲线（Liu et al., TACL 2024）。有效上下文长度实测远低于标称值（Hsieh et al., 2024, RULER；Chroma, 2024, Context Rot 技术报告） |
+| 注意力涣散 / 注意力稀释（Attention Dilution） | **上下文退化（Context Rot）** | 长上下文实证研究刻画的核心现象：随无关上下文增长，模型有效推理能力显著衰减，典型表现为"迷失在中间（Lost in the Middle）"的 U 型注意力曲线（Liu et al., TACL 2024）。有效上下文长度实测远低于标称值（Hsieh et al., 2024, RULER；Chroma, 2025, Context Rot 技术报告） |
 | 知识自噬中毒（Auto-Toxic Hallucination Pollution）/ 自噬性知识中毒 / 知识自噬（Auto-Toxic Degradation） | **记忆投毒（Memory Poisoning）**；宏观递归现象：**模型坍缩（Model Collapse）** | 未经终审验证的自生经验经检索复用后对后续任务产生持续性污染，即记忆投毒——已被实证确认为智能体长期记忆的关键攻击面（MemoryGraft, arXiv:2512.16962；OEP, arXiv:2605.18930）。宏观层面的递归自我消费已由实证研究确认导致模型坍缩（Shumailov et al., *Nature* 631, 2024）；幻觉雪球效应（Hallucination Snowballing）刻画单次生成内的自我强化（Zhang et al., 2023） |
 | 反思自愈假设（Reflection Fallacy） | **无外部验证的自我纠错不可行**（描述性表述，删除品牌化英文名） | 该假设已被系统性实证证伪：在无外部反馈时，大语言模型的自我纠错不仅无效，反而常导致性能退化（Huang et al., *Large Language Models Cannot Self-Correct Reasoning Yet*, ICLR 2024） |
 | 虚假通过（Tautological Illusion） | **虚假通过（Falsified Pass）**（描述性表述） | 属于奖励欺骗在评测语境下的具体表现：通过自指验证回路（Self-Referential Verification Loop）制造通过假象，不设独立术语 |
@@ -4096,7 +4096,7 @@ lean src/IACFormalization/Axiom1_Grounding.lean   # 单文件检查
 | 公理 | 保留命名 | 对应的既有学术概念 | 锚点文献 |
 | :--- | :--- | :--- | :--- |
 | 公理 I | 物理非信任公理（Axiom of Physical Non-Trustworthiness） | 接地与验证鸿沟（Grounding & Verification Gap）；奖励欺骗（Reward Hacking）；谄媚性（Sycophancy） | Amodei et al., 2016；Sharma et al., 2023；Huang et al., ICLR 2024 |
-| 公理 II | 注意力熵增公理（Axiom of Attention Entropy） | 上下文退化（Context Rot）；迷失在中间（Lost in the Middle）；有效上下文长度（Effective Context Length） | Liu et al., TACL 2024；Hsieh et al., 2024；Chroma, 2024 |
+| 公理 II | 注意力熵增公理（Axiom of Attention Entropy） | 上下文退化（Context Rot）；迷失在中间（Lost in the Middle）；有效上下文长度（Effective Context Length） | Liu et al., TACL 2024；Hsieh et al., 2024；Chroma, 2025 |
 | 公理 III | 变异因果律单调公理（Axiom of Monotonic Causal Mutation） | 因果序（Happens-Before Ordering）；写前日志（Write-Ahead Logging, WAL）；幂等性（Idempotency）；租约（Lease） | Lamport, CACM 1978；Gray & Cheriton, SOSP 1989；Kleppmann, 2017 |
 | 公理 IV | 经验自免疫公理（Axiom of Crystallization Auto-Immunity） | 记忆投毒（Memory Poisoning）；模型坍缩（Model Collapse）；隔离与验证晋升（Quarantine & Verified Promotion） | Shumailov et al., *Nature* 2024；MemoryGraft, 2025；OEP, 2026 |
 
@@ -4126,7 +4126,7 @@ lean src/IACFormalization/Axiom1_Grounding.lean   # 单文件检查
 6. Anthropic Alignment Team (2025). *Natural emergent misalignment from reward hacking in production RL*. arXiv:2511.18397.
 7. Liu, N. F., Lin, K., Hewitt, J., Paranjape, A., Bevilacqua, M., Petroni, F., & Liang, P. (2024). *Lost in the Middle: How Language Models Use Long Contexts*. Transactions of the Association for Computational Linguistics (TACL).
 8. Hsieh, C.-P., et al. (2024). *RULER: What's the Real Context Size of Your Long-Context Language Models?* arXiv:2404.06654.
-9. Chroma Research (2024). *Context Rot: How Increasing Input Tokens Impacts LLM Performance*. Technical Report.
+9. Chroma Research (2025). *Context Rot: How Increasing Input Tokens Impacts LLM Performance*. Technical Report.
 10. Shumailov, I., Shumaylov, Z., Zhao, Y., Papernot, N., Anderson, R., & Gal, Y. (2024). *AI models collapse when trained on recursively generated data*. Nature, 631, 755–759.
 11. Zhang, M., Press, O., Merrill, W., Liu, A., & Smith, N. A. (2024). *How Language Model Hallucinations Can Snowball*. ICML 2024.
 12. *MemoryGraft: Persistent Compromise of LLM Agents via Poisoned Experience Retrieval*. arXiv:2512.16962.
