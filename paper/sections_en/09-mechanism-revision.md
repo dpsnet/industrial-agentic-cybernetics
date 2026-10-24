@@ -21,7 +21,7 @@ Conclusion: **S-H3 is falsified by mechanism evidence**. Full-append propagation
 ## 9.3 Revised Theory
 
 - Mechanism A (branching decay) still applies to the selective architecture (geometric law $R^2=0.958$ / $0.923$; Lean T1/T2 premises hold);
-- Mechanism B (accumulation–competition) applies to full-append: $Z_{n+1}=Z_n+w_n$ ($w_n\in\{0,1\}$, chain mean 0.917), outcome decided by capacity $M$ (under the current protocol, $M_c\in(8,16)$);
+- Mechanism B (accumulation–competition) applies to full-append: $Z_{n+1}=Z_n+w_n$ ($w_n\in\{0,1\}$, chain mean 0.917), outcome decided by capacity $M$ (under the current protocol, $M_c\in(8,16)$, a low-transcription-state reading);
 - Quarantine invariance (S-H4) is mechanism-independent—C3-full 12/12 still truncates propagation where the branching premise fails, showing the quarantine commitment is more robust than its formalization premises.
 - Mechanism B's propagation structure further yields a **state-feedback control law** (bang-bang threshold switching, §7.1): if probes diagnose the high transcription state, set the window to $W{=}4$, otherwise $W{=}8$; the control experiment (§7.5) confirms it significantly suppresses strain survival (0.833→0.333, Fisher $p{=}0.018$) in the controlled setting.
 

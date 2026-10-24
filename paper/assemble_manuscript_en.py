@@ -58,7 +58,7 @@ def main():
     parts.append("## 3. Model\n")
     parts.append(strip_header(open(os.path.join(SEC, "03-model.md"), encoding="utf-8").read()) + "\n")
     parts.append("![Mechanism schematic: branching decay (selective replay) vs. linear accumulation-competition (full append)](figures/fig-mechanism.png)\n")
-    parts.append("*Figure 1. Two propagation mechanisms: A) branching decay under selective replay (Galton-Watson, geometric law, extinction probability = least fixed point); B) linear accumulation-competition under full append (per-generation write $w_n\\in\\{0,1\\}$, chain mean $E[w_n]=0.917$, FIFO competition at capacity $M$, critical $M_c\\in(8,16)$).* (data: DeepSeek-V4.1-Flash-1017, chain means)\n")
+    parts.append("*Figure 1. Two propagation mechanisms: A) branching decay under selective replay (Galton-Watson, geometric law, extinction probability = least fixed point); B) linear accumulation-competition under full append (per-generation write $w_n\\in\\{0,1\\}$, chain mean $E[w_n]=0.917$, FIFO competition at capacity $M$, critical $M_c\\in(8,16)$ (low-transcription-state reading)).* (data: DeepSeek-V4.1-Flash-1017, chain means)\n")
     parts.append("## 4. Formalization\n")
     parts.append(strip_header(open(os.path.join(SEC, "04-formalization.md"), encoding="utf-8").read()) + "\n")
     parts.append("## 5. Experimental Setup\n")

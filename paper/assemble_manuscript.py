@@ -58,7 +58,7 @@ def main():
     parts.append("## 3 模型\n")
     parts.append(strip_header(open(os.path.join(SEC, "03-model.md"), encoding="utf-8").read()) + "\n")
     parts.append("![机制示意：分支衰减（选择性转写）与线性累积-容量竞争（全量追加）](figures/fig-mechanism.png)\n")
-    parts.append("*图 1  两种传播机制：A）选择性转写下的分支衰减（Galton-Watson 分支过程、几何律，灭绝概率=最小不动点）；B）全量追加下的线性累积-容量竞争（每代写入 $w_n\\in\\{0,1\\}$、链均 $E[w_n]=0.917$，容量 $M$ 处 FIFO 竞争，临界 $M_c\\in(8,16)$）。*（数据：DeepSeek-V4.1-Flash-1017，链均）\n")
+    parts.append("*图 1  两种传播机制：A）选择性转写下的分支衰减（Galton-Watson 分支过程、几何律，灭绝概率=最小不动点）；B）全量追加下的线性累积-容量竞争（每代写入 $w_n\\in\\{0,1\\}$、链均 $E[w_n]=0.917$，容量 $M$ 处 FIFO 竞争，临界 $M_c\\in(8,16)$（低转写态读数））。*（数据：DeepSeek-V4.1-Flash-1017，链均）\n")
     parts.append("## 4 形式化\n")
     parts.append(strip_header(open(os.path.join(SEC, "04-formalization.md"), encoding="utf-8").read()) + "\n")
     parts.append("## 5 实验设置\n")
