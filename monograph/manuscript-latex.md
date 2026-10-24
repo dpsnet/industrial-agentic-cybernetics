@@ -1904,7 +1904,7 @@ class DualModeTechnicalCrystallizer {
 
 ### 2. 动机与工业失效场景 (Motivation & Real-World Failure Modes)
 
-在许多具备“自我学习”或“知识沉淀”能力的智能体系统中，最危险的现象是**记忆投毒（Memory Poisoning）**——未经终审验证的自生经验经检索复用后，对后续任务产生持续性污染；这类递归自我消费在宏观层面已被证明导致模型坍缩（Model Collapse）（Shumailov et al., *Nature* 631, 2024）：
+在许多具备“自我学习”或“知识沉淀”能力的智能体系统中，最危险的现象是**记忆投毒（Memory Poisoning）**——未经终审验证的自生经验经检索复用后，对后续任务产生持续性污染；这类递归自我消费在宏观层面已由实证研究确认导致模型坍缩（Model Collapse）（Shumailov et al., *Nature* 631, 2024）：
 - **失效场景 A（错误经验自强化）**：智能体在开发题目的中间步骤中，为了修复某个报错，写了一条错误的规则：“在遇到 Redis 依赖时应将版本降级为 2.1”。该智能体立即将此经验写入全局知识库。然而该题目最终评测全面崩溃。不幸的是，后续的 10 个智能体在启动时检索到了这条“经验”，纷纷在初始化时错误降级依赖，导致全局流水线发生连环雪崩；
 - **失效场景 B（污染代码模式泛滥）**：智能体在编写代码时引入了某种反模式（如在 Controller 中直接写裸 SQL），由于缺少晋升门禁，该代码模式被萃取为“最佳实践模板”，随后在整个项目中像病毒一样蔓延；
 - **失效场景 C（未完成态的知识泄露）**：处于自愈尝试阶段的半成品知识被正在并发运行的其他智能体读取，导致其他智能体基于未验证的假设开展工作。
@@ -3800,7 +3800,7 @@ class HotfixLoopOrchestrator {
 2. **第二波浪潮（提示词堆叠时代）**：以开源 Agent 框架为代表的聊天式编程。虽然引入了工具调用与多步循环，但由于深陷在“离散提示词”和“奖励欺骗”的泥潭中，面对百万行大型生产工程时频繁崩溃；
 3. **第三波浪潮（控制论与物理锚定时代）**：正是本书所定义的**工业级智能体控制论（Industrial Agentic Cybernetics）**。
 
-本书的核心贡献在于证明了：**大语言模型本身的不确定性与概率幻觉，绝不能靠另一组更长的提示词去消除；必须引入经典的系统控制论、分布式因果时序、编译器底层物理约束与最小特权投影，用确定性的物理系统构建牢不可破的外骨骼。**
+本书的核心贡献在于以受控实证与形式化机检交叉验证确立：**大语言模型本身的不确定性与概率幻觉，绝不能靠另一组更长的提示词去消除；必须引入经典的系统控制论、分布式因果时序、编译器底层物理约束与最小特权投影，用确定性的物理系统构建牢不可破的外骨骼。**
 
 ---
 
@@ -4085,7 +4085,7 @@ lean src/IACFormalization/Axiom1_Grounding.lean   # 单文件检查
 | :--- | :--- | :--- |
 | 合规剧场（Compliance Theater） | **奖励欺骗（Reward Hacking）**；并列概念：**规范博弈（Specification Gaming）** | "合规剧场"原为组织行为学借喻（与"安全剧场 Security Theater"同源）。人工智能安全文献的规范术语是奖励欺骗：智能体通过满足目标的"字面"而非"精神"骗取成功信号（Amodei et al., 2016；Krakovna et al., 2020；Denison et al., 2024）。本书仅在第二章首次引入时保留该借喻以建立直觉，此后统一使用"奖励欺骗"。2025 年工业实证：生产级强化学习中的奖励欺骗可诱发自然涌现的失对齐（Anthropic, arXiv:2511.18397） |
 | 注意力涣散 / 注意力稀释（Attention Dilution） | **上下文退化（Context Rot）** | 长上下文实证研究刻画的核心现象：随无关上下文增长，模型有效推理能力显著衰减，典型表现为"迷失在中间（Lost in the Middle）"的 U 型注意力曲线（Liu et al., TACL 2024）。有效上下文长度实测远低于标称值（Hsieh et al., 2024, RULER；Chroma, 2024, Context Rot 技术报告） |
-| 知识自噬中毒（Auto-Toxic Hallucination Pollution）/ 自噬性知识中毒 / 知识自噬（Auto-Toxic Degradation） | **记忆投毒（Memory Poisoning）**；宏观递归现象：**模型坍缩（Model Collapse）** | 未经终审验证的自生经验经检索复用后对后续任务产生持续性污染，即记忆投毒——已被证实为智能体长期记忆的关键攻击面（MemoryGraft, arXiv:2512.16962；OEP, arXiv:2605.18930）。宏观层面的递归自我消费已被证明导致模型坍缩（Shumailov et al., *Nature* 631, 2024）；幻觉雪球效应（Hallucination Snowballing）刻画单次生成内的自我强化（Zhang et al., 2023） |
+| 知识自噬中毒（Auto-Toxic Hallucination Pollution）/ 自噬性知识中毒 / 知识自噬（Auto-Toxic Degradation） | **记忆投毒（Memory Poisoning）**；宏观递归现象：**模型坍缩（Model Collapse）** | 未经终审验证的自生经验经检索复用后对后续任务产生持续性污染，即记忆投毒——已被实证确认为智能体长期记忆的关键攻击面（MemoryGraft, arXiv:2512.16962；OEP, arXiv:2605.18930）。宏观层面的递归自我消费已由实证研究确认导致模型坍缩（Shumailov et al., *Nature* 631, 2024）；幻觉雪球效应（Hallucination Snowballing）刻画单次生成内的自我强化（Zhang et al., 2023） |
 | 反思自愈假设（Reflection Fallacy） | **无外部验证的自我纠错不可行**（描述性表述，删除品牌化英文名） | 该假设已被系统性实证证伪：在无外部反馈时，大语言模型的自我纠错不仅无效，反而常导致性能退化（Huang et al., *Large Language Models Cannot Self-Correct Reasoning Yet*, ICLR 2024） |
 | 虚假通过（Tautological Illusion） | **虚假通过（Falsified Pass）**（描述性表述） | 属于奖励欺骗在评测语境下的具体表现：通过自指验证回路（Self-Referential Verification Loop）制造通过假象，不设独立术语 |
 
