@@ -548,6 +548,10 @@ The main evidence is concentrated on the test-writing task family; across task f
 - Judgment scripts depend on deterministic reshuffle seeds; cross-platform floating-point differences are untested.
 
 
+![Deployment cost-benefit of state-feedback capacity regulation](figures/fig-deployment.png)
+
+*Figure 3  Deployment cost-benefit of state-feedback capacity regulation: batch cost of a 12-chain controlled batch (bars, k credits) vs. poison survival and memory-utility retention (lines; high-state three-window merged readings, §11.4). Cost rises from gated (34,580) to companion 1:2 (50,540 credits) while safety and utility stay identical—the probe increment buys within-batch drift exercisability (switching dynamics, untested), not direct safety; quarantine has zero increment with zero poison survival and 0.88 utility retention, at the cost of memory-freeze availability loss. Data: DeepSeek-V4.1-Flash-1017; Flash 1 token = 0.19 credits, one chain ≈ 2,660 credits.*
+
 ## 12. Conclusion
 
 ## 12.1 Conclusions

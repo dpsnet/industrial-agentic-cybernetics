@@ -77,6 +77,8 @@ def main():
     parts.append(strip_header(open(os.path.join(SEC, "10-scope.md"), encoding="utf-8").read()) + "\n")
     parts.append("## 11 局限与未来工作\n")
     parts.append(strip_header(open(os.path.join(SEC, "11-limitations.md"), encoding="utf-8").read()) + "\n")
+    parts.append("![状态反馈容量调控的部署成本-收益](figures/fig-deployment.png)\n")
+    parts.append("*图 3  状态反馈容量调控的部署成本-收益：12 链受控批成本（柱，k credits）与毒丸存活率/记忆效用保留率（线，高态三窗口合并读数，§11.4）。门控至随动成本上升（34,580→50,540 credits）而安全与效用不变——探针增量购买的是批内漂移可行使性（切换动力学，待测）而非直接安全；隔离零增量且毒丸存活 0、效用保留 0.88，其代价为记忆冻结的可用性损失。数据：DeepSeek-V4.1-Flash-1017，Flash 1 token=0.19 credits、单链约 2,660 credits。*\n")
     parts.append("## 12 结论\n")
     parts.append(strip_header(open(os.path.join(SEC, "12-conclusion.md"), encoding="utf-8").read()) + "\n")
     parts.append("## 附录\n")
