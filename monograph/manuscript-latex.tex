@@ -6181,54 +6181,13 @@ Modes)}\label{ux52a8ux673aux4e0eux5de5ux4e1aux5931ux6548ux573aux666f-motivation-
   Anomalies）}：
 
   生产环境的真实流量模式（如特定地域的异常请求、特定时间段的并发峰值）触发智能体未预见的边界条件，这些异常模式未被萃取为经验资产，同类缺陷在后续版本中重复出现。
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{flowchart TD}
-\NormalTok{    subgraph DevEnvironment["开发环境（智能体可访问）"]}
-\NormalTok{        Dev["智能体开发"] {-}{-}\textgreater{} GitCommit["Git 提交"]}
-\NormalTok{    end}
-
-\NormalTok{    subgraph IsolatedEnvironments["隔离环境矩阵（智能体不可访问）"]}
-\NormalTok{        direction TB}
-\NormalTok{        StressTest["压力测试环境\textless{}br/\textgreater{}（隔离）"]}
-\NormalTok{        Production["生产环境\textless{}br/\textgreater{}（隔离）"]}
-\NormalTok{    end}
-
-\NormalTok{    subgraph BridgeLayer["协议桥接层（模式 12）"]}
-\NormalTok{        direction TB}
-\NormalTok{        Bridge1["压力测试结果\textless{}br/\textgreater{}异步回流"]}
-\NormalTok{        Bridge2["生产指标\textless{}br/\textgreater{}异步回流"]}
-\NormalTok{    end}
-
-\NormalTok{    subgraph AuditLayer["独立审计层（模式 02 探针 4）"]}
-\NormalTok{        direction TB}
-\NormalTok{        Audit1["压力测试审计"]}
-\NormalTok{        Audit2["生产指标审计"]}
-\NormalTok{    end}
-
-\NormalTok{    GitCommit {-}{-}\textgreater{} StressTest}
-\NormalTok{    StressTest {-}{-}\textgreater{} Bridge1}
-\NormalTok{    GitCommit {-}{-}\textgreater{} Production}
-\NormalTok{    Production {-}{-}\textgreater{} Bridge2}
-\NormalTok{    Bridge1 {-}{-}\textgreater{} Audit1}
-\NormalTok{    Bridge2 {-}{-}\textgreater{} Audit2}
-
-\NormalTok{    Audit1 {-}{-}\textgreater{} DeployDecision["部署决策"]}
-\NormalTok{    Audit2 {-}{-}\textgreater{} RuntimeSniffer["运行时异常嗅探器"]}
-
-\NormalTok{    subgraph SniffingDimensions["三维嗅探维度"]}
-\NormalTok{        D1["性能维度：P99/P999 延迟、吞吐量、错误率"]}
-\NormalTok{        D2["资源维度：内存/CPU/连接池/句柄泄漏"]}
-\NormalTok{        D3["业务维度：异常请求模式、边界条件触发"]}
-\NormalTok{    end}
-
-\NormalTok{    RuntimeSniffer {-}{-}\textgreater{} SniffingDimensions}
-\NormalTok{    SniffingDimensions {-}{-}\textgreater{} Alarm["异常报警 \& 物理时钟事件"]}
-\NormalTok{    Alarm {-}{-}\textgreater{} Feedback["反馈至模式 24：缺陷萃取与热修复闭环"]}
-\end{Highlighting}
-\end{Shaded}
 \end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.45\linewidth,height=\textheight,keepaspectratio,alt={模式 23：隔离环境审计与三维异常嗅探维度流程 示意}]{figures/m52.jpg}
+\caption{模式 23：隔离环境审计与三维异常嗅探维度流程 示意}
+\end{figure}
 
 \textbf{关键约束：生产环境与开发环境完全隔离}
 
@@ -6619,55 +6578,13 @@ Modes)}\label{ux52a8ux673aux4e0eux5de5ux4e1aux5931ux6548ux573aux666f-motivation-
   智能体将 ``生产环境数据库连接池最大连接数必须设为 200''
   作为通用经验萃取，后续智能体在测试环境（连接池上限
   50）采纳该经验，导致连接池配置错误。
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{flowchart TD}
-\NormalTok{    subgraph DevEnvironment["开发环境（智能体可访问）"]}
-\NormalTok{        Dev["智能体开发"] {-}{-}\textgreater{} GitCommit["Git 提交"]}
-\NormalTok{    end}
-
-\NormalTok{    subgraph IsolatedEnvironments["隔离环境矩阵（智能体不可访问）"]}
-\NormalTok{        direction TB}
-\NormalTok{        StressTest["压力测试环境\textless{}br/\textgreater{}（隔离）"]}
-\NormalTok{        Production["生产环境\textless{}br/\textgreater{}（隔离）"]}
-\NormalTok{    end}
-
-\NormalTok{    subgraph BridgeLayer["协议桥接层（模式 12）"]}
-\NormalTok{        direction TB}
-\NormalTok{        Bridge1["压力测试结果\textless{}br/\textgreater{}异步回流"]}
-\NormalTok{        Bridge2["生产指标\textless{}br/\textgreater{}异步回流"]}
-\NormalTok{    end}
-
-\NormalTok{    subgraph AuditLayer["独立审计层（模式 02 探针 4）"]}
-\NormalTok{        direction TB}
-\NormalTok{        Audit1["压力测试审计"]}
-\NormalTok{        Audit2["生产指标审计"]}
-\NormalTok{    end}
-
-\NormalTok{    GitCommit {-}{-}\textgreater{} StressTest}
-\NormalTok{    StressTest {-}{-}\textgreater{} Bridge1}
-\NormalTok{    GitCommit {-}{-}\textgreater{} Production}
-\NormalTok{    Production {-}{-}\textgreater{} Bridge2}
-\NormalTok{    Bridge1 {-}{-}\textgreater{} Audit1}
-\NormalTok{    Bridge2 {-}{-}\textgreater{} Audit2}
-
-\NormalTok{    Audit1 {-}{-}\textgreater{} DeployDecision["部署决策"]}
-\NormalTok{    Audit2 {-}{-}\textgreater{} DefectCrystallization["缺陷萃取闭环（模式 24）"]}
-
-\NormalTok{    subgraph DefectCrystallization["缺陷萃取闭环（模式 24）"]}
-\NormalTok{        direction TB}
-\NormalTok{        Extractor["缺陷模式萃取器\textless{}br/\textgreater{}（开发环境）"]}
-\NormalTok{        Hotfix["热修复生成器\textless{}br/\textgreater{}（开发环境）"]}
-\NormalTok{        Validator["五重判据验证器\textless{}br/\textgreater{}（压力测试环境）"]}
-\NormalTok{    end}
-
-\NormalTok{    DefectCrystallization {-}{-}\textgreater{} Promotion["终审晋升\textless{}br/\textgreater{}（模式 14）"]}
-\NormalTok{    Promotion {-}{-}\textgreater{} Verified["VERIFIED\_ACTIVE\textless{}br/\textgreater{}（全局知识库）"]}
-\NormalTok{    Verified {-}{-}\textgreater{} Prevention["同类缺陷免疫\textless{}br/\textgreater{}（后续任务检索拦截）"]}
-\end{Highlighting}
-\end{Shaded}
 \end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\linewidth,height=\textheight,keepaspectratio,alt={模式 24：缺陷萃取-验证-晋升-免疫闭环流程 示意}]{figures/m53.jpg}
+\caption{模式 24：缺陷萃取-验证-晋升-免疫闭环流程 示意}
+\end{figure}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 

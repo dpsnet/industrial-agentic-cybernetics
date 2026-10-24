@@ -1,0 +1,43 @@
+flowchart TD
+      subgraph DevEnvironment["开发环境（智能体可访问）"]
+          Dev["智能体开发"] --> GitCommit["Git 提交"]
+      end
+
+      subgraph IsolatedEnvironments["隔离环境矩阵（智能体不可访问）"]
+          direction TB
+          StressTest["压力测试环境<br/>（隔离）"]
+          Production["生产环境<br/>（隔离）"]
+      end
+
+      subgraph BridgeLayer["协议桥接层（模式 12）"]
+          direction TB
+          Bridge1["压力测试结果<br/>异步回流"]
+          Bridge2["生产指标<br/>异步回流"]
+      end
+
+      subgraph AuditLayer["独立审计层（模式 02 探针 4）"]
+          direction TB
+          Audit1["压力测试审计"]
+          Audit2["生产指标审计"]
+      end
+
+      GitCommit --> StressTest
+      StressTest --> Bridge1
+      GitCommit --> Production
+      Production --> Bridge2
+      Bridge1 --> Audit1
+      Bridge2 --> Audit2
+
+      Audit1 --> DeployDecision["部署决策"]
+      Audit2 --> DefectCrystallization["缺陷萃取闭环（模式 24）"]
+
+      subgraph DefectCrystallization["缺陷萃取闭环（模式 24）"]
+          direction TB
+          Extractor["缺陷模式萃取器<br/>（开发环境）"]
+          Hotfix["热修复生成器<br/>（开发环境）"]
+          Validator["五重判据验证器<br/>（压力测试环境）"]
+      end
+
+      DefectCrystallization --> Promotion["终审晋升<br/>（模式 14）"]
+      Promotion --> Verified["VERIFIED_ACTIVE<br/>（全局知识库）"]
+      Verified --> Prevention["同类缺陷免疫<br/>（后续任务检索拦截）"]

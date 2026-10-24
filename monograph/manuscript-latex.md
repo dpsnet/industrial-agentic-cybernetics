@@ -3136,50 +3136,7 @@ class PureNativeProviderGateway {
   生产环境的真实流量模式（如特定地域的异常请求、特定时间段的并发峰值）触发智能体未预见的边界条件，这些异常模式未被萃取为经验资产，同类缺陷在后续版本中重复出现。
 
 
-  ```mermaid
-flowchart TD
-      subgraph DevEnvironment["开发环境（智能体可访问）"]
-          Dev["智能体开发"] --> GitCommit["Git 提交"]
-      end
-
-      subgraph IsolatedEnvironments["隔离环境矩阵（智能体不可访问）"]
-          direction TB
-          StressTest["压力测试环境<br/>（隔离）"]
-          Production["生产环境<br/>（隔离）"]
-      end
-
-      subgraph BridgeLayer["协议桥接层（模式 12）"]
-          direction TB
-          Bridge1["压力测试结果<br/>异步回流"]
-          Bridge2["生产指标<br/>异步回流"]
-      end
-
-      subgraph AuditLayer["独立审计层（模式 02 探针 4）"]
-          direction TB
-          Audit1["压力测试审计"]
-          Audit2["生产指标审计"]
-      end
-
-      GitCommit --> StressTest
-      StressTest --> Bridge1
-      GitCommit --> Production
-      Production --> Bridge2
-      Bridge1 --> Audit1
-      Bridge2 --> Audit2
-
-      Audit1 --> DeployDecision["部署决策"]
-      Audit2 --> RuntimeSniffer["运行时异常嗅探器"]
-
-      subgraph SniffingDimensions["三维嗅探维度"]
-          D1["性能维度：P99/P999 延迟、吞吐量、错误率"]
-          D2["资源维度：内存/CPU/连接池/句柄泄漏"]
-          D3["业务维度：异常请求模式、边界条件触发"]
-      end
-
-      RuntimeSniffer --> SniffingDimensions
-      SniffingDimensions --> Alarm["异常报警 & 物理时钟事件"]
-      Alarm --> Feedback["反馈至模式 24：缺陷萃取与热修复闭环"]
-  ```
+![模式 23：隔离环境审计与三维异常嗅探维度流程 示意](figures/m52.jpg){width=45%}
 
 **关键约束：生产环境与开发环境完全隔离**
 
@@ -3459,51 +3416,7 @@ class ProductionRuntimeAnomalySniffer {
   智能体将 "生产环境数据库连接池最大连接数必须设为 200" 作为通用经验萃取，后续智能体在测试环境（连接池上限 50）采纳该经验，导致连接池配置错误。
 
 
-  ```mermaid
-flowchart TD
-      subgraph DevEnvironment["开发环境（智能体可访问）"]
-          Dev["智能体开发"] --> GitCommit["Git 提交"]
-      end
-
-      subgraph IsolatedEnvironments["隔离环境矩阵（智能体不可访问）"]
-          direction TB
-          StressTest["压力测试环境<br/>（隔离）"]
-          Production["生产环境<br/>（隔离）"]
-      end
-
-      subgraph BridgeLayer["协议桥接层（模式 12）"]
-          direction TB
-          Bridge1["压力测试结果<br/>异步回流"]
-          Bridge2["生产指标<br/>异步回流"]
-      end
-
-      subgraph AuditLayer["独立审计层（模式 02 探针 4）"]
-          direction TB
-          Audit1["压力测试审计"]
-          Audit2["生产指标审计"]
-      end
-
-      GitCommit --> StressTest
-      StressTest --> Bridge1
-      GitCommit --> Production
-      Production --> Bridge2
-      Bridge1 --> Audit1
-      Bridge2 --> Audit2
-
-      Audit1 --> DeployDecision["部署决策"]
-      Audit2 --> DefectCrystallization["缺陷萃取闭环（模式 24）"]
-
-      subgraph DefectCrystallization["缺陷萃取闭环（模式 24）"]
-          direction TB
-          Extractor["缺陷模式萃取器<br/>（开发环境）"]
-          Hotfix["热修复生成器<br/>（开发环境）"]
-          Validator["五重判据验证器<br/>（压力测试环境）"]
-      end
-
-      DefectCrystallization --> Promotion["终审晋升<br/>（模式 14）"]
-      Promotion --> Verified["VERIFIED_ACTIVE<br/>（全局知识库）"]
-      Verified --> Prevention["同类缺陷免疫<br/>（后续任务检索拦截）"]
-  ```
+![模式 24：缺陷萃取-验证-晋升-免疫闭环流程 示意](figures/m53.jpg){width=50%}
 
 
 
