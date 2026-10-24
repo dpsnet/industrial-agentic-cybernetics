@@ -117,6 +117,8 @@
 % 数学模式 CJK 兜底：\text{中文} 走文本模式交给 xeCJK（unicode-math 的 \text 缺 CJK 字形）
 \usepackage{unicode-math}
 \setmathfont{latinmodern-math.otf}
+% 页边距：左右 2.2cm、上下 2.4cm（正文可用宽度 ~165mm，缓解窄列表格溢出）
+\usepackage[top=2.4cm,bottom=2.4cm,left=2.2cm,right=2.2cm]{geometry}
 % \text 重定义：数学模式内的中文文本交给 xeCJK 处理
 \makeatletter
 \renewcommand{\text}[1]{\textnormal{#1}}
