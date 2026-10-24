@@ -224,6 +224,14 @@ Claude
 \subsubsection{1.2
 工业级软件底座的真实物理特质}\label{ux5de5ux4e1aux7ea7ux8f6fux4ef6ux5e95ux5ea7ux7684ux771fux5b9eux7269ux7406ux7279ux8d28}
 
+\begin{quote}
+\textbf{『工业级』口径声明}：本书所称''工业级''指\textbf{经 DevForge-AI
+生产环境验证的软件工程智能体场景}（Docker
+受控生产拓扑、真实编译/文件系统/审计链路，模式
+23/24），并以跨模型（DeepSeek-V4 系 / Kimi /
+Qwen2.5）、跨任务族受控实验辅助锚定；其对全部工业场景的普遍性由读者依据各章适用域声明自行判断，本书不作全称覆盖宣称。
+\end{quote}
+
 与学术 Benchmark（如 HumanEval、MBPP、SWE-bench Lite 等单文件修补或简单
 Python
 仓库）截然不同，工业级生产系统具备以下不可逾越的\textbf{物理现实性（Physical
@@ -293,6 +301,10 @@ Code & 真实编译工具 Exit 0、物理 Diff、隐藏黑盒探针 \\
 \end{longtable}
 }
 
+\textbf{同行现状说明}：以物理退出码为闭环反馈的 CI
+门控在头部工程团队已是成熟实践（编译失败即阻断合并、测试红灯即拒收）。本书的增量不在''引入闭环''这一概念本身，而在将其\textbf{公理化}（四大工程公理）、\textbf{形式化}（Lean
+4 机检，附录 B）与\textbf{系统化}（24 模式 +
+生产实证）：范式飞跃的落点是体系的工程纪律与可审计证据结构，而非闭环概念的首创。
 \textbf{闭环口径声明}：本书所称''闭环''指\textbf{工程基质层的物理负反馈闭环}------物理传感器（Exit
 Code、物理 Diff、mtime、隐藏探针）→ 真伪否决门禁 → 编排器 → 执行主体 →
 物理底座。该闭环在生产现场实验（模式 23/24）中成立：F1/F2 检出率
@@ -624,6 +636,70 @@ Axioms）}\label{ux5de5ux4e1aux7ea7ux667aux80fdux4f53ux56dbux5927ux57faux7840ux5
 \caption{3.2 工业级智能体四大基础公理（The Four Foundational Axioms）
 示意}
 \end{figure}
+
+\paragraph{3.2.1
+四公理证据等级总览}\label{ux56dbux516cux7406ux8bc1ux636eux7b49ux7ea7ux603bux89c8}
+
+\begin{quote}
+口径声明：四公理均为\textbf{工程公理}（1.4.1）------占据推理起点地位、内容是经验命题。下表按评审可审计口径给出各公理当前的形式化、实证、模型覆盖与生产验证状态；同一''公理''名号不均分信用，证据分布以本表为准。
+\end{quote}
+
+{\def\LTcaptype{} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+公理
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+认识论类型
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+形式化层（Lean 4 机检）
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+受控实验（规模/模型）
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+生产验证
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+显式边界
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+I 物理非信任 & 安全文献共识的工程格言化（渐近命题） & B.2：3
+定理（自检后验=先验、闭环风险因子化、后验与机制无关） & 文献锚点（Amodei
+2016；Huang ICLR 2024；Anthropic 2511.18397） & 模式 23：F1/F2 检出
+1.00（各 n=10）、F4 零误报（60 期） & 形式陈述为极限式
+\(\lim P\le\epsilon\)，有限实验不能确立极限；实证支撑工程推论''自报不可信'' \\
+II 注意力稀释 & 带边界声明的经验律 &
+B.3：稀释严格性、三增长分支衰减、违约下界、两相模型、口径定理 +
+InjectionCoupling 桥接 & E3/E3b+E4（Qwen2.5-1.5B/7B，≤131k）；E8
+负结果（三结构量跨模型不稳健） & 无直接生产闭环 & \(W^*\)
+为经验参数不写入形式化接口；定理 \(a/b\) ↔ 实验
+needle/填充段口径映射为未证假设（B.11） \\
+III 变异因果单调 & 分布式系统经典结论的应用迁移 & B.4：2 定理 +
+B.8/B.9（租约 5 定理、主写从读单写者因果序） & Cargo 1.96/NTFS 28/28
+组受控测量 & 模式 23/24：篡改注入 20 例全拒；708
+条误拒装置缺陷自曝（已修复） & 适用域为 mtime 增量编译器（Bazel/Nix
+不适用）；Windows PE 使比特层幂等不可能 \\
+IV 经验自免疫 & 定理 + 多模型实证 + 生产闭环（最强支柱） & B.5：GW
+相变族 + B.7 Foster-Lyapunov 停时界 + B.10 观测-学习回路稳定性 &
+288+288+144+160 链（DeepSeek v4-pro / Kimi / Flash-1017，预注册判读） &
+模式 24：晋升 14/14、拦截 1.00、泄漏 0 & \(q\)--\(\hat m\)
+耦合未建立（开放项 1）；切换动力学待测 \\
+\end{longtable}
+}
+
+\begin{quote}
+三条结论：① 证据强度排序为 IV \textgreater{} II \textgreater{} III ≈
+I------``公理''名号不承载同等级经验确认；② 形式化层（B.2--B.10）全部为
+Lean 4 内核验证（0 sorry），其确证不随本表排序变化；③
+各公理适用域与开放项见 3.4 与附录 B.11。
+\end{quote}
 
 \paragraph{公理 I：物理非信任公理（Axiom of Physical
 Non-Trustworthiness）}\label{ux516cux7406-iux7269ux7406ux975eux4fe1ux4efbux516cux7406axiom-of-physical-non-trustworthiness}
@@ -7017,7 +7093,7 @@ IV 跨公理接口 & 注入耦合、下界合成 & 全部 {[}定理{]}，零公�
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \subsection{B.2 公理
-I：接地不可替代性（全部已证）}\label{b.2-ux516cux7406-iux63a5ux5730ux4e0dux53efux66ffux4ee3ux6027ux5168ux90e8ux5df2ux8bc1}
+I：接地不可替代性（形式化层全部已证）}\label{b.2-ux516cux7406-iux63a5ux5730ux4e0dux53efux66ffux4ee3ux6027ux5f62ux5f0fux5316ux5c42ux5168ux90e8ux5df2ux8bc1}
 
 书中公理 I 的概率极限式表达的是工程立场；其可严格证明的核心在本模块：
 
@@ -7039,7 +7115,7 @@ I：接地不可替代性（全部已证）}\label{b.2-ux516cux7406-iux63a5ux573
 01）因此不是''提高置信度''，而是''获得任何证据的唯一通道''。
 
 \subsection{B.3 公理
-II：注意力稀释（全部已证）}\label{b.3-ux516cux7406-iiux6ce8ux610fux529bux7a00ux91caux5168ux90e8ux5df2ux8bc1}
+II：注意力稀释（形式化层全部已证）}\label{b.3-ux516cux7406-iiux6ce8ux610fux529bux7a00ux91caux5f62ux5f0fux5316ux5c42ux5168ux90e8ux5df2ux8bc1}
 
 模型（结构 \texttt{AttentionMechanism}）：目标 token 的注意力质量
 \(a(\rho)\)、\textbf{总非目标质量} \(b(\rho)\) 与\textbf{残差子通道}
@@ -7206,7 +7282,7 @@ vs 原 34 GB）。
 \end{quote}
 
 \subsection{B.4 公理
-III：因果单调性（全部已证）}\label{b.4-ux516cux7406-iiiux56e0ux679cux5355ux8c03ux6027ux5168ux90e8ux5df2ux8bc1}
+III：因果单调性（形式化层全部已证）}\label{b.4-ux516cux7406-iiiux56e0ux679cux5355ux8c03ux6027ux5f62ux5f0fux5316ux5c42ux5168ux90e8ux5df2ux8bc1}
 
 \begin{itemize}
 \tightlist
@@ -7239,7 +7315,7 @@ mtime''模型------构建进行中的并发写入天然落入丢失窗口；(2) 
 \end{quote}
 
 \subsection{B.5 公理
-IV：记忆投毒相变（全部已证）}\label{b.5-ux516cux7406-ivux8bb0ux5fc6ux6295ux6bd2ux76f8ux53d8ux5168ux90e8ux5df2ux8bc1}
+IV：记忆投毒相变（形式化层全部已证）}\label{b.5-ux516cux7406-ivux8bb0ux5fc6ux6295ux6bd2ux76f8ux53d8ux5f62ux5f0fux5316ux5c42ux5168ux90e8ux5df2ux8bc1}
 
 模型：未终审经验的跨代传播为分支过程（\texttt{BranchingProcess}
 结构，每代一个有限支撑 PMF）；双盲隔离门禁的选择度 \(\sigma\)
@@ -7349,7 +7425,7 @@ v4-pro）、pytest
 \end{quote}
 
 \subsection{B.6 定理
-3.1：收敛因果不变性（全部已证）}\label{b.6-ux5b9aux7406-3.1ux6536ux655bux56e0ux679cux4e0dux53d8ux6027ux5168ux90e8ux5df2ux8bc1}
+3.1：收敛因果不变性（形式化层全部已证）}\label{b.6-ux5b9aux7406-3.1ux6536ux655bux56e0ux679cux4e0dux53d8ux6027ux5f62ux5f0fux5316ux5c42ux5168ux90e8ux5df2ux8bc1}
 
 \textbf{充分性（已证）}： - \textbf{定理
 \texttt{lyapunov\_finite\_hitting}}：能量函数 \(V : S \to \mathbb{N}\)
@@ -7392,7 +7468,7 @@ Lyapunov 不可能（100\%）、破坏评估解耦 \(\Rightarrow\)
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \subsection{B.7 随机 Foster-Lyapunov
-期望停时界（全部已证）}\label{b.7-ux968fux673a-foster-lyapunov-ux671fux671bux505cux65f6ux754cux5168ux90e8ux5df2ux8bc1}
+期望停时界（形式化层全部已证）}\label{b.7-ux968fux673a-foster-lyapunov-ux671fux671bux505cux65f6ux754cux5f62ux5f0fux5316ux5c42ux5168ux90e8ux5df2ux8bc1}
 
 \texttt{StochasticFosterLyapunov} 模块以\textbf{初等方法}（随机核 +
 停时截断 +
@@ -7437,7 +7513,7 @@ Lyapunov 不可能（100\%）、破坏评估解耦 \(\Rightarrow\)
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \subsection{B.8
-模式级形式锚点：租约锁（全部已证）}\label{b.8-ux6a21ux5f0fux7ea7ux5f62ux5f0fux951aux70b9ux79dfux7ea6ux9501ux5168ux90e8ux5df2ux8bc1}
+模式级形式锚点：租约锁（形式化层全部已证）}\label{b.8-ux6a21ux5f0fux7ea7ux5f62ux5f0fux951aux70b9ux79dfux7ea6ux9501ux5f62ux5f0fux5316ux5c42ux5168ux90e8ux5df2ux8bc1}
 
 \texttt{Pattern10\_LeaseLock} 模块将模式
 10（分布式物理底座租约锁与看门狗）的并发主张形式化。模型：物理时钟为离散
@@ -7483,7 +7559,7 @@ TTL+1
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \subsection{B.9
-模式级形式锚点：主写从读的单写者因果序（全部已证）}\label{b.9-ux6a21ux5f0fux7ea7ux5f62ux5f0fux951aux70b9ux4e3bux5199ux4eceux8bfbux7684ux5355ux5199ux8005ux56e0ux679cux5e8fux5168ux90e8ux5df2ux8bc1}
+模式级形式锚点：主写从读的单写者因果序（形式化层全部已证）}\label{b.9-ux6a21ux5f0fux7ea7ux5f62ux5f0fux951aux70b9ux4e3bux5199ux4eceux8bfbux7684ux5355ux5199ux8005ux56e0ux679cux5e8fux5f62ux5f0fux5316ux5c42ux5168ux90e8ux5df2ux8bc1}
 
 \texttt{Pattern11\_PrimaryWriter} 模块将模式 11（主写入者 /
 从属读取者降级互斥）的并发主张形式化。模型：写日志为
@@ -7511,7 +7587,7 @@ TTL+1
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \subsection{B.10
-模式级形式锚点：观测--学习回路的稳定性（全部已证）}\label{b.10-ux6a21ux5f0fux7ea7ux5f62ux5f0fux951aux70b9ux89c2ux6d4bux5b66ux4e60ux56deux8defux7684ux7a33ux5b9aux6027ux5168ux90e8ux5df2ux8bc1}
+模式级形式锚点：观测--学习回路的稳定性（形式化层全部已证）}\label{b.10-ux6a21ux5f0fux7ea7ux5f62ux5f0fux951aux70b9ux89c2ux6d4bux5b66ux4e60ux56deux8defux7684ux7a33ux5b9aux6027ux5f62ux5f0fux5316ux5c42ux5168ux90e8ux5df2ux8bc1}
 
 \texttt{Pattern23\_24\_ProductionLoop} 模块把验证报告 §7 遗留的''模式
 23→24→23 负反馈回路''闭合。模型：缺陷存量

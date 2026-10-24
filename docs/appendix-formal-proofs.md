@@ -32,7 +32,7 @@
 
 ---
 
-## B.2 公理 I：接地不可替代性（全部已证）
+## B.2 公理 I：接地不可替代性（形式化层全部已证）
 
 书中公理 I 的概率极限式表达的是工程立场；其可严格证明的核心在本模块：
 
@@ -42,7 +42,7 @@
 
 物理 Exit 0 穿透（模式 01）因此不是"提高置信度"，而是"获得任何证据的唯一通道"。
 
-## B.3 公理 II：注意力稀释（全部已证）
+## B.3 公理 II：注意力稀释（形式化层全部已证）
 
 模型（结构 `AttentionMechanism`）：目标 token 的注意力质量 $a(\rho)$、**总非目标质量** $b(\rho)$ 与**残差子通道** $r(\rho)$（BOS/attention sink、指令 token 等固定占用），满足 $a,b>0$、$0\le r<b$，且增加冗余不增强目标信号（$a(\rho+1)\le a(\rho)$）、总非目标质量非减（$b(\rho)\le b(\rho+1)$）。注意力份额为 $a/(a+b)$，检索信噪比为
 
@@ -90,14 +90,14 @@ $$\operatorname{snr}(\rho) := \frac{a(\rho)}{b(\rho)}.$$
 
 > **衰减参数的代理探索（E8，2026-10-20，关闭）**：$\gamma$ / $\beta$ 是定理的**自由参数**，本附录不假设其可由结构量预测。三次跨模型族复验（Qwen2.5-7B / 1.5B + Llama-3.2-3B，共 486 行）后，三候选结构量（注意力熵、top-1% 集中度、key 有效秩）**无一跨 3 模型稳健复现**——erank 仅在 7B 上满足判据，top1pct 仅在 1.5B β̂ 与 7B λ̂ 上存活，Llama-3B 上四个结构量在两种口径下均未达 |Spearman|≥0.5 且 CI 不含 0。**γ 保持自由参数**，其值由实测标定。值得记录的弱信号是**方向一致性**：entropy（−β̂/+λ̂）、top1pct（+β̂/−λ̂）、erank（−β̂/+λ̂）在三模型上方向完全一致——强度跨规模/跨族不稳定，但方向可能有机制意义。单次 OOM 事故已由 `_gram_streamed` 分块永久修复（峰值 <1 GB vs 原 34 GB）。
 
-## B.4 公理 III：因果单调性（全部已证）
+## B.4 公理 III：因果单调性（形式化层全部已证）
 
 - **定理 `observability_iff_mtime_strict_mono`**：对产生真实差异的变异，**可观测 ⟺ 物理时钟（mtime / WAL LSN）严格单调跳变**。若时钟回拨或停滞（$\text{mtApplied} \le \text{lastCompiledAt}$），修改被增量编译器静默吞没（Silent Loss）。"代码已改、测试仍在跑旧字节码"获得了严格的形式化——单调性不是工程优化，而是可观测性的逻辑必要条件。
 - **定理 `log_append_apply_idempotent`**：追加式日志（WAL）的回放算子幂等——同一物理时刻的重复回放中，第二次应用的校验和必然失败，且内容字段与首次应用完全一致。重试安全且不污染编译结果。
 
 > **实测边界（E-A3，2026-10-20）**：上述两定理的工程对应在 Cargo 1.96（Windows NTFS）上获 28 项受控测量支持（`experiments/attention_growth/axiom3_results.json`）：mtime 停滞/回拨 ⟹ 静默丢失（各 5/5，产物保持旧版本）；mtime 严格正向跳变 ⟹ 重建（5/5，且纯时钟跳变即使内容不变也触发——重建触发纯由时钟通道决定，可观测性由内容差异决定，与 `hdiff` 前提划分一致）；幂等性在无变化重构建（5/5 跳过、产物 sha 不变）与 git 回退-重试场景（语义输出恢复）中成立。两点模型细化：① 判据参考时钟实测为"上次构建完成时刻" $R$，静默丢失窗口为 $(0, R]$，宽于朴素"文件旧 mtime"模型——构建进行中的并发写入天然落入丢失窗口；② Windows PE 头含编译时间戳，同源码重编译产物字节级必异，幂等性的判读须在语义层进行（对应定理承诺的是内容不变，非比特级一致）。适用域：mtime-based 增量编译器（Cargo、Make）；内容哈希型构建系统（Bazel、Nix）不依赖 mtime 跳变，本节定理的静默丢失场景在其上不适用。
 
-## B.5 公理 IV：记忆投毒相变（全部已证）
+## B.5 公理 IV：记忆投毒相变（形式化层全部已证）
 
 模型：未终审经验的跨代传播为分支过程（`BranchingProcess` 结构，每代一个有限支撑 PMF）；双盲隔离门禁的选择度 $\sigma$ 将名义繁殖均值 $\mu$ 压缩为有效繁殖数 $m = \mu(1-\sigma)$。
 
@@ -116,7 +116,7 @@ $$\operatorname{snr}(\rho) := \frac{a(\rho)}{b(\rho)}.$$
 
 > **实测边界（E-A4，2026-10-21）**：上述定理链的模型–现实映射在 DeepSeek v4-pro 多代记忆传播实验（4 条件 × 12 replicate × 6 代 = 288 会话，预注册判读先于实验）中获检验：`quarantine_compresses_offspring` 的完全隔离情形（$\sigma=1$）实测使投毒谱系跨代传播严格为零（全部 replicate $Z_1=0$，无 de novo 再发现）；`expected_population_geometric` 的几何律与未隔离条件池化种群序列吻合（log-linear $R^2=0.958$，逐代比无趋势，分支性假设在小种群区成立）；实测繁殖核（per-parent offspring PMF）参数化的 Galton-Watson 仿真与定理链无自由参数吻合——三个亚临界变体（C0 实测 $m=0.538$、C1 实测 $m=0.333$、C0 PMF 经 Bernoulli(0.5) 抽稀 $m=0.269$）灭绝频率 $q_{sim}=1.0000=q^*$，`markov_inequality` 界全程数值成立。两点映射边界如实记录：① DRAFT_SUSPECT 标记门对每条目繁殖的压缩方向符合理论（$-38\%$）但统计不显著（置换检验 $p=0.15$），`quarantine_compresses_offspring` 的中间 $\sigma$ 情形（标记而非隔离的工程对应物）在本样本量下未获显著性支持；② $m=\mu(1-\sigma)$ 的 LLM 层直接检验因写出层涨落与过滤层有效样本 $n=1$ 而不可判定，仅获分布层（抽稀变体）间接支撑——该映射的 LLM 层直接检验需 $\ge 10^2$ 量级 replicate。适用域：单模型（DeepSeek v4-pro）、pytest 测试编写任务族、选择性逐代转写协议、无基质反馈（$\mathrm{SubstratePass}$ 通道关闭，纯社会传播）；本协议下无门禁条件实测 $m=0.56<1$（转写机制本身亚临界）。**超临界情形（2026-10-22 已闭合）**：`supercritical_expectation_diverges` / `galton_watson_non_extinction` 的经验对应在无转写衰减的记忆架构（全量追加式记忆库、向量库直写，SUPERCRITICAL 计划 Flash 档）中确认——该架构传播为**线性累积-容量竞争**型（每代 $W\equiv1$、$Z_{n+1}=Z_n+W$），C0-full $\hat m=1.166$（CI $[1.156,1.176]$）、容量临界 $W_c\in(8,16)$；"超临界"为工程语义（毒株池持续累积不灭绝），精确机制为累积-竞争而非分支过程的 $m>1$ 倍增；GW 定理链对选择性转写场景的刻画保持不变。数据与判读：`experiments/attention_growth/axiom4_results.json`、`axiom4_gw_sim.json`、`EXPERIMENT_PLAN_AXIOM4.md` §9、`EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md` §8。
 
-## B.6 定理 3.1：收敛因果不变性（全部已证）
+## B.6 定理 3.1：收敛因果不变性（形式化层全部已证）
 
 **充分性（已证）**：
 - **定理 `lyapunov_finite_hitting`**：能量函数 $V : S \to \mathbb{N}$ 处处严格负漂移 ⟹ 至多 $V(s_0)$ 步命中零点（全部物理契约满足）。这是 Foster–Lyapunov 准则的离散决定论核心，归纳法完成。
@@ -136,7 +136,7 @@ $$\operatorname{snr}(\rho) := \frac{a(\rho)}{b(\rho)}.$$
 
 ---
 
-## B.7 随机 Foster-Lyapunov 期望停时界（全部已证）
+## B.7 随机 Foster-Lyapunov 期望停时界（形式化层全部已证）
 
 `StochasticFosterLyapunov` 模块以**初等方法**（随机核 + 停时截断 + 单调归纳，无测度论/鞅可选停止定理依赖）给出随机控制器的期望命中时间界。
 
@@ -152,7 +152,7 @@ $$\operatorname{snr}(\rho) := \frac{a(\rho)}{b(\rho)}.$$
 
 ---
 
-## B.8 模式级形式锚点：租约锁（全部已证）
+## B.8 模式级形式锚点：租约锁（形式化层全部已证）
 
 `Pattern10_LeaseLock` 模块将模式 10（分布式物理底座租约锁与看门狗）的并发主张形式化。模型：物理时钟为离散 tick；锁状态 `LockState = Option Lease`（Option 结构本身编码"至多一个租约"）；`acquire`/`heartbeat` 为带前置条件的纯函数。
 
@@ -166,7 +166,7 @@ $$\operatorname{snr}(\rho) := \frac{a(\rho)}{b(\rho)}.$$
 
 ---
 
-## B.9 模式级形式锚点：主写从读的单写者因果序（全部已证）
+## B.9 模式级形式锚点：主写从读的单写者因果序（形式化层全部已证）
 
 `Pattern11_PrimaryWriter` 模块将模式 11（主写入者 / 从属读取者降级互斥）的并发主张形式化。模型：写日志为 `List (Write Agent)`，元素携带写入者与物理刻度；`ChainValid` 要求相邻刻度严格递增；读取视图 `viewAt l t` 是日志按 `tick ≤ t` 过滤得到的前缀。
 
@@ -177,7 +177,7 @@ $$\operatorname{snr}(\rho) := \frac{a(\rho)}{b(\rho)}.$$
 
 ---
 
-## B.10 模式级形式锚点：观测–学习回路的稳定性（全部已证）
+## B.10 模式级形式锚点：观测–学习回路的稳定性（形式化层全部已证）
 
 `Pattern23_24_ProductionLoop` 模块把验证报告 §7 遗留的"模式 23→24→23 负反馈回路"闭合。模型：缺陷存量 $x\in\mathbb N$，每周期以概率 $q$ 检出并修复一个（$x\mapsto x-1$），否则注入一个（$x\mapsto x+1$）；转移核 `loopKernel q` 为有限支撑随机核，直接复用 B.7 的 Foster–Lyapunov 框架。
 
