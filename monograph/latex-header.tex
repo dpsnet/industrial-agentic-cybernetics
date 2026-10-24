@@ -8,3 +8,11 @@
 % 超宽浮动限制
 \usepackage{graphicx}
 \PassOptionsToPackage{hyphens}{url}
+% 放宽浮动体高度限制（消除 Float too large：默认页顶浮动限 0.7 页高，专著含大量纵向示意图）
+\renewcommand{\topfraction}{0.93}
+\renewcommand{\bottomfraction}{0.93}
+\renewcommand{\textfraction}{0.04}
+\setcounter{topnumber}{4}
+\setcounter{bottomnumber}{4}
+\setcounter{totalnumber}{6}
+\setcounter{dbltopnumber}{4}

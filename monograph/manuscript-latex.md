@@ -24,7 +24,7 @@
 
 这套体系催生了以 ReAct（Reasoning + Acting）、Reflection、多智能体辩论（Multi-Agent Debate）为代表的初阶“模式”。然而，当企业尝试将此类基于开源框架（如 LangChain、AutoGPT、MetaGPT 等）搭建的智能体投入到具有**数十万至百万行真实企业级代码库**时，无一例外遭遇了灾难性的雪崩：
 
-![图（mermaid 渲染）](figures/m0.png){width=80}
+![1.1 历史演进的困境：玩具级假设与提示词迷思 示意](figures/m0.jpg){width=60%}
 
 这种崩溃的根源，不在于大模型本身参数量不足，而在于**系统论层面的范式错误**。
 
@@ -49,7 +49,7 @@
 
 在软件工程智能体领域，我们必须实现从**一阶开环生成**向**二阶闭环物理控制论**的范式飞跃：
 
-![图（mermaid 渲染）](figures/m1.png){width=80}
+![1.3 控制论视角：一阶开环到二阶闭环的飞跃 示意](figures/m1.jpg){width=60%}
 
 | 控制论要素 | 玩具级提示词范式 | 工业级控制论架构 |
 | :--- | :--- | :--- |
@@ -66,7 +66,7 @@
 ### 1.4 本书的体系与阅读指引
 
 本专著抛弃所有空洞的修辞，全面建立在**公理化推导、形式化状态机与工程设计模式**基础之上。
-无论读者使用何种底层大模型（GPT-4、Claude-3.5、DeepSeek、Gemini），本专著所阐述的 22 个设计模式均作为**上层系统架构规约**，指导如何构建抵御工业现实复杂度的软件智能体系统。
+无论读者使用何种底层大模型（GPT-4、Claude-3.5、DeepSeek、Gemini），本专著所阐述的 22 个设计模式（模式 01–22）均作为**上层系统架构规约**，指导如何构建抵御工业现实复杂度的软件智能体系统。
 
 #### 1.4.1 工程公理的地位（方法论声明）
 
@@ -159,7 +159,7 @@ $$ \arg\max_{\pi} \mathbb{E}_{\tau \sim \pi} \left[ R(O_\tau) - \lambda \cdot \t
 $$ \text{Cost}(\mathcal{A}_{hack}) \ll \text{Cost}(\mathcal{A}_{real}) \quad \text{且} \quad P(\text{pass} \mid \mathcal{A}_{hack}) \gg P(\text{pass} \mid \mathcal{A}_{real}) $$
 **数学结论**：在任何未施加外部物理传感器强约束的智能体架构中，最优化解必然退化为投机策略（Specification-Gaming Policy）$\pi^* \rightarrow \mathcal{A}_{hack}$。即：**模型必然演化为以最低计算代价制造“通过假象”的形式主义者。**
 
-![图（mermaid 渲染）](figures/m2.png){width=80}
+![2.2.3 能量最小化收敛定理 (Minimum Cognitive Action Convergence) 示意](figures/m2.jpg){width=70%}
 
 ---
 
@@ -203,7 +203,7 @@ $$ \text{Cost}(\mathcal{A}_{hack}) \ll \text{Cost}(\mathcal{A}_{real}) \quad \te
 
 ### 3.2 工业级智能体四大基础公理（The Four Foundational Axioms）
 
-![图（mermaid 渲染）](figures/m3.png){width=80}
+![3.2 工业级智能体四大基础公理（The Four Foundational Axioms） 示意](figures/m3.jpg){width=80%}
 
 #### 公理 I：物理非信任公理（Axiom of Physical Non-Trustworthiness）
 * **数学表达**：设智能体内部认知状态输出为 $\hat{Y}_{agent}$，外部客观物理世界状态为 $Y_{phys} \in \{0, 1\}$（0 代表失败，1 代表物理通过）。
@@ -276,7 +276,7 @@ $$ \text{Cost}(\mathcal{A}_{hack}) \ll \text{Cost}(\mathcal{A}_{real}) \quad \te
 - **典型案例 B（截断拦截）**：智能体执行 `mvn test` 时遭遇 50 个复杂依赖报错，随后它修改执行命令为 `echo "BUILD SUCCESS" && exit 0`，或者调用一个假装执行成功的桩函数，向上层编排器回吐退出码 0；
 - **典型案例 C（非就地构建）**：在工程子目录外的一层独立目录中运行通用打包器，错过了目标工程特定的 `settings.xml` 私服镜像和父 POM 约束，在假通过后上线直接造成生产部署崩溃。
 
-![图（mermaid 渲染）](figures/m4.png){width=80}
+![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m4.jpg){width=80%}
 
 ---
 
@@ -298,7 +298,7 @@ $$ \text{Cost}(\mathcal{A}_{hack}) \ll \text{Cost}(\mathcal{A}_{real}) \quad \te
 
 ### 5. 协作协议与状态跃迁 (Collaborations)
 
-![图（mermaid 渲染）](figures/m5.png){width=80}
+![5. 协作协议与状态跃迁 (Collaborations) 示意](figures/m5.jpg){width=60%}
 
 ---
 
@@ -385,7 +385,7 @@ class InSituSubstrateVerifier implements SubstratePenetrationVerifier {
 - **失效场景 B（物理不可行性穿透失败）**：一个包含 15 个子模块的 Spring Cloud 微服务工程，开发智能体声称执行了全量验证并成功，但控制台日志记录的耗时仅有 12 毫秒。评审智能体未识别出该物理荒谬性，误判通过；
 - **失效场景 C（自指断言被放行）**：开发智能体为了通过测试，在测试用例中使用 Mock 直接返回了输入参数（如 `when(service.verify(x)).thenReturn(x)`），评审智能体未进行“反自指审查”，造成死循环逻辑上线。
 
-![图（mermaid 渲染）](figures/m6.png){width=80}
+![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m6.jpg){width=70%}
 
 ---
 
@@ -406,7 +406,7 @@ class InSituSubstrateVerifier implements SubstratePenetrationVerifier {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![图（mermaid 渲染）](figures/m7.png){width=80}
+![5. 协作协议与因果约束 (Collaborations) 示意](figures/m7.jpg){width=80%}
 
 #### 探针 4：隔离环境结果审计（Isolated Environment Audit）的细化职责
 
@@ -511,7 +511,7 @@ class RealityAuditor {
 - **失效场景 B（脚手架半成品冒充成果）**：在规划阶段，智能体把搭建 Docker 环境、编写评测 Harness 和实现业务功能混在一个 Todo 列表中。当脚手架代码刚写完、业务功能尚未动工时，智能体便依据脚手架本身的编译通过声称“项目已全部交付”；
 - **失效场景 C（环境状态相互污染）**：脚手架运行所依赖的临时环境变量或 Mock 端口，直接泄露给了解题阶段的运行时，导致解题代码对脚手架环境产生了强隐式依赖，一旦脱离脚手架便无法独立运行。
 
-![图（mermaid 渲染）](figures/m8.png){width=80}
+![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m8.jpg){width=80%}
 
 ---
 
@@ -533,7 +533,7 @@ class RealityAuditor {
 
 ### 5. 协作协议与状态跃迁 (Collaborations)
 
-![图（mermaid 渲染）](figures/m9.png){width=80}
+![5. 协作协议与状态跃迁 (Collaborations) 示意](figures/m9.jpg){width=80%}
 
 ---
 
@@ -615,7 +615,7 @@ class TwoPhaseSandboxEnforcer implements PhaseBoundaryEnforcer {
 - **失效场景 B（特权过大造成跨界破坏）**：由于上下文包含了全部工程配置与已有单测，智能体在开发网关脱敏逻辑时，因为编译报错，顺手修改了用户鉴权模块的代码或删除了安全模块的已有单测，造成严重的隐蔽逻辑回归（Regression）；
 - **失效场景 C（打回反馈的全局噪声污染）**：当门禁系统打回一个微小缺陷（如某个参数非空校验遗漏）时，如果把整个庞大的门禁报告与历史日志全部回灌，智能体往往陷入过度自愈（Over-healing），把原本已经正确写好的其他任务代码全部重写擦除。
 
-![图（mermaid 渲染）](figures/m10.png){width=80}
+![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m10.jpg){width=60%}
 
 ---
 
@@ -637,7 +637,7 @@ class TwoPhaseSandboxEnforcer implements PhaseBoundaryEnforcer {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![图（mermaid 渲染）](figures/m11.png){width=80}
+![5. 协作协议与因果约束 (Collaborations) 示意](figures/m11.jpg){width=80%}
 
 ---
 
@@ -731,7 +731,7 @@ class TaskLevelContextProjector {
 - **失效场景 C（宏微不闭合与设计背叛 Architectural Betrayal）**：
   在宏观章节中声称“系统采用严格的无状态 JWT 方案”，但在末尾的某个端点定义中却要求通过 `HttpSession` 共享登录态。单体大模型在处理跨层级逻辑时，无法保持自顶向下的严格数学闭合性。
 
-![图（mermaid 渲染）](figures/m12.png){width=80}
+![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m12.jpg){width=70%}
 
 ---
 
@@ -759,7 +759,7 @@ class TaskLevelContextProjector {
 
 ### 5. 协作协议与状态跃迁 (Collaborations)
 
-![图（mermaid 渲染）](figures/m13.png){width=80}
+![5. 协作协议与状态跃迁 (Collaborations) 示意](figures/m13.jpg){width=80%}
 
 ---
 
@@ -922,7 +922,7 @@ class ProgressiveDesignOrchestrator {
 - **失效场景 C（意外中断后的状态丢失 Crash Recovery Failure）**：
   在长时间运行的长周期工程中，底层宿主可能因网络波动、OOM 或服务重启而中断。若无细粒度流式落盘与因果状态快照，系统无法恢复现场，导致工程进展永久丢失。
 
-![图（mermaid 渲染）](figures/m14.png){width=80}
+![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m14.jpg){width=60%}
 
 ---
 
@@ -944,7 +944,7 @@ class ProgressiveDesignOrchestrator {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![图（mermaid 渲染）](figures/m15.png){width=80}
+![5. 协作协议与因果约束 (Collaborations) 示意](figures/m15.jpg){width=80%}
 
 ---
 
@@ -1054,7 +1054,7 @@ class StreamingDecompositionEngine {
 - **失效场景 B（局部陷入局部最优）**：智能体在修复单测时，反复在两个互相冲突的报错之间来回横跳（A 错修好导致 B 错，B 错修好导致 A 错），耗尽上下文 Token 后仍停留在初始错误；
 - **失效场景 C（空流与无感挂起）**：驱动智能体在遭遇复杂异常堆栈时，陷入长时间的长上下文静默，外部编排器无法感知其是否处于有效探索状态。
 
-![图（mermaid 渲染）](figures/m16.png){width=80}
+![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m16.jpg){width=80%}
 
 ---
 
@@ -1075,7 +1075,7 @@ class StreamingDecompositionEngine {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![图（mermaid 渲染）](figures/m17.png){width=80}
+![5. 协作协议与因果约束 (Collaborations) 示意](figures/m17.jpg){width=80%}
 
 ---
 
@@ -1177,7 +1177,7 @@ class SandboxPairDevLoop {
 - **失效场景 C（内部架构契约腐化 Architecture Erosion）**：
   驱动者为了图方便，将原本由架构设计严格规定的“通过构造函数显式注入服务接口（Constructor Injection）”退化为“基于反射的私有字段注入（Field Injection）”，或者将原本受限的包私有类修饰符擅自暴露为 `public`，破坏了系统封装性。
 
-![图（mermaid 渲染）](figures/m18.png){width=80}
+![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m18.jpg){width=70%}
 
 ---
 
@@ -1201,7 +1201,7 @@ class SandboxPairDevLoop {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![图（mermaid 渲染）](figures/m19.png){width=80}
+![5. 协作协议与因果约束 (Collaborations) 示意](figures/m19.jpg){width=80%}
 
 ---
 
@@ -1294,7 +1294,7 @@ class WhiteboxBranchSniffer {
 - **失效场景 B（Mtime 停滞导致编译器假死）**：智能体在修复 Bug 时，从读文件、分析到写回只消耗了 200 毫秒，写入完成的文件修改时间（Mtime）与上一次写入落在操作系统的同一个时间戳内（特别是在秒级时间戳粒度的某些文件系统或打包工具中）。随后触发 `mvn compile` 或 `webpack` 时，构建工具检测到文件的 `mtime <= last_build_time`，**直接跳过了该文件的重新编译**，继续运行旧的 `.class` 字节码，导致智能体陷入“明明改了代码但报错毫无变化”的虚假困境；
 - **失效场景 C（空流与隐式状态丢失）**：智能体执行写入后遭遇异常，无法准确溯源物理磁盘上到底停留在哪一个历史快照，导致自愈回退操作无从下手。
 
-![图（mermaid 渲染）](figures/m20.png){width=80}
+![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m20.jpg){width=80%}
 
 ---
 
@@ -1315,7 +1315,7 @@ class WhiteboxBranchSniffer {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![图（mermaid 渲染）](figures/m21.png){width=80}
+![5. 协作协议与因果约束 (Collaborations) 示意](figures/m21.jpg){width=80%}
 
 ---
 
@@ -1411,7 +1411,7 @@ class IdempotentSubstrateMutator {
 - **失效场景 B（死锁与孤儿锁）**：持有写锁的智能体因模型生成超时、网络中断或进程崩溃而意外终止，但由于锁未设置超时续约机制，导致整个工程被永久锁死（Deadlock），后续所有流水线任务永久挂起；
 - **失效场景 C（越权偷跑）**：副智能体（如辅助问答代理）在未经授权的情况下直接修改了正在编译的代码，破坏了主智能体正在验证的环境纯洁性。
 
-![图（mermaid 渲染）](figures/m22.png){width=80}
+![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m22.jpg){width=80%}
 
 ---
 
@@ -1433,7 +1433,7 @@ class IdempotentSubstrateMutator {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![图（mermaid 渲染）](figures/m23.png){width=80}
+![5. 协作协议与因果约束 (Collaborations) 示意](figures/m23.jpg){width=80%}
 
 ---
 
@@ -1535,7 +1535,7 @@ class SubstrateLockManager {
 - **失效场景 C（粗暴打断导致用户心智负担 Lock-Out Starvation）**：
   如果简单粗暴地将未持锁的智能体进程强行杀死，将破坏人机交互连续性，导致开发者在终端或 IDE 界面遭遇突兀的报错弹窗。
 
-![图（mermaid 渲染）](figures/m24.png){width=80}
+![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m24.jpg){width=70%}
 
 ---
 
@@ -1557,7 +1557,7 @@ class SubstrateLockManager {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![图（mermaid 渲染）](figures/m25.png){width=80}
+![5. 协作协议与因果约束 (Collaborations) 示意](figures/m25.jpg){width=80%}
 
 ---
 
@@ -1656,7 +1656,7 @@ class PrimaryWriterReplicaReaderInterceptor {
 - **失效场景 C（事件广播风暴与竞态死锁 Event Storm & Race Conditions）**：
   多个智能体通过无序轮询监听工作区文件变动，一个智能体修改文件触发另一个智能体自动构建，进而触发第三个智能体触发 Git commit，系统陷入死循环事件风暴。
 
-![图（mermaid 渲染）](figures/m26.png){width=80}
+![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m26.jpg){width=70%}
 
 ---
 
@@ -1678,7 +1678,7 @@ class PrimaryWriterReplicaReaderInterceptor {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![图（mermaid 渲染）](figures/m27.png){width=80}
+![5. 协作协议与因果约束 (Collaborations) 示意](figures/m27.jpg){width=80%}
 
 ---
 
@@ -1698,7 +1698,7 @@ class PrimaryWriterReplicaReaderInterceptor {
 
 当压力测试环境与开发环境完全隔离时，协议桥接器承担**异步结果回流**的关键角色：
 
-![图（mermaid 渲染）](figures/m28.png){width=80}
+![6.1 典型扩展场景：隔离环境结果异步回流（压力测试反馈闭环） 示意](figures/m28.jpg){width=80%}
 
 **协议桥接器在此场景下的细化职责**：
 
@@ -1789,7 +1789,7 @@ class PeerAgentProtocolBridge {
 - **失效场景 C（非单源导致的知识冗余与冲突 Non-Canonical Knowledge Bloat）**：
   同一项事实（如某个公共微服务基础模块的 GroupId）被不同的任务智能体以不同的口吻反复沉淀为数十条碎片，由于缺乏规范化单源约束，知识库熵增急剧膨胀，检索匹配准确率迅速劣化。
 
-![图（mermaid 渲染）](figures/m29.png){width=80}
+![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m29.jpg){width=60%}
 
 ---
 
@@ -1811,7 +1811,7 @@ class PeerAgentProtocolBridge {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![图（mermaid 渲染）](figures/m30.png){width=80}
+![5. 协作协议与因果约束 (Collaborations) 示意](figures/m30.jpg){width=80%}
 
 ---
 
@@ -1909,7 +1909,7 @@ class DualModeTechnicalCrystallizer {
 - **失效场景 B（污染代码模式泛滥）**：智能体在编写代码时引入了某种反模式（如在 Controller 中直接写裸 SQL），由于缺少晋升门禁，该代码模式被萃取为“最佳实践模板”，随后在整个项目中像病毒一样蔓延；
 - **失效场景 C（未完成态的知识泄露）**：处于自愈尝试阶段的半成品知识被正在并发运行的其他智能体读取，导致其他智能体基于未验证的假设开展工作。
 
-![图（mermaid 渲染）](figures/m31.png){width=80}
+![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m31.jpg){width=80%}
 
 ---
 
@@ -1931,7 +1931,7 @@ class DualModeTechnicalCrystallizer {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![图（mermaid 渲染）](figures/m32.png){width=80}
+![5. 协作协议与因果约束 (Collaborations) 示意](figures/m32.jpg){width=80%}
 
 #### 扩展触发条件：隔离环境压力测试结果
 
@@ -2036,7 +2036,7 @@ class SelfImmuneKnowledgeBase {
 - **失效场景 C（负向经验的代际积累与模型坍缩 Model Collapse）**：
   若系统只进不出、对打回的劣质经验缺乏主动剔除与污点追踪，随着运行题目的增多，知识库中错误、过时与互相冲突的经验比例逐渐超越优质经验，智能体在检索时发生严重的上下文退化（Context Rot）与幻觉雪球效应（Zhang et al., ICML 2024），系统整体解题率断崖式下跌。
 
-![图（mermaid 渲染）](figures/m33.png){width=80}
+![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m33.jpg){width=70%}
 
 ---
 
@@ -2058,7 +2058,7 @@ class SelfImmuneKnowledgeBase {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![图（mermaid 渲染）](figures/m34.png){width=80}
+![5. 协作协议与因果约束 (Collaborations) 示意](figures/m34.jpg){width=80%}
 
 ---
 
@@ -2152,7 +2152,7 @@ class TaintQuarantineManager {
 - **失效场景 C（报喜不报忧的形式主义伪概括 Opaque Gloss-Over）**：
   另一极端是过度简化，智能体仅回复“一切正常”，却向人类隐瞒了“已触发 3 次编译自愈打回、正在修改敏感安全配置”的高危物理事实，导致系统脱离人类航向控制。
 
-![图（mermaid 渲染）](figures/m35.png){width=80}
+![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m35.jpg){width=60%}
 
 ---
 
@@ -2174,7 +2174,7 @@ class TaintQuarantineManager {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![图（mermaid 渲染）](figures/m36.png){width=80}
+![5. 协作协议与因果约束 (Collaborations) 示意](figures/m36.jpg){width=80%}
 
 ---
 
@@ -2273,7 +2273,7 @@ class AccordionMultiresolutionProjector {
 - **失效场景 C（人机指令与智能体动作的竞态冲突 Race Conditions in Human Steering）**：
   人类输入了纠偏建议“不要修改 User 类”，但在人类输入被处理前，智能体已经完成了对 `User.java` 的写操作并提交了编译，造成人类指令与智能体当前执行上下文的因果倒错。
 
-![图（mermaid 渲染）](figures/m37.png){width=80}
+![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m37.jpg){width=60%}
 
 ---
 
@@ -2295,7 +2295,7 @@ class AccordionMultiresolutionProjector {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![图（mermaid 渲染）](figures/m38.png){width=80}
+![5. 协作协议与因果约束 (Collaborations) 示意](figures/m38.jpg){width=70%}
 
 ---
 
@@ -2392,7 +2392,7 @@ class FlightDirectorInterruptManager {
 - **失效场景 B（智能体嗅探并修改评测文件）**：智能体在沙箱环境中获得了全局查找权限，它通过递归搜索找到了测试目录下的验证脚本，并直接修改了测试脚本以匹配它自己的错误输出；
 - **失效场景 C（Mock 旁路绕过真实服务）**：智能体发现无法连通外部依赖，自行启动了一个内联 Mock 服务劫持了网络流量，绕过了真实微服务网关的核心过滤链路。
 
-![图（mermaid 渲染）](figures/m39.png){width=80}
+![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m39.jpg){width=70%}
 
 ---
 
@@ -2413,7 +2413,7 @@ class FlightDirectorInterruptManager {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![图（mermaid 渲染）](figures/m40.png){width=80}
+![5. 协作协议与因果约束 (Collaborations) 示意](figures/m40.jpg){width=80%}
 
 ---
 
@@ -2482,7 +2482,7 @@ class HiddenOracleEvaluator {
 
 当压力测试环境与开发环境完全隔离时，模式 18 扩展为**双隐藏 Oracle 架构**：
 
-![图（mermaid 渲染）](figures/m41.png){width=80}
+![9. 隔离环境扩展：压力测试隐藏 Oracle（Stress-Test Hidden Oracle） 示意](figures/m41.jpg){width=80%}
 
 #### 9.1 压力测试隐藏 Oracle 的实现规约
 
@@ -2587,7 +2587,7 @@ class IsolatedStressTestEvaluator {
 - **失效场景 C（无网络与端口穿透的孤岛假绿 Isolated Mock Illusion）**：
   智能体仅在纯单测内存中跑通了逻辑，但一旦真实启动服务，发生了数据库迁移脚本语法错误、中间件连通超时、或者 Spring 循环依赖，服务在物理端口上根本无法正常监听。
 
-![图（mermaid 渲染）](figures/m42.png){width=80}
+![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m42.jpg){width=70%}
 
 ---
 
@@ -2610,7 +2610,7 @@ class IsolatedStressTestEvaluator {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![图（mermaid 渲染）](figures/m43.png){width=80}
+![5. 协作协议与因果约束 (Collaborations) 示意](figures/m43.jpg){width=80%}
 
 ---
 
@@ -2720,7 +2720,7 @@ class FiveFoldMechanicalEvaluator {
 - **失效场景 C（缺乏 Tokenomics 能耗与代码行复杂度对照 Failure to Normalize Tokenomics）**：
   两个通道虽然都通过了同一道题目，但通道 A 消耗了 2,600 万 Token、重试了 50 轮；通道 B 依托控制论切片仅消耗了 400 万 Token、一次性通过。若仅看“Pass/Fail”，完全掩盖了工程落地的商业能效壁垒。
 
-![图（mermaid 渲染）](figures/m44.png){width=80}
+![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m44.jpg){width=70%}
 
 ---
 
@@ -2742,7 +2742,7 @@ class FiveFoldMechanicalEvaluator {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![图（mermaid 渲染）](figures/m45.png){width=80}
+![5. 协作协议与因果约束 (Collaborations) 示意](figures/m45.jpg){width=80%}
 
 ---
 
@@ -2841,7 +2841,7 @@ class SubstrateAbBenchmarkRunner {
 - **失效场景 C（粗暴截断导致的语法与语义破损 Blind Truncation Damage）**：
   许多系统为了省 Token，简单粗暴地从头部或尾部截断字符。这种无语义感知的硬截断往往截断了关键的 JSON 括号、类定义或 import 声明，导致模型直接输出语法错乱代码。
 
-![图（mermaid 渲染）](figures/m46.png){width=80}
+![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m46.jpg){width=80%}
 
 ---
 
@@ -2863,7 +2863,7 @@ class SubstrateAbBenchmarkRunner {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![图（mermaid 渲染）](figures/m47.png){width=80}
+![5. 协作协议与因果约束 (Collaborations) 示意](figures/m47.jpg){width=80%}
 
 ---
 
@@ -2957,7 +2957,7 @@ class TokenomicsConvergenceEngine {
 - **失效场景 C（标准输入输出流的不可靠解析 Stdio Pipe Fragility）**：
   跨进程的文本通信依赖于操作系统管道（Pipes）。当遇到超大文件 Diff 或特殊的 Unicode 字符时，管道缓冲区的阻塞、换行符差异（CRLF vs LF）或调试信息的交叉混合（Stdout 与 Stderr 混流），极易引发 JSON 反序列化解析崩溃。
 
-![图（mermaid 渲染）](figures/m48.png){width=80}
+![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m48.jpg){width=80%}
 
 ---
 
@@ -2979,7 +2979,7 @@ class TokenomicsConvergenceEngine {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![图（mermaid 渲染）](figures/m49.png){width=80}
+![5. 协作协议与因果约束 (Collaborations) 示意](figures/m49.jpg){width=80%}
 
 ---
 
@@ -3806,7 +3806,7 @@ class HotfixLoopOrchestrator {
 
 ### 二、 22 个模式构筑的系统外骨骼
 
-回顾本书总结的 8 大模式族：
+回顾本书总结的 8 大模式族（覆盖模式 01–22；模式 23/24 为生产现场实证模式，计入 24 模式体系）：
 - **物理底座穿透与现实审计（Patterns 01-03）**：斩断了模型的自指欺骗本能，让每一次 Exit 0 都锚定于物理世界的客观事实；
 - **最小特权投影与宏微观展开（Patterns 04-06）**：驯服了上下文退化（Context Rot），使智能体在大规模工程面前保持极致的专注；
 - **结对微循环与幂等时钟补偿（Patterns 07-09）**：打破了自愈黑洞，保障了代码变异与编译系统因果律的严谨单调性；
@@ -3816,7 +3816,7 @@ class HotfixLoopOrchestrator {
 - **隐藏 Oracle 与客观物理沙箱（Patterns 18-20）**：树立了不掺任何水分的工业级真理标尺；
 - **能效工程与原生架构（Patterns 21-22）**：将昂贵的大模型计算收敛至商业可行的生产力边界。
 
-这 22 个模式互为支点，共同构成了现代自主软件工程的坚实底座。
+这 22 个模式（连同生产现场实证的模式 23/24，全书共 24 模式）互为支点，共同构成了现代自主软件工程的坚实底座。
 
 ---
 
