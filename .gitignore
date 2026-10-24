@@ -1,15 +1,16 @@
-# macOS leaves these files everywhere:
-.DS_Store
-# Created by `lake exe cache get` if no home directory is available
-.cache
-# `lake` stores its files here:
-**/.lake
-# Python bytecode cache directories
-**/__pycache__/
-
-# 本地密钥与环境配置
+﻿# 凭证与通道（绝密）
 .env
-# 运行日志
-*.log
-*.log.err
+scripts/scnet/
 
+# 构建/QA 临时产物
+*.out.txt
+*.log
+monograph/_qa/
+.tools/chrome-tmp/
+qa_*.png
+qanew_*.png
+
+# 工具依赖与运行缓存
+.tools/
+__pycache__/
+*.log.err
