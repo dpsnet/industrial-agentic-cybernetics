@@ -68,7 +68,7 @@
 
 因此，每条公理必须同时携带三种信息：
 
-- **适用域**：公理有效的模型族、任务族、架构与通道条件——本书的跨模型（pro/Kimi/Flash）、跨任务族（144 链）、跨架构（选择性/全量追加/容量档）实验正是为逐条收紧适用域而设计；
+- **适用域**：公理有效的模型族、任务族、架构与通道条件——本书的跨模型（DeepSeek v4-pro、Kimi、DeepSeek-V4.1-Flash-1017）、跨任务族（144 链）、跨架构（选择性/全量追加/容量档）实验正是为逐条收紧适用域而设计；
 - **证伪判据**：可操作的预注册测量（$\hat m$ 的 bootstrap CI、$q_{sim}$ 与 $q^*$ 偏差、存活率门槛、误报率上限），判据先于实验；
 - **边界声明**：已实测不可迁移或不可判定的部分（跨族 $\hat m$ 不可迁移、S-H3 的 GW 框架不匹配累积机制等），如实记录，不作修补。
 
@@ -3228,39 +3228,8 @@ flowchart TD
 ***
 
 ### 5. 协作协议与因果约束 (Collaborations)
-```
 
-> 注：该图为源稿中的截断示例片段，无法机器渲染，保留原码。
-mermaid
-sequenceDiagram
-    autonumber
-    actor Prod as 生产环境（隔离）
-    participant Collector as 运行时指标采集器（生产环境）
-    participant Bridge as 协议桥接器（模式 12）
-    participant Auditor as 独立审计器（模式 02 探针 4）
-    participant Sniffer as 异常模式嗅探器（开发环境）
-    participant Clock as 物理时钟事件记录器
-    participant Trigger as 反馈闭环触发器
-
-    loop 持续监控（每 30s 采集周期）
-        Prod->>Collector: 暴露运行时指标（/metrics 端点，只读）
-        Collector->>Bridge: 推送指标流（隔离 API 网关，附 SHA-256 哈希）
-        Bridge->>Auditor: 转发指标流 + 完整性校验请求
-        Auditor->>Auditor: 验证传输完整性 + 环境同质性
-        Auditor-->>Sniffer: 投递审计后的指标流
-        
-        Sniffer->>Sniffer: 统计模型检测（3-sigma / EWMA / 预注册阈值）
-        
-        alt 检测到异常模式
-            Sniffer->>Clock: 锚定物理时钟事件（异常时间戳 + 指标快照）
-            note over Clock: 生产环境 mtime 跳变通过桥接层同步
-            Clock-->>Trigger: 触发反馈闭环（事件 ID + 异常分类）
-            Trigger->>Trigger: 路由至模式 24：缺陷萃取与热修复闭环
-        else 指标正常
-            Sniffer-->>Bridge: 继续监控（确认心跳）
-        end
-    end
-```
+![模式 23：生产环境异常嗅探协作时序 示意](figures/m50.jpg){width=60%}
 
 **因果约束**：
 
@@ -3573,49 +3542,8 @@ flowchart TD
 ***
 
 ### 5. 协作协议与因果约束 (Collaborations)
-```
 
-> 注：该图为源稿中的截断示例片段，无法机器渲染，保留原码。
-mermaid
-sequenceDiagram
-    autonumber
-    actor Prod as 生产环境（隔离）
-    participant Bridge as 协议桥接器（模式 12）
-    participant Auditor as 独立审计器（模式 02 探针 4）
-    participant Extractor as 缺陷模式萃取器（开发环境）
-    participant Hotfix as 热修复生成器（开发环境）
-    participant Validator as 五重判据验证器（压力测试环境）
-    participant Gate as 终审晋升门禁
-    participant KB as 全局知识库
-
-    Prod->>Bridge: 生产异常事件（指标/日志/追踪）
-    Bridge->>Auditor: 转发异常事件 + 完整性校验
-    Auditor->>Auditor: 验证真实性/完整性/同质性
-    Auditor-->>Extractor: 投递审计后的异常事件
-    
-    Extractor->>Extractor: 双模萃取：分离事实型知识与模式型知识
-    Extractor->>Hotfix: 提交缺陷模式（根因 + 修复策略）
-    Hotfix->>Hotfix: 生成候选热修复方案，标记 DRAFT_SUSPECT
-    Hotfix->>Validator: 提交热修复方案 + 测试用例
-    
-    note over Validator: 在压力测试环境执行，模拟生产负载
-    Validator->>Validator: 执行五重判据（编译/单测/集成/性能/安全）
-    
-    alt 五重判据未全绿
-        Validator-->>Hotfix: 打回：修复引入新缺陷
-    else 五重判据全绿
-        Validator->>Auditor: 提交验证报告 + 原始指标
-        Auditor->>Auditor: 独立审计（真实性/完整性/同质性）
-        
-        alt 审计未通过
-            Auditor-->>Hotfix: 一票否决：CRITICAL_DECEPTION
-        else 审计通过
-            Auditor->>Gate: 提交审计通过报告
-            Gate->>KB: 晋升为 VERIFIED_ACTIVE（全局知识库）
-            KB-->>Prod: 后续任务检索拦截：同类缺陷免疫（经桥接层同步）
-        end
-    end
-```
+![模式 24：缺陷萃取与热修复闭环协作时序 示意](figures/m51.jpg){width=70%}
 
 **因果约束**：
 
