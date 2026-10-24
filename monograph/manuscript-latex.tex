@@ -335,8 +335,7 @@ Code、物理 Diff、mtime、隐藏探针）→ 真伪否决门禁 → 编排器
 \begin{itemize}
 \tightlist
 \item
-  \textbf{适用域}：公理有效的模型族、任务族、架构与通道条件------本书的跨模型（DeepSeek
-  v4-pro、Kimi、DeepSeek-V4.1-Flash-1017）、跨任务族（144
+  \textbf{适用域}：公理有效的模型族、任务族、架构与通道条件------本书的跨模型（DeepSeek-V4-Pro-0813、Kimi、DeepSeek-V4.1-Flash-1017）、跨任务族（144
   链）、跨架构（选择性/全量追加/容量档）实验正是为逐条收紧适用域而设计；
 \item
   \textbf{证伪判据}：可操作的预注册测量（\(\hat m\) 的 bootstrap
@@ -411,7 +410,7 @@ vs 分支倍增）在正文中另行命名。
   关闭、无基质反馈）；工程基质通道的实证由生产现场实验覆盖（见 1.4.5
   双层连接声明）------两条通道之间的桥接是显式开放项；
 \item
-  \textbf{模型族}：DeepSeek v4-pro、Kimi、DeepSeek-V4.1-Flash-1017
+  \textbf{模型族}：DeepSeek-V4-Pro-0813、Kimi、DeepSeek-V4.1-Flash-1017
   三模型档；无门禁下 \(\hat m\) 为模型特定参数（实测
   \([0.56,0.98]\)，可含近临界核），不跨模型迁移。
 \end{itemize}
@@ -795,9 +794,10 @@ B.8/B.9（租约 5 定理、主写从读单写者因果序） & Cargo 1.96/NTFS 
 不适用）；Windows PE 使比特层幂等不可能 \\
 IV 经验自免疫 & 定理 + 多模型实证 + 生产闭环（最强支柱） & B.5：GW
 相变族 + B.7 Foster-Lyapunov 停时界 + B.10 观测-学习回路稳定性 & 846
-链（5,448 会话-代单元，selective 对照 2 链另计；DeepSeek v4-pro / Kimi /
-Flash-1017，预注册判读） & 模式 24：晋升 14/14、拦截 1.00、泄漏 0 &
-\(q\)--\(\hat m\) 耦合未建立（开放项 1）；切换动力学待测 \\
+链（5,448 会话-代单元，selective 对照 2 链另计；DeepSeek-V4-Pro-0813 /
+Kimi / DeepSeek-V4.1-Flash-1017，预注册判读） & 模式 24：晋升
+14/14、拦截 1.00、泄漏 0 & \(q\)--\(\hat m\) 耦合未建立（开放项
+1）；切换动力学待测 \\
 \end{longtable}
 }
 
@@ -969,8 +969,8 @@ Auto-Immunity）}\label{ux516cux7406-ivux7ecfux9a8cux81eaux514dux75abux516cux740
   \textbf{经验支撑与适用边界（形式化 + LLM
   多代传播实测，2026-10-21）}：跨代传播的分支过程刻画、几何衰减律
   \(E(n)=m^n E(0)\)、亚临界灭绝与超临界相变为 Lean 4 机检定理（附录
-  B.5）。在 DeepSeek v4-pro 上以''毒株规范注入 + 逐代转写''协议做了 4
-  条件 × 12 replicate × 6 代共 288
+  B.5）。在 DeepSeek-V4-Pro-0813 上以''毒株规范注入 + 逐代转写''协议做了
+  4 条件 × 12 replicate × 6 代共 288
   会话的受控传播实验（预注册判读标准先于实验）：\textbf{完全隔离门禁（\(\sigma=1\)）使谱系跨代传播严格为零}（全部
   replicate
   \(Z_1=0\)，且毒株无独立再发现）------``严禁横向传播''的工程承诺获最强形式验证；未隔离条件（C0/C1）的池化种群序列与几何律
@@ -7495,7 +7495,8 @@ IV：记忆投毒相变（形式化层全部已证）}\label{b.5-ux516cux7406-iv
 
 \begin{quote}
 \textbf{实测边界（E-A4，2026-10-21）}：上述定理链的模型--现实映射在
-DeepSeek v4-pro 多代记忆传播实验（4 条件 × 12 replicate × 6 代 = 288
+DeepSeek-V4-Pro-0813 多代记忆传播实验（4 条件 × 12 replicate × 6 代 =
+288
 会话，预注册判读先于实验）中获检验：\texttt{quarantine\_compresses\_offspring}
 的完全隔离情形（\(\sigma=1\)）实测使投毒谱系跨代传播严格为零（全部
 replicate \(Z_1=0\)，无 de novo
@@ -7513,8 +7514,8 @@ offspring PMF）参数化的 Galton-Watson
 情形（标记而非隔离的工程对应物）在本样本量下未获显著性支持；(2)
 \(m=\mu(1-\sigma)\) 的 LLM 层直接检验因写出层涨落与过滤层有效样本
 \(n=1\) 而不可判定，仅获分布层（抽稀变体）间接支撑------该映射的 LLM
-层直接检验需 \(\ge 10^2\) 量级 replicate。适用域：单模型（DeepSeek
-v4-pro）、pytest
+层直接检验需 \(\ge 10^2\) 量级
+replicate。适用域：单模型（DeepSeek-V4-Pro-0813）、pytest
 测试编写任务族、选择性逐代转写协议、无基质反馈（\(\mathrm{SubstratePass}\)
 通道关闭，纯社会传播）；本协议下无门禁条件实测
 \(m=0.56<1\)（转写机制本身亚临界）。\textbf{超临界情形（2026-10-22
@@ -8247,8 +8248,8 @@ Auto-Immunity）}\label{ux516cux7406-ivux7ecfux9a8cux81eaux514dux75abux516cux740
 +
 \texttt{galton\_watson\_extinctProb\_exact}（超临界以正概率永续，\(q=\min\{s:\varphi(s)=s\}\)）。
 
-\textbf{实证验证（DeepSeek v4-pro，4 条件 × 12 replicate × 6 代 = 288
-会话，预注册判读先于实验）}：
+\textbf{实证验证（DeepSeek-V4-Pro-0813，4 条件 × 12 replicate × 6 代 =
+288 会话，预注册判读先于实验）}：
 
 {\def\LTcaptype{} % do not increment counter
 \begin{longtable}[]{@{}
@@ -8452,7 +8453,7 @@ I 划定证据合法性边界，公理 II 刻画上下文膨胀的必然代价�
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-单一模型（仅 DeepSeek v4-pro） &
+单一模型（仅 DeepSeek-V4-Pro-0813） &
 \href{file:///e:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/EXPERIMENT_PLAN_AXIOM4_CROSS_MODEL.md}{EXPERIMENT\_PLAN\_AXIOM4\_CROSS\_MODEL.md}
 & \textbf{【通过】 已执行}：Kimi 平行实验 288 会话 & X-H1
 通过（24/24）、X-H4 显著；X-H2/H3-数值 受近临界区功效限制未通过 \\

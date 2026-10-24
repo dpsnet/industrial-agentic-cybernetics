@@ -71,7 +71,7 @@
 
 **形式化（B.5，全部已证）**：`expected_population_geometric`（$E(n)=m^n E(0)$）、`subcritical_extinction_in_probability`（亚临界按概率灭绝）、`quarantine_compresses_offspring`（$m=\mu(1-\sigma)$）、`supercritical_expectation_diverges`、`galton_watson_non_extinction` + `galton_watson_extinctProb_exact`（超临界以正概率永续，$q=\min\{s:\varphi(s)=s\}$）。
 
-**实证验证（DeepSeek v4-pro，4 条件 × 12 replicate × 6 代 = 288 会话，预注册判读先于实验）**：
+**实证验证（DeepSeek-V4-Pro-0813，4 条件 × 12 replicate × 6 代 = 288 会话，预注册判读先于实验）**：
 
 | 判据 | 结果 | 判定 |
 | :--- | :--- | :--- |
@@ -134,7 +134,7 @@
 
 | 局限 | 计划 | 性质 | 预注册核心判据 |
 | :--- | :--- | :--- | :--- |
-| 单一模型（仅 DeepSeek v4-pro） | [EXPERIMENT_PLAN_AXIOM4_CROSS_MODEL.md](file:///e:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/EXPERIMENT_PLAN_AXIOM4_CROSS_MODEL.md) | **✅ 已执行**：Kimi 平行实验 288 会话 | X-H1 通过（24/24）、X-H4 显著；X-H2/H3-数值 受近临界区功效限制未通过 |
+| 单一模型（仅 DeepSeek-V4-Pro-0813） | [EXPERIMENT_PLAN_AXIOM4_CROSS_MODEL.md](file:///e:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/EXPERIMENT_PLAN_AXIOM4_CROSS_MODEL.md) | **✅ 已执行**：Kimi 平行实验 288 会话 | X-H1 通过（24/24）、X-H4 显著；X-H2/H3-数值 受近临界区功效限制未通过 |
 | 单一任务族（pytest 编写） | [EXPERIMENT_PLAN_AXIOM4_CROSS_TASK.md](file:///e:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/EXPERIMENT_PLAN_AXIOM4_CROSS_TASK.md) | **✅ 已执行**：四任务族 × 三条件（144 链，2026-10-22） | T-H1 通过（48/48）；T-H4 通过（$p=0.026$）；T-H3 拒绝（邻接度序不成立）；T-H2 部分支持（近临界区判据失效） |
 | 超临界机制与适用域（原"未出现"，2026-10-22 已闭合） | [EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md](file:///e:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/EXPERIMENT_PLAN_AXIOM4_SUPERCRITICAL.md) | **✅ 已执行（Flash 档）**：C0/C1/C3 各 12/12 + W8/W32 各 6/6 + selective 对照 | S-H1 ✅ $\hat m=1.166$（CI $[1.156,1.176]$）；S-H2 ✅ 存活率 1.0；S-H4 ✅ 隔离跨机制截断；容量 $W_c\in(8,16)$；S-H3 因累积型机制不适用（GW 框架不匹配） |
 | H1a 标记门零压缩 / H1c 乘性压缩律 | [EXPERIMENT_PLAN_AXIOM4_H1AC_BOOST.md](file:///e:/workspace/industrial-agentic-cybernetics/experiments/attention_growth/EXPERIMENT_PLAN_AXIOM4_H1AC_BOOST.md) | **✅ 已执行（2026-10-22）**：Flash 档 160 链（C0/C1 各 48 + C2 64）配对设计 | B-H1a ❌ 零压缩（$\bar d=0.02$，$p=0.69$）；B-H1c 🟡 点估计支持（$\hat r=0.466$，CI $[0.333,0.602]$ 下界微出）；B-H2 ✅ $R^2=0.923$ |
