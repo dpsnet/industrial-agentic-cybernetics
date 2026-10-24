@@ -14,3 +14,4 @@ qanew_*.png
 .tools/
 __pycache__/
 *.log.err
+.lake/
