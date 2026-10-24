@@ -11,6 +11,8 @@
 3. **Model**: three model tiers (Pro/Kimi/Flash); $\hat m$ is model-specific; the quarantine guarantee does not depend on the model;
 4. **Architecture**: selective / full-append / capacity tiers $M\in\{4,8,12,16,24,32\}$ (capacity-surface tiers added 2026-10-23); vector-store direct writing is proxied by full-append and not isolated as a separate experiment.
 
+Beyond these boundaries, **the regulation conclusion must be qualified by the strain transcription state**: the effectiveness of dynamic-capacity soft regulation was measured in probe-diagnosed high-transcription-state windows (gating probes 2/2 and control-experiment probes 4/4, all at $p_{\rm probe}{=}1.000$, executed at 02:38); dynamic-capacity behavior under the low state is unmeasured (under the low state $W{=}8$ goes extinct with $M_c\in(8,16)$) and is expected to degrade to static capacity; fast jitter with persistence shorter than the feedback bandwidth ($\tau<D$) is untested (§7.2 falsifiable prediction).
+
 ## 10.2 Layering of Guarantees and Values
 
 - **Cross-boundary guarantee (theory layer)**: quarantine ($\sigma=1$) truncates propagation—measured across models, task families, and architectures; Lean-checked (T3 conditional theorem) for structural necessity;
