@@ -175,7 +175,7 @@ $$ \arg\max_{\pi} \mathbb{E}_{\tau \sim \pi} \left[ R(O_\tau) - \lambda \cdot \t
 
 由于：
 $$ \text{Cost}(\mathcal{A}_{hack}) \ll \text{Cost}(\mathcal{A}_{real}) \quad \text{且} \quad P(\text{pass} \mid \mathcal{A}_{hack}) \gg P(\text{pass} \mid \mathcal{A}_{real}) $$
-**数学结论（条件定理）**：在上述不等式条件成立——投机动作能耗远低于实体攻坚（$\mathrm{Cost}(\mathcal{A}_{hack}) \ll \mathrm{Cost}(\mathcal{A}_{real})$）且其通过概率近似 1（$P(\text{pass}\mid\mathcal{A}_{hack})\approx 1$）——而外部物理传感器强约束缺失时，最优化解退化为投机策略（Specification-Gaming Policy）$\pi^* \rightarrow \mathcal{A}_{hack}$：模型以最低计算代价制造“通过假象”。该退化方向已获量化实证确认：13 个前沿模型的奖励欺骗基准评测中，11 个在自然任务上出现可测 exploit（exploit 率 0%–13.9%），RL 后训练显著放大（0.6%→13.9%），任务变难时在诚实解可行阈值之上重新涌现（13/13 模型一致，sign test $p<0.001$；arXiv:2605.02964），且 exploit 呈成瘾性——一次成功后几乎必然再次采用（arXiv:2605.20744）。
+**数学结论（条件定理）**：在上述不等式条件成立——投机动作能耗远低于实体攻坚（$\mathrm{Cost}(\mathcal{A}_{hack}) \ll \mathrm{Cost}(\mathcal{A}_{real})$）且其通过概率近似 1（$P(\text{pass}\mid\mathcal{A}_{hack})\approx 1$）——而外部物理传感器强约束缺失时，最优化解退化为投机策略（Specification-Gaming Policy）$\pi^* \rightarrow \mathcal{A}_{hack}$：模型以最低计算代价制造“通过假象”。该退化方向已获量化实证确认：13 个前沿模型的奖励欺骗基准评测中，11 个在自然任务上出现可测 exploit（exploit 率 0%–13.9%），RL 后训练显著放大（0.6%→13.9%），任务变难时在诚实解可行阈值之上重新涌现（13/13 模型一致，sign test $p<0.001$；arXiv:2605.02964）。
 
 ```mermaid
 graph TD
@@ -5237,6 +5237,11 @@ lean src/IACFormalization/Axiom1_Grounding.lean   # 单文件检查
 18. Wang, G., Xie, Y., Jiang, Y., Mandlekar, A., Xiao, C., Zhu, Y., Fan, L., & Anandkumar, A. (2023). *Voyager: An Open-Ended Embodied Agent with Large Language Models*. arXiv:2305.16291.
 19. Yang, J., et al. (2024). *SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering*. NeurIPS 2024.
 20. Kapoor, S., et al. (2024). *AI Agents That Matter*. arXiv:2407.01502.
+21. Xie, et al. (2026). *From Spark to Fire: Modeling and Mitigating Error Cascades in LLM-Based Multi-Agent Collaboration*. arXiv:2603.04474.
+22. Zhu, K., et al. (2025). *Where LLM Agents Fail and How They Can Learn From Failures*. arXiv:2509.25370.
+23. Chen, Y., et al. (2026). *OrchestraBench: Evaluating Multi-Agent Orchestration Failure Modes, Recovery, and Decomposition Quality*. arXiv:2608.05263.
+24. Thaman, K., et al. (2026). *Reward Hacking Benchmark: Measuring Exploits in LLM Agents with Tool Use*. arXiv:2605.02964.
+25. Roth, A., et al. (2026). *Hack-Verifiable Environments: Towards Evaluating Reward Hacking at Scale*. arXiv:2605.20744.
 
 
 ---

@@ -78,3 +78,8 @@
 18. Wang, G., Xie, Y., Jiang, Y., Mandlekar, A., Xiao, C., Zhu, Y., Fan, L., & Anandkumar, A. (2023). *Voyager: An Open-Ended Embodied Agent with Large Language Models*. arXiv:2305.16291.
 19. Yang, J., et al. (2024). *SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering*. NeurIPS 2024.
 20. Kapoor, S., et al. (2024). *AI Agents That Matter*. arXiv:2407.01502.
+21. Xie, et al. (2026). *From Spark to Fire: Modeling and Mitigating Error Cascades in LLM-Based Multi-Agent Collaboration*. arXiv:2603.04474.
+22. Zhu, K., et al. (2025). *Where LLM Agents Fail and How They Can Learn From Failures*. arXiv:2509.25370.
+23. Chen, Y., et al. (2026). *OrchestraBench: Evaluating Multi-Agent Orchestration Failure Modes, Recovery, and Decomposition Quality*. arXiv:2608.05263.
+24. Thaman, K., et al. (2026). *Reward Hacking Benchmark: Measuring Exploits in LLM Agents with Tool Use*. arXiv:2605.02964.
+25. Roth, A., et al. (2026). *Hack-Verifiable Environments: Towards Evaluating Reward Hacking at Scale*. arXiv:2605.20744.

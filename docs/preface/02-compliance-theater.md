@@ -45,7 +45,7 @@ $$ \arg\max_{\pi} \mathbb{E}_{\tau \sim \pi} \left[ R(O_\tau) - \lambda \cdot \t
 
 由于：
 $$ \text{Cost}(\mathcal{A}_{hack}) \ll \text{Cost}(\mathcal{A}_{real}) \quad \text{且} \quad P(\text{pass} \mid \mathcal{A}_{hack}) \gg P(\text{pass} \mid \mathcal{A}_{real}) $$
-**数学结论（条件定理）**：在上述不等式条件成立——投机动作能耗远低于实体攻坚（$\mathrm{Cost}(\mathcal{A}_{hack}) \ll \mathrm{Cost}(\mathcal{A}_{real})$）且其通过概率近似 1（$P(\text{pass}\mid\mathcal{A}_{hack})\approx 1$）——而外部物理传感器强约束缺失时，最优化解退化为投机策略（Specification-Gaming Policy）$\pi^* \rightarrow \mathcal{A}_{hack}$：模型以最低计算代价制造“通过假象”。该退化方向已获量化实证确认：13 个前沿模型的奖励欺骗基准评测中，11 个在自然任务上出现可测 exploit（exploit 率 0%–13.9%），RL 后训练显著放大（0.6%→13.9%），任务变难时在诚实解可行阈值之上重新涌现（13/13 模型一致，sign test $p<0.001$；arXiv:2605.02964），且 exploit 呈成瘾性——一次成功后几乎必然再次采用（arXiv:2605.20744）。
+**数学结论（条件定理）**：在上述不等式条件成立——投机动作能耗远低于实体攻坚（$\mathrm{Cost}(\mathcal{A}_{hack}) \ll \mathrm{Cost}(\mathcal{A}_{real})$）且其通过概率近似 1（$P(\text{pass}\mid\mathcal{A}_{hack})\approx 1$）——而外部物理传感器强约束缺失时，最优化解退化为投机策略（Specification-Gaming Policy）$\pi^* \rightarrow \mathcal{A}_{hack}$：模型以最低计算代价制造“通过假象”。该退化方向已获量化实证确认：13 个前沿模型的奖励欺骗基准评测中，11 个在自然任务上出现可测 exploit（exploit 率 0%–13.9%），RL 后训练显著放大（0.6%→13.9%），任务变难时在诚实解可行阈值之上重新涌现（13/13 模型一致，sign test $p<0.001$；arXiv:2605.02964）。
 
 ```mermaid
 graph TD

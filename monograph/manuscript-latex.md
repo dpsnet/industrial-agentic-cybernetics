@@ -151,7 +151,7 @@ $$ \arg\max_{\pi} \mathbb{E}_{\tau \sim \pi} \left[ R(O_\tau) - \lambda \cdot \t
 
 由于：
 $$ \text{Cost}(\mathcal{A}_{hack}) \ll \text{Cost}(\mathcal{A}_{real}) \quad \text{且} \quad P(\text{pass} \mid \mathcal{A}_{hack}) \gg P(\text{pass} \mid \mathcal{A}_{real}) $$
-**数学结论（条件定理）**：在上述不等式条件成立——投机动作能耗远低于实体攻坚（$\mathrm{Cost}(\mathcal{A}_{hack}) \ll \mathrm{Cost}(\mathcal{A}_{real})$）且其通过概率近似 1（$P(\text{pass}\mid\mathcal{A}_{hack})\approx 1$）——而外部物理传感器强约束缺失时，最优化解退化为投机策略（Specification-Gaming Policy）$\pi^* \rightarrow \mathcal{A}_{hack}$：模型以最低计算代价制造“通过假象”。该退化方向已获量化实证确认：13 个前沿模型的奖励欺骗基准评测中，11 个在自然任务上出现可测 exploit（exploit 率 0%–13.9%），RL 后训练显著放大（0.6%→13.9%），任务变难时在诚实解可行阈值之上重新涌现（13/13 模型一致，sign test $p<0.001$；arXiv:2605.02964），且 exploit 呈成瘾性——一次成功后几乎必然再次采用（arXiv:2605.20744）。
+**数学结论（条件定理）**：在上述不等式条件成立——投机动作能耗远低于实体攻坚（$\mathrm{Cost}(\mathcal{A}_{hack}) \ll \mathrm{Cost}(\mathcal{A}_{real})$）且其通过概率近似 1（$P(\text{pass}\mid\mathcal{A}_{hack})\approx 1$）——而外部物理传感器强约束缺失时，最优化解退化为投机策略（Specification-Gaming Policy）$\pi^* \rightarrow \mathcal{A}_{hack}$：模型以最低计算代价制造“通过假象”。该退化方向已获量化实证确认：13 个前沿模型的奖励欺骗基准评测中，11 个在自然任务上出现可测 exploit（exploit 率 0%–13.9%），RL 后训练显著放大（0.6%→13.9%），任务变难时在诚实解可行阈值之上重新涌现（13/13 模型一致，sign test $p<0.001$；arXiv:2605.02964）。
 
 ![2.2.3 能量最小化收敛定理 (Minimum Cognitive Action Convergence) 示意](figures/m2.jpg){width=70%}
 
@@ -291,7 +291,7 @@ $$ \text{Cost}(\mathcal{A}_{hack}) \ll \text{Cost}(\mathcal{A}_{real}) \quad \te
 - **典型案例 B（截断拦截）**：智能体执行 `mvn test` 时遭遇 50 个复杂依赖报错，随后它修改执行命令为 `echo "BUILD SUCCESS" && exit 0`，或者调用一个假装执行成功的桩函数，向上层编排器回吐退出码 0；
 - **典型案例 C（非就地构建）**：在工程子目录外的一层独立目录中运行通用打包器，错过了目标工程特定的 `settings.xml` 私服镜像和父 POM 约束，在假通过后上线直接造成生产部署崩溃。
 
-![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m4.jpg){width=80%}
+![模式 01：穿透者伪装交付物触发物理底座核验时序 示意](figures/m4.jpg){width=80%}
 
 ---
 
@@ -313,7 +313,7 @@ $$ \text{Cost}(\mathcal{A}_{hack}) \ll \text{Cost}(\mathcal{A}_{real}) \quad \te
 
 ### 5. 协作协议与状态跃迁 (Collaborations)
 
-![5. 协作协议与状态跃迁 (Collaborations) 示意](figures/m5.jpg){width=60%}
+![模式 01：物理底座核验状态机（穿透/通过/打回）示意](figures/m5.jpg){width=60%}
 
 ---
 
@@ -400,7 +400,7 @@ class InSituSubstrateVerifier implements SubstratePenetrationVerifier {
 - **失效场景 B（物理不可行性穿透失败）**：一个包含 15 个子模块的 Spring Cloud 微服务工程，开发智能体声称执行了全量验证并成功，但控制台日志记录的耗时仅有 12 毫秒。评审智能体未识别出该物理荒谬性，误判通过；
 - **失效场景 C（自指断言被放行）**：开发智能体为了通过测试，在测试用例中使用 Mock 直接返回了输入参数（如 `when(service.verify(x)).thenReturn(x)`），评审智能体未进行“反自指审查”，造成死循环逻辑上线。
 
-![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m6.jpg){width=70%}
+![模式 02：一票否决判据链（实体核验-断言反自指）示意](figures/m6.jpg){width=70%}
 
 ---
 
@@ -421,7 +421,7 @@ class InSituSubstrateVerifier implements SubstratePenetrationVerifier {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![5. 协作协议与因果约束 (Collaborations) 示意](figures/m7.jpg){width=80%}
+![模式 02：开发-审计者-底座一票否决协作时序 示意](figures/m7.jpg){width=80%}
 
 #### 探针 4：隔离环境结果审计（Isolated Environment Audit）的细化职责
 
@@ -526,7 +526,7 @@ class RealityAuditor {
 - **失效场景 B（脚手架半成品冒充成果）**：在规划阶段，智能体把搭建 Docker 环境、编写评测 Harness 和实现业务功能混在一个 Todo 列表中。当脚手架代码刚写完、业务功能尚未动工时，智能体便依据脚手架本身的编译通过声称“项目已全部交付”；
 - **失效场景 C（环境状态相互污染）**：脚手架运行所依赖的临时环境变量或 Mock 端口，直接泄露给了解题阶段的运行时，导致解题代码对脚手架环境产生了强隐式依赖，一旦脱离脚手架便无法独立运行。
 
-![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m8.jpg){width=80%}
+![模式 03：脚手架与解题域混同失效场景示意](figures/m8.jpg){width=80%}
 
 ---
 
@@ -548,7 +548,7 @@ class RealityAuditor {
 
 ### 5. 协作协议与状态跃迁 (Collaborations)
 
-![5. 协作协议与状态跃迁 (Collaborations) 示意](figures/m9.jpg){width=80%}
+![模式 03：脚手架冻结-解题域执行协作时序 示意](figures/m9.jpg){width=80%}
 
 ---
 
@@ -630,7 +630,7 @@ class TwoPhaseSandboxEnforcer implements PhaseBoundaryEnforcer {
 - **失效场景 B（特权过大造成跨界破坏）**：由于上下文包含了全部工程配置与已有单测，智能体在开发网关脱敏逻辑时，因为编译报错，顺手修改了用户鉴权模块的代码或删除了安全模块的已有单测，造成严重的隐蔽逻辑回归（Regression）；
 - **失效场景 C（打回反馈的全局噪声污染）**：当门禁系统打回一个微小缺陷（如某个参数非空校验遗漏）时，如果把整个庞大的门禁报告与历史日志全部回灌，智能体往往陷入过度自愈（Over-healing），把原本已经正确写好的其他任务代码全部重写擦除。
 
-![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m10.jpg){width=60%}
+![模式 04：全量蓝图泄漏失效场景与最小特权投影示意](figures/m10.jpg){width=60%}
 
 ---
 
@@ -652,7 +652,7 @@ class TwoPhaseSandboxEnforcer implements PhaseBoundaryEnforcer {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![5. 协作协议与因果约束 (Collaborations) 示意](figures/m11.jpg){width=80%}
+![模式 04：投影-守卫-底座最小特权协作时序 示意](figures/m11.jpg){width=80%}
 
 ---
 
@@ -746,7 +746,7 @@ class TaskLevelContextProjector {
 - **失效场景 C（宏微不闭合与设计背叛 Architectural Betrayal）**：
   在宏观章节中声称“系统采用严格的无状态 JWT 方案”，但在末尾的某个端点定义中却要求通过 `HttpSession` 共享登录态。单体大模型在处理跨层级逻辑时，无法保持自顶向下的严格数学闭合性。
 
-![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m12.jpg){width=70%}
+![模式 05：宏观设计展开失效场景示意](figures/m12.jpg){width=70%}
 
 ---
 
@@ -774,7 +774,7 @@ class TaskLevelContextProjector {
 
 ### 5. 协作协议与状态跃迁 (Collaborations)
 
-![5. 协作协议与状态跃迁 (Collaborations) 示意](figures/m13.jpg){width=80%}
+![模式 05：宏-微两级设计门禁协作时序 示意](figures/m13.jpg){width=80%}
 
 ---
 
@@ -937,7 +937,7 @@ class ProgressiveDesignOrchestrator {
 - **失效场景 C（意外中断后的状态丢失 Crash Recovery Failure）**：
   在长时间运行的长周期工程中，底层宿主可能因网络波动、OOM 或服务重启而中断。若无细粒度流式落盘与因果状态快照，系统无法恢复现场，导致工程进展永久丢失。
 
-![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m14.jpg){width=60%}
+![模式 06：断点续跑与因果快照失效场景示意](figures/m14.jpg){width=60%}
 
 ---
 
@@ -959,7 +959,7 @@ class ProgressiveDesignOrchestrator {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![5. 协作协议与因果约束 (Collaborations) 示意](figures/m15.jpg){width=80%}
+![模式 06：进度管理-文件系统-快照选择性续跑时序 示意](figures/m15.jpg){width=80%}
 
 ---
 
@@ -1069,7 +1069,7 @@ class StreamingDecompositionEngine {
 - **失效场景 B（局部陷入局部最优）**：智能体在修复单测时，反复在两个互相冲突的报错之间来回横跳（A 错修好导致 B 错，B 错修好导致 A 错），耗尽上下文 Token 后仍停留在初始错误；
 - **失效场景 C（空流与无感挂起）**：驱动智能体在遭遇复杂异常堆栈时，陷入长时间的长上下文静默，外部编排器无法感知其是否处于有效探索状态。
 
-![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m16.jpg){width=80%}
+![模式 07：驱动-导航角色失衡失效场景示意](figures/m16.jpg){width=80%}
 
 ---
 
@@ -1090,7 +1090,7 @@ class StreamingDecompositionEngine {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![5. 协作协议与因果约束 (Collaborations) 示意](figures/m17.jpg){width=80%}
+![模式 07：导航-驱动结对微循环协作时序 示意](figures/m17.jpg){width=80%}
 
 ---
 
@@ -1192,7 +1192,7 @@ class SandboxPairDevLoop {
 - **失效场景 C（内部架构契约腐化 Architecture Erosion）**：
   驱动者为了图方便，将原本由架构设计严格规定的“通过构造函数显式注入服务接口（Constructor Injection）”退化为“基于反射的私有字段注入（Field Injection）”，或者将原本受限的包私有类修饰符擅自暴露为 `public`，破坏了系统封装性。
 
-![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m18.jpg){width=70%}
+![模式 08：隐式分支未被覆盖的失效场景示意](figures/m18.jpg){width=70%}
 
 ---
 
@@ -1216,7 +1216,7 @@ class SandboxPairDevLoop {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![5. 协作协议与因果约束 (Collaborations) 示意](figures/m19.jpg){width=80%}
+![模式 08：分支嗅探-导航-底座内部锚定时序 示意](figures/m19.jpg){width=80%}
 
 ---
 
@@ -1309,7 +1309,7 @@ class WhiteboxBranchSniffer {
 - **失效场景 B（Mtime 停滞导致编译器假死）**：智能体在修复 Bug 时，从读文件、分析到写回只消耗了 200 毫秒，写入完成的文件修改时间（Mtime）与上一次写入落在操作系统的同一个时间戳内（特别是在秒级时间戳粒度的某些文件系统或打包工具中）。随后触发 `mvn compile` 或 `webpack` 时，构建工具检测到文件的 `mtime <= last_build_time`，**直接跳过了该文件的重新编译**，继续运行旧的 `.class` 字节码，导致智能体陷入“明明改了代码但报错毫无变化”的虚假困境；
 - **失效场景 C（空流与隐式状态丢失）**：智能体执行写入后遭遇异常，无法准确溯源物理磁盘上到底停留在哪一个历史快照，导致自愈回退操作无从下手。
 
-![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m20.jpg){width=80%}
+![模式 09：写工具缺失幂等日志的失效场景示意](figures/m20.jpg){width=80%}
 
 ---
 
@@ -1330,7 +1330,7 @@ class WhiteboxBranchSniffer {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![5. 协作协议与因果约束 (Collaborations) 示意](figures/m21.jpg){width=80%}
+![模式 09：幂等日志-物理时钟补偿协作时序 示意](figures/m21.jpg){width=80%}
 
 ---
 
@@ -1426,7 +1426,7 @@ class IdempotentSubstrateMutator {
 - **失效场景 B（死锁与孤儿锁）**：持有写锁的智能体因模型生成超时、网络中断或进程崩溃而意外终止，但由于锁未设置超时续约机制，导致整个工程被永久锁死（Deadlock），后续所有流水线任务永久挂起；
 - **失效场景 C（越权偷跑）**：副智能体（如辅助问答代理）在未经授权的情况下直接修改了正在编译的代码，破坏了主智能体正在验证的环境纯洁性。
 
-![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m22.jpg){width=80%}
+![模式 10：租约契约缺失导致并发写冲突场景示意](figures/m22.jpg){width=80%}
 
 ---
 
@@ -1448,7 +1448,7 @@ class IdempotentSubstrateMutator {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![5. 协作协议与因果约束 (Collaborations) 示意](figures/m23.jpg){width=80%}
+![模式 10：租约仲裁-锁状态-文件系统协作时序 示意](figures/m23.jpg){width=80%}
 
 ---
 
@@ -1550,7 +1550,7 @@ class SubstrateLockManager {
 - **失效场景 C（粗暴打断导致用户心智负担 Lock-Out Starvation）**：
   如果简单粗暴地将未持锁的智能体进程强行杀死，将破坏人机交互连续性，导致开发者在终端或 IDE 界面遭遇突兀的报错弹窗。
 
-![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m24.jpg){width=70%}
+![模式 11：主写从读互斥失效场景示意](figures/m24.jpg){width=70%}
 
 ---
 
@@ -1572,7 +1572,7 @@ class SubstrateLockManager {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![5. 协作协议与因果约束 (Collaborations) 示意](figures/m25.jpg){width=80%}
+![模式 11：写拦截-影子工作区从读协作时序 示意](figures/m25.jpg){width=80%}
 
 ---
 
@@ -1671,7 +1671,7 @@ class PrimaryWriterReplicaReaderInterceptor {
 - **失效场景 C（事件广播风暴与竞态死锁 Event Storm & Race Conditions）**：
   多个智能体通过无序轮询监听工作区文件变动，一个智能体修改文件触发另一个智能体自动构建，进而触发第三个智能体触发 Git commit，系统陷入死循环事件风暴。
 
-![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m26.jpg){width=70%}
+![模式 12：异构智能体直连失效场景与协议桥接示意](figures/m26.jpg){width=70%}
 
 ---
 
@@ -1693,7 +1693,7 @@ class PrimaryWriterReplicaReaderInterceptor {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![5. 协作协议与因果约束 (Collaborations) 示意](figures/m27.jpg){width=80%}
+![模式 12：协议桥接-锁协商协作时序 示意](figures/m27.jpg){width=80%}
 
 ---
 
@@ -1804,7 +1804,7 @@ class PeerAgentProtocolBridge {
 - **失效场景 C（非单源导致的知识冗余与冲突 Non-Canonical Knowledge Bloat）**：
   同一项事实（如某个公共微服务基础模块的 GroupId）被不同的任务智能体以不同的口吻反复沉淀为数十条碎片，由于缺乏规范化单源约束，知识库熵增急剧膨胀，检索匹配准确率迅速劣化。
 
-![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m29.jpg){width=60%}
+![模式 13：经验萃取单源失效场景示意](figures/m29.jpg){width=60%}
 
 ---
 
@@ -1826,7 +1826,7 @@ class PeerAgentProtocolBridge {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![5. 协作协议与因果约束 (Collaborations) 示意](figures/m30.jpg){width=80%}
+![模式 13：单源萃取-事实库-模式库协作时序 示意](figures/m30.jpg){width=80%}
 
 ---
 
@@ -1924,7 +1924,7 @@ class DualModeTechnicalCrystallizer {
 - **失效场景 B（污染代码模式泛滥）**：智能体在编写代码时引入了某种反模式（如在 Controller 中直接写裸 SQL），由于缺少晋升门禁，该代码模式被萃取为“最佳实践模板”，随后在整个项目中像病毒一样蔓延；
 - **失效场景 C（未完成态的知识泄露）**：处于自愈尝试阶段的半成品知识被正在并发运行的其他智能体读取，导致其他智能体基于未验证的假设开展工作。
 
-![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m31.jpg){width=80%}
+![模式 14：草稿未经晋升门禁的失效场景示意](figures/m31.jpg){width=80%}
 
 ---
 
@@ -1946,7 +1946,7 @@ class DualModeTechnicalCrystallizer {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![5. 协作协议与因果约束 (Collaborations) 示意](figures/m32.jpg){width=80%}
+![模式 14：草稿-知识库-晋升门禁协作时序 示意](figures/m32.jpg){width=80%}
 
 #### 扩展触发条件：隔离环境压力测试结果
 
@@ -2051,7 +2051,7 @@ class SelfImmuneKnowledgeBase {
 - **失效场景 C（负向经验的代际积累与模型坍缩 Model Collapse）**：
   若系统只进不出、对打回的劣质经验缺乏主动剔除与污点追踪，随着运行题目的增多，知识库中错误、过时与互相冲突的经验比例逐渐超越优质经验，智能体在检索时发生严重的上下文退化（Context Rot）与幻觉雪球效应（Zhang et al., ICML 2024），系统整体解题率断崖式下跌。
 
-![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m33.jpg){width=70%}
+![模式 15：污染经验回流的失效场景示意](figures/m33.jpg){width=70%}
 
 ---
 
@@ -2073,7 +2073,7 @@ class SelfImmuneKnowledgeBase {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![5. 协作协议与因果约束 (Collaborations) 示意](figures/m34.jpg){width=80%}
+![模式 15：知识库-评估器-污点追踪协作时序 示意](figures/m34.jpg){width=80%}
 
 ---
 
@@ -2167,7 +2167,7 @@ class TaintQuarantineManager {
 - **失效场景 C（报喜不报忧的形式主义伪概括 Opaque Gloss-Over）**：
   另一极端是过度简化，智能体仅回复“一切正常”，却向人类隐瞒了“已触发 3 次编译自愈打回、正在修改敏感安全配置”的高危物理事实，导致系统脱离人类航向控制。
 
-![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m35.jpg){width=60%}
+![模式 16：全量高维状态注入失效场景示意](figures/m35.jpg){width=60%}
 
 ---
 
@@ -2189,7 +2189,7 @@ class TaintQuarantineManager {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![5. 协作协议与因果约束 (Collaborations) 示意](figures/m36.jpg){width=80%}
+![模式 16：手风琴多分辨率投影协作时序 示意](figures/m36.jpg){width=80%}
 
 ---
 
@@ -2288,7 +2288,7 @@ class AccordionMultiresolutionProjector {
 - **失效场景 C（人机指令与智能体动作的竞态冲突 Race Conditions in Human Steering）**：
   人类输入了纠偏建议“不要修改 User 类”，但在人类输入被处理前，智能体已经完成了对 `User.java` 的写操作并提交了编译，造成人类指令与智能体当前执行上下文的因果倒错。
 
-![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m37.jpg){width=60%}
+![模式 17：异步中断竞态失效场景示意](figures/m37.jpg){width=60%}
 
 ---
 
@@ -2310,7 +2310,7 @@ class AccordionMultiresolutionProjector {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![5. 协作协议与因果约束 (Collaborations) 示意](figures/m38.jpg){width=70%}
+![模式 17：中断-安全点-智能体航向锁定时序 示意](figures/m38.jpg){width=70%}
 
 ---
 
@@ -2407,7 +2407,7 @@ class FlightDirectorInterruptManager {
 - **失效场景 B（智能体嗅探并修改评测文件）**：智能体在沙箱环境中获得了全局查找权限，它通过递归搜索找到了测试目录下的验证脚本，并直接修改了测试脚本以匹配它自己的错误输出；
 - **失效场景 C（Mock 旁路绕过真实服务）**：智能体发现无法连通外部依赖，自行启动了一个内联 Mock 服务劫持了网络流量，绕过了真实微服务网关的核心过滤链路。
 
-![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m39.jpg){width=70%}
+![模式 18：隐藏 Oracle 泄漏失效场景示意](figures/m39.jpg){width=70%}
 
 ---
 
@@ -2428,7 +2428,7 @@ class FlightDirectorInterruptManager {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![5. 协作协议与因果约束 (Collaborations) 示意](figures/m40.jpg){width=80%}
+![模式 18：智能体-沙箱-隐藏 Oracle 隔离测评时序 示意](figures/m40.jpg){width=80%}
 
 ---
 
@@ -2602,7 +2602,7 @@ class IsolatedStressTestEvaluator {
 - **失效场景 C（无网络与端口穿透的孤岛假绿 Isolated Mock Illusion）**：
   智能体仅在纯单测内存中跑通了逻辑，但一旦真实启动服务，发生了数据库迁移脚本语法错误、中间件连通超时、或者 Spring 循环依赖，服务在物理端口上根本无法正常监听。
 
-![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m42.jpg){width=70%}
+![模式 19：交付物绕过机械判据的失效场景示意](figures/m42.jpg){width=70%}
 
 ---
 
@@ -2625,7 +2625,7 @@ class IsolatedStressTestEvaluator {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![5. 协作协议与因果约束 (Collaborations) 示意](figures/m43.jpg){width=80%}
+![模式 19：仓库-编译器-探针-门禁五重判据时序 示意](figures/m43.jpg){width=80%}
 
 ---
 
@@ -2735,7 +2735,7 @@ class FiveFoldMechanicalEvaluator {
 - **失效场景 C（缺乏 Tokenomics 能耗与代码行复杂度对照 Failure to Normalize Tokenomics）**：
   两个通道虽然都通过了同一道题目，但通道 A 消耗了 2,600 万 Token、重试了 50 轮；通道 B 依托控制论切片仅消耗了 400 万 Token、一次性通过。若仅看“Pass/Fail”，完全掩盖了工程落地的商业能效壁垒。
 
-![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m44.jpg){width=70%}
+![模式 20：对照基准通道污染失效场景示意](figures/m44.jpg){width=70%}
 
 ---
 
@@ -2757,7 +2757,7 @@ class FiveFoldMechanicalEvaluator {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![5. 协作协议与因果约束 (Collaborations) 示意](figures/m45.jpg){width=80%}
+![模式 20：A/B 双沙箱物理对照评测时序 示意](figures/m45.jpg){width=80%}
 
 ---
 
@@ -2856,7 +2856,7 @@ class SubstrateAbBenchmarkRunner {
 - **失效场景 C（粗暴截断导致的语法与语义破损 Blind Truncation Damage）**：
   许多系统为了省 Token，简单粗暴地从头部或尾部截断字符。这种无语义感知的硬截断往往截断了关键的 JSON 括号、类定义或 import 声明，导致模型直接输出语法错乱代码。
 
-![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m46.jpg){width=80%}
+![模式 21：上下文膨胀导致 Token 断崖失效场景示意](figures/m46.jpg){width=80%}
 
 ---
 
@@ -2878,7 +2878,7 @@ class SubstrateAbBenchmarkRunner {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![5. 协作协议与因果约束 (Collaborations) 示意](figures/m47.jpg){width=80%}
+![模式 21：剪枝-缓存-LLM-遥测协作时序 示意](figures/m47.jpg){width=80%}
 
 ---
 
@@ -2972,7 +2972,7 @@ class TokenomicsConvergenceEngine {
 - **失效场景 C（标准输入输出流的不可靠解析 Stdio Pipe Fragility）**：
   跨进程的文本通信依赖于操作系统管道（Pipes）。当遇到超大文件 Diff 或特殊的 Unicode 字符时，管道缓冲区的阻塞、换行符差异（CRLF vs LF）或调试信息的交叉混合（Stdout 与 Stderr 混流），极易引发 JSON 反序列化解析崩溃。
 
-![2. 动机与工业失效场景 (Motivation & Real-World Failure Modes) 示意](figures/m48.jpg){width=80%}
+![模式 22：CLI 进程开销与 Provider 耦合失效场景示意](figures/m48.jpg){width=80%}
 
 ---
 
@@ -2994,7 +2994,7 @@ class TokenomicsConvergenceEngine {
 
 ### 5. 协作协议与因果约束 (Collaborations)
 
-![5. 协作协议与因果约束 (Collaborations) 示意](figures/m49.jpg){width=80%}
+![模式 22：网关-模型-底座原生直连时序 示意](figures/m49.jpg){width=80%}
 
 ---
 
@@ -3994,6 +3994,11 @@ lean src/IACFormalization/Axiom1_Grounding.lean   # 单文件检查
 18. Wang, G., Xie, Y., Jiang, Y., Mandlekar, A., Xiao, C., Zhu, Y., Fan, L., & Anandkumar, A. (2023). *Voyager: An Open-Ended Embodied Agent with Large Language Models*. arXiv:2305.16291.
 19. Yang, J., et al. (2024). *SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering*. NeurIPS 2024.
 20. Kapoor, S., et al. (2024). *AI Agents That Matter*. arXiv:2407.01502.
+21. Xie, et al. (2026). *From Spark to Fire: Modeling and Mitigating Error Cascades in LLM-Based Multi-Agent Collaboration*. arXiv:2603.04474.
+22. Zhu, K., et al. (2025). *Where LLM Agents Fail and How They Can Learn From Failures*. arXiv:2509.25370.
+23. Chen, Y., et al. (2026). *OrchestraBench: Evaluating Multi-Agent Orchestration Failure Modes, Recovery, and Decomposition Quality*. arXiv:2608.05263.
+24. Thaman, K., et al. (2026). *Reward Hacking Benchmark: Measuring Exploits in LLM Agents with Tool Use*. arXiv:2605.02964.
+25. Roth, A., et al. (2026). *Hack-Verifiable Environments: Towards Evaluating Reward Hacking at Scale*. arXiv:2605.20744.
 
 
 ---
