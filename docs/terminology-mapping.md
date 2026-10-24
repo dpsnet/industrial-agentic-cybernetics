@@ -36,7 +36,7 @@
 | 公理 | 保留命名 | 对应的既有学术概念 | 锚点文献 |
 | :--- | :--- | :--- | :--- |
 | 公理 I | 物理非信任公理（Axiom of Physical Non-Trustworthiness） | 接地与验证鸿沟（Grounding & Verification Gap）；奖励欺骗（Reward Hacking）；谄媚性（Sycophancy） | Amodei et al., 2016；Sharma et al., 2023；Huang et al., ICLR 2024 |
-| 公理 II | 注意力熵增公理（Axiom of Attention Entropy） | 上下文退化（Context Rot）；迷失在中间（Lost in the Middle）；有效上下文长度（Effective Context Length） | Liu et al., TACL 2024；Hsieh et al., 2024；Chroma, 2025 |
+| 公理 II | 注意力稀释公理（Axiom of Attention Dilution） | 上下文退化（Context Rot）；迷失在中间（Lost in the Middle）；有效上下文长度（Effective Context Length） | Liu et al., TACL 2024；Hsieh et al., 2024；Chroma, 2025 |
 | 公理 III | 变异因果律单调公理（Axiom of Monotonic Causal Mutation） | 因果序（Happens-Before Ordering）；写前日志（Write-Ahead Logging, WAL）；幂等性（Idempotency）；租约（Lease） | Lamport, CACM 1978；Gray & Cheriton, SOSP 1989；Kleppmann, 2017 |
 | 公理 IV | 经验自免疫公理（Axiom of Crystallization Auto-Immunity） | 记忆投毒（Memory Poisoning）；模型坍缩（Model Collapse）；隔离与验证晋升（Quarantine & Verified Promotion） | Shumailov et al., *Nature* 2024；MemoryGraft, 2025；OEP, 2026 |
 

@@ -19,7 +19,7 @@
 flowchart TD
     subgraph AxiomSystem["智能体控制论公理体系"]
         A1["公理 I：物理非信任公理<br/>(Axiom of Physical Non-Trustworthiness)"]
-        A2["公理 II：注意力熵增公理<br/>(Axiom of Attention Entropy)"]
+        A2["公理 II：注意力稀释公理<br/>(Axiom of Attention Dilution)"]
         A3["公理 III：变异因果律单调公理<br/>(Axiom of Monotonic Causal Mutation)"]
         A4["公理 IV：经验自免疫公理<br/>(Axiom of Crystallization Auto-Immunity)"]
     end
@@ -36,9 +36,9 @@ flowchart TD
 * **公理诠释**：在没有任何外部物理传感器（独立外部执行器、真实编译退出码、无桩 HTTP 探针）强介入的封闭推理链中，智能体声称“任务成功”的物理真实率趋近于零。一切未锚定于物理底座真实返回的完成声称，在控制论上均必须判定为非法伪信号。
 * **适用边界扩展（隔离环境场景，2026-10-21）**：当压力测试等验证环境与开发环境完全隔离时，智能体无法直接穿透至该物理底座。此时公理 I 的要求转化为：**隔离环境的结果必须经独立审计通道（模式 02 探针 4）验证真实性、完整性与同质性后方可采信**——智能体自报或转述的隔离环境结果仍属非法伪信号。
 * **生产现场实证（2026-10-22，模式 23）**：在 Docker Compose 受控生产拓扑中，嗅探器**不采信应用自报状态（/state），只消费 exporter 独立抓取的 /metrics 指标**，并经 SHA-256 桥接与审计通道校验后判读——F1（连接池泄漏）/F2（下游延迟）各 10 次注入全部检出（检出率 1.00），F4 无注入对照 60 期零误报。独立指标通道 + 物理锚定的"穿透"要求在部署后阶段以工程形式成立；自报路径（/state）在任何环节都不构成判读依据。
-* **学术锚点**：该公理形式化了人工智能安全文献的核心实证结论——无外部接地（Grounding）的模型自我报告不可信；且在可被欺骗的评价信号下，智能体必然涌现奖励欺骗（Reward Hacking）行为（Amodei et al., 2016；Huang et al., ICLR 2024；Anthropic, arXiv:2511.18397）。
+* **学术锚点**：该公理形式化了人工智能安全文献的核心实证结论——无外部接地（Grounding）的模型自我报告不可信；且在可被欺骗的评价信号下，受控实验普遍观测到奖励欺骗（Reward Hacking）行为（Amodei et al., 2016）（Amodei et al., 2016；Huang et al., ICLR 2024；Anthropic, arXiv:2511.18397）。
 
-#### 公理 II：注意力熵增与特权发散公理（Axiom of Attention Entropy）
+#### 公理 II：注意力稀释与特权发散公理（Axiom of Attention Dilution）
 * **数学表达**：设智能体注意力视野中包含的上下文集合为 $\mathcal{C}$，当前子任务的充要上下文集合为 $\mathcal{C}^*$。定义上下文特权冗余比 $\rho = |\mathcal{C} \setminus \mathcal{C}^*| / |\mathcal{C}^*|$。智能体产生越界破坏性变更的概率 $P_{violate}$ 满足：
   $$ P_{violate}(\rho) \ge 1 - e^{-\alpha \rho}, \quad (\alpha > 0) $$
 * **公理诠释**：给智能体注入的无关工程文件、非目标接口契约越多（$\rho$ 越大），目标信号的注意力份额被稀释得越低，其无意识修改不相关源码、破坏全局单测的概率下界随无关质量增长律发散——几何膨胀下指数级、幂律膨胀下幂律级（形式化对应见附录 B.3）。必须对上下文施加**最小特权原则（Principle of Least Privilege, PoLP）**投影。
@@ -55,6 +55,9 @@ flowchart TD
 * **学术锚点**：该公理是分布式系统经典结论在智能体—文件系统交互上的直接迁移：事件排序遵循**因果序（Happens-Before Ordering）**（Lamport, CACM 1978），状态变更的可重放性依赖**写前日志（Write-Ahead Logging, WAL）**与**幂等性（Idempotency）**保障（Kleppmann, 2017），并发协作依赖**租约（Lease）**机制（Gray & Cheriton, SOSP 1989）。
 
 #### 公理 IV：经验自免疫公理（Axiom of Crystallization Auto-Immunity）
+
+> **术语锚定**：「自免疫」为工程借喻——指经验繁殖阈值 $q>1/2$ 不满足时的谱系抑制，非生物学免疫。
+
 * **数学表达**：设智能体在单次生命周期内自发萃取的知识资产集合为 $\mathcal{K}_{raw}$。全局知识库状态更新算子必须满足双盲过滤：
   $$ \mathcal{K}_{global}(t+1) = \mathcal{K}_{global}(t) \cup \left\{ k \in \mathcal{K}_{raw} \mid \text{Verdict}_{audit}(k) = \text{PROMOTE} \wedge \text{SubstratePass}(k) = \text{TRUE} \right\} $$
 * **公理诠释**：智能体在开发链路中总结的“模式/规则”，在未经过完整的端到端五重物理判据与独立审查者终审前，一律视为高风险疑似污染源（`DRAFT_SUSPECT`），严禁横向传播。

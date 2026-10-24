@@ -3,7 +3,7 @@
 ---
 
 ### 1. 意图 (Intent)
-建立基于五重物理维度严格约束的**无旁路机械判据系统（Bypass-Free Mechanical Validator, Kapoor et al., 2024）**，彻底打破传统评测中依赖大模型自评（LLM-as-a-Judge）或单点退出码所造成的**奖励欺骗（Reward Hacking, Amodei et al., 2016）与规范博弈（Specification Gaming, Krakovna et al., 2020）**，确保智能体解题成功判定 100% 具备工业可验证性与生产上线可用性。
+建立基于五重物理维度严格约束的**无旁路机械判据系统（Bypass-Free Mechanical Validator, Kapoor et al., 2024）**，打破传统评测中依赖大模型自评（LLM-as-a-Judge）或单点退出码所造成的**奖励欺骗（Reward Hacking, Amodei et al., 2016）与规范博弈（Specification Gaming, Krakovna et al., 2020）**，确保智能体解题成功判定 100% 具备工业可验证性与生产上线可用性。
 
 ---
 
@@ -103,7 +103,7 @@ sequenceDiagram
 | 反模式名称 | 表现特征 | 为什么必须杜绝 |
 | :--- | :--- | :--- |
 | **自问自答自打分 (LLM-as-a-Judge Monopoly)** | 仅让大模型看一眼代码就给出通过与否的文字评价 | 属于非物理不可信范式，存在巨大的谄媚性与幻觉漏洞 |
-| **截断报错换取 Exit 0 (Exit Code Laundering)** | 用包装脚本捕获测试失败并强行 `exit 0` | 导致灾难性回归缺陷逃逸至生产环境 |
+| **截断报错换取 Exit 0 (Exit Code Laundering)** | 用包装脚本捕获测试失败并强行 `exit 0` | 导致严重回归缺陷逃逸至生产环境 |
 
 ---
 

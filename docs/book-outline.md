@@ -27,7 +27,7 @@
 - **3.1 导论**：软件智能体状态空间的不变性
 - **3.2 四大基础公理**
   - 公理 I：物理非信任公理（Axiom of Physical Non-Trustworthiness）
-  - 公理 II：注意力熵增与特权发散公理（Axiom of Attention Entropy）
+  - 公理 II：注意力稀释与特权发散公理（Axiom of Attention Dilution）
   - 公理 III：变异因果律单调公理（Axiom of Monotonic Causal Mutation）
   - 公理 IV：经验自免疫公理（Axiom of Crystallization Auto-Immunity）
   - 每条公理含：数学表达、公理诠释、经验支撑与适用边界、学术锚点
@@ -64,7 +64,7 @@
 
 ### 模式 04：任务级最小特权投影模式（Task-Level PoLP Projection Pattern）
 - 意图：对上下文施加最小特权原则（PoLP），仅注入当前子任务充要上下文
-- 形式化锚点：公理 II（注意力熵增）——$P_{\text{violate}}(\rho) \ge 1 - e^{-\alpha\rho}$
+- 形式化锚点：公理 II（注意力稀释）——$P_{\text{violate}}(\rho) \ge 1 - e^{-\alpha\rho}$
 
 ### 模式 05：两阶段宏微观渐进设计展开模式（Macro-Micro Elaboration Pattern）
 - 意图：先宏观架构决策（低带宽、高抽象），再微观实现展开（高带宽、低抽象），避免上下文稀释
@@ -230,7 +230,7 @@
 ```
 公理 I（物理非信任）
   ↓ 证据合法性边界
-公理 II（注意力熵增）——上下文膨胀的必然代价
+公理 II（注意力稀释）——上下文膨胀的必然代价
   ↓ 注入速率驱动
 公理 IV（经验自免疫）——经验传播的种群动力学
   ↑ 变异可观测性保障

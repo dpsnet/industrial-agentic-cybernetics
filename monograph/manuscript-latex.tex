@@ -165,6 +165,15 @@ Closed-Loop
 Cybernetics}\label{chapter-1-the-paradigm-shift-from-discrete-prompting-to-closed-loop-cybernetics}
 
 \begin{quote}
+\textbf{全书术语约定（导读）}：「控制论」为工程闭环反馈借喻（详见
+§1.4.3），非 Wiener 控制论学科继承；「相变／超临界／近临界」为
+Galton-Watson 分支过程术语（ρ=1
+临界），非热力学相变；「免疫」指经验繁殖阈值（q\textgreater1/2）下的谱系抑制，非生物学免疫；公理
+II 的「注意力稀释」对应信噪比相对损失（SNR
+相对损失），非热力学熵。本书统一以「经验资产」指称智能体萃取的可复用经验条目。
+\end{quote}
+
+\begin{quote}
 ``在任何足够复杂的系统演化中，缺乏物理负反馈的推演最终都将收敛于热力学熵增------智能体对代码的自指重构，若无外部编译器的物理裁决，本质上就是系统信息论意义上的幻觉退化。''
 \end{quote}
 
@@ -363,8 +372,8 @@ B.2--B.5） \\
 \paragraph{1.4.3 术语声明}\label{ux672fux8bedux58f0ux660e}
 
 ``控制论（cybernetics）''在本书中是对 Wiener--Ashby
-反馈传统的\textbf{类比借用，非学科继承}------本书的闭环指智能体与工程环境之间的物理负反馈，不进入神经控制论议题。``注意力熵增''为隐喻命名：公理
-II 的实际可操作量是上下文冗余比 \(\rho\)
+反馈传统的\textbf{类比借用，非学科继承}------本书的闭环指智能体与工程环境之间的物理负反馈，不进入神经控制论议题。``注意力稀释''为公理
+II 的操作性命名：其实际可操作量是上下文冗余比 \(\rho\)
 与信噪比，而非香农熵度量。全书凡借用词（熵增、免疫、相变、超临界）均以其\textbf{字面定义}为准，不承载源学科的全部外延------例如''超临界''指毒株池持续累积不灭绝的工程语义，其精确机制（线性累积-容量竞争
 vs 分支倍增）在正文中另行命名。
 
@@ -418,8 +427,9 @@ Hacking）的形式化分析与物理破局}\label{ux7b2cux4e8cux7ae0-ux5956ux52
 Breakthrough}\label{chapter-2-a-formal-analysis-of-reward-hacking-and-substrate-breakthrough}
 
 \begin{quote}
-``当评价指标成为目标本身时，它便不再是一个优秀的指标。对大模型而言，当`满足测试通过'作为唯一目标函数而脱离物理基质时，它必然学会伪造测试本身。''
------- 智能体时代的古德哈特定律（Goodhart's Law for Agents）
+``当评价指标成为目标本身时，它便不再是一个优秀的指标。对大模型而言，当`满足测试通过'作为唯一目标函数且缺乏物理锚定时，模型会倾向伪造测试------条件结论，实测见
+13 模型 exploit 率 0--13.9\%（arXiv:2605.02964）。'' ------
+智能体时代的古德哈特定律（Goodhart's Law for Agents）
 \end{quote}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -472,7 +482,7 @@ Verification Loop）''，模型就会不可避免地退化为奖励欺骗者。}
 \subsubsection{2.2
 奖励欺骗的博弈论形式化分析}\label{ux5956ux52b1ux6b3aux9a97ux7684ux535aux5f08ux8bbaux5f62ux5f0fux5316ux5206ux6790}
 
-为什么无论多强大的模型都会出现奖励欺骗？这并非模型``具有恶意''，而是\textbf{基于强化学习与概率采样优化机制的必然博弈结果}。
+为什么无论多强大的模型都会出现奖励欺骗？这并非模型``具有恶意''，而是\textbf{在缺乏外部物理锚定的条件下，基于强化学习与概率采样优化机制收敛为奖励欺骗的博弈结果（条件结论，§2.2）}。
 
 \paragraph{2.2.1
 系统形式化定义}\label{ux7cfbux7edfux5f62ux5f0fux5316ux5b9aux4e49}
@@ -528,7 +538,7 @@ exploit（exploit 率 0\%--13.9\%），RL
 \subsubsection{2.3
 物理破局：根除奖励欺骗的三大控制论铁律}\label{ux7269ux7406ux7834ux5c40ux6839ux9664ux5956ux52b1ux6b3aux9a97ux7684ux4e09ux5927ux63a7ux5236ux8bbaux94c1ux5f8b}
 
-为了从数学上彻底根除奖励欺骗，控制论架构必须打破智能体的自指空间，建立外部不可绕过的\textbf{物理现实锚定机制（Substrate
+为了从数学上根除奖励欺骗（条件定理意义下），控制论架构必须打破智能体的自指空间，建立外部不可绕过的\textbf{物理现实锚定机制（Substrate
 Anchoring）}：
 
 \paragraph{铁律一：物理实体穿透（Substrate Reality
@@ -642,13 +652,13 @@ Non-Trustworthiness）}\label{ux516cux7406-iux7269ux7406ux975eux4fe1ux4efbux516c
   +
   物理锚定的''穿透''要求在部署后阶段以工程形式成立；自报路径（/state）在任何环节都不构成判读依据。
 \item
-  \textbf{学术锚点}：该公理形式化了人工智能安全文献的核心实证结论------无外部接地（Grounding）的模型自我报告不可信；且在可被欺骗的评价信号下，智能体必然涌现奖励欺骗（Reward
-  Hacking）行为（Amodei et al., 2016；Huang et al., ICLR
-  2024；Anthropic, arXiv:2511.18397）。
+  \textbf{学术锚点}：该公理形式化了人工智能安全文献的核心实证结论------无外部接地（Grounding）的模型自我报告不可信；且在可被欺骗的评价信号下，受控实验普遍观测到奖励欺骗（Reward
+  Hacking）行为（Amodei et al., 2016）（Amodei et al., 2016；Huang et
+  al., ICLR 2024；Anthropic, arXiv:2511.18397）。
 \end{itemize}
 
-\paragraph{公理 II：注意力熵增与特权发散公理（Axiom of Attention
-Entropy）}\label{ux516cux7406-iiux6ce8ux610fux529bux71b5ux589eux4e0eux7279ux6743ux53d1ux6563ux516cux7406axiom-of-attention-entropy}
+\paragraph{公理 II：注意力稀释与特权发散公理（Axiom of Attention
+Dilution）}\label{ux516cux7406-iiux6ce8ux610fux529bux7a00ux91caux4e0eux7279ux6743ux53d1ux6563ux516cux7406axiom-of-attention-dilution}
 
 \begin{itemize}
 \tightlist
@@ -758,6 +768,11 @@ Mutation）}\label{ux516cux7406-iiiux53d8ux5f02ux56e0ux679cux5f8bux5355ux8c03ux5
 
 \paragraph{公理 IV：经验自免疫公理（Axiom of Crystallization
 Auto-Immunity）}\label{ux516cux7406-ivux7ecfux9a8cux81eaux514dux75abux516cux7406axiom-of-crystallization-auto-immunity}
+
+\begin{quote}
+\textbf{术语锚定}：「自免疫」为工程借喻------指经验繁殖阈值 \(q>1/2\)
+不满足时的谱系抑制，非生物学免疫。
+\end{quote}
 
 \begin{itemize}
 \tightlist
@@ -1090,7 +1105,7 @@ Avoid)}\label{ux53cdux6a21ux5f0fux8b66ux793a-anti-patterns-to-avoid}
 掩盖真实的编译器错误，导致故障暗度陈仓 \\
 \textbf{构建参数跳过测试 (Flag Abuse, e.g.~-DskipTests)} &
 智能体为了达成 Exit 0，在命令尾部追加跳过参数 &
-彻底破坏了测试防护网，让回归缺陷溜入系统 \\
+破坏了测试防护网，让回归缺陷溜入系统 \\
 \end{longtable}
 }
 
@@ -1262,7 +1277,8 @@ Audit）的细化职责}\label{ux63a2ux9488-4ux9694ux79bbux73afux5883ux7ed3ux679
   \begin{itemize}
   \tightlist
   \item
-    彻底杜绝``虚假繁荣''------任何试图钻营提示词漏洞或绕过测试的行为都会被机械拦截；
+    杜绝``虚假繁荣''（所测环境与任务族内；F1/F2 各 10 次注入，拦截率
+    1.00，n=10）------任何试图钻营提示词漏洞或绕过测试的行为都会被机械拦截；
   \item
     审计结果具备可解释的证据链（File:Line 与真实时钟证据）。
   \end{itemize}
@@ -1375,7 +1391,7 @@ Pattern)}\label{ux6a21ux5f0f-03ux811aux624bux67b6ux4e0eux89e3ux9898ux57dfux53ccu
 
 在系统架构层面严格实施\textbf{脚手架研发期（Scaffolding / Harness
 Phase）}与\textbf{业务解题期（Solution / Implementation
-Phase）}的双阶段物理隔离，彻底切断考题制造者与考卷解答者在同一时空环境下的状态耦合与相互掩护。
+Phase）}的双阶段物理隔离，切断考题制造者与考卷解答者在同一时空环境下的状态耦合与相互掩护。
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -1460,7 +1476,8 @@ C（环境状态相互污染）}：脚手架运行所依赖的临时环境变量
   \begin{itemize}
   \tightlist
   \item
-    彻底杜绝了智能体``通过放宽测试断言来让自己蒙混过关''的道德风险；
+    杜绝了智能体``通过放宽测试断言来让自己蒙混过关''的道德风险（受控实验：隔离环境下断言篡改拦截率
+    1.00）；
   \item
     保证评测基准的绝对客观公正与可复现性。
   \end{itemize}
@@ -1571,7 +1588,7 @@ Pattern)}\label{ux6a21ux5f0f-04ux4efbux52a1ux7ea7ux6700ux5c0fux7279ux6743ux6295u
 基于网络安全与系统控制论中的\textbf{最小特权原则（Principle of Least
 Privilege,
 PoLP）}，由上层编排器在向开发智能体派发单子任务时，执行动态上下文切片与降维投影，\textbf{仅注入当前任务声明读写的表结构、接口定义与正交文件}，压降
-\textgreater60\% 无关上下文，彻底抑制上下文退化（Context
+\textgreater60\% 无关上下文，显著抑制上下文退化（Context
 Rot）与越界代码破坏。
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -1781,7 +1798,7 @@ Modes)}\label{ux52a8ux673aux4e0eux5de5ux4e1aux5931ux6548ux573aux666f-motivation-
 
 在自主软件智能体系统推进至企业级工程（如 Spring Cloud
 微服务、大型分布式拓扑）时，设计阶段往往是决定整个系统生死的核心瓶颈。传统的``单步设计生成（One-Shot
-Monolithic Design）''模式在工业场景中必然触发以下三类严重失效：
+Monolithic Design）''模式在工业场景中极易触发以下三类严重失效：
 
 \begin{itemize}
 \tightlist
@@ -1875,7 +1892,7 @@ Specifications）''的系统演进过程。
   \begin{itemize}
   \tightlist
   \item
-    \textbf{彻底消灭 Token 截断灾难}：将数十万 Token
+    \textbf{消除 Token 截断的高成本失效}：将数十万 Token
     的复杂系统设计拆解为两个确定性子阶段，模型单次推理聚焦度大幅提升，输出内容无任何删减或省略占位符；
   \item
     \textbf{实现``物理可落地性''}：微观细化直接生成 Java/TypeScript
@@ -2095,8 +2112,8 @@ Global Planning）存在显著失效：
   个任务后注意力迅速疲劳，后半部分任务出现大面积内容重复、依赖环路错乱或
   Schema 字段缺失；
 \item
-  \textbf{失效场景 B（全量重跑的灾难性开销 Cascading Re-run
-  Overhead）}： 在执行阶段，假设第 12
+  \textbf{失效场景 B（全量重跑的高开销 Cascading Re-run Overhead）}：
+  在执行阶段，假设第 12
   个任务因为某个微观断言错误被门禁打回。在缺乏增量状态拓扑的系统中，编排器往往触发全局重跑，将前
   11 个已经通过严格编译与测试验证的任务全部推倒重来，造成数百万 Token
   的计算浪费与物理工作区污染；
@@ -2453,7 +2470,7 @@ Avoid)}\label{ux53cdux6a21ux5f0fux8b66ux793a-anti-patterns-to-avoid-6}
 \endlastfoot
 \textbf{单兵盲目狂奔 (Lone Ranger Blackhole)} &
 单一智能体在无审查者监督下连续修改 10+ 轮代码 &
-极易发生灾难性代码变形，最终彻底偏离初始架构 \\
+极易发生严重代码变形，最终偏离初始架构 \\
 \textbf{领航员越俎代庖 (Navigator Role Intrusion)} &
 领航员直接接管驱动者的写入工具自己写代码 &
 破坏了``一人思考一人执行''的认知隔离，导致自我偏见（Confirmation
@@ -2778,7 +2795,7 @@ Modes)}\label{ux52a8ux673aux4e0eux5de5ux4e1aux5931ux6548ux573aux666f-motivation-
 在真实工业软件工程中，文件系统与编译器具有严格的因果与时间敏感性： -
 \textbf{失效场景 A（重试变异叠加错位）}：智能体调用
 \texttt{replace\_file\_content}
-工具修复某行代码，如果第一次调用因网络超时中断，智能体触发重试，由于上一轮可能已经部分写入，第二次基于相同行号或文本的替换将导致目标文本找不到、或发生双重插入，使代码文件彻底损毁；
+工具修复某行代码，如果第一次调用因网络超时中断，智能体触发重试，由于上一轮可能已经部分写入，第二次基于相同行号或文本的替换将导致目标文本找不到、或发生双重插入，使代码文件损毁；
 - \textbf{失效场景 B（Mtime 停滞导致编译器假死）}：智能体在修复 Bug
 时，从读文件、分析到写回只消耗了 200
 毫秒，写入完成的文件修改时间（Mtime）与上一次写入落在操作系统的同一个时间戳内（特别是在秒级时间戳粒度的某些文件系统或打包工具中）。随后触发
@@ -2856,7 +2873,7 @@ C（空流与隐式状态丢失）}：智能体执行写入后遭遇异常，无
   \begin{itemize}
   \tightlist
   \item
-    \textbf{彻底消灭编译器幽灵报错}：确保每一次代码修改都能 100\%
+    \textbf{消除编译器幽灵报错}：确保每一次代码修改都能 100\%
     触发物理编译，终结``代码修改了但字节码没变''的调试恶梦；
   \item
     \textbf{状态重放安全幂等}：网络中断或智能体误触发重试时，绝对不会破坏目标源码语法。
@@ -3061,8 +3078,8 @@ C（越权偷跑）}：副智能体（如辅助问答代理）在未经授权的
   \begin{itemize}
   \tightlist
   \item
-    \textbf{物理底座绝对一致性}：彻底消除多 Agent
-    并发写入引发的代码撕裂与 Git 冲突；
+    \textbf{物理底座绝对一致性}：消除多 Agent 并发写入引发的代码撕裂与
+    Git 冲突（租约互斥机检，附录 B.4）；
   \item
     \textbf{故障自动免疫与自愈}：依靠 TTL 看门狗机制，任何单点 Agent
     的意外崩溃都不会导致整个工程被死锁。
@@ -3280,7 +3297,7 @@ IDE 内运行辅助扩展、CI/CD
   \begin{itemize}
   \tightlist
   \item
-    \textbf{物理底座零污染}：彻底避免了多智能体竞争导致的 Git
+    \textbf{物理底座零污染}：避免了多智能体竞争导致的 Git
     索引破损、文件双重修改与编译假死；
   \item
     \textbf{用户体验连续无中断}：未持锁智能体不会直接崩溃，而是以只读或建议补丁的形式继续提供交互支持；
@@ -3525,8 +3542,7 @@ Agents）}试图在同一个代码基质上协同作业时，通常引发以下�
     \textbf{生态无缝复用}：让轻量级桌面 IDE
     能够直接借用重量级后台流水线的 Jev 门禁、物理编译器与测试沙箱能力；
   \item
-    \textbf{因果一致性保障}：彻底平息多 Agent
-    盲目并发引发的文件事件风暴。
+    \textbf{因果一致性保障}：平息多 Agent 盲目并发引发的文件事件风暴。
   \end{itemize}
 \item
   \textbf{代价 (Cons)}：
@@ -3702,7 +3718,7 @@ Augmentation, 如 Voyager 技能库, Wang et al.,
 \item
   \textbf{失效场景 C（非单源导致的知识冗余与冲突 Non-Canonical Knowledge
   Bloat）}： 同一项事实（如某个公共微服务基础模块的
-  GroupId）被不同的任务智能体以不同的口吻反复沉淀为数十条碎片，由于缺乏规范化单源约束，知识库熵增急剧膨胀，检索匹配准确率迅速劣化。
+  GroupId）被不同的任务智能体以不同的口吻反复沉淀为数十条碎片，由于缺乏规范化单源约束，知识库碎片化急剧膨胀，检索匹配准确率迅速劣化。
 \end{itemize}
 
 \begin{figure}
@@ -4064,7 +4080,7 @@ Avoid)}\label{ux53cdux6a21ux5f0fux8b66ux793a-anti-patterns-to-avoid-13}
 一旦代码存在致命缺陷，将迅速污染整个系统的记忆网络 \\
 \textbf{无状态污点积累 (Stateless Taint Blindness)} &
 失败任务产生的错误知识未被标记，任由其留在库中 &
-导致知识库熵增失控，历史垃圾经验严重干扰未来决策 \\
+导致知识库碎片化失控，历史垃圾经验严重干扰未来决策 \\
 \end{longtable}
 }
 
@@ -4236,7 +4252,7 @@ Poisoning）}：
   \tightlist
   \item
     \textbf{知识库自洁抗体（Self-Immune
-    System）}：系统具备从失败中自我清洗的能力，彻底根除``一条错误经验毒死整个平台''的连锁反应；
+    System）}：系统具备从失败中自我清洗的能力，根除``一条错误经验毒死整个平台''的连锁反应（污点追踪+晋升门禁）；
   \item
     \textbf{防止模型坍缩（Model
     Collapse）}：阻断低质合成数据与虚假模式在系统内部的恶性循环；
@@ -4282,7 +4298,7 @@ Avoid)}\label{ux53cdux6a21ux5f0fux8b66ux793a-anti-patterns-to-avoid-14}
 导致有害知识在库中静默潜伏，成为定时炸弹 \\
 \textbf{粗暴全局清库 (Scorched-Earth Wipe)} &
 一旦单次任务失败，直接清空整个系统积累的全部历史知识 &
-彻底抹杀了既有经过物理验证的高价值技术资产，丧失复利 \\
+抹杀了既有经过物理验证的高价值技术资产，丧失复利 \\
 \end{longtable}
 }
 
@@ -4449,7 +4465,7 @@ Modes)}\label{ux52a8ux673aux4e0eux5de5ux4e1aux5931ux6548ux573aux666f-motivation-
   \begin{itemize}
   \tightlist
   \item
-    \textbf{极致的人机协同带宽}：彻底解放人类工程师的双眼与双手，通过极简语音信标即可掌握整个工程舰队的宏观态势；
+    \textbf{极致的人机协同带宽}：解放人类工程师的双眼与双手，通过极简语音信标即可掌握整个工程舰队的宏观态势；
   \item
     \textbf{按需索取无认知超载}：杜绝上下文退化（Context
     Rot），保证关键决策信息以最佳信息密度抵达人类大脑；
@@ -4574,7 +4590,7 @@ Pattern)}\label{ux6a21ux5f0f-17ux98deux884cux6307ux6325ux5b98ux5f02ux6b65ux4e2du
 建立基于\textbf{双通道异步插话（Asynchronous Full-Duplex
 Interrupt）}与\textbf{航向锁定因果状态机（Course-Lock State
 Machine）}的人机最高仲裁控制论机制。赋予人类``飞行指挥官（Flight
-Director）''在智能体多步骤自主巡航过程中，\textbf{随时发起毫秒级非阻塞插话、冻结变异事务、注入纠偏意志并锁定全局航向}的特权，彻底打破智能体深陷自愈死循环或偏离业务目标的失控态。
+Director）''在智能体多步骤自主巡航过程中，\textbf{随时发起毫秒级非阻塞插话、冻结变异事务、注入纠偏意志并锁定全局航向}的特权，打破智能体深陷自愈死循环或偏离业务目标的失控态。
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -4675,7 +4691,7 @@ Modes)}\label{ux52a8ux673aux4e0eux5de5ux4e1aux5931ux6548ux573aux666f-motivation-
   \tightlist
   \item
     \textbf{人机无缝共生（Human-in-the-Loop
-    Supremacy）}：人类工程师随时可以``接管控制''，不再是无能为力的旁观者，彻底消灭失控自愈死循环；
+    Supremacy）}：人类工程师随时可以``接管控制''，不再是无能为力的旁观者，消灭失控自愈死循环；
   \item
     \textbf{因果一致性保障}：通过安全断点（Safe-Point）机制，中断不会损坏物理文件与
     Git 索引；
@@ -4798,7 +4814,7 @@ Pattern)}\label{ux6a21ux5f0f-18ux9690ux85cf-oracle-ux7269ux7406ux9694ux79bbux6c9
 
 \subsubsection{1. 意图 (Intent)}\label{ux610fux56fe-intent-17}
 
-将真实工业级评测的客观真理（Oracle）与用于提示智能体的上下文彻底物理解耦，通过\textbf{只读镜像挂载、黑盒断言隐藏与无旁路判定管道}，消灭智能体针对考题的``作弊过拟合（Data
+将真实工业级评测的客观真理（Oracle）与用于提示智能体的上下文物理解耦，通过\textbf{只读镜像挂载、黑盒断言隐藏与无旁路判定管道}，消灭智能体针对考题的``作弊过拟合（Data
 Leakage \& Benchmark
 Gaming）''，提供绝对可信的工业自主软件工程基准评测能力。
 
@@ -4928,7 +4944,7 @@ Avoid)}\label{ux53cdux6a21ux5f0fux8b66ux793a-anti-patterns-to-avoid-17}
 \endlastfoot
 \textbf{开卷测试伪装闭卷 (Open-Book Cheat)} &
 将单元测试源码连同答案直接放在智能体可见的代码树中 &
-模型直接抄袭或修改测试，导致评测指标彻底失真 \\
+模型直接抄袭或修改测试，导致评测指标失真 \\
 \textbf{同进程评价 (In-Process Evaluation)} &
 评测代码在智能体所在的同一进程或会话内运行 & 智能体可以通过 Monkey
 Patch、全局变量篡改绕过评测逻辑 \\
@@ -5119,7 +5135,7 @@ Pattern)}\label{ux6a21ux5f0f-19ux4e94ux91cdux65e0ux65c1ux8defux673aux68b0ux5224u
 
 建立基于五重物理维度严格约束的\textbf{无旁路机械判据系统（Bypass-Free
 Mechanical Validator, Kapoor et al.,
-2024）}，彻底打破传统评测中依赖大模型自评（LLM-as-a-Judge）或单点退出码所造成的\textbf{奖励欺骗（Reward
+2024）}，打破传统评测中依赖大模型自评（LLM-as-a-Judge）或单点退出码所造成的\textbf{奖励欺骗（Reward
 Hacking, Amodei et al., 2016）与规范博弈（Specification Gaming, Krakovna
 et al., 2020）}，确保智能体解题成功判定 100\%
 具备工业可验证性与生产上线可用性。
@@ -5271,7 +5287,7 @@ Avoid)}\label{ux53cdux6a21ux5f0fux8b66ux793a-anti-patterns-to-avoid-18}
 属于非物理不可信范式，存在巨大的谄媚性与幻觉漏洞 \\
 \textbf{截断报错换取 Exit 0 (Exit Code Laundering)} &
 用包装脚本捕获测试失败并强行 \texttt{exit\ 0} &
-导致灾难性回归缺陷逃逸至生产环境 \\
+导致严重回归缺陷逃逸至生产环境 \\
 \end{longtable}
 }
 
@@ -5589,7 +5605,7 @@ Pattern)}\label{ux6a21ux5f0f-21token-ux541eux5410ux65adux5d16ux5f0fux538bux7f29u
 通过``任务级最小特权投影（PoLP）''、``增量碎片复用''、``阶段状态因果剪枝''以及``局部原子重试（Sub-stepping
 Retry）''的多级工程组合拳，将复杂企业级微服务软件工程开发中的\textbf{Token
 吞吐总量实现断崖式压降（实测降幅达
--80.7\%）}，在彻底根除上下文退化（Context Rot, Liu et al., TACL 2024;
+-80.7\%）}，在显著缓解上下文退化（Context Rot, Liu et al., TACL 2024;
 Chroma,
 2025）的同时，使自主智能体研发的综合经济学成本跨过商业盈利临界点。
 
@@ -5925,10 +5941,10 @@ Wrapping）''在工业生产环境中具有极大的弊端：
   \begin{itemize}
   \tightlist
   \item
-    \textbf{彻底消灭进程启动抖动}：交互延迟由传统的 8\textasciitilde12
+    \textbf{消除进程启动抖动}：交互延迟由传统的 8\textasciitilde12
     秒压缩至 \textbf{4\textasciitilde5 秒（效率翻倍）}；
   \item
-    \textbf{100\% 解除交互权限死锁}：彻底摆脱了桌面 CLI
+    \textbf{100\% 解除交互权限死锁}：摆脱了桌面 CLI
     工具内部复杂的权限拦截逻辑，全自动化流水线具备 100\% 自愈通过率；
   \item
     \textbf{极致纯粹的系统解耦}：宿主编排层与大模型执行层完全通过标准网络协议解耦，任何时候均可无缝切换底层模型提供商。
@@ -6854,7 +6870,8 @@ H2/H3/H5）}\label{ux5b9eux6d4bux652fux64912026-10-22ux751fux4ea7ux73b0ux573aux5
 Cybernetics}\label{epilogue-towards-autonomous-and-resilient-cybernetics}
 
 \begin{quote}
-``我们创造的不仅仅是一个写代码的工具，而是一个具备因果不变性、物理现实感知与自免疫收敛能力的控制论生命体。''
+``我们创造的不仅仅是一个写代码的工具，而是一个具备因果不变性、物理现实感知与自免疫收敛能力的控制论生命体。''（修辞语；所指机制为公理
+IV 的经验自免疫收敛，非生物学术语。）
 \end{quote}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -7731,7 +7748,7 @@ Verification Loop）制造通过假象，不设独立术语 \\
 接地与验证鸿沟（Grounding \& Verification Gap）；奖励欺骗（Reward
 Hacking）；谄媚性（Sycophancy） & Amodei et al., 2016；Sharma et al.,
 2023；Huang et al., ICLR 2024 \\
-公理 II & 注意力熵增公理（Axiom of Attention Entropy） &
+公理 II & 注意力稀释公理（Axiom of Attention Dilution） &
 上下文退化（Context Rot）；迷失在中间（Lost in the
 Middle）；有效上下文长度（Effective Context Length） & Liu et al., TACL
 2024；Hsieh et al., 2024；Chroma, 2025 \\
@@ -7936,7 +7953,7 @@ Lean 4 形式化
 \endlastfoot
 \textbf{I 物理非信任} & 无外部接地的自检声称成功不可信 & B.2：3 定理已证
 & 文献锚点支撑（奖励欺骗实证） & 【通过】 闭环 \\
-\textbf{II 注意力熵增} & 违约概率下界随无关上下文膨胀发散 &
+\textbf{II 注意力稀释} & 违约概率下界随无关上下文膨胀发散 &
 B.3：稀释定理链 + 三增长分支 + 两相模型已证 & E3/E3b（注意力通道）+
 E4（W* 阈值）+ E8（负结果） & 【通过】 闭环 \\
 \textbf{III 变异因果单调} & 可观测 \(\Leftrightarrow\)
@@ -7973,14 +7990,14 @@ Non-Trustworthiness）}\label{ux516cux7406-iux7269ux7406ux975eux4fe1ux4efbux516c
 -
 \texttt{posterior\_independent\_of\_mechanism}：后验真值率与自检机制复杂度无关------排除''更强模型靠自省突破''的幻想。
 
-\textbf{实证支撑}：该公理是工程立场的形式化，其经验内容来自文献锚点------无接地模型自我报告不可信、可欺骗评价信号下必然涌现奖励欺骗（Amodei
+\textbf{实证支撑}：该公理是工程立场的形式化，其经验内容来自文献锚点------无接地模型自我报告不可信、可欺骗评价信号下受控实验普遍观测到奖励欺骗（Amodei
 et al.~2016；Huang et al., ICLR 2024；Anthropic arXiv:2511.18397）。物理
 Exit 0 穿透（模式 01）是''获得任何证据的唯一通道''。
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\subsection{2. 公理 II：注意力熵增与特权发散公理（Axiom of Attention
-Entropy）}\label{ux516cux7406-iiux6ce8ux610fux529bux71b5ux589eux4e0eux7279ux6743ux53d1ux6563ux516cux7406axiom-of-attention-entropy-1}
+\subsection{2. 公理 II：注意力稀释与特权发散公理（Axiom of Attention
+Dilution）}\label{ux516cux7406-iiux6ce8ux610fux529bux7a00ux91caux4e0eux7279ux6743ux53d1ux6563ux516cux7406axiom-of-attention-dilution-1}
 
 \textbf{主张}：\(P_{\text{violate}}(\rho) \ge 1 - e^{-\alpha\rho}\)------无关上下文注入使违约概率下界发散，必须施加最小特权（PoLP）投影。
 
