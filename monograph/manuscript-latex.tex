@@ -117,8 +117,8 @@
 % 数学模式 CJK 兜底：\text{中文} 走文本模式交给 xeCJK（unicode-math 的 \text 缺 CJK 字形）
 \usepackage{unicode-math}
 \setmathfont{latinmodern-math.otf}
-% 页边距：左右 2.2cm、上下 2.4cm（正文可用宽度 ~165mm，缓解窄列表格溢出）
-\usepackage[top=2.4cm,bottom=2.4cm,left=2.2cm,right=2.2cm]{geometry}
+% 页边距：左右 1.8cm、上下 2.4cm（正文可用宽度 ~174mm，宽表占用最大化）
+\usepackage[top=2.4cm,bottom=2.4cm,left=1.8cm,right=1.8cm]{geometry}
 % 表格排版：字号比正文降一档（\small）、行末放宽应急间距、列间距收紧、长标识符允许在下划线后断行
 \usepackage{etoolbox}
 \usepackage{ragged2e}
@@ -455,13 +455,13 @@ work）；在连接定理化之前，任何''由工程实证推导理论传播�
 
 {\def\LTcaptype{} % do not increment counter
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.0600}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1200}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1100}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.2800}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1100}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1200}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 编号
