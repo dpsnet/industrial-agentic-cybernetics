@@ -16,3 +16,7 @@
 \setcounter{bottomnumber}{4}
 \setcounter{totalnumber}{6}
 \setcounter{dbltopnumber}{4}
+
+% 章级标题（\section，对应 pandoc 一级标题）强制另起一页
+\let\oldsection\section
+\renewcommand{\section}{\clearpage\oldsection}
