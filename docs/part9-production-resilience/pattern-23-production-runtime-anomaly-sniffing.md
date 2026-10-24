@@ -327,19 +327,11 @@ class ProductionRuntimeAnomalySniffer {
 
 * `no_drift_below_half`（临界负结果）：$q\le1/2$ 时 $V=\mathrm{id}$ 不是 Lyapunov 函数。
 
-**对本文数值的含义**：正文的 " 检出率 $\ge0.90$" 不是可选的性能目标，而是 $q>1/2$ 稳定性门槛的工程余量；低于门槛时回路无法自证收敛。$q$ 的实测值仍待 `EXPERIMENT_PLAN_PRODUCTION_FIELD_TEST.md` 的 H1 执行；本形式化只覆盖单缺陷类、单步注入 / 修复、i.i.d. 检出，不外推到多缺陷类耦合。
+**对本文数值的含义**：正文的 " 检出率 $\ge0.90$" 不是可选的性能目标，而是 $q>1/2$ 稳定性门槛的工程余量；低于门槛时回路无法自证收敛。$q$ 的实测值由生产现场实验 H1 提供（固定阈值类缺陷 $q=1.00$，mem 自适应 σ 判据形态边界，2026-10-22）；本形式化只覆盖单缺陷类、单步注入 / 修复、i.i.d. 检出，不外推到多缺陷类耦合。
 
 ### 实测支撑（2026-10-22，生产现场实验 H1/H4）
 
-> 实测环境：Docker Compose 受控生产拓扑（app/downstream/toxiproxy/k6/exporter/auditor/sniffer，LLM 组件 DeepSeek-V4.1-Flash-1017 仅在缺陷萃取环节）；判据全部预注册（固定阈值 pool>10 /p99>300ms /mem 3σ；检测窗口 180s；各场景 10 reps）。完整判读见 
->
-> `experiments/field_test/results/judgement.md`
->
->  与 
->
-> `f3_boundary_evidence.md`
->
-> 。
+> 实测环境：Docker Compose 受控生产拓扑（app/downstream/toxiproxy/k6/exporter/auditor/sniffer，LLM 组件 DeepSeek-V4.1-Flash-1017 仅在缺陷萃取环节）；判据全部预注册（固定阈值 pool>10 /p99>300ms /mem 3σ；检测窗口 180s；各场景 10 reps）。判读结论见下：F1/F2 检出率 1.00、F4 误报 0.00、F3 判据形态边界、H4 装置缺陷。
 
 
 

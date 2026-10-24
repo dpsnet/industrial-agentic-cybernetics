@@ -319,15 +319,11 @@ class HotfixLoopOrchestrator {
 
 * 本文的 " 错误修复拦截率 $=1.00$" 是**质量门槛**（确保每次修复不引入新缺陷类），与稳定性判据是两条独立约束：前者约束单次修复的真值，后者约束多次循环的收敛。
 
-**未覆盖范围**：多缺陷类耦合、批量注入、检出率随存量变化（学习效应）均未纳入模型，属经验缺口；实证依赖 `EXPERIMENT_PLAN_PRODUCTION_FIELD_TEST.md`（尚未执行）。
+**未覆盖范围**：多缺陷类耦合、批量注入、检出率随存量变化（学习效应）均未纳入模型，属经验缺口；实证由生产现场实验 H2/H3/H5 提供（2026-10-22 闭合）：审计有效性 20/20 全拒、晋升比例 1.00、错误拦截 1.00、环境泄漏 0。
 
 ### 实测支撑（2026-10-22，生产现场实验 H2/H3/H5）
 
-> 实测环境：LLM 闭环（crystallizer→hotfix-gen→validator→gate）经 scnet 网关调用 DeepSeek-V4.1-Flash-1017（temperature 0.7，max_tokens 2000/4000，json_object）；审计 / 门禁组件全部确定性（哈希、mtime、指纹、五重判据、三条件终审）。完整判读见 
->
-> `experiments/field_test/results/judgement.md`
->
-> 。
+> 实测环境：LLM 闭环（crystallizer→hotfix-gen→validator→gate）经 scnet 网关调用 DeepSeek-V4.1-Flash-1017（temperature 0.7，max_tokens 2000/4000，json_object）；审计 / 门禁组件全部确定性（哈希、mtime、指纹、五重判据、三条件终审）。判读结论见下：H2 篡改零漏检、H3 闭环有效、H5 适用域解耦。
 
 
 

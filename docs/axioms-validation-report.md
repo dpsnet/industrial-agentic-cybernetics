@@ -4,6 +4,7 @@
 > 日期：2026-10-21　状态：**四条公理全部闭环（形式化 + 实证 + 文档回写）**
 > 形式化工程：`formal_proof/IACFormalization`（Lean 4 + mathlib4，**0 sorry**，全部定理经内核验证）
 > 正文：`docs/preface/03-axioms-and-invariance.md`；形式化附录：`docs/appendix-formal-proofs.md`
+> **验证证据附录（元声明）**：本报告是本书的**证据账本**——记录公理 I–IV 与定理 3.1 的预注册判读、实证数值与适用域边界，供审阅者核验。文体为证据记录而非范式正文：理论主张以正文公理声明为准，本报告不引入正文之外的理论承诺。
 
 ---
 
