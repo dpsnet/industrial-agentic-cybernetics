@@ -170,7 +170,7 @@ $$m = \mu(1-\sigma) \quad \text{(乘性压缩律)}$$
 
 ## 4.2 定理链
 
-本节定理链全部由 Lean 4 机器验证（零 `sorry`）。形式化源码与全部实验工件已公开：GitHub 仓库 `dpsnet/industrial-agentic-cybernetics`（`formal_proof/IACFormalization/`，Lean 4 toolchain v4.34.0-rc2 + mathlib4，构建命令 `lake build`，86 条定理零 `sorry`）；实验脚本、预注册计划、判读 JSON 与探针数据见 `experiments/`；本文为该仓库专著《工业智能体控制论》公理 IV 的实证展开。开源前仓库历史经安全清理（密钥剥离）重写，commit 哈希以公开库标签 `v1.0.0` 为准（DOI: 10.5281/zenodo.23636678）。
+本节定理链全部由 Lean 4 机器验证（零 `sorry`）。形式化源码与全部实验工件已公开：GitHub 仓库 `dpsnet/industrial-agentic-cybernetics`（`formal_proof/IACFormalization/`，Lean 4 toolchain v4.34.0-rc2 + mathlib4，构建命令 `lake build`，86 条定理零 `sorry`）；实验脚本、预注册计划、判读 JSON 与探针数据见 `experiments/`；本文为该仓库专著《工业智能体控制论》公理 IV 的实证展开。开源前仓库历史经安全清理（密钥剥离）重写，commit 哈希以公开库标签 `v1.1.0` 为准（DOI: 10.5281/zenodo.23637013）。
 
 **T1 期望几何律**（`expected_population_geometric`，归纳证明）：$E[Z_n]=m^n E[Z_0]$。
 
@@ -583,7 +583,7 @@ H1AC 池化 per-parent 口径在 C2 下因幸存者偏差失效（末代存活�
 
 ## 数据与代码可得性
 
-全部形式化源码、实验脚本与数据工件随本文公开于 GitHub 仓库 `dpsnet/industrial-agentic-cybernetics`（MIT / CC BY 4.0 双许可，专著同库；归档 DOI: 10.5281/zenodo.23636678）。本文所引工件与仓库相对路径的映射如下：
+全部形式化源码、实验脚本与数据工件随本文公开于 GitHub 仓库 `dpsnet/industrial-agentic-cybernetics`（MIT / CC BY 4.0 双许可，专著同库；归档 DOI: 10.5281/zenodo.23637013）。本文所引工件与仓库相对路径的映射如下：
 
 | 本地文件名（正文引用） | 仓库相对路径 |
 | :--- | :--- |
@@ -671,4 +671,4 @@ python experiments/attention_growth/e_supercritical_judge.py
 16. Turing, A. M. (1936). *On Computable Numbers, with an Application to the Entscheidungsproblem*. Proceedings of the LMS, 42, 230–265.
 17. Zhan, Q., et al. (2024). *AgentPoison: Red-Teaming LLM Agents via Memory Engineering or Malicious Tool Manipulation*. NeurIPS 2024. arXiv:2407.12784.
 18. Leong, J. W., et al. (2026). *Defense Effectiveness Across Architectural Layers: A Mechanistic Evaluation of Persistent Memory Attacks on Stateful LLM Agents*. arXiv:2605.08442.
-19. 王斌. 工业智能体控制论：自主软件工程的设计模式与形式化架构[EB/OL]. (2026-10-25). https://github.com/dpsnet/industrial-agentic-cybernetics. DOI: 10.5281/zenodo.23636678.
+19. 王斌. 工业智能体控制论：自主软件工程的设计模式与形式化架构[EB/OL]. (2026-10-25). https://github.com/dpsnet/industrial-agentic-cybernetics. DOI: 10.5281/zenodo.23637013.
