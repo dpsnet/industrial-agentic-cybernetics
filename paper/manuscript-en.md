@@ -30,6 +30,8 @@ LLM agents are being deployed into long-running production systems: experience a
 
 ## 1.3 This Work
 
+This paper is the complete evidence-based elaboration of Axiom IV within the publicly available treatise *Industrial Agentic Cybernetics: Design Patterns and Formal Architecture for Autonomous Software Engineering* (same repository, CC BY 4.0, four-axiom framework).
+
 This work is rooted in **Axiom IV (empirical self-immunity)**: self-generated experience that lacks **physical verification and independent-review final adjudication** persistently contaminates subsequently retrieved tasks; defense must therefore rely on structural blocking at the write layer (quarantine) rather than soft signals at the decision layer (marking). Within this framework we deliver a closed loop of **mechanism identification + formalization + pre-registered evidence**:
 
 1. **Mechanism layer**: "the architecture determines the propagation mechanism"—selective replay yields branching decay (a Galton-Watson branching process), full append yields linear accumulation–competition (per-generation write $w_n\in\{0,1\}$, chain mean 0.917); memory capacity $M$ is the control parameter with critical capacity $M_c\in(8,16)$ (low-transcription-state reading, §3/§6.5);
@@ -168,7 +170,7 @@ All theorems are presented as **conditional theorems**: structural premises (e.g
 
 ## 4.2 Theorem Chain
 
-All theorems in this chain are machine-checked with Lean 4 (zero `sorry`). Formalization sources: `formal_proof/IACFormalization` (this repository, commit `4825137`; Lean 4, mathlib version in `lakefile.lean`). The repository is currently **kept private**: the commit hash pins the file tree and build record for verification, and the full sources are available from the authors upon request.
+All theorems in this chain are machine-checked with Lean 4 (zero `sorry`). The formalization sources and all experimental artifacts are publicly available: GitHub repository `dpsnet/industrial-agentic-cybernetics` (`formal_proof/IACFormalization/`, Lean 4 toolchain v4.34.0-rc2 + mathlib4, build command `lake build`, 86 theorems with zero `sorry`); experiment scripts, pre-registration plans, judgement JSONs, and probe data under `experiments/`; this paper is the complete evidence-based elaboration of Axiom IV of the treatise *Industrial Agentic Cybernetics* in the same repository. The repository history was rewritten for security cleanup (credential stripping) before open-sourcing; commit hashes are anchored to the public release tag `v1.0.0`.
 
 **T1 Expected geometric law** (`expected_population_geometric`, by induction): $E[Z_n]=m^n E[Z_0]$.
 
@@ -580,6 +582,27 @@ The main evidence is concentrated on the test-writing task family; across task f
 The empirical laws of software engineering can and should be promoted to an engineering-axiom structure of "conditional theorem + measured support" (a methodological claim; the machine-checked object is the probabilistic conditional theorem, qualification in §2.5); this work provides a complete instance (formalization + pre-registration + mechanism revision) and a transferable methodological template (three-layer knowledge status + pre-registered criteria + mechanism identification first).
 
 
+## Data and Code Availability
+
+All formalization sources, experiment scripts, and data artifacts are publicly available in the GitHub repository `dpsnet/industrial-agentic-cybernetics` (dual-licensed MIT / CC BY 4.0; the companion treatise lives in the same repository). Mapping of artifacts referenced in the text to repository-relative paths:
+
+| Artifact referenced in text | Repository path |
+| :--- | :--- |
+| Lean project `formal_proof/IACFormalization/` (`lake build`, 86 theorems, zero `sorry`) | `formal_proof/IACFormalization/` |
+| Pre-registration plans (8 files, `EXPERIMENT_PLAN_AXIOM4_*.md` etc.) | `experiments/attention_growth/EXPERIMENT_PLAN_*.md` |
+| `_mc_state_rescan_W{4,8,12}_{s1,s2}.json` (incl. r0–r11 shards) + `_mc_state_rescan_judge.py/.txt` | `experiments/attention_growth/_mc_state_rescan_*` |
+| Judgement JSONs (`e_supercritical_judgement2.json`, `e_h1ac_judgement.json`, etc.) | `experiments/attention_growth/` |
+| Raw session JSONs (`axiom4_results_*.json`, incl. cross-model / cross-task-family batches) | `experiments/attention_growth/` |
+| Production field tests (Patterns 23/24, pre-registered with judgement) | `experiments/field_test/` |
+
+Reproduction entry point (Axiom IV propagation ratio, SUPERCRITICAL tier):
+
+```bash
+python experiments/attention_growth/e_supercritical_judge.py
+```
+
+Outputs `e_supercritical_judgement2.json` (propagation ratio $\hat m$ with CI, Z trajectory, survival rate, capacity sensitivity; judgement conventions in Appendix C).
+
 ## Appendix
 
 ## A. Judgment Scripts and Data Inventory
@@ -649,3 +672,4 @@ The empirical laws of software engineering can and should be promoted to an engi
 16. Turing, A. M. (1936). *On Computable Numbers, with an Application to the Entscheidungsproblem*. Proceedings of the LMS, 42, 230–265.
 17. Zhan, Q., et al. (2024). *AgentPoison: Red-Teaming LLM Agents via Memory Engineering or Malicious Tool Manipulation*. NeurIPS 2024. arXiv:2407.12784.
 18. Leong, J. W., et al. (2026). *Defense Effectiveness Across Architectural Layers: A Mechanistic Evaluation of Persistent Memory Attacks on Stateful LLM Agents*. arXiv:2605.08442.
+19. Wang, B. *Industrial Agentic Cybernetics: Design Patterns and Formal Architecture for Autonomous Software Engineering*[EB/OL]. (2026-10-25). https://github.com/dpsnet/industrial-agentic-cybernetics.

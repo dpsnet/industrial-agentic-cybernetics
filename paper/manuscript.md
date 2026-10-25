@@ -30,6 +30,8 @@ LLM 智能体（agent）正被部署到长期运行的生产系统：经验沉�
 
 ## 1.3 本工作
 
+本文是公开专著《工业智能体控制论：自主软件工程的设计模式与形式化架构》（同库，CC BY 4.0，四大公理体系）之公理 IV 的完整实证展开。
+
 本工作根植的**公理 IV（经验自免疫）**主张：未经**物理验证与独立审查终审**的自生经验经检索复用会对后续任务产生持续性污染，其防御须依赖写入层的结构阻断（隔离）而非决策层的软信号（标记）。在此框架下，本文给出**机制识别 + 形式化 + 预注册实证**的完整闭环：
 
 1. **机制层**：识别"架构决定传播机制"——选择性转写产生分支衰减（Galton-Watson 分支过程），全量追加产生线性累积-容量竞争（每代写入 $w_n\in\{0,1\}$，链均 0.917）；记忆容量 $M$ 为控制参量，临界 $M_c\in(8,16)$（低转写态读数，§3/§6.5）；
@@ -168,7 +170,7 @@ $$m = \mu(1-\sigma) \quad \text{(乘性压缩律)}$$
 
 ## 4.2 定理链
 
-本节定理链全部由 Lean 4 机器验证（零 `sorry`）。形式化源码：`formal_proof/IACFormalization`（本仓库 commit `4825137`；Lean 4，mathlib 版本见 `lakefile.lean`）。仓库目前**保持私有**：commit hash 可据此核对文件树与构建记录，完整源码按需向作者索取。
+本节定理链全部由 Lean 4 机器验证（零 `sorry`）。形式化源码与全部实验工件已公开：GitHub 仓库 `dpsnet/industrial-agentic-cybernetics`（`formal_proof/IACFormalization/`，Lean 4 toolchain v4.34.0-rc2 + mathlib4，构建命令 `lake build`，86 条定理零 `sorry`）；实验脚本、预注册计划、判读 JSON 与探针数据见 `experiments/`；本文为该仓库专著《工业智能体控制论》公理 IV 的实证展开。开源前仓库历史经安全清理（密钥剥离）重写，commit 哈希以公开库标签 `v1.0.0` 为准。
 
 **T1 期望几何律**（`expected_population_geometric`，归纳证明）：$E[Z_n]=m^n E[Z_0]$。
 
@@ -579,6 +581,27 @@ H1AC 池化 per-parent 口径在 C2 下因幸存者偏差失效（末代存活�
 软件工程的经验定律可以且应当提升为“条件定理 + 实测支撑”的工程公理结构（方法论主张；被机检的对象为概率论条件定理，限定见 §2.5）；本工作提供了完整实例（形式化 + 预注册 + 机制修正），并给出可迁移的方法论模板（三层知识地位 + 预注册判据 + 机制识别优先）。
 
 
+## 数据与代码可得性
+
+全部形式化源码、实验脚本与数据工件随本文公开于 GitHub 仓库 `dpsnet/industrial-agentic-cybernetics`（MIT / CC BY 4.0 双许可，专著同库）。本文所引工件与仓库相对路径的映射如下：
+
+| 本地文件名（正文引用） | 仓库相对路径 |
+| :--- | :--- |
+| Lean 工程 `formal_proof/IACFormalization/`（`lake build`，86 定理零 sorry） | `formal_proof/IACFormalization/` |
+| 预注册计划（`EXPERIMENT_PLAN_AXIOM4_*.md` 等 8 份） | `experiments/attention_growth/EXPERIMENT_PLAN_*.md` |
+| `_mc_state_rescan_W{4,8,12}_{s1,s2}.json`（含 r0–r11 分片）与 `_mc_state_rescan_judge.py/.txt` | `experiments/attention_growth/_mc_state_rescan_*` |
+| 判读 JSON（`e_supercritical_judgement2.json`、`e_h1ac_judgement.json` 等） | `experiments/attention_growth/` |
+| 原始会话 JSON（`axiom4_results_*.json`，含跨模型/跨任务族批次） | `experiments/attention_growth/` |
+| 生产现场实验（模式 23/24，预注册+判读） | `experiments/field_test/` |
+
+复算入口（公理 IV 传播比，SUPERCRITICAL 档）：
+
+```bash
+python experiments/attention_growth/e_supercritical_judge.py
+```
+
+输出 `e_supercritical_judgement2.json`（传播比 $\hat m$ 与 CI、Z 轨迹、存活率、容量敏感性；判读口径见附录 C）。
+
 ## 附录
 
 ## A. 判读脚本与数据清单
@@ -648,3 +671,4 @@ H1AC 池化 per-parent 口径在 C2 下因幸存者偏差失效（末代存活�
 16. Turing, A. M. (1936). *On Computable Numbers, with an Application to the Entscheidungsproblem*. Proceedings of the LMS, 42, 230–265.
 17. Zhan, Q., et al. (2024). *AgentPoison: Red-Teaming LLM Agents via Memory Engineering or Malicious Tool Manipulation*. NeurIPS 2024. arXiv:2407.12784.
 18. Leong, J. W., et al. (2026). *Defense Effectiveness Across Architectural Layers: A Mechanistic Evaluation of Persistent Memory Attacks on Stateful LLM Agents*. arXiv:2605.08442.
+19. 王斌. 工业智能体控制论：自主软件工程的设计模式与形式化架构[EB/OL]. (2026-10-25). https://github.com/dpsnet/industrial-agentic-cybernetics.
