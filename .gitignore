@@ -1,6 +1,12 @@
 ﻿# 凭证与通道（绝密）
 .env
 scripts/scnet/
+.ssh/
+
+# LaTeX 编译残留
+*.aux
+*.toc
+*.out
 
 # 构建/QA 临时产物
 *.out.txt
