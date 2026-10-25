@@ -7,11 +7,13 @@ Beijing Kailuzhe Technology Co., Ltd. · Technical Director
 Email: wang.bin@foxmail.com; wangb@kailuzhe.cn
 
 
-Long-lived language-model agents accumulate experience in persistent memory; unvalidated or malicious entries can propagate across sessions and poison downstream tasks. Existing defenses treat soft marking and hard quarantine interchangeably, and no account links the *memory architecture* to the mathematical structure of propagation. We study injection-propagation under two write protocols—selective replay and full append—through pre-registered experiments spanning three model families (DeepSeek-V4-Pro-0813 (Pro), Kimi, DeepSeek-V4.1-Flash-1017 (Flash)), two architectures, multiple capacity settings, and 846 agent-session chains (5,448 session-generation units; the 2-chain selective control × 6 generations is counted separately), with Lean 4 machine-checked conditional theorems.
+**Abstract:** Long-lived language-model agents accumulate experience in persistent memory; unvalidated or malicious entries can propagate across sessions and poison downstream tasks. Existing defenses treat soft marking and hard quarantine interchangeably, and no account links the *memory architecture* to the mathematical structure of propagation. We study injection-propagation under two write protocols—selective replay and full append—through pre-registered experiments spanning three model families (DeepSeek-V4-Pro-0813 (Pro), Kimi, DeepSeek-V4.1-Flash-1017 (Flash)), two architectures, multiple capacity settings, and 846 agent-session chains (5,448 session-generation units; the 2-chain selective control × 6 generations is counted separately), with Lean 4 machine-checked conditional theorems.
 
 We find that the architecture, not the model, determines the propagation mechanism. Selective replay yields branching decay: a Galton-Watson process with model-specific offspring mean $\hat m\in[0.56,0.98]$ and geometric-law decay (R²≥0.92); extended to 12 chains, the selective side gives $\hat m=0.966$ (CI $[0.911,1.000]$), fully separated from the full-append CI. Full append yields linear accumulation–competition: a per-generation write $w_n\in\{0,1\}$ (chain mean $E[w_n]=0.917$) gives $Z_{n+1}=Z_n+w_n$ up to the memory capacity $M$, where FIFO competition reaches and maintains a steady state ($5/16$) (engineering-semantics persistence; the cross-mechanism propagation ratio is reported in §6.1). Capacity $M$ is the control parameter; the critical capacity $M_c$ is a $(b,M)$ joint function: the higher the benign write rate, the larger the critical capacity (under the EXP-B protocol, $b{=}1/2\to W_c\le4$, $b{=}3\to W_c\in(4,8)$, $b{=}5\to W_c\in(8,12)$). The main-protocol tier ($b{\approx}3$ total write cap, strain included) gives $M_c\in(8,16)$, consistent with the EXP-B $b{=}3$ row ($b$ = benign-experience cap, strain consuming that quota; measured total per-generation writes 3.00 in both tiers—flow-isomorphic) at the shared $W{=}16$ grid point (steady state 5.06 vs 4.917, 2.9% difference) but split at the boundary grid point $W{=}8$ (extinction vs 0.92 survival at 12 chains, persisting after extension)—**the attribution audit (§6.5) locates the split in a sub-hourly state transition of DeepSeek-V4.1-Flash-1017 strain transcription behavior** (high and low transcription states flip within ~32 minutes on the same calendar day; same-day dual-protocol reruns show no difference, Fisher $p{=}0.155$, and the 10-22 original batch is significantly low at $p{=}0.0024$); **$M_c$ is therefore a conditional quantity of $(b,M,\text{strain transcription state})$**: under the low state $M_c\in(8,16)$ ($W{=}8$ extinct), while under the high state $W{=}8$ survives at 0.75 (12 chains, probe-gated rescan measurement)—shrinking the memory window cannot reliably prevent poisoning, because the same window fails in another behavioral state of the model.
 
 For defense, soft-marking effects are model-heterogeneous and unreliable: the Pro tier shows a large but non-significant 47% compression under inadequate power, the full-append tier shows 12/12 same-trace trajectories (structural write-path bypass), and the Flash large-sample paired test ($n=48$, $\bar d=0.020$, $p=0.69$) confirms zero compression, while quarantine ($\sigma=1$) cuts off propagation in all conditions: 24/24 cross-model, 48/48 cross-task, and 12/12 full-append chains; a σ sweep ($n=48$/tier) confirms—**with the 2026-10-23 complement covering the full measured spectrum $\sigma_{\rm eff}\in\{0.1,0.25,0.5,0.75,0.9,1.0\}$ (including the previously unmeasured middle tiers $\sigma_{\rm eff}\in\{0.75,0.9\}$)**—that every $\sigma_{\rm eff}<1$ tier leaves survival at 1.00 and none suppresses the strain (no sweet spot, A-H4 criterion), while σ=1 retains 0.88 of memory utility (the cost is 12% of new-experience increments; seed knowledge is undamaged). Between quarantine and marking lies a control-verified **high-state branch of the control law** (the design form of state-feedback soft regulation; the experiment window's probes diagnosed the high state throughout and the dynamic arm never switched—**the cross-state switching dynamics was never exercised and is listed as untested**): under the high transcription state, the window-reduction strategy ($W{=}8\to4$) suppresses strain survival from 0.833 to 0.333 (12 vs 12 chains, same-batch contrast, Fisher $p{=}0.018$; three-window merged 13/32 vs 19/24, one-sided $p{=}0.004$) with memory-utility retention 0.328 $\ge0.275$ (criterion C2), at the cost of roughly 70% of benign memory and dependence on probe bandwidth (§7/§11.4). We conclude that **defense depends on structural means, not parameters or marking**—hard quarantine is the irreplaceable primary layer, and the window-reduction strategy (high-state-branch verified) is the control-verified second-best layer. As a methodological note, our pre-registered branching-match hypothesis was falsified by direct generation-level evidence and revised to linear accumulation–competition; we report the revision transparently. As a byproduct, the attribution audit exposed an independent finding beyond the original scope: **sub-hourly bimodal state drift in the strain transcription propensity of a fixed model checkpoint** (multi-batch comparisons, Fisher $p\le0.0024$); we accordingly introduce a **probe-calibration protocol**—before each experimental batch, ~3-minute-per-chain probes determine the current strain transcription state, and cross-batch comparisons are restricted to same-state batches—which itself constitutes a reusable methodological contribution.
+
+**Keywords:** ungated agentic memory; memory poisoning; pre-registered experiment; Lean 4 formal verification; hard isolation; branching process
 
 
 ---
@@ -29,8 +31,6 @@ LLM agents are being deployed into long-running production systems: experience a
 3. **Formalization gap**: the "fundamental laws" of software engineering (Brooks 1987; Lehman 1980; Conway 1968) are empirical laws that have never been formally proven (§2.5); the poisoning-quarantine regularities of agentic memory likewise remain at the heuristic level.
 
 ## 1.3 This Work
-
-This paper is the complete evidence-based elaboration of Axiom IV within the publicly available treatise *Industrial Agentic Cybernetics: Design Patterns and Formal Architecture for Autonomous Software Engineering* (same repository, CC BY 4.0, four-axiom framework).
 
 This work is rooted in **Axiom IV (empirical self-immunity)**: self-generated experience that lacks **physical verification and independent-review final adjudication** persistently contaminates subsequently retrieved tasks; defense must therefore rely on structural blocking at the write layer (quarantine) rather than soft signals at the decision layer (marking). Within this framework we deliver a closed loop of **mechanism identification + formalization + pre-registered evidence**:
 
@@ -170,7 +170,7 @@ All theorems are presented as **conditional theorems**: structural premises (e.g
 
 ## 4.2 Theorem Chain
 
-All theorems in this chain are machine-checked with Lean 4 (zero `sorry`). The formalization sources and all experimental artifacts are publicly available: GitHub repository `dpsnet/industrial-agentic-cybernetics` (`formal_proof/IACFormalization/`, Lean 4 toolchain v4.34.0-rc2 + mathlib4, build command `lake build`, 86 theorems with zero `sorry`); experiment scripts, pre-registration plans, judgement JSONs, and probe data under `experiments/`; this paper is the complete evidence-based elaboration of Axiom IV of the treatise *Industrial Agentic Cybernetics* in the same repository. The repository history was rewritten for security cleanup (credential stripping) before open-sourcing; commit hashes are anchored to the public release tag `v1.1.0` (DOI: 10.5281/zenodo.23637013).
+All theorems in this chain are machine-checked with Lean 4 (zero `sorry`). Formalization sources: `formal_proof/IACFormalization` (this repository, commit `4825137`; Lean 4, mathlib version in `lakefile.lean`). The repository is currently **kept private**: the commit hash pins the file tree and build record for verification, and the full sources are available from the authors upon request.
 
 **T1 Expected geometric law** (`expected_population_geometric`, by induction): $E[Z_n]=m^n E[Z_0]$.
 
@@ -582,27 +582,6 @@ The main evidence is concentrated on the test-writing task family; across task f
 The empirical laws of software engineering can and should be promoted to an engineering-axiom structure of "conditional theorem + measured support" (a methodological claim; the machine-checked object is the probabilistic conditional theorem, qualification in §2.5); this work provides a complete instance (formalization + pre-registration + mechanism revision) and a transferable methodological template (three-layer knowledge status + pre-registered criteria + mechanism identification first).
 
 
-## Data and Code Availability
-
-All formalization sources, experiment scripts, and data artifacts are publicly available in the GitHub repository `dpsnet/industrial-agentic-cybernetics` (dual-licensed MIT / CC BY 4.0; the companion treatise lives in the same repository; archival DOI: 10.5281/zenodo.23637013). Mapping of artifacts referenced in the text to repository-relative paths:
-
-| Artifact referenced in text | Repository path |
-| :--- | :--- |
-| Lean project `formal_proof/IACFormalization/` (`lake build`, 86 theorems, zero `sorry`) | `formal_proof/IACFormalization/` |
-| Pre-registration plans (8 files, `EXPERIMENT_PLAN_AXIOM4_*.md` etc.) | `experiments/attention_growth/EXPERIMENT_PLAN_*.md` |
-| `_mc_state_rescan_W{4,8,12}_{s1,s2}.json` (incl. r0–r11 shards) + `_mc_state_rescan_judge.py/.txt` | `experiments/attention_growth/_mc_state_rescan_*` |
-| Judgement JSONs (`e_supercritical_judgement2.json`, `e_h1ac_judgement.json`, etc.) | `experiments/attention_growth/` |
-| Raw session JSONs (`axiom4_results_*.json`, incl. cross-model / cross-task-family batches) | `experiments/attention_growth/` |
-| Production field tests (Patterns 23/24, pre-registered with judgement) | `experiments/field_test/` |
-
-Reproduction entry point (Axiom IV propagation ratio, SUPERCRITICAL tier):
-
-```bash
-python experiments/attention_growth/e_supercritical_judge.py
-```
-
-Outputs `e_supercritical_judgement2.json` (propagation ratio $\hat m$ with CI, Z trajectory, survival rate, capacity sensitivity; judgement conventions in Appendix C).
-
 ## Appendix
 
 ## A. Judgment Scripts and Data Inventory
@@ -672,4 +651,3 @@ Outputs `e_supercritical_judgement2.json` (propagation ratio $\hat m$ with CI, Z
 16. Turing, A. M. (1936). *On Computable Numbers, with an Application to the Entscheidungsproblem*. Proceedings of the LMS, 42, 230–265.
 17. Zhan, Q., et al. (2024). *AgentPoison: Red-Teaming LLM Agents via Memory Engineering or Malicious Tool Manipulation*. NeurIPS 2024. arXiv:2407.12784.
 18. Leong, J. W., et al. (2026). *Defense Effectiveness Across Architectural Layers: A Mechanistic Evaluation of Persistent Memory Attacks on Stateful LLM Agents*. arXiv:2605.08442.
-19. Wang, B. *Industrial Agentic Cybernetics: Design Patterns and Formal Architecture for Autonomous Software Engineering*[EB/OL]. (2026-10-25). https://github.com/dpsnet/industrial-agentic-cybernetics. DOI: 10.5281/zenodo.23637013.

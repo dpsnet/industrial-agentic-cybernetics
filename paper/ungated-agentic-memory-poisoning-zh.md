@@ -7,11 +7,13 @@
 Email: wang.bin@foxmail.com；wangb@kailuzhe.cn
 
 
-长期运行的 LLM 智能体将经验沉淀进持久记忆；未经验证或恶意的条目可在会话间传播并污染下游任务。既有防御将软标记与硬隔离混为一谈，且尚无研究将记忆架构与传播的数学结构联系起来。本文在两种写入协议（选择性转写与全量追加）下研究注入-传播问题，通过覆盖三个模型族（DeepSeek-V4-Pro-0813（Pro）、Kimi、DeepSeek-V4.1-Flash-1017（Flash））、两种架构、多档容量、共 846 条智能体会话链（5,448 会话-代单元；selective 对照 2 链 × 6 代另计）的预注册实验，并以 Lean 4 机检条件定理支撑。
+**摘要：** 长期运行的 LLM 智能体将经验沉淀进持久记忆；未经验证或恶意的条目可在会话间传播并污染下游任务。既有防御将软标记与硬隔离混为一谈，且尚无研究将记忆架构与传播的数学结构联系起来。本文在两种写入协议（选择性转写与全量追加）下研究注入-传播问题，通过覆盖三个模型族（DeepSeek-V4-Pro-0813（Pro）、Kimi、DeepSeek-V4.1-Flash-1017（Flash））、两种架构、多档容量、共 846 条智能体会话链（5,448 会话-代单元；selective 对照 2 链 × 6 代另计）的预注册实验，并以 Lean 4 机检条件定理支撑。
 
 我们发现：决定传播机制的是架构而非模型。选择性转写产生分支衰减——Galton-Watson 分支过程，模型特定的每亲繁殖数 $\hat m\in[0.56,0.98]$，呈几何律衰减（$R^2\ge0.92$）；扩样至 12 链后 selective 侧 $\hat m=0.966$（CI $[0.911,1.000]$），与全量追加侧 CI 完全分离。全量追加产生线性累积-容量竞争——每代写入 $w_n\in\{0,1\}$（链均 $E[w_n]=0.917$）使 $Z_{n+1}=Z_n+w_n$ 线性累积直至记忆容量 $M$，此后 FIFO 竞争达到并维持稳态（$5/16$）（工程语义的持续累积；跨机制对比传播比见 §6.1）。容量 $M$ 是控制参量，临界容量 $M_c$ 是 $(b,M)$ 联合函数：良性写入率越高，临界容量越大（EXP-B 协议下 $b{=}1/2\to W_c\le4$、$b{=}3\to W_c\in(4,8)$、$b{=}5\to W_c\in(8,12)$）。主协议档（$b{\approx}3$ 总写入上限、含毒株）$M_c\in(8,16)$ 与 EXP-B $b{=}3$ 行（$b$ 为良性经验上限、毒株占额度；实测两档每代总写入同为 3.00，流量同构）在 $W=16$ 主格点相容（稳态 5.06 vs 4.917，差异 2.9%），在 $W=8$ 边界格点读数分裂（灭绝 vs 0.92 存活，12 链扩样后保持）——**归因审计（§6.5）定位为 DeepSeek-V4.1-Flash-1017 毒株转写行为的亚小时级状态切换**（同一日历日内约 32 分钟即观测到高低转写态翻转；同日双协议重跑无差异，Fisher $p{=}0.155$，10-22 原批显著偏低 $p{=}0.0024$），**$M_c$ 因而是 $(b,M,$ 毒株转写状态$)$ 条件量**：低转写态下 $M_c\in(8,16)$（$W{=}8$ 灭绝），高转写态下 $W{=}8$ 存活 0.75（12 链，探针门控重扫实测）——缩小记忆窗口不能可靠防住投毒，因为同一窗口在模型的另一行为状态下失效。
 
 防御侧：软标记效应模型异质且不可靠（Pro 档 47% 压缩在功效不足下不显著；full-append 12/12 逐代同轨为写路径结构绕过；Flash 大样本配对 $n=48$ 确证零压缩，$\bar d=0.020$，$p=0.69$），而隔离（$\sigma=1$）在所有条件下截断传播：跨模型 24/24、跨任务族 48/48、full-append 12/12 链；σ 扫描（$n=48$/档）确认**全谱 $\sigma_{\rm eff}\in\{0.1,0.25,0.5,0.75,0.9,1.0\}$ 实测（含 2026-10-23 补测中间档 $\sigma_{\rm eff}\in\{0.75,0.9\}$）**：$\sigma_{\rm eff}<1$ 档全部存活率 1.00、无一抑制毒株（无甜点，A-H4 判据），σ=1 的记忆效用保留 0.88（代价为 12% 新经验增量，种子知识无损）。在隔离与标记之间还存在受控实证的**控制律高态分支**（状态反馈软调节的设计形式；实验窗探针全程判高态、动态臂零切换，**跨状态切换动力学未行使，列为待测**）：高转写态下窗口收缩策略（$W{=}8\to4$）将毒株存活由 0.833 压至 0.333（12 链 vs 12 链同批对照，Fisher $p{=}0.018$；跨三窗口合并 13/32 vs 19/24，单侧 $p{=}0.004$）、记忆效用保留 0.328 $\ge0.275$（C2 判据），但效用代价约七成良性记忆且有效性依赖探针带宽（§7/§11.4）。我们据此得出结论：**防御依赖结构手段而非参数或标记**——硬隔离为不可替代主体，窗口收缩策略（高态分支实证）为受控实证的次优层。方法学上，我们预注册的分支匹配假说被逐代机制证据证伪，修订为线性累积-竞争，本文如实报告这一修订。作为副产品，归因审计暴露了一个超出原实验范围的独立发现：**固定模型 checkpoint 的毒株转写倾向存在亚小时级的双峰状态漂移**（多批对照，Fisher $p\le0.0024$）；我们据此提出**探针校准协议**——实验批启动前以约 3 分钟/链的探针判定当前毒株转写状态，跨批比较限于同状态批次——该协议本身构成可复用的方法论贡献。
+
+**关键词：** 无门控智能体记忆架构；记忆投毒；预注册受控实验；Lean 4 形式化验证；硬隔离；分支过程
 
 
 ---
@@ -29,8 +31,6 @@ LLM 智能体（agent）正被部署到长期运行的生产系统：经验沉�
 3. **形式化空白**：软件工程学科的"根本规律"（Brooks 1987；Lehman 1980；Conway 1968）历来是经验定律，从未被形式化证明（§2.5 定位）；智能体记忆的投毒-隔离规律同样停留在启发式层面。
 
 ## 1.3 本工作
-
-本文是公开专著《工业智能体控制论：自主软件工程的设计模式与形式化架构》（同库，CC BY 4.0，四大公理体系）之公理 IV 的完整实证展开。
 
 本工作根植的**公理 IV（经验自免疫）**主张：未经**物理验证与独立审查终审**的自生经验经检索复用会对后续任务产生持续性污染，其防御须依赖写入层的结构阻断（隔离）而非决策层的软信号（标记）。在此框架下，本文给出**机制识别 + 形式化 + 预注册实证**的完整闭环：
 
@@ -170,7 +170,7 @@ $$m = \mu(1-\sigma) \quad \text{(乘性压缩律)}$$
 
 ## 4.2 定理链
 
-本节定理链全部由 Lean 4 机器验证（零 `sorry`）。形式化源码与全部实验工件已公开：GitHub 仓库 `dpsnet/industrial-agentic-cybernetics`（`formal_proof/IACFormalization/`，Lean 4 toolchain v4.34.0-rc2 + mathlib4，构建命令 `lake build`，86 条定理零 `sorry`）；实验脚本、预注册计划、判读 JSON 与探针数据见 `experiments/`；本文为该仓库专著《工业智能体控制论》公理 IV 的实证展开。开源前仓库历史经安全清理（密钥剥离）重写，commit 哈希以公开库标签 `v1.1.0` 为准（DOI: 10.5281/zenodo.23637013）。
+本节定理链全部由 Lean 4 机器验证（零 `sorry`）。形式化源码：`formal_proof/IACFormalization`（本仓库 commit `4825137`；Lean 4，mathlib 版本见 `lakefile.lean`）。仓库目前**保持私有**：commit hash 可据此核对文件树与构建记录，完整源码按需向作者索取。
 
 **T1 期望几何律**（`expected_population_geometric`，归纳证明）：$E[Z_n]=m^n E[Z_0]$。
 
@@ -581,27 +581,6 @@ H1AC 池化 per-parent 口径在 C2 下因幸存者偏差失效（末代存活�
 软件工程的经验定律可以且应当提升为“条件定理 + 实测支撑”的工程公理结构（方法论主张；被机检的对象为概率论条件定理，限定见 §2.5）；本工作提供了完整实例（形式化 + 预注册 + 机制修正），并给出可迁移的方法论模板（三层知识地位 + 预注册判据 + 机制识别优先）。
 
 
-## 数据与代码可得性
-
-全部形式化源码、实验脚本与数据工件随本文公开于 GitHub 仓库 `dpsnet/industrial-agentic-cybernetics`（MIT / CC BY 4.0 双许可，专著同库；归档 DOI: 10.5281/zenodo.23637013）。本文所引工件与仓库相对路径的映射如下：
-
-| 本地文件名（正文引用） | 仓库相对路径 |
-| :--- | :--- |
-| Lean 工程 `formal_proof/IACFormalization/`（`lake build`，86 定理零 sorry） | `formal_proof/IACFormalization/` |
-| 预注册计划（`EXPERIMENT_PLAN_AXIOM4_*.md` 等 8 份） | `experiments/attention_growth/EXPERIMENT_PLAN_*.md` |
-| `_mc_state_rescan_W{4,8,12}_{s1,s2}.json`（含 r0–r11 分片）与 `_mc_state_rescan_judge.py/.txt` | `experiments/attention_growth/_mc_state_rescan_*` |
-| 判读 JSON（`e_supercritical_judgement2.json`、`e_h1ac_judgement.json` 等） | `experiments/attention_growth/` |
-| 原始会话 JSON（`axiom4_results_*.json`，含跨模型/跨任务族批次） | `experiments/attention_growth/` |
-| 生产现场实验（模式 23/24，预注册+判读） | `experiments/field_test/` |
-
-复算入口（公理 IV 传播比，SUPERCRITICAL 档）：
-
-```bash
-python experiments/attention_growth/e_supercritical_judge.py
-```
-
-输出 `e_supercritical_judgement2.json`（传播比 $\hat m$ 与 CI、Z 轨迹、存活率、容量敏感性；判读口径见附录 C）。
-
 ## 附录
 
 ## A. 判读脚本与数据清单
@@ -671,4 +650,3 @@ python experiments/attention_growth/e_supercritical_judge.py
 16. Turing, A. M. (1936). *On Computable Numbers, with an Application to the Entscheidungsproblem*. Proceedings of the LMS, 42, 230–265.
 17. Zhan, Q., et al. (2024). *AgentPoison: Red-Teaming LLM Agents via Memory Engineering or Malicious Tool Manipulation*. NeurIPS 2024. arXiv:2407.12784.
 18. Leong, J. W., et al. (2026). *Defense Effectiveness Across Architectural Layers: A Mechanistic Evaluation of Persistent Memory Attacks on Stateful LLM Agents*. arXiv:2605.08442.
-19. 王斌. 工业智能体控制论：自主软件工程的设计模式与形式化架构[EB/OL]. (2026-10-25). https://github.com/dpsnet/industrial-agentic-cybernetics. DOI: 10.5281/zenodo.23637013.

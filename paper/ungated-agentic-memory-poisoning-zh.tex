@@ -48,44 +48,6 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\newenvironment{Shaded}{}{}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
-\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
-\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -134,7 +96,7 @@
 
 Email: wang.bin@foxmail.com；wangb@kailuzhe.cn
 
-长期运行的 LLM
+\textbf{摘要：} 长期运行的 LLM
 智能体将经验沉淀进持久记忆；未经验证或恶意的条目可在会话间传播并污染下游任务。既有防御将软标记与硬隔离混为一谈，且尚无研究将记忆架构与传播的数学结构联系起来。本文在两种写入协议（选择性转写与全量追加）下研究注入-传播问题，通过覆盖三个模型族（DeepSeek-V4-Pro-0813（Pro）、Kimi、DeepSeek-V4.1-Flash-1017（Flash））、两种架构、多档容量、共
 846 条智能体会话链（5,448 会话-代单元；selective 对照 2 链 × 6
 代另计）的预注册实验，并以 Lean 4 机检条件定理支撑。
@@ -183,6 +145,9 @@ checkpoint 的毒株转写倾向存在亚小时级的双峰状态漂移}（多�
 3
 分钟/链的探针判定当前毒株转写状态，跨批比较限于同状态批次------该协议本身构成可复用的方法论贡献。
 
+\textbf{关键词：} 无门控智能体记忆架构；记忆投毒；预注册受控实验；Lean 4
+形式化验证；硬隔离；分支过程
+
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \subsection{1 引言}\label{ux5f15ux8a00}
@@ -214,9 +179,6 @@ al., \emph{Nature} 631,
 \end{enumerate}
 
 \subsection{1.3 本工作}\label{ux672cux5de5ux4f5c}
-
-本文是公开专著《工业智能体控制论：自主软件工程的设计模式与形式化架构》（同库，CC
-BY 4.0，四大公理体系）之公理 IV 的完整实证展开。
 
 本工作根植的\textbf{公理
 IV（经验自免疫）}主张：未经\textbf{物理验证与独立审查终审}的自生经验经检索复用会对后续任务产生持续性污染，其防御须依赖写入层的结构阻断（隔离）而非决策层的软信号（标记）。在此框架下，本文给出\textbf{机制识别
@@ -622,13 +584,10 @@ PMF）：未终审经验的跨代传播中，双盲隔离门禁的选择度 \(\s
 \subsection{4.2 定理链}\label{ux5b9aux7406ux94fe}
 
 本节定理链全部由 Lean 4 机器验证（零
-\texttt{sorry}）。形式化源码与全部实验工件已公开：GitHub 仓库
-\texttt{dpsnet/industrial-agentic-cybernetics}（\texttt{formal\_proof/IACFormalization/}，Lean
-4 toolchain v4.34.0-rc2 + mathlib4，构建命令 \texttt{lake\ build}，86
-条定理零 \texttt{sorry}）；实验脚本、预注册计划、判读 JSON 与探针数据见
-\texttt{experiments/}；本文为该仓库专著《工业智能体控制论》公理 IV
-的实证展开。开源前仓库历史经安全清理（密钥剥离）重写，commit
-哈希以公开库标签 \texttt{v1.1.0} 为准（DOI: 10.5281/zenodo.23637013）。
+\texttt{sorry}）。形式化源码：\texttt{formal\_proof/IACFormalization}（本仓库
+commit \texttt{4825137}；Lean 4，mathlib 版本见
+\texttt{lakefile.lean}）。仓库目前\textbf{保持私有}：commit hash
+可据此核对文件树与构建记录，完整源码按需向作者索取。
 
 \textbf{T1
 期望几何律}（\texttt{expected\_population\_geometric}，归纳证明）：\(E[Z_n]=m^n E[Z_0]\)。
@@ -1976,56 +1935,6 @@ credits）而安全与效用不变------探针增量购买的是批内漂移可�
 机制修正），并给出可迁移的方法论模板（三层知识地位 + 预注册判据 +
 机制识别优先）。
 
-\subsection{数据与代码可得性}\label{ux6570ux636eux4e0eux4ee3ux7801ux53efux5f97ux6027}
-
-全部形式化源码、实验脚本与数据工件随本文公开于 GitHub 仓库
-\texttt{dpsnet/industrial-agentic-cybernetics}（MIT / CC BY 4.0
-双许可，专著同库；归档 DOI:
-10.5281/zenodo.23637013）。本文所引工件与仓库相对路径的映射如下：
-
-{\def\LTcaptype{} % do not increment counter
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-本地文件名（正文引用）
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-仓库相对路径
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Lean 工程
-\texttt{formal\_proof/IACFormalization/}（\texttt{lake\ build}，86
-定理零 sorry） & \texttt{formal\_proof/IACFormalization/} \\
-预注册计划（\texttt{EXPERIMENT\_PLAN\_AXIOM4\_*.md} 等 8 份） &
-\texttt{experiments/attention\_growth/EXPERIMENT\_PLAN\_*.md} \\
-\texttt{\_mc\_state\_rescan\_W\{4,8,12\}\_\{s1,s2\}.json}（含 r0--r11
-分片）与 \texttt{\_mc\_state\_rescan\_judge.py/.txt} &
-\texttt{experiments/attention\_growth/\_mc\_state\_rescan\_*} \\
-判读
-JSON（\texttt{e\_supercritical\_judgement2.json}、\texttt{e\_h1ac\_judgement.json}
-等） & \texttt{experiments/attention\_growth/} \\
-原始会话 JSON（\texttt{axiom4\_results\_*.json}，含跨模型/跨任务族批次）
-& \texttt{experiments/attention\_growth/} \\
-生产现场实验（模式 23/24，预注册+判读） &
-\texttt{experiments/field\_test/} \\
-\end{longtable}
-}
-
-复算入口（公理 IV 传播比，SUPERCRITICAL 档）：
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ExtensionTok{python}\NormalTok{ experiments/attention\_growth/e\_supercritical\_judge.py}
-\end{Highlighting}
-\end{Shaded}
-
-输出 \texttt{e\_supercritical\_judgement2.json}（传播比 \(\hat m\) 与
-CI、Z 轨迹、存活率、容量敏感性；判读口径见附录 C）。
-
 \subsection{附录}\label{ux9644ux5f55}
 
 \subsection{A.
@@ -2212,11 +2121,6 @@ B-H2 & R²=0.9233、slope −0.086 & 同上 \\
   Leong, J. W., et al.~(2026). \emph{Defense Effectiveness Across
   Architectural Layers: A Mechanistic Evaluation of Persistent Memory
   Attacks on Stateful LLM Agents}. arXiv:2605.08442.
-\item
-  王斌. 工业智能体控制论：自主软件工程的设计模式与形式化架构{[}EB/OL{]}.
-  (2026-10-25).
-  https://github.com/dpsnet/industrial-agentic-cybernetics. DOI:
-  10.5281/zenodo.23637013.
 \end{enumerate}
 
 \end{document}
