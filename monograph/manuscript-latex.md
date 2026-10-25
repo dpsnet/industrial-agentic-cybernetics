@@ -4060,6 +4060,7 @@ lean src/IACFormalization/Axiom1_Grounding.lean   # 单文件检查
 23. Chen, Y., et al. (2026). *OrchestraBench: Evaluating Multi-Agent Orchestration Failure Modes, Recovery, and Decomposition Quality*. arXiv:2608.05263.
 24. Thaman, K., et al. (2026). *Reward Hacking Benchmark: Measuring Exploits in LLM Agents with Tool Use*. arXiv:2605.02964.
 25. Roth, A., et al. (2026). *Hack-Verifiable Environments: Towards Evaluating Reward Hacking at Scale*. arXiv:2605.20744.
+26. 王斌. 工业智能体控制论：自主软件工程的设计模式与形式化架构[EB/OL]. (2026-10-25). https://github.com/dpsnet/industrial-agentic-cybernetics. DOI: 10.5281/zenodo.23636678.
 
 
 ---

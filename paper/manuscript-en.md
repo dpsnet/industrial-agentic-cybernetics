@@ -170,7 +170,7 @@ All theorems are presented as **conditional theorems**: structural premises (e.g
 
 ## 4.2 Theorem Chain
 
-All theorems in this chain are machine-checked with Lean 4 (zero `sorry`). The formalization sources and all experimental artifacts are publicly available: GitHub repository `dpsnet/industrial-agentic-cybernetics` (`formal_proof/IACFormalization/`, Lean 4 toolchain v4.34.0-rc2 + mathlib4, build command `lake build`, 86 theorems with zero `sorry`); experiment scripts, pre-registration plans, judgement JSONs, and probe data under `experiments/`; this paper is the complete evidence-based elaboration of Axiom IV of the treatise *Industrial Agentic Cybernetics* in the same repository. The repository history was rewritten for security cleanup (credential stripping) before open-sourcing; commit hashes are anchored to the public release tag `v1.0.0`.
+All theorems in this chain are machine-checked with Lean 4 (zero `sorry`). The formalization sources and all experimental artifacts are publicly available: GitHub repository `dpsnet/industrial-agentic-cybernetics` (`formal_proof/IACFormalization/`, Lean 4 toolchain v4.34.0-rc2 + mathlib4, build command `lake build`, 86 theorems with zero `sorry`); experiment scripts, pre-registration plans, judgement JSONs, and probe data under `experiments/`; this paper is the complete evidence-based elaboration of Axiom IV of the treatise *Industrial Agentic Cybernetics* in the same repository. The repository history was rewritten for security cleanup (credential stripping) before open-sourcing; commit hashes are anchored to the public release tag `v1.0.0` (DOI: 10.5281/zenodo.23636678).
 
 **T1 Expected geometric law** (`expected_population_geometric`, by induction): $E[Z_n]=m^n E[Z_0]$.
 
@@ -584,7 +584,7 @@ The empirical laws of software engineering can and should be promoted to an engi
 
 ## Data and Code Availability
 
-All formalization sources, experiment scripts, and data artifacts are publicly available in the GitHub repository `dpsnet/industrial-agentic-cybernetics` (dual-licensed MIT / CC BY 4.0; the companion treatise lives in the same repository). Mapping of artifacts referenced in the text to repository-relative paths:
+All formalization sources, experiment scripts, and data artifacts are publicly available in the GitHub repository `dpsnet/industrial-agentic-cybernetics` (dual-licensed MIT / CC BY 4.0; the companion treatise lives in the same repository; archival DOI: 10.5281/zenodo.23636678). Mapping of artifacts referenced in the text to repository-relative paths:
 
 | Artifact referenced in text | Repository path |
 | :--- | :--- |
@@ -672,4 +672,4 @@ Outputs `e_supercritical_judgement2.json` (propagation ratio $\hat m$ with CI, Z
 16. Turing, A. M. (1936). *On Computable Numbers, with an Application to the Entscheidungsproblem*. Proceedings of the LMS, 42, 230–265.
 17. Zhan, Q., et al. (2024). *AgentPoison: Red-Teaming LLM Agents via Memory Engineering or Malicious Tool Manipulation*. NeurIPS 2024. arXiv:2407.12784.
 18. Leong, J. W., et al. (2026). *Defense Effectiveness Across Architectural Layers: A Mechanistic Evaluation of Persistent Memory Attacks on Stateful LLM Agents*. arXiv:2605.08442.
-19. Wang, B. *Industrial Agentic Cybernetics: Design Patterns and Formal Architecture for Autonomous Software Engineering*[EB/OL]. (2026-10-25). https://github.com/dpsnet/industrial-agentic-cybernetics.
+19. Wang, B. *Industrial Agentic Cybernetics: Design Patterns and Formal Architecture for Autonomous Software Engineering*[EB/OL]. (2026-10-25). https://github.com/dpsnet/industrial-agentic-cybernetics. DOI: 10.5281/zenodo.23636678.
