@@ -12,10 +12,10 @@
 
 ## 声明
 
-- **预印本与开源状态**：全部形式化源码、实验脚本与数据工件已随本文公开（GitHub 仓库 dpsnet/industrial-agentic-cybernetics，代码 MIT / 文本 CC BY 4.0）；本论文为公开专著《工业智能体控制论（Industrial Agentic Cybernetics）》公理 IV 的实证展开，DOI: 10.5281/zenodo.23637013。
+- **开源与数据可得性声明**：全部形式化源码、实验脚本与数据工件已随本文公开（GitHub 仓库 dpsnet/industrial-agentic-cybernetics，代码 MIT / 文本 CC BY 4.0，DOI: 10.5281/zenodo.23637013）；本论文为公开专著《工业智能体控制论（Industrial Agentic Cybernetics）》公理 IV 的实证展开（专著叙述组织与本文不同，实验证据由本文独立呈现）。
+- **预印本状态**：本文**未经任何预印本服务器发布**，未在其他刊物发表，未一稿多投。
 - **作者贡献**：作者独立完成理论构建、实验设计、实现与验证（含 Lean 4 形式化与全部代码）。
 - **利益冲突**：作者声明不存在任何利益冲突。
-- 本文为原创工作，未一稿多投。
 
 ## 联系信息
 
