@@ -1,0 +1,31 @@
+MIT License
+
+Copyright (c) 2026 王斌 (Bin Wang) / 北京开路者科技有限公司 (Beijing Kailuzhe Technology Co., Ltd.)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+许可适用说明 (License Scope)
+
+- 本 LICENSE（MIT）覆盖全库默认许可，适用于代码与工程产物：
+  scripts/、formal_proof/（Lean 形式化证明）、experiments/（实验脚本与数据）。
+- 文本类内容（docs/、monograph/、paper/ 下的专著、论文与文档）采用
+  Creative Commons Attribution 4.0 International License（CC BY 4.0），
+  以各目录下的 LICENSE 文件为准；无冲突时以更具体的目录 LICENSE 优先。

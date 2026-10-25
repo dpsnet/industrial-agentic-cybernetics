@@ -1,7 +1,8 @@
 # 《工业级智能体控制论：自主软件工程的设计模式与形式化架构》
 ## Industrial Agentic Cybernetics: Design Patterns and Formal Architecture for Autonomous Software Engineering
 
-[![License: CC-BY-NC-4.0](https://img.shields.io/badge/License-CC--BY--NC--4.0-blue.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+[![License: MIT (Code)](https://img.shields.io/badge/Code-MIT-blue.svg)](LICENSE)
+[![License: CC BY 4.0 (Text)](https://img.shields.io/badge/Text-CC--BY--4.0-green.svg)](LICENSE-CC-BY-4.0.txt)
 [![Standard: GoF-Style Patterns](https://img.shields.io/badge/Pattern-GoF--Style-success.svg)](#)
 [![Field: Agentic Cybernetics](https://img.shields.io/badge/Domain-Software%20Engineering-orange.svg)](#)
 
@@ -159,7 +160,11 @@ flowchart LR
 
 ---
 
-## ⚖️ 知识产权与脱敏声明 (Intellectual Property & Disclaimers)
+## ⚖️ 许可与开源声明 (License & Open Source)
 
 1. **理论纯粹性**：本书所有内容均为抽象系统工程理论、控制论方法学与纯数学/状态机推导，**不包含任何特定企业的私有专有源代码、内部网络拓扑或未公开商业秘密**。
-2. **知识共享许可**：本书理论体系采用 [CC-BY-NC 4.0 (知识共享-署名-非商业性使用 4.0 国际许可协议)](https://creativecommons.org/licenses/by-nc/4.0/)。在保留原作者署名且用于非商业学术研究、技术交流的前提下可自由引用。
+2. **双许可（Dual License）**：
+   - **代码与工程产物**（`scripts/`、`formal_proof/` Lean 形式化证明、`experiments/` 实验脚本与数据）——[MIT License](LICENSE)，可自由使用、修改、商用，须保留版权声明；
+   - **文本内容**（`docs/`、`monograph/`、`paper/` 下的专著、论文与文档）——[Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSE-CC-BY-4.0.txt)，可自由共享与改编（含商业用途），须署名：**王斌（Bin Wang）/ 北京开路者科技有限公司**。
+3. **引用方式**：王斌（Bin Wang）. 《工业智能体控制论：自主软件工程的设计模式与形式化架构》(Industrial Agentic Cybernetics: Design Patterns and Formal Architecture for Autonomous Software Engineering). CC BY 4.0.
+4. **实证可复现**：专著附录 B.12 复现指引、实验数据（`experiments/`）与 Lean 形式化模块（`formal_proof/`）随库公开，全部实验判据均按预注册纪律执行。

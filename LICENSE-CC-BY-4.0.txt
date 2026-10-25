@@ -1,0 +1,36 @@
+This work is licensed under the Creative Commons Attribution 4.0
+International License (CC BY 4.0).
+
+To view a copy of this license, visit:
+https://creativecommons.org/licenses/by/4.0/
+
+法律文本（legalcode）：
+https://creativecommons.org/licenses/by/4.0/legalcode
+
+---
+
+署名 (Attribution)
+
+Copyright (c) 2026 王斌 (Bin Wang) / 北京开路者科技有限公司
+(Beijing Kailuzhe Technology Co., Ltd.)
+
+引用方式（建议）：
+
+  王斌（Bin Wang）. 《工业智能体控制论：自主软件工程的设计模式与形式化架构》
+  (Industrial Agentic Cybernetics: Design Patterns and Formal Architecture for
+  Autonomous Software Engineering). CC BY 4.0.
+  https://github.com/dpsnet/industrial-agentic-cybernetics
+
+---
+
+许可要点
+
+您可以自由地：
+- 共享（Share）——以任何媒介或格式复制和再分发本作品；
+- 改编（Adapt）——出于任何目的（包括商业目的）对本作品进行再混合、
+  转换和基于本作品的创作。
+
+唯须遵守以下条款：
+- 署名（Attribution）——您必须给出适当的署名，提供指向本许可的链接，
+  并说明是否对作品进行了修改。
+- 无额外限制——您不得适用法律条款或技术措施，限制他人做本许可允许的事情。
