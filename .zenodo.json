@@ -1,0 +1,21 @@
+{
+  "creators": [
+    {
+      "name": "王斌",
+      "affiliation": "北京开路者科技有限公司"
+    }
+  ],
+  "title": "industrial-agentic-cybernetics：工业智能体控制论（专著）与公理 IV 论文（开源工件）",
+  "description": "《工业智能体控制论（Industrial Agentic Cybernetics）》专著及公理 IV 论文《无门控智能体记忆架构中的记忆投毒》的全部开源工件：形式化证明（Lean 4，formal_proof/）、实验脚本与判读数据（experiments/）、专著与论文源稿（monograph/、paper/）。双许可：代码 MIT，文本 CC BY 4.0。",
+  "license": "MIT",
+  "upload_type": "software",
+  "language": "zh",
+  "keywords": [
+    "agentic memory",
+    "memory poisoning",
+    "Lean 4",
+    "formal verification",
+    "industrial agentic cybernetics",
+    "pattern language"
+  ]
+}
