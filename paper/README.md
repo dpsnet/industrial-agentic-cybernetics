@@ -2,6 +2,12 @@
 
 面向审稿人/期刊会议的**主张辩护态**产物。原始研究资料一律留在主目录（`docs/`、`experiments/`、`formal_proof/`），本目录只放论文本体及其派生素材；正文引用主目录原始文档，**不复制**（防双源漂移，docs 内的 file:/// 相对引用不断）。
 
+## 文件命名（对外正式名）
+
+- 论文组装稿（对外名）：`ungated-agentic-memory-poisoning-zh.md`（中文）/ `ungated-agentic-memory-poisoning-en.md`（英文），对应论文标题《无门控智能体记忆架构中的记忆投毒：架构依赖的传播机制、容量控制与隔离不变性》（*Memory Poisoning in Ungated Agentic Memory Architectures: Architecture-Dependent Propagation Mechanisms, Capacity Control, and Quarantine Invariance*）。
+- 由 `assemble_manuscript.py` / `assemble_manuscript_en.py` 从 `sections/`（`sections_en/`）单源重新生成，勿手工改组装稿正文。
+- 投稿时按期刊/会议要求改用其模板文件名即可。
+
 ## 当前唯一候选：公理 IV 聚焦论文
 
 **主题**：无门禁智能体记忆架构下的毒株传播——相变、架构效应与隔离不变性。

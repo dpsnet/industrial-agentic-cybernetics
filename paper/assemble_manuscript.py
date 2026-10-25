@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-"""Assemble paper/manuscript.md from sections (single-source).
+﻿# -*- coding: utf-8 -*-
+"""Assemble paper/ungated-agentic-memory-poisoning-zh.md from sections (single-source).
 
 Strips per-section work-note header blocks, inserts figure refs,
 prepends title+abstract, appends unified reference list.
@@ -106,13 +106,13 @@ def main():
 18. Leong, J. W., et al. (2026). *Defense Effectiveness Across Architectural Layers: A Mechanistic Evaluation of Persistent Memory Attacks on Stateful LLM Agents*. arXiv:2605.08442.
 """)
 
-    out = os.path.join(ROOT, "manuscript.md")
+    out = os.path.join(ROOT, "ungated-agentic-memory-poisoning-zh.md")
     with io.open(out, "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(parts))
     # report word count of body (approx)
     body = "\n".join(parts)
     words = len(re.findall(r"\S+", body))
-    print("manuscript.md written, ~%d words, %.1f KB" % (words, len(body.encode("utf-8"))/1024))
+    print("ungated-agentic-memory-poisoning-zh.md written, ~%d words, %.1f KB" % (words, len(body.encode("utf-8"))/1024))
 
 if __name__ == "__main__":
     main()
