@@ -25,40 +25,48 @@ window.addEventListener('load', function () {
 });
 window.addEventListener('load', function () {
   var main = document.querySelector('main');
-  if (!main) return;
-  var hs = main.querySelectorAll('h2, h3');
+  var side = document.getElementById('toc-side');
+  if (!main || !side) return;
+  var hs = main.querySelectorAll('h2, h3, h4, h5');
   if (hs.length === 0) return;
   function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
   var items = [];
   hs.forEach(function (h, i) {
     if (!h.id) h.id = 'sec-' + i;
-    items.push({ tag: h.tagName, id: h.id, text: h.textContent.trim() });
+    items.push({ level: parseInt(h.tagName.charAt(1), 10), id: h.id, text: h.textContent.trim() });
   });
-  var html = '<div class="toc-box"><div class="toc-title">📑 本章目录</div><ul>';
-  var openUl = false;
+  var html = '<nav class="toc-nav"><div class="toc-title">📑 本章目录</div><ul>';
+  var stack = [];
   items.forEach(function (it) {
-    if (it.tag === 'H2') {
-      if (openUl) { html += '</ul>'; openUl = false; }
-      html += '<li><a href="#' + it.id + '">' + esc(it.text) + '</a>';
-    } else {
-      if (!openUl) { html += '<ul>'; openUl = true; }
-      html += '<li><a href="#' + it.id + '">' + esc(it.text) + '</a></li>';
-    }
+    while (stack.length && stack[stack.length - 1].level >= it.level) { html += '</li>'; stack.pop(); }
+    if (stack.length && stack[stack.length - 1].level < it.level) html += '<ul>';
+    html += '<li><a href="#' + it.id + '">' + esc(it.text) + '</a>';
+    stack.push({ level: it.level });
   });
-  if (openUl) html += '</ul>';
-  html += '</li></ul></div>';
-  var h1 = main.querySelector('h1');
-  if (h1) h1.insertAdjacentHTML('afterend', html);
-  else main.insertAdjacentHTML('afterbegin', html);
+  while (stack.length) { html += '</li>'; stack.pop(); }
+  html += '</ul></nav>';
+  side.innerHTML = html;
 });
 </script>
 <style>
   body { font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-         line-height: 1.7; color: #222; max-width: 860px; margin: 0 auto; padding: 0 20px; }
+         line-height: 1.7; color: #222; margin: 0 auto; padding: 0 20px; }
   header.topbar { border-bottom: 1px solid #ddd; padding: 12px 0; margin-bottom: 24px;
                   display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
   header.topbar a { color: #0969da; text-decoration: none; font-size: 14px; }
   header.topbar a:hover { text-decoration: underline; }
+  .layout { display: flex; gap: 28px; align-items: flex-start; }
+  .toc-side { position: sticky; top: 16px; width: 280px; flex-shrink: 0;
+              max-height: calc(100vh - 32px); overflow-y: auto;
+              background: #f6f8fa; border: 1px solid #d0d7de; border-radius: 6px;
+              padding: 12px 14px; font-size: 0.84em; }
+  .toc-title { font-weight: 600; margin-bottom: 8px; }
+  .toc-nav ul { list-style: none; margin: 0; padding-left: 0; }
+  .toc-nav ul ul { padding-left: 13px; }
+  .toc-nav li { margin: 3px 0; }
+  .toc-nav a { color: #0969da; text-decoration: none; }
+  .toc-nav a:hover { text-decoration: underline; }
+  main { flex: 1; min-width: 0; max-width: 880px; }
   h1 { font-size: 1.6em; border-bottom: 2px solid #333; padding-bottom: 8px; }
   h2 { font-size: 1.25em; margin-top: 1.6em; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
   h3 { font-size: 1.1em; }
@@ -69,16 +77,12 @@ window.addEventListener('load', function () {
   th, td { border: 1px solid #d0d7de; padding: 6px 10px; font-size: 0.95em; }
   img { max-width: 100%; }
   blockquote { border-left: 4px solid #d0d7de; margin: 12px 0; padding: 4px 16px; color: #57606a; }
-  .toc-box { background: #f6f8fa; border: 1px solid #d0d7de; border-radius: 6px;
-             padding: 12px 18px; margin: 0 0 24px; font-size: 0.9em; }
-  .toc-title { font-weight: 600; margin-bottom: 8px; }
-  .toc-box ul { list-style: none; margin: 0; padding-left: 0; }
-  .toc-box ul ul { padding-left: 18px; }
-  .toc-box li { margin: 2px 0; }
-  .toc-box a { color: #0969da; text-decoration: none; }
-  .toc-box a:hover { text-decoration: underline; }
   footer { border-top: 1px solid #ddd; margin-top: 48px; padding: 16px 0 32px;
            color: #57606a; font-size: 13px; }
+  @media (max-width: 1000px) {
+    .layout { display: block; }
+    .toc-side { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -86,9 +90,12 @@ window.addEventListener('load', function () {
   <span><a href="{{ site.baseurl }}/index.html">📖 在线电子书</a> · <a href="{{ site.baseurl }}/Industrial-Agentic-Cybernetics.pdf">PDF 完整版</a></span>
   <span><a href="https://github.com/dpsnet/industrial-agentic-cybernetics/discussions">💬 话题与讨论</a> · <a href="https://github.com/dpsnet/industrial-agentic-cybernetics">GitHub 仓库</a></span>
 </header>
+<div class="layout">
+<aside class="toc-side" id="toc-side"></aside>
 <main>
 {{ content }}
 </main>
+</div>
 <footer>
   《工业智能体控制论：自主软件工程的设计模式与形式化架构》 · 王斌（Bin Wang）/ 北京开路者科技有限公司 · CC BY 4.0 · DOI https://doi.org/10.5281/zenodo.23636677（概念 DOI，指向最新版）
 </footer>
