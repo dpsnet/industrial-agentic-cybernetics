@@ -23,6 +23,34 @@ window.addEventListener('load', function () {
     mermaid.run({ querySelector: '.mermaid' });
   }
 });
+window.addEventListener('load', function () {
+  var main = document.querySelector('main');
+  if (!main) return;
+  var hs = main.querySelectorAll('h2, h3');
+  if (hs.length < 3) return;
+  function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  var items = [];
+  hs.forEach(function (h, i) {
+    if (!h.id) h.id = 'sec-' + i;
+    items.push({ tag: h.tagName, id: h.id, text: h.textContent.trim() });
+  });
+  var html = '<div class="toc-box"><div class="toc-title">📑 本章目录</div><ul>';
+  var openUl = false;
+  items.forEach(function (it) {
+    if (it.tag === 'H2') {
+      if (openUl) { html += '</ul>'; openUl = false; }
+      html += '<li><a href="#' + it.id + '">' + esc(it.text) + '</a>';
+    } else {
+      if (!openUl) { html += '<ul>'; openUl = true; }
+      html += '<li><a href="#' + it.id + '">' + esc(it.text) + '</a></li>';
+    }
+  });
+  if (openUl) html += '</ul>';
+  html += '</li></ul></div>';
+  var h1 = main.querySelector('h1');
+  if (h1) h1.insertAdjacentHTML('afterend', html);
+  else main.insertAdjacentHTML('afterbegin', html);
+});
 </script>
 <style>
   body { font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -41,6 +69,14 @@ window.addEventListener('load', function () {
   th, td { border: 1px solid #d0d7de; padding: 6px 10px; font-size: 0.95em; }
   img { max-width: 100%; }
   blockquote { border-left: 4px solid #d0d7de; margin: 12px 0; padding: 4px 16px; color: #57606a; }
+  .toc-box { background: #f6f8fa; border: 1px solid #d0d7de; border-radius: 6px;
+             padding: 12px 18px; margin: 0 0 24px; font-size: 0.9em; }
+  .toc-title { font-weight: 600; margin-bottom: 8px; }
+  .toc-box ul { list-style: none; margin: 0; padding-left: 0; }
+  .toc-box ul ul { padding-left: 18px; }
+  .toc-box li { margin: 2px 0; }
+  .toc-box a { color: #0969da; text-decoration: none; }
+  .toc-box a:hover { text-decoration: underline; }
   footer { border-top: 1px solid #ddd; margin-top: 48px; padding: 16px 0 32px;
            color: #57606a; font-size: 13px; }
 </style>
