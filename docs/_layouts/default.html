@@ -38,12 +38,25 @@ window.addEventListener('load', function () {
   var html = '<nav class="toc-nav"><div class="toc-title">📑 本章目录</div><ul>';
   var stack = [];
   items.forEach(function (it) {
-    while (stack.length && stack[stack.length - 1].level >= it.level) { html += '</li>'; stack.pop(); }
-    if (stack.length && stack[stack.length - 1].level < it.level) html += '<ul>';
+    while (stack.length && stack[stack.length - 1].level >= it.level) {
+      if (stack[stack.length - 1].hasUl) html += '</ul>';
+      html += '</li>';
+      stack.pop();
+    }
+    if (stack.length && stack[stack.length - 1].level < it.level) {
+      if (!stack[stack.length - 1].hasUl) {
+        html += '<ul>';
+        stack[stack.length - 1].hasUl = true;
+      }
+    }
     html += '<li><a href="#' + it.id + '">' + esc(it.text) + '</a>';
-    stack.push({ level: it.level });
+    stack.push({ level: it.level, hasUl: false });
   });
-  while (stack.length) { html += '</li>'; stack.pop(); }
+  while (stack.length) {
+    if (stack[stack.length - 1].hasUl) html += '</ul>';
+    html += '</li>';
+    stack.pop();
+  }
   html += '</ul></nav>';
   side.innerHTML = html;
 });
