@@ -9,7 +9,7 @@
 
 ---
 
-### 【中文导言】关于本专著
+### 【中文导言】关于本书
 在人工智能驱动的软件工程（AI for Software Engineering）领域，学术界与早期开源界长期沉溺于“玩具级/演示级（Toy/Demo-level）”的假设：假定大语言模型（LLM）通过多轮提示词堆叠、简单的自我反思（Reflection）或不受约束的外部工具调用，就能自主构建出高可靠的大型软件系统。
 
 然而，一旦进入具有百万行源码、深层依赖树、增量编译缓存与高并发协作的**真实工业级软件底座**，这套纯提示词范式瞬间崩溃——智能体陷入“自我欺骗式的奖励欺骗（Reward Hacking）”、“上下文退化（Context Rot）导致的越界代码破坏”、“变异工具重试造成的状态污染”、“并发读写死锁”以及“自生经验毒化后续任务的记忆投毒（Memory Poisoning）”。
@@ -37,7 +37,7 @@ Adhering to the formal Gang of Four (GoF) specification standard, this book deri
 
 ## 💬 如何参与讨论：批评、建议与想法 (How to Engage)
 
-本专著开源于此，**诚挚欢迎批评、反例与反驳，同样欢迎建议与想法**。参与方式：
+本书开源于此，**诚挚欢迎批评、反例与反驳，同样欢迎建议与想法**。参与方式：
 
 1. **Discussions**（开放式讨论）：[进入讨论区](https://github.com/dpsnet/industrial-agentic-cybernetics/discussions)，分类包括「批评与反例」「数学与形式化」「实证与实验」「开放问题」「建议与想法（Ideas）」；
 2. **Issue**（结构化批评）：使用 [批评模板](.github/ISSUE_TEMPLATE/criticism.md)，注明章节/定理编号（如 §3.3 Theorem 3.1、附录 B.12）、批评类型与论证；
