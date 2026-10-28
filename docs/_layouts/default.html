@@ -169,6 +169,14 @@ window.addEventListener('load', function () {
     .layout { display: block; }
     .toc-side { display: none; }
   }
+  .float-nav { position: fixed; right: 18px; bottom: 24px; z-index: 300;
+               display: flex; flex-direction: column; gap: 10px; }
+  .float-btn { width: 44px; height: 44px; border-radius: 50%; background: #fff;
+               border: 1px solid #d0d7de; box-shadow: 0 2px 8px rgba(0,0,0,.12);
+               cursor: pointer; font-size: 16px; line-height: 1; color: #57606a;
+               display: flex; align-items: center; justify-content: center;
+               transition: background .15s, color .15s; }
+  .float-btn:hover { background: #ddf4ff; color: #0969da; }
 </style>
 </head>
 <body>
@@ -193,5 +201,17 @@ window.addEventListener('load', function () {
 <footer>
   《工业智能体控制论：自主软件工程的设计模式与形式化架构》 · 王斌（Bin Wang）/ 北京开路者科技有限公司 · CC BY 4.0 · DOI https://doi.org/10.5281/zenodo.23636677（概念 DOI，指向最新版）
 </footer>
+<div class="float-nav">
+  <button class="float-btn" id="btn-top" title="回到顶部" aria-label="回到顶部">▲</button>
+  <button class="float-btn" id="btn-bottom" title="滚到底部" aria-label="滚到底部">▼</button>
+</div>
+<script>
+document.getElementById('btn-top').addEventListener('click', function () {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+document.getElementById('btn-bottom').addEventListener('click', function () {
+  window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+});
+</script>
 </body>
 </html>
