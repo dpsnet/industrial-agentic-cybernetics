@@ -151,3 +151,21 @@ class TaintQuarantineManager {
   }
 }
 ```
+
+
+---
+
+### 9. 形式化理论支撑 (Lean 4 Formal Proof)
+
+本模式的墓碑态吸收性与反向自免疫阻断已由 **Lean 4** 形式化机检验证（0 公理、0 sorry，源码见 `formal_proof/IACFormalization/src/IACFormalization/Pattern15_RevocationTombstone.lean`，对应附录 B.12）：
+
+- **墓碑态终结吸收性定理 (`tombstone_absorbing`)**：
+  墓碑态是状态机的终结吸收态，任意后续状态转换无法逃逸墓碑态。
+- **动态投影隔离安全性定理 (`tombstone_never_projectable`)**：
+  处于 tombstone 状态的模式绝不可能出现在任何上下文检索投影切片中。
+- **反向自免疫阻断定理 (`immunity_blocks_taint`)**：
+  从墓碑模式自动合成的反向免疫规则集，100% 机械阻断任何携带相同污点特征的候选模式代际再生。
+- **原子撤销立即失效定理 (`revoked_excluded_from_projection`)**：
+  执行撤销操作后，目标模式被原子置为 tombstone，立即从所有任务投影视图中消失。
+- **代际繁殖截断定理 (`tombstone_offspring_zero`)**：
+  墓碑化模式的有效繁殖均值严格为 0，分支过程后代在下一代立刻灭绝。

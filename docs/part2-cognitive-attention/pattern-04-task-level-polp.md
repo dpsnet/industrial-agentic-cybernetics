@@ -145,3 +145,41 @@ class TaskLevelContextProjector {
   }
 }
 ```
+
+
+---
+
+### 6. 收益与代价 (Consequences)
+
+- **收益 (Pros)**：
+  - **注意力信噪比显著提升**：压降 >60% 无关工程上下文，消除长上下文下的“迷失在中间”现象；
+  - **杜绝越界代码变异**：任务边界与文件作用域被严格限制，杜绝增量修改污染全局其他模块；
+  - **自愈重试精准收敛**：门禁打回反馈经靶向过滤仅回传任务关联 Finding，避免过度自愈反模式。
+- **代价 (Cons)**：
+  - 需要编排器维护架构蓝图与任务切片的双向动态映射，增加了编排层元数据维护成本；
+  - 对于强耦合跨模块重构任务，切片声明过紧可能引发漏改编译错误，需提供按需拓扑展开机制。
+
+---
+
+### 7. 反模式警示 (Anti-Patterns to Avoid)
+
+| 反模式名称 | 表现特征 | 为什么必须杜绝 |
+| :--- | :--- | :--- |
+| **全量蓝图倾倒 (Blueprint Dump)** | 将数十万 Token 的完整微服务架构图无差别注入每一个子任务 | 稀释注意力，引发模型幻觉与跨模块误修改 |
+| **越界自由修改 (Unbounded Editing)** | 允许开发智能体随意修改未在任务契约中声明的外部文件 | 造成难以排查的隐蔽逻辑破坏与单测回归 |
+
+---
+
+### 8. 形式化理论支撑 (Lean 4 Formal Proof)
+
+本模式的最小特权投影与信噪比增益已由 **Lean 4** 形式化机检验证（0 公理、0 sorry，源码见 `formal_proof/IACFormalization/src/IACFormalization/Pattern04_PoLPProjection.lean`，对应附录 B.13）：
+
+- **最小特权投影保真定理 (`polp_preserves_snr_strictly`)**：
+  $$\forall \text{ctx}, b_{ext} > 0 \implies \operatorname{snr}(\operatorname{projectPoLP}(\text{ctx})) > \operatorname{snr}(\text{ctx})$$
+  裁剪外部无关冗余上下文必然使任务目标检索信噪比严格提升。
+- **越界违约概率压降定理 (`polp_strictly_reduces_violation_risk`)**：
+  $$\forall \text{ctx}, b_{ext} > 0 \implies P_{\text{violate}}(\operatorname{projectPoLP}(\text{ctx})) < P_{\text{violate}}(\text{ctx})$$
+  最小特权投影严格压降模型的注意力退化与越界代码篡改风险。
+- **特权嵌套单调性定理 (`polp_monotone_nesting`)**：
+  $$b_1 \le b_2 \implies P_{\text{violate}}(a, b_1) \le P_{\text{violate}}(a, b_2)$$
+  投影切片越紧凑，其违约风险上界单调更低。

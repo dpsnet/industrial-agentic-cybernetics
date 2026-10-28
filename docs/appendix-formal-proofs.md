@@ -3,7 +3,7 @@
 
 > 本附录是全书理论主张的机检底座。所有定理均在 Lean 4（toolchain v4.34.0-rc2）+ mathlib4 中通过内核验证，工程位于 `formal_proof/IACFormalization/`，构建命令：`lake build`。
 >
-> 统计：86 条 [定理]（内核验证，含辅助引理）、**0 条公理**、0 个 `sorry`。
+> 统计：118 条 [定理]（117 定理 + 1 辅助引理，内核验证，按源码 `theorem`/`lemma` 计数）、**0 条公理**、0 个 `sorry`。
 >
 > 认识论三级标注贯穿本附录：
 > - **[定理]**：Lean 内核完整验证，无公理依赖（或仅依赖显式假设/结构前提）；
@@ -26,9 +26,13 @@
 | `Theorem3_1_CausalInvariance` | §3.3 | Foster–Lyapunov 离散核、有限状态机反例 | 全部 [定理]，零公理 |
 | `GaltonWatson` | §3.2 公理 IV 超临界强结论 | 生成函数、不动点、初等分析 | 全部 [定理]，零公理 |
 | `StochasticFosterLyapunov` | §3.3 随机控制 | 随机核、停时、初等期望 | 全部 [定理]，零公理 |
+| `Pattern02_RealityAudit` | 模式 02 | 四重现实过滤算子、一票否决权 | 全部 [定理]，零公理 |
+| `Pattern04_PoLPProjection` | 模式 04 | 任务级最小特权投影、信噪比严格提升、违约风险压降与特权单调性 | 全部 [定理]，零公理 |
 | `Pattern10_LeaseLock` | 模式 10 | 离散时钟、租约状态机 | 全部 [定理]，零公理 |
 | `Pattern11_PrimaryWriter` | 模式 11 | 写日志、时钟严格递增、视图过滤 | 全部 [定理]，零公理 |
+| `Pattern15_RevocationTombstone` | 模式 15 | 吸收态转移、投影隔离、反向自免疫 | 全部 [定理]，零公理 |
 | `Pattern23_24_ProductionLoop` | 模式 23/24 | 有限支撑随机核、Foster–Lyapunov 漂移 | 全部 [定理]，零公理 |
+| `Theorem3_1_LyapunovFuse` | §3.3; 附录 B.7 | 连续停滞能量累积引理、极限环排斥严格李雅普诺夫超鞅定理、停时熔断资源有界定理 | 全部 [定理]，零公理 |
 
 ---
 
@@ -190,7 +194,54 @@ $$\operatorname{snr}(\rho) := \frac{a(\rho)}{b(\rho)}.$$
 
 ---
 
-## B.11 与正文的经验边界声明
+## B.11 模式级形式锚点：审查者现实审计一票否决权（形式化层全部已证）
+
+`Pattern02_RealityAudit` 模块将模式 02（审查者现实审计一票否决模式）的形式化主张严格落地。模型：交付物 `Deliverable` 包含四重物理布尔判据（物理源码变动、编译耗时物理常理、反自指 Mock 核验、隔离环境同质性）；现实审计器 `realityAudit` 构造四重合取过滤算子；准入函数 `admissionVerdict` 要求现实审计必须通过且 Rubric 评分达到阈值。
+
+- **定理 `veto_overrides_high_score`（一票否决权绝对性）**：若现实审计未通过，无论主观或 Rubric 评分多高（即便高达 9 分满分），准入判据必为 false。
+- **定理 `tautology_vetoed`（反自指作弊硬阻断）**：若测试断言为自指回吐作弊（`isTautological = true`），现实审计必然失败，交付物必然被一票否决。
+- **定理 `substrate_missing_vetoed`（物理实体缺失硬阻断）**：若未产生任何实质业务代码变更（`hasPhysicalDiff = false`），必然被一票否决。
+- **定理 `four_pillars_soundness_and_completeness`（四重支柱完全充要性）**：准入当且仅当四重物理硬判据与分数阈值同时成立。
+
+---
+
+## B.12 模式级形式锚点：污点污染防御与谱系墓碑化（形式化层全部已证）
+
+`Pattern15_RevocationTombstone` 模块将模式 15（污点污染防御与防伪退化）的动态自免疫主张形式化。模型：模式生命周期为三元状态（草稿 `draft`、已晋升 `promoted`、墓碑态 `tombstone`）；知识库为模式列表；检索投影算子仅放行 `promoted` 状态模式；撤销操作自动合成反向免疫规则集。
+
+- **定理 `tombstone_absorbing`（墓碑态终结吸收性）**：墓碑态是状态机的终结吸收态，任意后续状态转换无法逃逸墓碑态。
+- **定理 `tombstone_never_projectable`（动态投影隔离安全性）**：处于 tombstone 状态的模式绝不可能出现在任何上下文检索投影切片中。
+- **定理 `immunity_blocks_taint`（反向自免疫阻断定理）**：从墓碑模式自动合成的反向免疫规则集，100% 机械阻断任何携带相同污点特征的候选模式代际再生。
+- **定理 `revoke_produces_tombstone`（撤销必入墓碑态）**：执行撤销操作后，目标模式在知识库中必然处于 tombstone 状态。
+- **定理 `revoked_excluded_from_projection`（原子撤销立即失效）**：执行 `revokePatternInKB` 后，目标模式被原子置为 tombstone，立即从所有任务投影视图中消失。
+- **定理 `tombstone_offspring_zero`（代际传播截断）**：墓碑化模式的有效繁殖均值严格为 0，分支过程后代在下一代立刻为 0。
+
+---
+
+## B.13 模式级形式锚点：任务级最小特权上下文投影（形式化层全部已证）
+
+`Pattern04_PoLPProjection` 模块将模式 04（任务级最小特权上下文投影模式）的形式化主张严格落地。
+模型：任务上下文环境划分有效目标质量 $a>0$、任务必要背景质量 $b_T>0$ 以及外部全局冗余质量 $b_{ext}\ge0$；投影算子 $\mathrm{projectPoLP}$ 将外部冗余质量截断剥离（$b_{ext}\mapsto 0$）。
+信噪比定义为 $\mathrm{snr}(a, b) = a/b$，越界代码违约概率定义为 $P_{\mathrm{violate}}(a, b) = 1 - a/(a+b)$。
+
+- **定理 `polp_preserves_snr_strictly`（最小特权投影保真定理）**：若存在非零外部冗余上下文（$b_{ext}>0$），执行最小特权投影后，任务检索信噪比严格大于全量未投影信噪比：$\mathrm{snr}(a, b_T) > \mathrm{snr}(a, b_T + b_{ext})$。
+- **定理 `polp_strictly_reduces_violation_risk`（越界违约概率压降定理）**：最小特权投影严格压降模型的注意力退化与越界代码篡改风险：$P_{\mathrm{violate}}(a, b_T) < P_{\mathrm{violate}}(a, b_T + b_{ext})$。
+- **定理 `polp_monotone_nesting`（特权嵌套单调性定理）**：投影切片越紧凑（$b_1 \le b_2$），其违约风险上界单调更低。
+
+---
+
+## B.14 定理 3.1 补充：极限环震荡与李雅普诺夫契约残差停时熔断（形式化层全部已证）
+
+`Theorem3_1_LyapunovFuse` 模块将定理 3.1 与附录 B.7 的停时界补充完善。
+模型：能量残差轨迹 $V: \mathbb{N} \to \mathbb{R}_{\ge 0}$，单步漂移 $\Delta V(t) = V(t+1) - V(t)$；停滞判据为 $\Delta V(t) \ge 0$。李雅普诺夫契约残差停时熔断器在连续 $k$ 步无负漂移（连续停滞）时硬熔断。
+
+- **定理 `consecutive_stalls_accumulate`（连续停滞能量累积引理）**：若从时刻 $t$ 开始，连续 $k$ 步漂移均为非负，则时刻 $t+k$ 的能量必不低于时刻 $t$ 的能量：$V(t+k) \ge V(t)$。
+- **定理 `cycle_defeats_strict_lyapunov`（周期极限环排斥李雅普诺夫负漂移存在性）**：对任意周期 $k\ge 1$ 的非平凡极限环 $s_{t+k} = s_t$，不存在任何处处严格递减的李雅普诺夫超鞅能量函数，消除震荡必须依靠外部熔断器打破极限环。
+- **定理 `fuse_halts_divergence_at_k`（停时熔断资源有界定理）**：李雅普诺夫契约残差熔断器将无效自愈重试的连续步数严格截断在常数上界 $k$ 之内，彻底杜绝死循环与 Token 黑洞。
+
+---
+
+## B.15 与正文的经验边界声明
 
 形式化覆盖的是**抽象控制模型的动力学性质**。全工程 Lean 代码中 **0 公理、0 sorry**。
 
@@ -205,7 +256,7 @@ $$\operatorname{snr}(\rho) := \frac{a(\rho)}{b(\rho)}.$$
 
 ---
 
-## B.12 复现方式
+## B.16 复现方式
 
 ```powershell
 cd formal_proof/IACFormalization

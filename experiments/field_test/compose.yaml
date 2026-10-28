@@ -10,7 +10,7 @@ services:
     image: iac-app
     networks: [prod-net]
     ports:
-      - "8000:8000"   # 编排注入用（仅 host 可访问）
+      - "8001:8000"   # 编排注入用（仅 host 可访问）；2026-10-27 因 ctdnn 占用 8000 改为 8001，改回即恢复
     environment:
       IAC_DOWNSTREAM_URL: http://toxiproxy:8475/downstream
       IAC_POOL_SIZE: "20"

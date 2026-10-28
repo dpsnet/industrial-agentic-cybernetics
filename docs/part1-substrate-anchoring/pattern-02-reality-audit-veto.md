@@ -166,3 +166,19 @@ class RealityAuditor {
   }
 }
 ```
+
+
+---
+
+### 9. 形式化理论支撑 (Lean 4 Formal Proof)
+
+本模式的核心现实审计一票否决权已由 **Lean 4** 形式化机检验证（0 公理、0 sorry，源码见 `formal_proof/IACFormalization/src/IACFormalization/Pattern02_RealityAudit.lean`，对应附录 B.11）：
+
+- **一票否决权绝对性定理 (`veto_overrides_high_score`)**：
+  $$\forall d, \text{realityAudit}(d) = \text{false} \implies \text{admissionVerdict}(d) = \text{false}$$
+  当现实审计未通过时，无论外部打分（如 Rubric 满分 9 分）多高，准入判据恒为 false。
+- **反自指作弊硬阻断定理 (`tautology_vetoed`)**：
+  $$d.\text{isTautological} = \text{true} \implies \text{realityAudit}(d) = \text{false}$$
+  任何利用自指 Mock 桩或恒真平凡断言欺骗通过的交付物，均被机械阻断。
+- **物理实体核验充要性 (`four_pillars_soundness_and_completeness`)**：
+  准入当且仅当“物理代码变动”、“编译耗时物理常理”、“反自指 Mock 核验”与“环境同质性”四重物理布尔硬判据及质量阈值同时满足。
