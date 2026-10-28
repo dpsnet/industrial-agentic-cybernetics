@@ -1,12 +1,13 @@
 # 参与贡献指南（Contributing）
 
-本仓库是一本开源的学术专著（*Industrial Agentic Cybernetics: Design Patterns and Formal Architecture for Autonomous Software Engineering*），作者**尤其欢迎批评、反例与反驳**——这是理论唯一可信的检验方式。
+本仓库是一本开源的学术专著（*Industrial Agentic Cybernetics: Design Patterns and Formal Architecture for Autonomous Software Engineering*），作者**尤其欢迎批评、反例与反驳**——这是理论唯一可信的检验方式；同样欢迎**建议与想法**——新的设计模式、改进方向与路线图讨论。
 
-## 一、如何提出批评（无需 PR）
+## 一、如何参与讨论（批评、建议与想法，无需 PR）
 
-批评不必以 Pull Request 形式提交，直接使用下列通道之一即可：
+讨论、批评与建议不必以 Pull Request 形式提交，直接使用下列通道之一即可：
 
 1. **Discussions**（推荐，用于开放式讨论）——分类见仓库首页：
+   - **建议与想法（Ideas）**：对新模式、改进方向与路线图的想法；
    - **批评与反例**：理论/定理的质疑、逻辑漏洞；
    - **数学与形式化**：Lean 4 证明复核、公式推导检查；
    - **实证与实验**：实验设计、统计口径、可复现性；

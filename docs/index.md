@@ -78,11 +78,11 @@ title: 工业智能体控制论
 
 ---
 
-## 参与批评与讨论
+## 参与讨论：批评、建议与想法
 
-本书诚挚欢迎一切批评、反例与反驳：**章节化阅读的另一重意义是——每条批评都可以直接锚定到具体章节与定理编号**。
+本书诚挚欢迎批评、反例与反驳，同样欢迎建议与想法：**章节化阅读的另一重意义是——每条批评都可以直接锚定到具体章节与定理编号**。
 
-- 前往 [GitHub Discussions](https://github.com/dpsnet/industrial-agentic-cybernetics/discussions)（分类：批评与反例 / 数学与形式化 / 实证与实验 / 开放问题）
+- 前往 [GitHub Discussions](https://github.com/dpsnet/industrial-agentic-cybernetics/discussions)（分类：建议与想法 / 批评与反例 / 数学与形式化 / 实证与实验 / 开放问题）
 - 或使用 [结构化批评 Issue 模板](https://github.com/dpsnet/industrial-agentic-cybernetics/issues/new/choose)
 - 作者承诺 7 日内回应；不采纳意见以 `wontfix-declined` 标签记录可追溯理由
 

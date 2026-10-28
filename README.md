@@ -34,11 +34,11 @@ Adhering to the formal Gang of Four (GoF) specification standard, this book deri
 
 ---
 
-## 💬 如何参与讨论与提出批评 (How to Critique)
+## 💬 如何参与讨论：批评、建议与想法 (How to Engage)
 
-本专著开源于此，**诚挚欢迎一切批评、反例与反驳**。参与方式：
+本专著开源于此，**诚挚欢迎批评、反例与反驳，同样欢迎建议与想法**。参与方式：
 
-1. **Discussions**（开放式讨论）：[进入讨论区](https://github.com/dpsnet/industrial-agentic-cybernetics/discussions)，分类包括「批评与反例」「数学与形式化」「实证与实验」「开放问题」；
+1. **Discussions**（开放式讨论）：[进入讨论区](https://github.com/dpsnet/industrial-agentic-cybernetics/discussions)，分类包括「批评与反例」「数学与形式化」「实证与实验」「开放问题」「建议与想法（Ideas）」；
 2. **Issue**（结构化批评）：使用 [批评模板](.github/ISSUE_TEMPLATE/criticism.md)，注明章节/定理编号（如 §3.3 Theorem 3.1、附录 B.12）、批评类型与论证；
 3. **回应承诺**：作者 7 日内回应每帖；不采纳的意见以 `wontfix-declined` 标签记录可追溯理由。
 
