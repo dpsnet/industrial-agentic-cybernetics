@@ -1,6 +1,6 @@
 # scripts/ — 构建·修订·验证脚本总目录
 
-本书《工业智能体控制论》（IAC）的过程性脚本统一收拢于此，按四组组织。
+本书《工业级智能体控制论》（IAC）的过程性脚本统一收拢于此，按四组组织。
 **运行约定**：全部脚本以仓库根（`E:\workspace\industrial-agentic-cybernetics`）为工作目录运行；
 数值/PDF 处理脚本一律用 `D:\pyenv\pyenv-win\versions\3.11.8\python.exe`（pyenv 3.11.8）。
 本目录 README 是各脚本的引用声明——任何脚本不得成为孤儿文件。

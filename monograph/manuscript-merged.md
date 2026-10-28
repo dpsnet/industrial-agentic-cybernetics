@@ -5356,7 +5356,7 @@ lean src/IACFormalization/Axiom1_Grounding.lean   # 单文件检查
 23. Chen, Y., et al. (2026). *OrchestraBench: Evaluating Multi-Agent Orchestration Failure Modes, Recovery, and Decomposition Quality*. arXiv:2608.05263.
 24. Thaman, K., et al. (2026). *Reward Hacking Benchmark: Measuring Exploits in LLM Agents with Tool Use*. arXiv:2605.02964.
 25. Roth, A., et al. (2026). *Hack-Verifiable Environments: Towards Evaluating Reward Hacking at Scale*. arXiv:2605.20744.
-26. 王斌. 工业智能体控制论：自主软件工程的设计模式与形式化架构[EB/OL]. (2026-10-25). https://github.com/dpsnet/industrial-agentic-cybernetics. DOI: https://doi.org/10.5281/zenodo.23636677（概念 DOI，指向最新版归档）.
+26. 王斌. 工业级智能体控制论：自主软件工程的设计模式与形式化架构[EB/OL]. (2026-10-25). https://github.com/dpsnet/industrial-agentic-cybernetics. DOI: https://doi.org/10.5281/zenodo.23636677（概念 DOI，指向最新版归档）.
 
 
 ---
@@ -5365,7 +5365,7 @@ lean src/IACFormalization/Axiom1_Grounding.lean   # 单文件检查
 
 # 公理 I–IV 验证总结报告
 
-> 工业智能体控制论（IAC）四条元公理的形式化与实证验证总账
+> 工业级智能体控制论（IAC）四条元公理的形式化与实证验证总账
 > 日期：2026-10-21　状态：**四条公理全部闭环（形式化 + 实证 + 文档回写）**
 > 形式化工程：`formal_proof/IACFormalization`（Lean 4 + mathlib4，**0 sorry**，全部定理经内核验证）
 > 正文：`docs/preface/03-axioms-and-invariance.md`；形式化附录：`docs/appendix-formal-proofs.md`

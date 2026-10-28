@@ -1,6 +1,6 @@
 # 公理 I–IV 验证总结报告
 
-> 工业智能体控制论（IAC）四条元公理的形式化与实证验证总账
+> 工业级智能体控制论（IAC）四条元公理的形式化与实证验证总账
 > 日期：2026-10-21　状态：**四条公理全部闭环（形式化 + 实证 + 文档回写）**
 > 形式化工程：`formal_proof/IACFormalization`（Lean 4 + mathlib4，**0 sorry**，全部定理经内核验证）
 > 正文：`docs/preface/03-axioms-and-invariance.md`；形式化附录：`docs/appendix-formal-proofs.md`
