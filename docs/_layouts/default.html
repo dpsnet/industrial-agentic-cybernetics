@@ -126,6 +126,13 @@ window.addEventListener('load', function () {
                   display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
   header.topbar a { color: #0969da; text-decoration: none; font-size: 14px; }
   header.topbar a:hover { text-decoration: underline; }
+  .bookhead { text-align: center; padding: 6px 0 18px; border-bottom: 1px solid #eee;
+              margin-bottom: 20px; }
+  .bookhead .book-title { font-size: 1.45em; font-weight: 700; color: #111; }
+  .bookhead .book-sub { font-size: 0.92em; color: #57606a; margin: 4px 0 8px; }
+  .bookhead .book-meta { font-size: 0.82em; color: #57606a; }
+  .bookhead .book-meta a { color: #0969da; text-decoration: none; }
+  .bookhead .book-meta a:hover { text-decoration: underline; }
   .layout { display: flex; gap: 28px; align-items: flex-start; }
   .toc-side { position: sticky; top: 16px; width: 280px; flex-shrink: 0;
               max-height: calc(100vh - 32px); overflow-y: auto;
@@ -168,6 +175,12 @@ window.addEventListener('load', function () {
   <span><a href="{{ site.baseurl }}/index.html">📖 在线电子书</a> · <a href="{{ site.baseurl }}/Industrial-Agentic-Cybernetics.pdf">PDF 完整版</a></span>
   <span><a href="https://github.com/dpsnet/industrial-agentic-cybernetics/discussions">💬 话题与讨论</a> · <a href="https://github.com/dpsnet/industrial-agentic-cybernetics">GitHub 仓库</a></span>
 </header>
+<div class="bookhead">
+  <div class="book-title">《工业智能体控制论：自主软件工程的设计模式与形式化架构》</div>
+  <div class="book-sub">Industrial Agentic Cybernetics: Design Patterns and Formal Architecture for Autonomous Software Engineering</div>
+  <div class="book-meta">王斌（Bin Wang）· 北京开路者科技有限公司 · v1.1.2 ·
+    DOI <a href="https://doi.org/10.5281/zenodo.23636677">10.5281/zenodo.23636677</a>（概念 DOI，指向最新版）· CC BY 4.0</div>
+</div>
 <div class="layout">
 <aside class="toc-side" id="toc-side"></aside>
 <main>
