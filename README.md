@@ -1,6 +1,7 @@
 # 《工业级智能体控制论：自主软件工程的设计模式与形式化架构》
 ## Industrial Agentic Cybernetics: Design Patterns and Formal Architecture for Autonomous Software Engineering
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23636677.svg)](https://doi.org/10.5281/zenodo.23636677)
 [![License: MIT (Code)](https://img.shields.io/badge/Code-MIT-blue.svg)](LICENSE)
 [![License: CC BY 4.0 (Text)](https://img.shields.io/badge/Text-CC--BY--4.0-green.svg)](LICENSE-CC-BY-4.0.txt)
 [![Standard: GoF-Style Patterns](https://img.shields.io/badge/Pattern-GoF--Style-success.svg)](#)
