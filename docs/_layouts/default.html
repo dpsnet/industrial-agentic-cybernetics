@@ -27,7 +27,7 @@ window.addEventListener('load', function () {
   var main = document.querySelector('main');
   if (!main) return;
   var hs = main.querySelectorAll('h2, h3');
-  if (hs.length < 3) return;
+  if (hs.length === 0) return;
   function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
   var items = [];
   hs.forEach(function (h, i) {
