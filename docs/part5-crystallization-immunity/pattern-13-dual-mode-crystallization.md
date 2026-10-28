@@ -1,4 +1,4 @@
-# 模式 13：单源事实-模式双模萃取模式 (Dual-Mode Technical Crystallization Pattern)
+# 第十六章 模式 13：单源事实-模式双模萃取模式 (Dual-Mode Technical Crystallization Pattern)
 
 ---
 

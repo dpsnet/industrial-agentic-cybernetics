@@ -1,4 +1,4 @@
-# 模式 24：生产缺陷萃取与热修复闭环模式 (Production Defect Crystallization & Hotfix Loop Pattern)
+# 第二十七章 模式 24：生产缺陷萃取与热修复闭环模式 (Production Defect Crystallization & Hotfix Loop Pattern)
 
 
 

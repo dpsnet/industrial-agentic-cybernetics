@@ -1,4 +1,4 @@
-# 模式 15：污点污染防御与防伪退化模式 (Tainted Pattern Rejection & Anti-Degradation Pattern)
+# 第十八章 模式 15：污点污染防御与防伪退化模式 (Tainted Pattern Rejection & Anti-Degradation Pattern)
 
 ---
 

@@ -1,4 +1,4 @@
-# 模式 09：幂等变异日志与物理时钟补偿模式 (Idempotent Journaling & Mtime Touch Pattern)
+# 第十二章 模式 09：幂等变异日志与物理时钟补偿模式 (Idempotent Journaling & Mtime Touch Pattern)
 
 ---
 

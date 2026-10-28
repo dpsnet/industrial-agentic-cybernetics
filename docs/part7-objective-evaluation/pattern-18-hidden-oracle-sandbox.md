@@ -1,4 +1,4 @@
-# 模式 18：隐藏 Oracle 物理隔离沙箱测评模式 (Hidden Oracle Sandbox Pattern)
+# 第二十一章 模式 18：隐藏 Oracle 物理隔离沙箱测评模式 (Hidden Oracle Sandbox Pattern)
 
 ---
 

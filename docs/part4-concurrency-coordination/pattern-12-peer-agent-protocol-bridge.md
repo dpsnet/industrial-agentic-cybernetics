@@ -1,4 +1,4 @@
-# 模式 12：异构对等智能体抽象协议桥接模式 (Peer-Agent Protocol Bridge Pattern)
+# 第十五章 模式 12：异构对等智能体抽象协议桥接模式 (Peer-Agent Protocol Bridge Pattern)
 
 ---
 

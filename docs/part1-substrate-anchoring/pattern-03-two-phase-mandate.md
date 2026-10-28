@@ -1,4 +1,4 @@
-# 模式 03：脚手架与解题域双阶段隔离模式 (Two-Phase Mandate Pattern)
+# 第六章 模式 03：脚手架与解题域双阶段隔离模式 (Two-Phase Mandate Pattern)
 
 ---
 

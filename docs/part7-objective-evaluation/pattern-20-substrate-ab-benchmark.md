@@ -1,4 +1,4 @@
-# 模式 20：工业基准 A/B 物理对照评测模式 (Industrial Substrate A/B Benchmark Pattern)
+# 第二十三章 模式 20：工业基准 A/B 物理对照评测模式 (Industrial Substrate A/B Benchmark Pattern)
 
 ---
 

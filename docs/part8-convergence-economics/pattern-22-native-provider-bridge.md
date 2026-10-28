@@ -1,4 +1,4 @@
-# 模式 22：纯模型原生 Provider 解耦桥接模式 (Pure Native Provider Bridge Pattern)
+# 第二十五章 模式 22：纯模型原生 Provider 解耦桥接模式 (Pure Native Provider Bridge Pattern)
 
 ---
 

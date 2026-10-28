@@ -1,4 +1,4 @@
-# 模式 04：任务级最小特权投影模式 (Task-Level PoLP Context Slicing Pattern)
+# 第七章 模式 04：任务级最小特权投影模式 (Task-Level PoLP Context Slicing Pattern)
 
 ---
 

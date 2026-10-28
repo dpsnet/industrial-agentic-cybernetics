@@ -1,4 +1,4 @@
-# 模式 23：生产环境运行时监控与异常嗅探模式 (Production Runtime Anomaly Sniffing Pattern)
+# 第二十六章 模式 23：生产环境运行时监控与异常嗅探模式 (Production Runtime Anomaly Sniffing Pattern)
 
 
 

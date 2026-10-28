@@ -1,4 +1,4 @@
-# 模式 06：流式拓扑分解与选择性断点续跑模式 (Streaming Decomposition & Selective Resume Pattern)
+# 第九章 模式 06：流式拓扑分解与选择性断点续跑模式 (Streaming Decomposition & Selective Resume Pattern)
 
 ---
 

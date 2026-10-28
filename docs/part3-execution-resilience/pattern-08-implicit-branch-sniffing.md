@@ -1,4 +1,4 @@
-# 模式 08：白盒隐式分支嗅探与内部锚定模式 (Implicit Branch Sniffing & Internal Invariants Pattern)
+# 第十一章 模式 08：白盒隐式分支嗅探与内部锚定模式 (Implicit Branch Sniffing & Internal Invariants Pattern)
 
 ---
 

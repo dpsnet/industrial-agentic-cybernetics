@@ -1,4 +1,4 @@
-# 模式 21：Token 吞吐断崖式压缩架构 (Tokenomics Convergence Architecture Pattern)
+# 第二十四章 模式 21：Token 吞吐断崖式压缩架构 (Tokenomics Convergence Architecture Pattern)
 
 ---
 

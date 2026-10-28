@@ -1,4 +1,4 @@
-# 模式 17：飞行指挥官异步中断与航向锁定模式 (Asynchronous Flight-Director Interrupt Pattern)
+# 第二十章 模式 17：飞行指挥官异步中断与航向锁定模式 (Asynchronous Flight-Director Interrupt Pattern)
 
 ---
 

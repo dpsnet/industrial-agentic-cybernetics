@@ -1,4 +1,4 @@
-# 模式 11：主写从读降级互斥模式 (Primary-Writer Replica-Reader Pattern)
+# 第十四章 模式 11：主写从读降级互斥模式 (Primary-Writer Replica-Reader Pattern)
 
 ---
 

@@ -1,4 +1,4 @@
-# 模式 16：手风琴式认知多分辨率投影模式 (Accordion Multiresolution Projection Pattern)
+# 第十九章 模式 16：手风琴式认知多分辨率投影模式 (Accordion Multiresolution Projection Pattern)
 
 ---
 

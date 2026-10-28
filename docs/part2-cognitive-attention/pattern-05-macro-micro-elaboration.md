@@ -1,4 +1,4 @@
-# 模式 05：两阶段宏微观渐进设计展开模式 (Macro-Micro Elaboration Pattern)
+# 第八章 模式 05：两阶段宏微观渐进设计展开模式 (Macro-Micro Elaboration Pattern)
 
 ---
 

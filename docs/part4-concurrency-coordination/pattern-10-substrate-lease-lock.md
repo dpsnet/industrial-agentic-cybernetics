@@ -1,4 +1,4 @@
-# 模式 10：分布式物理底座租约锁模式 (Substrate Lease Lock & Watchdog Pattern)
+# 第十三章 模式 10：分布式物理底座租约锁模式 (Substrate Lease Lock & Watchdog Pattern)
 
 ---
 

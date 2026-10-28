@@ -1,4 +1,4 @@
-# 模式 19：五重无旁路机械判据模式 (Five-Fold Bypass-Free Evaluator Pattern)
+# 第二十二章 模式 19：五重无旁路机械判据模式 (Five-Fold Bypass-Free Evaluator Pattern)
 
 ---
 

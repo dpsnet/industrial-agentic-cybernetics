@@ -1,4 +1,4 @@
-# 模式 01：物理底座穿透核验模式 (Substrate Penetration Pattern)
+# 第四章 模式 01：物理底座穿透核验模式 (Substrate Penetration Pattern)
 
 ---
 

@@ -1,4 +1,4 @@
-# 模式 14：隔离草稿与终审晋升门禁模式 (Quarantined Promotion Gate Pattern)
+# 第十七章 模式 14：隔离草稿与终审晋升门禁模式 (Quarantined Promotion Gate Pattern)
 
 ---
 

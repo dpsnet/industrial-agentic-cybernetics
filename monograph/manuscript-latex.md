@@ -335,7 +335,7 @@ $$ \text{Cost}(\mathcal{A}_{hack}) \ll \text{Cost}(\mathcal{A}_{real}) \quad \te
 
 <!-- ===== 第一部·模式 01 · part1-substrate-anchoring\pattern-01-substrate-penetration.md ===== -->
 
-# 模式 01：物理底座穿透核验模式 (Substrate Penetration Pattern)
+# 第四章 模式 01：物理底座穿透核验模式 (Substrate Penetration Pattern)
 
 ---
 
@@ -445,7 +445,7 @@ class InSituSubstrateVerifier implements SubstratePenetrationVerifier {
 
 <!-- ===== 第一部·模式 02 · part1-substrate-anchoring\pattern-02-reality-audit-veto.md ===== -->
 
-# 模式 02：审查者现实审计一票否决模式 (Reality Audit VETO Pattern)
+# 第五章 模式 02：审查者现实审计一票否决模式 (Reality Audit VETO Pattern)
 
 ---
 
@@ -571,7 +571,7 @@ class RealityAuditor {
 
 <!-- ===== 第一部·模式 03 · part1-substrate-anchoring\pattern-03-two-phase-mandate.md ===== -->
 
-# 模式 03：脚手架与解题域双阶段隔离模式 (Two-Phase Mandate Pattern)
+# 第六章 模式 03：脚手架与解题域双阶段隔离模式 (Two-Phase Mandate Pattern)
 
 ---
 
@@ -675,7 +675,7 @@ class TwoPhaseSandboxEnforcer implements PhaseBoundaryEnforcer {
 
 <!-- ===== 第二部·模式 04 · part2-cognitive-attention\pattern-04-task-level-polp.md ===== -->
 
-# 模式 04：任务级最小特权投影模式 (Task-Level PoLP Context Slicing Pattern)
+# 第七章 模式 04：任务级最小特权投影模式 (Task-Level PoLP Context Slicing Pattern)
 
 ---
 
@@ -787,7 +787,7 @@ class TaskLevelContextProjector {
 
 <!-- ===== 第二部·模式 05 · part2-cognitive-attention\pattern-05-macro-micro-elaboration.md ===== -->
 
-# 模式 05：两阶段宏微观渐进设计展开模式 (Macro-Micro Elaboration Pattern)
+# 第八章 模式 05：两阶段宏微观渐进设计展开模式 (Macro-Micro Elaboration Pattern)
 
 ---
 
@@ -978,7 +978,7 @@ class ProgressiveDesignOrchestrator {
 
 <!-- ===== 第二部·模式 06 · part2-cognitive-attention\pattern-06-streaming-decomposition.md ===== -->
 
-# 模式 06：流式拓扑分解与选择性断点续跑模式 (Streaming Decomposition & Selective Resume Pattern)
+# 第九章 模式 06：流式拓扑分解与选择性断点续跑模式 (Streaming Decomposition & Selective Resume Pattern)
 
 ---
 
@@ -1114,7 +1114,7 @@ class StreamingDecompositionEngine {
 
 <!-- ===== 第三部·模式 07 · part3-execution-resilience\pattern-07-driver-navigator-pairing.md ===== -->
 
-# 模式 07：沙箱驱动-导航结对微循环模式 (Driver-Navigator Pairing Pattern)
+# 第十章 模式 07：沙箱驱动-导航结对微循环模式 (Driver-Navigator Pairing Pattern)
 
 ---
 
@@ -1233,7 +1233,7 @@ class SandboxPairDevLoop {
 
 <!-- ===== 第三部·模式 08 · part3-execution-resilience\pattern-08-implicit-branch-sniffing.md ===== -->
 
-# 模式 08：白盒隐式分支嗅探与内部锚定模式 (Implicit Branch Sniffing & Internal Invariants Pattern)
+# 第十一章 模式 08：白盒隐式分支嗅探与内部锚定模式 (Implicit Branch Sniffing & Internal Invariants Pattern)
 
 ---
 
@@ -1354,7 +1354,7 @@ class WhiteboxBranchSniffer {
 
 <!-- ===== 第三部·模式 09 · part3-execution-resilience\pattern-09-idempotent-journal-mtime.md ===== -->
 
-# 模式 09：幂等变异日志与物理时钟补偿模式 (Idempotent Journaling & Mtime Touch Pattern)
+# 第十二章 模式 09：幂等变异日志与物理时钟补偿模式 (Idempotent Journaling & Mtime Touch Pattern)
 
 ---
 
@@ -1471,7 +1471,7 @@ class IdempotentSubstrateMutator {
 
 <!-- ===== 第四部·模式 10 · part4-concurrency-coordination\pattern-10-substrate-lease-lock.md ===== -->
 
-# 模式 10：分布式物理底座租约锁模式 (Substrate Lease Lock & Watchdog Pattern)
+# 第十三章 模式 10：分布式物理底座租约锁模式 (Substrate Lease Lock & Watchdog Pattern)
 
 ---
 
@@ -1591,7 +1591,7 @@ class SubstrateLockManager {
 
 <!-- ===== 第四部·模式 11 · part4-concurrency-coordination\pattern-11-primary-writer-replica-reader.md ===== -->
 
-# 模式 11：主写从读降级互斥模式 (Primary-Writer Replica-Reader Pattern)
+# 第十四章 模式 11：主写从读降级互斥模式 (Primary-Writer Replica-Reader Pattern)
 
 ---
 
@@ -1710,7 +1710,7 @@ class PrimaryWriterReplicaReaderInterceptor {
 
 <!-- ===== 第四部·模式 12 · part4-concurrency-coordination\pattern-12-peer-agent-protocol-bridge.md ===== -->
 
-# 模式 12：异构对等智能体抽象协议桥接模式 (Peer-Agent Protocol Bridge Pattern)
+# 第十五章 模式 12：异构对等智能体抽象协议桥接模式 (Peer-Agent Protocol Bridge Pattern)
 
 ---
 
@@ -1845,7 +1845,7 @@ class PeerAgentProtocolBridge {
 
 <!-- ===== 第五部·模式 13 · part5-crystallization-immunity\pattern-13-dual-mode-crystallization.md ===== -->
 
-# 模式 13：单源事实-模式双模萃取模式 (Dual-Mode Technical Crystallization Pattern)
+# 第十六章 模式 13：单源事实-模式双模萃取模式 (Dual-Mode Technical Crystallization Pattern)
 
 ---
 
@@ -1969,7 +1969,7 @@ class DualModeTechnicalCrystallizer {
 
 <!-- ===== 第五部·模式 14 · part5-crystallization-immunity\pattern-14-quarantine-promotion-gate.md ===== -->
 
-# 模式 14：隔离草稿与终审晋升门禁模式 (Quarantined Promotion Gate Pattern)
+# 第十七章 模式 14：隔离草稿与终审晋升门禁模式 (Quarantined Promotion Gate Pattern)
 
 ---
 
@@ -2092,7 +2092,7 @@ class SelfImmuneKnowledgeBase {
 
 <!-- ===== 第五部·模式 15 · part5-crystallization-immunity\pattern-15-tainted-pattern-rejection.md ===== -->
 
-# 模式 15：污点污染防御与防伪退化模式 (Tainted Pattern Rejection & Anti-Degradation Pattern)
+# 第十八章 模式 15：污点污染防御与防伪退化模式 (Tainted Pattern Rejection & Anti-Degradation Pattern)
 
 ---
 
@@ -2208,7 +2208,7 @@ class TaintQuarantineManager {
 
 <!-- ===== 第六部·模式 16 · part6-human-agent-symbiosis\pattern-16-accordion-projection.md ===== -->
 
-# 模式 16：手风琴式认知多分辨率投影模式 (Accordion Multiresolution Projection Pattern)
+# 第十九章 模式 16：手风琴式认知多分辨率投影模式 (Accordion Multiresolution Projection Pattern)
 
 ---
 
@@ -2329,7 +2329,7 @@ class AccordionMultiresolutionProjector {
 
 <!-- ===== 第六部·模式 17 · part6-human-agent-symbiosis\pattern-17-flight-director-interrupt.md ===== -->
 
-# 模式 17：飞行指挥官异步中断与航向锁定模式 (Asynchronous Flight-Director Interrupt Pattern)
+# 第二十章 模式 17：飞行指挥官异步中断与航向锁定模式 (Asynchronous Flight-Director Interrupt Pattern)
 
 ---
 
@@ -2452,7 +2452,7 @@ class FlightDirectorInterruptManager {
 
 <!-- ===== 第七部·模式 18 · part7-objective-evaluation\pattern-18-hidden-oracle-sandbox.md ===== -->
 
-# 模式 18：隐藏 Oracle 物理隔离沙箱测评模式 (Hidden Oracle Sandbox Pattern)
+# 第二十一章 模式 18：隐藏 Oracle 物理隔离沙箱测评模式 (Hidden Oracle Sandbox Pattern)
 
 ---
 
@@ -2643,7 +2643,7 @@ class IsolatedStressTestEvaluator {
 
 <!-- ===== 第七部·模式 19 · part7-objective-evaluation\pattern-19-five-fold-mechanical-evaluator.md ===== -->
 
-# 模式 19：五重无旁路机械判据模式 (Five-Fold Bypass-Free Evaluator Pattern)
+# 第二十二章 模式 19：五重无旁路机械判据模式 (Five-Fold Bypass-Free Evaluator Pattern)
 
 ---
 
@@ -2776,7 +2776,7 @@ class FiveFoldMechanicalEvaluator {
 
 <!-- ===== 第七部·模式 20 · part7-objective-evaluation\pattern-20-substrate-ab-benchmark.md ===== -->
 
-# 模式 20：工业基准 A/B 物理对照评测模式 (Industrial Substrate A/B Benchmark Pattern)
+# 第二十三章 模式 20：工业基准 A/B 物理对照评测模式 (Industrial Substrate A/B Benchmark Pattern)
 
 ---
 
@@ -2897,7 +2897,7 @@ class SubstrateAbBenchmarkRunner {
 
 <!-- ===== 第八部·模式 21 · part8-convergence-economics\pattern-21-token-compression-architecture.md ===== -->
 
-# 模式 21：Token 吞吐断崖式压缩架构 (Tokenomics Convergence Architecture Pattern)
+# 第二十四章 模式 21：Token 吞吐断崖式压缩架构 (Tokenomics Convergence Architecture Pattern)
 
 ---
 
@@ -3013,7 +3013,7 @@ class TokenomicsConvergenceEngine {
 
 <!-- ===== 第八部·模式 22 · part8-convergence-economics\pattern-22-native-provider-bridge.md ===== -->
 
-# 模式 22：纯模型原生 Provider 解耦桥接模式 (Pure Native Provider Bridge Pattern)
+# 第二十五章 模式 22：纯模型原生 Provider 解耦桥接模式 (Pure Native Provider Bridge Pattern)
 
 ---
 
@@ -3164,7 +3164,7 @@ class PureNativeProviderGateway {
 
 <!-- ===== 第九部·模式 23 · part9-production-resilience\pattern-23-production-runtime-anomaly-sniffing.md ===== -->
 
-# 模式 23：生产环境运行时监控与异常嗅探模式 (Production Runtime Anomaly Sniffing Pattern)
+# 第二十六章 模式 23：生产环境运行时监控与异常嗅探模式 (Production Runtime Anomaly Sniffing Pattern)
 
 
 
@@ -3444,7 +3444,7 @@ class ProductionRuntimeAnomalySniffer {
 
 <!-- ===== 第九部·模式 24 · part9-production-resilience\pattern-24-production-defect-crystallization-hotfix-loop.md ===== -->
 
-# 模式 24：生产缺陷萃取与热修复闭环模式 (Production Defect Crystallization & Hotfix Loop Pattern)
+# 第二十七章 模式 24：生产缺陷萃取与热修复闭环模式 (Production Defect Crystallization & Hotfix Loop Pattern)
 
 
 
@@ -3703,7 +3703,7 @@ class HotfixLoopOrchestrator {
 
 <!-- ===== 结语 · epilogue\towards-autonomous-cybernetics.md ===== -->
 
-# 结语：通向自给自足的自主软件工程
+# 第二十八章 结语：通向自给自足的自主软件工程
 ## Epilogue: Towards Autonomous and Resilient Cybernetics
 
 > “我们创造的不仅仅是一个写代码的工具，而是一个具备因果不变性、物理现实感知与自免疫收敛能力的控制论生命体。”（修辞语；所指机制为公理 IV 的经验自免疫收敛，非生物学术语。）
