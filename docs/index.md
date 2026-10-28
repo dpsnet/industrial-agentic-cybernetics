@@ -9,7 +9,7 @@ title: 工业智能体控制论
 本书将经典系统控制论（Cybernetics）、分布式系统因果一致性理论、编译原理与认知注意力约束系统性引入智能体系统架构，提炼出 **9 大模式族、24 个工业级设计模式** 与 **四大底层控制论公理**；全部核心定理经 Lean 4 内核验证（118 条：117 定理 + 1 辅助引理，0 公理 0 sorry）。
 
 - **完整排版 PDF**：[📄 Industrial-Agentic-Cybernetics.pdf（LaTeX 编译版，约 180 页）](Industrial-Agentic-Cybernetics.pdf)
-- **Zenodo DOI**：`10.5281/zenodo.23637013`（v1.1.0）
+- **Zenodo DOI**：`10.5281/zenodo.23637013`（v1.1.1）
 - **许可证**：代码 MIT · 文本 CC BY 4.0（署名 王斌 / 北京开路者科技有限公司）
 
 ---
@@ -86,4 +86,4 @@ title: 工业智能体控制论
 - 或使用 [结构化批评 Issue 模板](https://github.com/dpsnet/industrial-agentic-cybernetics/issues/new/choose)
 - 作者承诺 7 日内回应；不采纳意见以 `wontfix-declined` 标签记录可追溯理由
 
-> 引用请注明版本（tag v1.1.0）与 DOI `10.5281/zenodo.23637013`。
+> 引用请注明版本（tag v1.1.1）与 DOI `10.5281/zenodo.23637013`。
