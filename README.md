@@ -34,6 +34,18 @@ Adhering to the formal Gang of Four (GoF) specification standard, this book deri
 
 ---
 
+## 💬 如何参与讨论与提出批评 (How to Critique)
+
+本专著开源于此，**诚挚欢迎一切批评、反例与反驳**。参与方式：
+
+1. **Discussions**（开放式讨论）：[进入讨论区](https://github.com/dpsnet/industrial-agentic-cybernetics/discussions)，分类包括「批评与反例」「数学与形式化」「实证与实验」「开放问题」；
+2. **Issue**（结构化批评）：使用 [批评模板](.github/ISSUE_TEMPLATE/criticism.md)，注明章节/定理编号（如 §3.3 Theorem 3.1、附录 B.12）、批评类型与论证；
+3. **回应承诺**：作者 7 日内回应每帖；不采纳的意见以 `wontfix-declined` 标签记录可追溯理由。
+
+引用锚定：仓库 tag（当前 v1.1.0）+ Zenodo DOI `10.5281/zenodo.23637013`。详细规则见 [CONTRIBUTING.md](CONTRIBUTING.md)，行为准则见 [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)。
+
+---
+
 ## 📋 项目协作规则 (Project Rules)
 
 本仓库所有工作（主 Agent、Trae 执行工具、后续会话）统一遵守 [PROJECT_RULES.md](PROJECT_RULES.md)：目录分工（根目录=原始文档区、paper/=论文产出区、monograph/=出版组装区）、**事实层单源共用 + 叙述层独立双写**、实证判读纪律、git 纪律与协作分工。进入仓库即视为遵守。
