@@ -42,7 +42,7 @@ Adhering to the formal Gang of Four (GoF) specification standard, this book deri
 2. **Issue**（结构化批评）：使用 [批评模板](.github/ISSUE_TEMPLATE/criticism.md)，注明章节/定理编号（如 §3.3 Theorem 3.1、附录 B.12）、批评类型与论证；
 3. **回应承诺**：作者 7 日内回应每帖；不采纳的意见以 `wontfix-declined` 标签记录可追溯理由。
 
-引用锚定：仓库 tag（当前 v1.1.1）+ Zenodo DOI `https://doi.org/10.5281/zenodo.23722977`。详细规则见 [CONTRIBUTING.md](CONTRIBUTING.md)，行为准则见 [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)。
+引用锚定：仓库 tag（当前 v1.1.2）+ **Zenodo 概念 DOI `https://doi.org/10.5281/zenodo.23636677`**（始终解析到最新版本归档；各版本归档 DOI 见 [Releases](https://github.com/dpsnet/industrial-agentic-cybernetics/releases)）。详细规则见 [CONTRIBUTING.md](CONTRIBUTING.md)，行为准则见 [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)。
 
 ---
 
