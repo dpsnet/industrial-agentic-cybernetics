@@ -1,0 +1,9 @@
+title: 工业智能体控制论
+description: Industrial Agentic Cybernetics 在线电子书
+baseurl: /industrial-agentic-cybernetics
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
