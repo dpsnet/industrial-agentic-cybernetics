@@ -134,6 +134,9 @@ window.addEventListener('load', function () {
   .bookhead .book-meta { font-size: 0.82em; color: #57606a; }
   .bookhead .book-meta a { color: #0969da; text-decoration: none; }
   .bookhead .book-meta a:hover { text-decoration: underline; }
+  .bookhead .book-badges { margin-top: 8px; display: flex; justify-content: center;
+                           flex-wrap: wrap; gap: 6px; }
+  .bookhead .book-badges img { height: 20px; vertical-align: middle; }
   .layout { display: flex; gap: 28px; align-items: flex-start; }
   .toc-side { position: sticky; top: 148px; width: 280px; flex-shrink: 0;
               max-height: calc(100vh - 32px); overflow-y: auto;
@@ -190,6 +193,13 @@ window.addEventListener('load', function () {
   <div class="book-sub">Industrial Agentic Cybernetics: Design Patterns and Formal Architecture for Autonomous Software Engineering</div>
   <div class="book-meta">王斌（Bin Wang）· 北京开路者科技有限公司 · v1.1.2 ·
     DOI <a href="https://doi.org/10.5281/zenodo.23636677">10.5281/zenodo.23636677</a>（概念 DOI，指向最新版）· CC BY 4.0</div>
+  <div class="book-badges">
+    <a href="https://doi.org/10.5281/zenodo.23636677"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.23636677.svg" alt="DOI"></a>
+    <a href="https://github.com/dpsnet/industrial-agentic-cybernetics/blob/master/LICENSE"><img src="https://img.shields.io/badge/Code-MIT-blue.svg" alt="Code MIT"></a>
+    <a href="https://github.com/dpsnet/industrial-agentic-cybernetics/blob/master/LICENSE-CC-BY-4.0.txt"><img src="https://img.shields.io/badge/Text-CC--BY--4.0-green.svg" alt="Text CC BY 4.0"></a>
+    <a href="https://github.com/dpsnet/industrial-agentic-cybernetics"><img src="https://img.shields.io/badge/Pattern-GoF--Style-success.svg" alt="GoF-Style Patterns"></a>
+    <a href="https://github.com/dpsnet/industrial-agentic-cybernetics"><img src="https://img.shields.io/badge/Domain-Software%20Engineering-orange.svg" alt="Agentic Cybernetics"></a>
+  </div>
 </div>
 </header>
 <div class="layout">

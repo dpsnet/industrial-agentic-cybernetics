@@ -6,6 +6,12 @@ title: 工业智能体控制论
 
 **Industrial Agentic Cybernetics: Design Patterns and Formal Architecture for Autonomous Software Engineering**
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23636677.svg)](https://doi.org/10.5281/zenodo.23636677)
+[![License: MIT (Code)](https://img.shields.io/badge/Code-MIT-blue.svg)](https://github.com/dpsnet/industrial-agentic-cybernetics/blob/master/LICENSE)
+[![License: CC BY 4.0 (Text)](https://img.shields.io/badge/Text-CC--BY--4.0-green.svg)](https://github.com/dpsnet/industrial-agentic-cybernetics/blob/master/LICENSE-CC-BY-4.0.txt)
+[![Standard: GoF-Style Patterns](https://img.shields.io/badge/Pattern-GoF--Style-success.svg)](https://github.com/dpsnet/industrial-agentic-cybernetics)
+[![Field: Agentic Cybernetics](https://img.shields.io/badge/Domain-Software%20Engineering-orange.svg)](https://github.com/dpsnet/industrial-agentic-cybernetics)
+
 本书将经典系统控制论（Cybernetics）、分布式系统因果一致性理论、编译原理与认知注意力约束系统性引入智能体系统架构，提炼出 **9 大模式族、24 个工业级设计模式** 与 **四大底层控制论公理**；全部核心定理经 Lean 4 内核验证（118 条：117 定理 + 1 辅助引理，0 公理 0 sorry）。
 
 - **完整排版 PDF**：[📄 Industrial-Agentic-Cybernetics.pdf（LaTeX 编译版，约 180 页）](Industrial-Agentic-Cybernetics.pdf)
