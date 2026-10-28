@@ -6,7 +6,7 @@ title: 工业智能体控制论
 
 **Industrial Agentic Cybernetics: Design Patterns and Formal Architecture for Autonomous Software Engineering**
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23636677.svg)](https://doi.org/10.5281/zenodo.23636677)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.23636677-1769AA.svg)](https://doi.org/10.5281/zenodo.23636677)
 [![License: MIT (Code)](https://img.shields.io/badge/Code-MIT-blue.svg)](https://github.com/dpsnet/industrial-agentic-cybernetics/blob/master/LICENSE)
 [![License: CC BY 4.0 (Text)](https://img.shields.io/badge/Text-CC--BY--4.0-green.svg)](https://github.com/dpsnet/industrial-agentic-cybernetics/blob/master/LICENSE-CC-BY-4.0.txt)
 [![Standard: GoF-Style Patterns](https://img.shields.io/badge/Pattern-GoF--Style-success.svg)](https://github.com/dpsnet/industrial-agentic-cybernetics)
