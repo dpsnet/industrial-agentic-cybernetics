@@ -10,6 +10,8 @@ title: English Edition
 [![Standard: GoF-Style Patterns](https://img.shields.io/badge/Pattern-GoF--Style-success.svg)](https://github.com/dpsnet/industrial-agentic-cybernetics)
 [![Field: Agentic Cybernetics](https://img.shields.io/badge/Domain-Software%20Engineering-orange.svg)](https://github.com/dpsnet/industrial-agentic-cybernetics)
 
+> **English edition note / 英文版说明**：This English edition is an AI-assisted translation of the original Chinese text, reviewed and finalized by the author. The Chinese edition remains the authoritative version; in case of any discrepancy, the Chinese text prevails.（本英文版为原文中文的 AI 辅助翻译，已经作者审校定稿；中文版为权威版本，如有出入以中文版为准。）
+
 This book systematically introduces classical system cybernetics, distributed-systems causal-consistency theory, compiler principles, and cognitive attention constraints into agent system architecture, distilling **9 pattern families, 24 industrial-grade design patterns**, and **four foundational cybernetic axioms**; all core theorems are kernel-verified in Lean 4 (118 items: 117 theorems + 1 auxiliary lemma, 0 axioms, 0 sorry).
 
 - **Full-typeset PDF (English edition)**: [📄 Industrial-Agentic-Cybernetics-en.pdf (LaTeX-compiled)](../Industrial-Agentic-Cybernetics-en.pdf) · [中文版 PDF (Chinese edition)](../Industrial-Agentic-Cybernetics.pdf)

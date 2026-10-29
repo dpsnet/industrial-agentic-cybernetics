@@ -23,6 +23,8 @@
 ---
 
 ### 【English Introduction】About This Treatise
+> *English edition note: This English edition is an AI-assisted translation of the original Chinese text, reviewed and finalized by the author. The Chinese edition remains the authoritative version; in case of any discrepancy, the Chinese text prevails.*
+
 In the field of AI for Software Engineering, academia and early open-source initiatives have long operated under toy-level assumptions: presuming that Large Language Models (LLMs) can reliably synthesize large-scale enterprise systems through naive prompt chaining, ungrounded self-reflection, or unconstrained tool calls.
 
 However, when confronted with **real-world industrial software substrates**—characterized by millions of lines of code, intricate dependency graphs, incremental compilation caches, and concurrent multi-agent interactions—the naive prompt-engineering paradigm catastrophically fails. Autonomous agents inevitably plunge into *Reward Hacking* (fabricating passes), *Context Rot* (unbounded cross-cutting edits), *Mutation State Pollution* (stale compilation caches), and *Memory Poisoning* (hallucinatory self-reinforcement).

@@ -1,5 +1,7 @@
 # Industrial Agentic Cybernetics: Complete Chapter Outline
 
+> *English edition note: This English edition is an AI-assisted translation of the original Chinese text, reviewed and finalized by the author. The Chinese edition remains the authoritative version; in case of any discrepancy, the Chinese text prevails.*
+
 > **Title**: Industrial Agentic Cybernetics
 > **Subtitle**: From Discrete Prompting to Closed-Loop Cybernetics: Physical Anchoring, Causal Invariance, and Auto-Immunity Convergence for Large Language Model Agents
 > **Structure**: Front matter (3 chapters) → Nine parts (24 patterns) → Epilogue → Appendices (A terminology mapping / B formal proofs)
