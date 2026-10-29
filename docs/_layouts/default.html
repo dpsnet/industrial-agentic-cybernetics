@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+{% assign is_en = page.url contains '/en/' %}
+<html lang="{% if is_en %}en{% else %}zh-CN{% endif %}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{% if page.title %}{{ page.title }} · {% endif %}工业级智能体控制论</title>
+<title>{% if page.title %}{{ page.title }} · {% endif %}{% if is_en %}Industrial Agentic Cybernetics{% else %}工业级智能体控制论{% endif %}</title>
 <script>
 window.MathJax = {
   tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }
@@ -71,8 +72,52 @@ window.addEventListener('load', function () {
       { t: '第二十八章 结语：通向自给自足的自主软件工程', u: 'epilogue/towards-autonomous-cybernetics.html' },
       { t: '附录 B 形式化收敛性与稳定性证明', u: 'appendix-formal-proofs.html' } ] }
   ];
+  var BOOK_EN = [
+    { part: 'Preface & Axioms', chapters: [
+      { t: 'Chapter 1: The Paradigm Shift — From Discrete Prompting to Closed-Loop Cybernetics', u: 'en/preface/01-paradigm-shift.html' },
+      { t: 'Chapter 2: A Formal Analysis of Reward Hacking and Substrate Breakthrough', u: 'en/preface/02-compliance-theater.html' },
+      { t: 'Chapter 3: Four Cybernetic Axioms and Causal Invariance Formulation', u: 'en/preface/03-axioms-and-invariance.html' } ] },
+    { part: 'Part I: Substrate Anchoring', chapters: [
+      { t: 'Chapter 4: Pattern 01 — Substrate Penetration Pattern', u: 'en/part1-substrate-anchoring/pattern-01-substrate-penetration.html' },
+      { t: 'Chapter 5: Pattern 02 — Reality Audit VETO Pattern', u: 'en/part1-substrate-anchoring/pattern-02-reality-audit-veto.html' },
+      { t: 'Chapter 6: Pattern 03 — Two-Phase Mandate Pattern', u: 'en/part1-substrate-anchoring/pattern-03-two-phase-mandate.html' } ] },
+    { part: 'Part II: Cognitive Attention & PoLP', chapters: [
+      { t: 'Chapter 7: Pattern 04 — Task-Level PoLP Context Slicing Pattern', u: 'en/part2-cognitive-attention/pattern-04-task-level-polp.html' },
+      { t: 'Chapter 8: Pattern 05 — Macro-Micro Elaboration Pattern', u: 'en/part2-cognitive-attention/pattern-05-macro-micro-elaboration.html' },
+      { t: 'Chapter 9: Pattern 06 — Streaming Decomposition & Selective Resume Pattern', u: 'en/part2-cognitive-attention/pattern-06-streaming-decomposition.html' } ] },
+    { part: 'Part III: Execution Resilience & Self-Healing', chapters: [
+      { t: 'Chapter 10: Pattern 07 — Driver-Navigator Pairing Pattern', u: 'en/part3-execution-resilience/pattern-07-driver-navigator-pairing.html' },
+      { t: 'Chapter 11: Pattern 08 — Implicit Branch Sniffing & Internal Invariants Pattern', u: 'en/part3-execution-resilience/pattern-08-implicit-branch-sniffing.html' },
+      { t: 'Chapter 12: Pattern 09 — Idempotent Journaling & Mtime Touch Pattern', u: 'en/part3-execution-resilience/pattern-09-idempotent-journal-mtime.html' } ] },
+    { part: 'Part IV: Concurrency & Coordination', chapters: [
+      { t: 'Chapter 13: Pattern 10 — Substrate Lease Lock & Watchdog Pattern', u: 'en/part4-concurrency-coordination/pattern-10-substrate-lease-lock.html' },
+      { t: 'Chapter 14: Pattern 11 — Primary-Writer Replica-Reader Pattern', u: 'en/part4-concurrency-coordination/pattern-11-primary-writer-replica-reader.html' },
+      { t: 'Chapter 15: Pattern 12 — Peer-Agent Protocol Bridge Pattern', u: 'en/part4-concurrency-coordination/pattern-12-peer-agent-protocol-bridge.html' } ] },
+    { part: 'Part V: Knowledge Crystallization & Auto-Immunity', chapters: [
+      { t: 'Chapter 16: Pattern 13 — Dual-Mode Technical Crystallization Pattern', u: 'en/part5-crystallization-immunity/pattern-13-dual-mode-crystallization.html' },
+      { t: 'Chapter 17: Pattern 14 — Quarantined Promotion Gate Pattern', u: 'en/part5-crystallization-immunity/pattern-14-quarantine-promotion-gate.html' },
+      { t: 'Chapter 18: Pattern 15 — Tainted Pattern Rejection & Anti-Degradation Pattern', u: 'en/part5-crystallization-immunity/pattern-15-tainted-pattern-rejection.html' } ] },
+    { part: 'Part VI: Human-Agent Symbiosis', chapters: [
+      { t: 'Chapter 19: Pattern 16 — Accordion Multiresolution Projection Pattern', u: 'en/part6-human-agent-symbiosis/pattern-16-accordion-projection.html' },
+      { t: 'Chapter 20: Pattern 17 — Asynchronous Flight-Director Interrupt Pattern', u: 'en/part6-human-agent-symbiosis/pattern-17-flight-director-interrupt.html' } ] },
+    { part: 'Part VII: Objective Evaluation & Benchmarks', chapters: [
+      { t: 'Chapter 21: Pattern 18 — Hidden Oracle Sandbox Pattern', u: 'en/part7-objective-evaluation/pattern-18-hidden-oracle-sandbox.html' },
+      { t: 'Chapter 22: Pattern 19 — Five-Fold Bypass-Free Evaluator Pattern', u: 'en/part7-objective-evaluation/pattern-19-five-fold-mechanical-evaluator.html' },
+      { t: 'Chapter 23: Pattern 20 — Industrial Substrate A/B Benchmark Pattern', u: 'en/part7-objective-evaluation/pattern-20-substrate-ab-benchmark.html' } ] },
+    { part: 'Part VIII: Convergence Economics & Tokenomics', chapters: [
+      { t: 'Chapter 24: Pattern 21 — Tokenomics Convergence Architecture Pattern', u: 'en/part8-convergence-economics/pattern-21-token-compression-architecture.html' },
+      { t: 'Chapter 25: Pattern 22 — Pure Native Provider Bridge Pattern', u: 'en/part8-convergence-economics/pattern-22-native-provider-bridge.html' } ] },
+    { part: 'Part IX: Production Resilience & Feedback Loop', chapters: [
+      { t: 'Chapter 26: Pattern 23 — Production Runtime Anomaly Sniffing Pattern', u: 'en/part9-production-resilience/pattern-23-production-runtime-anomaly-sniffing.html' },
+      { t: 'Chapter 27: Pattern 24 — Production Defect Crystallization & Hotfix Loop Pattern', u: 'en/part9-production-resilience/pattern-24-production-defect-crystallization-hotfix-loop.html' } ] },
+    { part: 'Epilogue & Appendix', chapters: [
+      { t: 'Chapter 28: Epilogue — Towards Autonomous and Resilient Cybernetics', u: 'en/epilogue/towards-autonomous-cybernetics.html' },
+      { t: 'Appendix B: Formal Proofs of Convergence and Stability (Lean 4 Mechanized)', u: 'en/appendix-formal-proofs.html' } ] }
+  ];
+  var IS_EN = {{ is_en }};
+  if (IS_EN) { BOOK = BOOK_EN; }
   var path = location.pathname;
-  var html = '<nav class="toc-nav"><div class="toc-title">📖 本书目录</div><ul>';
+  var html = '<nav class="toc-nav"><div class="toc-title">' + (IS_EN ? '📖 Contents' : '📖 本书目录') + '</div><ul>';
   BOOK.forEach(function (sec) {
     html += '<li class="part">' + esc(sec.part) + '</li>';
     html += '<ul class="part-list">';
@@ -185,13 +230,24 @@ window.addEventListener('load', function () {
 <body>
 <header class="site-header">
 <div class="topbar">
+  {% if is_en %}
+  <span><a href="{{ site.baseurl }}/en/index.html">📖 Online E-Book</a> · <a href="{{ site.baseurl }}/Industrial-Agentic-Cybernetics.pdf">PDF Full Edition</a></span>
+  <span><a href="{{ page.url | remove_first: '/en' }}">中文版</a> · <a href="https://github.com/dpsnet/industrial-agentic-cybernetics/discussions">💬 Discussions</a> · <a href="https://github.com/dpsnet/industrial-agentic-cybernetics">GitHub Repository</a></span>
+  {% else %}
   <span><a href="{{ site.baseurl }}/index.html">📖 在线电子书</a> · <a href="{{ site.baseurl }}/Industrial-Agentic-Cybernetics.pdf">PDF 完整版</a></span>
-  <span><a href="https://github.com/dpsnet/industrial-agentic-cybernetics/discussions">💬 话题与讨论</a> · <a href="https://github.com/dpsnet/industrial-agentic-cybernetics">GitHub 仓库</a></span>
+  <span><a href="{{ site.baseurl }}/en{{ page.url | remove_first: site.baseurl }}">English</a> · <a href="https://github.com/dpsnet/industrial-agentic-cybernetics/discussions">💬 话题与讨论</a> · <a href="https://github.com/dpsnet/industrial-agentic-cybernetics">GitHub 仓库</a></span>
+  {% endif %}
 </div>
 <div class="bookhead">
+  {% if is_en %}
+  <div class="book-title">Industrial Agentic Cybernetics: Design Patterns and Formal Architecture for Autonomous Software Engineering</div>
+  <div class="book-sub">《工业级智能体控制论：自主软件工程的设计模式与形式化架构》</div>
+  <div class="book-meta">Bin Wang · 北京开路者科技有限公司 · v1.1.2</div>
+  {% else %}
   <div class="book-title">《工业级智能体控制论：自主软件工程的设计模式与形式化架构》</div>
   <div class="book-sub">Industrial Agentic Cybernetics: Design Patterns and Formal Architecture for Autonomous Software Engineering</div>
   <div class="book-meta">王斌（Bin Wang）· 北京开路者科技有限公司 · v1.1.2</div>
+  {% endif %}
   <div class="book-badges">
     <a href="https://doi.org/10.5281/zenodo.23636677"><img src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.23636677-1769AA.svg" alt="DOI 10.5281/zenodo.23636677"></a>
     <a href="https://github.com/dpsnet/industrial-agentic-cybernetics/blob/master/LICENSE"><img src="https://img.shields.io/badge/Code-MIT-blue.svg" alt="Code MIT"></a>
@@ -208,7 +264,11 @@ window.addEventListener('load', function () {
 </main>
 </div>
 <footer>
+  {% if is_en %}
+  Industrial Agentic Cybernetics: Design Patterns and Formal Architecture for Autonomous Software Engineering · Bin Wang / 北京开路者科技有限公司 · CC BY 4.0 · DOI https://doi.org/10.5281/zenodo.23636677 (concept DOI, pointing to the latest version)
+  {% else %}
   《工业级智能体控制论：自主软件工程的设计模式与形式化架构》 · 王斌（Bin Wang）/ 北京开路者科技有限公司 · CC BY 4.0 · DOI https://doi.org/10.5281/zenodo.23636677（概念 DOI，指向最新版）
+  {% endif %}
 </footer>
 <div class="float-nav">
   <button class="float-btn" id="btn-top" title="回到顶部" aria-label="回到顶部">▲</button>
