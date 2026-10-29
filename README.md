@@ -7,6 +7,17 @@
 [![Standard: GoF-Style Patterns](https://img.shields.io/badge/Pattern-GoF--Style-success.svg)](#)
 [![Field: Agentic Cybernetics](https://img.shields.io/badge/Domain-Software%20Engineering-orange.svg)](#)
 
+**Language**: 中文 | [English (README.en.md)](README.en.md)
+
+---
+
+### 📖 在线阅读（Free Online Reading）
+
+- **中文电子书（权威版）**：https://dpsnet.github.io/industrial-agentic-cybernetics/
+- **中文 PDF（188 页）**：https://dpsnet.github.io/industrial-agentic-cybernetics/Industrial-Agentic-Cybernetics.pdf
+- **English E-Book**: https://dpsnet.github.io/industrial-agentic-cybernetics/en/index.html
+- **English PDF (200 pages)**: https://dpsnet.github.io/industrial-agentic-cybernetics/Industrial-Agentic-Cybernetics-en.pdf
+
 ---
 
 ### 【中文导言】关于本书

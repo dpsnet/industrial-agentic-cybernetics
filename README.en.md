@@ -1,5 +1,7 @@
 # Industrial Agentic Cybernetics: Design Patterns and Formal Architecture for Autonomous Software Engineering
 
+**Language**: English | [中文 (README.md)](README.md)
+
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.23636677-1769AA.svg)](https://doi.org/10.5281/zenodo.23636677)
 [![License: MIT (Code)](https://img.shields.io/badge/Code-MIT-blue.svg)](LICENSE)
 [![License: CC BY 4.0 (Text)](https://img.shields.io/badge/Text-CC--BY--4.0-green.svg)](LICENSE-CC-BY-4.0.txt)
