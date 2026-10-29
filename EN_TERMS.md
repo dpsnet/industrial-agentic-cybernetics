@@ -116,6 +116,8 @@
 | 第一章 | 范式转移：从离散提示词工程到闭环控制论 | Chapter 1: The Paradigm Shift — From Discrete Prompting to Closed-Loop Cybernetics |
 | 第二章 | 奖励欺骗（Reward Hacking）的形式化分析与物理破局 | Chapter 2: A Formal Analysis of Reward Hacking and Substrate Breakthrough |
 | 第三章 | 工业级智能体四大公理与因果不变性形式化定义 | Chapter 3: Four Cybernetic Axioms and Causal Invariance Formulation |
+
+> **章节标题英译原则**：英文 H1 按既有原则省略书名主体限定词"工业级智能体"（与第一章 The Paradigm Shift、第二章 Reward Hacking 一致），只保留章内主题；正文中"工业级智能体"作定语时必须完整译出（见 §7 词条 industrial-grade agentic），不得省略。
 | 第二十八章 | 结语：通向自给自足的自主软件工程 | Epilogue: Towards Autonomous and Resilient Cybernetics |
 | 附录 B | 附录 B：形式化收敛性与稳定性证明（Lean 4 机检） | Appendix B: Formal Proofs of Convergence and Stability (Lean 4 Mechanized) |
 
@@ -126,6 +128,7 @@
 | 中文 | 英文 |
 | :--- | :--- |
 | 控制论（工程闭环反馈借喻，非 Wiener 学科继承） | cybernetics（engineering closed-loop feedback metaphor, not a disciplinary inheritance） |
+| 工业级智能体（系统） | industrial-grade agentic (systems) |
 | 闭环控制 / 闭环 | closed-loop control / closed loop |
 | 负反馈回路 | negative feedback loop |
 | 一阶开环生成 | first-order open-loop generation |
