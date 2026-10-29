@@ -217,8 +217,12 @@
 - B.8 Pattern-level formal anchor: the lease lock (5 theorems proven)
 - B.9 Pattern-level formal anchor: single-writer causal order in primary-writer/replica-reader (Pattern 11, proven)
 - B.10 Pattern-level formal anchor: stability of the observation–learning loop (Patterns 23/24, proven)
-- B.11 Empirical boundary declarations relative to the main text
-- B.12 Reproduction instructions
+- B.11 Pattern-level formal anchor: the Reviewer Reality-Audit Veto Power (Pattern 02, proven)
+- B.12 Pattern-level formal anchor: tainted-contamination defense and lineage tombstoning (Pattern 15, proven)
+- B.13 Pattern-level formal anchor: task-level least-privilege context projection (Pattern 04, proven)
+- B.14 Supplement to Theorem 3.1: limit-cycle oscillation and the Lyapunov-contract residual stopping-time fuse (proven)
+- B.15 Empirical boundary declarations relative to the main text
+- B.16 Reproduction instructions
 
 ### Appendix C: Summary Validation Report for Axioms I–IV (standalone document)
 - The formalization-and-empirical-validation ledger for the four axioms + Theorem 3.1 + B.7 + B.8

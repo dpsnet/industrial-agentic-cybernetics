@@ -89,9 +89,12 @@ sequenceDiagram
 - **Pros**:
   - **Cliff-like drop in token consumption**: by removing the massive redundancy of the full design, single-task inference energy consumption drops by 60%–80%;
   - **Extreme attention focus**: eliminates the "needle in a haystack" problem of long texts, and the accuracy of single code generation improves significantly;
-  - **Side effects eliminated**: modifications across tasks do not overlap, naturally supporting parallelized development and topological scheduling.
+  - **Side effects eliminated**: modifications across tasks do not overlap, naturally supporting parallelized development and topological scheduling;
+- **Precise convergence of self-healing retries**: gate rejection feedback is targetedly filtered to return only findings associated with the task, avoiding the over-healing anti-pattern.
 - **Cons**:
-  - Requires the upfront design phase to possess high-quality structured interface and module decomposition capabilities; if the architecture design cuts blurrily, the projected slice may lack necessary dependency information.
+  - Requires the upfront design phase to possess high-quality structured interface and module decomposition capabilities; if the architecture design cuts blurrily, the projected slice may lack necessary dependency information;
+  - Requires the orchestrator to maintain a bidirectional dynamic mapping between architecture blueprint and task slices, increasing the metadata maintenance cost of the orchestration layer;
+  - For strongly coupled cross-module refactoring tasks, overly tight slice declarations may cause missing-modification compile errors, and an on-demand topological expansion mechanism must be provided.
 
 ---
 
@@ -99,8 +102,8 @@ sequenceDiagram
 
 | Anti-pattern | Manifestation | Why it must be eradicated |
 | :--- | :--- | :--- |
-| **Monolithic Design Dumping** | Concatenating hundreds of pages of the entire system's design documents into the prompt on every Dev Agent invocation | Causes the model to get lost in massive information and produce large numbers of out-of-scope modifications |
-| **Unbounded Write Access** | Allows the development agent to modify any file in the project at will without boundary interception | Highly prone to catastrophic regressions such as modifying shared base classes or deleting unit tests |
+| **Monolithic Design Dumping / Blueprint Dump** | Indiscriminately concatenating hundreds of pages of the entire system's design documents or the complete microservice architecture diagram of hundreds of thousands of tokens into the prompt on every Dev Agent invocation | Causes the model to get lost in massive information and hallucinate, producing large numbers of out-of-scope modifications |
+| **Unbounded Write Access / Unbounded Editing** | Allows the development agent to modify any file in the project (including external files not declared in the task contract) at will without boundary interception | Highly prone to hidden logical damage and catastrophic regressions such as modifying shared base classes or deleting unit tests |
 
 ---
 
@@ -151,28 +154,7 @@ class TaskLevelContextProjector {
 
 ---
 
-### 6. Consequences
-
-- **Pros**:
-  - **Significant improvement in attention SNR**: compresses >60% of irrelevant engineering context, eliminating "lost in the middle" under long context;
-  - **Out-of-scope code mutation eliminated**: task boundaries and file scope are strictly constrained, preventing incremental modifications from polluting other global modules;
-  - **Precise convergence of self-healing retries**: gate rejection feedback is targetedly filtered to return only findings associated with the task, avoiding the over-healing anti-pattern.
-- **Cons**:
-  - Requires the orchestrator to maintain a bidirectional dynamic mapping between architecture blueprint and task slices, increasing the metadata maintenance cost of the orchestration layer;
-  - For strongly coupled cross-module refactoring tasks, overly tight slice declarations may cause missing-modification compile errors, and an on-demand topological expansion mechanism must be provided.
-
----
-
-### 7. Anti-Patterns to Avoid
-
-| Anti-pattern | Manifestation | Why it must be eradicated |
-| :--- | :--- | :--- |
-| **Blueprint Dump** | Indiscriminately injecting the complete microservice architecture diagram of hundreds of thousands of tokens into every subtask | Dilutes attention, inducing model hallucination and cross-module erroneous modifications |
-| **Unbounded Editing** | Allows the development agent to modify external files not declared in the task contract at will | Causes hard-to-diagnose hidden logical damage and unit-test regressions |
-
----
-
-### 8. Lean 4 Formal Proof
+### 9. Lean 4 Formal Proof
 
 The least-privilege projection and SNR gain of this pattern have been verified by **Lean 4** mechanized formal proof (0 axioms, 0 sorry; source: `formal_proof/IACFormalization/src/IACFormalization/Pattern04_PoLPProjection.lean`, corresponding to Appendix B.13):
 

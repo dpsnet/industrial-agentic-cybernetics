@@ -15,9 +15,9 @@ This book's core contribution, established through cross-validation of controlle
 
 ---
 
-### 2. The System Exoskeleton Built by 22 Patterns
+### 2. The System Exoskeleton Built by 24 Patterns
 
-Reviewing the 8 pattern families summarized in this book:
+Reviewing the 9 pattern families summarized in this book:
 - **Substrate penetration and reality audit (Patterns 01-03)**: severs the model's self-referential deceptive instinct, anchoring every Exit 0 to objective facts of the physical world;
 - **Least-privilege projection and macro-micro elaboration (Patterns 04-06)**: tames context rot (Context Rot), keeping the agent maximally focused in the face of large-scale engineering;
 - **Pairing micro-loops and idempotent clock compensation (Patterns 07-09)**: breaks the self-healing black hole, ensuring rigorous monotonicity between code mutation and the causal order of the compile system;
@@ -25,9 +25,10 @@ Reviewing the 8 pattern families summarized in this book:
 - **Experience quarantine and the promotion gate (Patterns 13-15)**: endows the system with an immune system against memory poisoning (Memory Poisoning), giving the agent's experiential evolution positive compounding;
 - **Multiresolution projection and flight direction (Patterns 16-17)**: realizes high-bandwidth, low-cognitive-load asymmetric collaboration between human and agent;
 - **Hidden Oracle and objective physical sandboxes (Patterns 18-20)**: sets up an industrial-grade yardstick of truth with no dilution whatsoever;
-- **Efficiency economics and native architecture (Patterns 21-22)**: converges expensive large-model computation to a commercially viable productivity frontier.
+- **Efficiency economics and native architecture (Patterns 21-22)**: converges expensive large-model computation to a commercially viable productivity frontier;
+- **Production resilience and the feedback loop (Patterns 23-24)**: through runtime anomaly sniffing and defect-crystallization hotfix loops, realizes self-repair and empirical crystallization in the production field.
 
-These 22 patterns serve as mutual pivots, together constituting the solid foundation of modern autonomous software engineering.
+These 24 patterns serve as mutual pivots, together constituting the solid foundation of modern autonomous software engineering.
 
 ---
 

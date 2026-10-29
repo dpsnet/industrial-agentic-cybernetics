@@ -15,7 +15,7 @@
 | 《工业级智能体控制论：自主软件工程的设计模式与形式化架构》 | Industrial Agentic Cybernetics: Design Patterns and Formal Architecture for Autonomous Software Engineering |
 | 副题（大纲版）：从离散提示词到闭环控制论——大型语言模型智能体的物理锚定、因果不变性与自免疫收敛 | From Discrete Prompting to Closed-Loop Cybernetics: Physical Anchoring, Causal Invariance, and Auto-Immunity Convergence for Large Language Model Agents |
 | 作者 王斌（Bin Wang） | Bin Wang |
-| 机构 北京开路者科技有限公司 | 无官方英文名——英文页保留中文原名「北京开路者科技有限公司」，待作者裁决后统一替换 |
+| 机构 北京开路者科技有限公司 | Beijing Kailuzhe Technology Co., Ltd.（作者 2026-10-29 裁决的官方英文名，英文版统一使用） |
 | 版本 | v1.1.2 |
 | 概念 DOI | https://doi.org/10.5281/zenodo.23636677（始终指向最新版，正文引用不得另造 DOI） |
 | 许可证 | Code MIT · Text CC BY 4.0 |

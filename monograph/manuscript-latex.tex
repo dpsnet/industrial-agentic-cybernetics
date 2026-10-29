@@ -798,7 +798,7 @@ B.3：稀释严格性、三增长分支衰减、违约下界、两相模型、�
 InjectionCoupling 桥接 & E3/E3b+E4（Qwen2.5-1.5B/7B，≤131k）；E8
 负结果（三结构量跨模型不稳健） & 无直接生产闭环 & \(W^*\)
 为经验参数不写入形式化接口；定理 \(a/b\) ↔ 实验
-needle/填充段口径映射为未证假设（B.11） \\
+needle/填充段口径映射为未证假设（B.15） \\
 III 变异因果单调 & 分布式系统经典结论的应用迁移 & B.4：2 定理 +
 B.8/B.9（租约 5 定理、主写从读单写者因果序） & Cargo 1.96/NTFS 28/28
 组受控测量 & 模式 23/24：篡改注入 20 例全拒；708
@@ -817,7 +817,7 @@ Kimi / DeepSeek-V4.1-Flash-1017，预注册判读） & 模式 24：晋升
 三条结论：① 证据强度排序为 IV \textgreater{} II \textgreater{} III ≈
 I------``公理''名号不承载同等级经验确认；② 形式化层（B.2--B.10）全部为
 Lean 4 内核验证（0 sorry），其确证不随本表排序变化；③
-各公理适用域与开放项见 3.4 与附录 B.11。
+各公理适用域与开放项见 3.4 与附录 B.15。
 \end{quote}
 
 \paragraph{公理 I：物理非信任公理（Axiom of Physical
@@ -891,7 +891,7 @@ Dilution）}\label{ux516cux7406-iiux6ce8ux610fux529bux7a00ux91caux4e0eux7279ux67
   \(a\) 是单目标 token 的注意力质量，实验中的 \(a\) 是 needle
   整段总质量；定理中的 \(b\) 是全部非目标质量，实验中的 \(b\)
   是填充段总质量------这两条模型--现实映射是\textbf{未经证明的假设}，其成立性由残差通道漂移检验背书（附录
-  B.11）。\textbf{违约概率的传导边界（E4，2026-10-20）}：定理中的
+  B.15）。\textbf{违约概率的传导边界（E4，2026-10-20）}：定理中的
   \(P_{\text{violate}}(\rho) = 1 - \operatorname{snr}(\rho)/\operatorname{snr}(0)\)
   是\textbf{信噪比相对损失}，不是任务失败概率。E4
   端到端实验（Qwen2.5-1.5B/7B needle 检索正确率与 E3 SNR
@@ -903,7 +903,7 @@ Dilution）}\label{ux516cux7406-iiux6ce8ux610fux529bux7a00ux91caux4e0eux7279ux67
   \(P_{\text{violate}} \ge 1 - c^n\) 只在 \(\rho > W^*\)
   时传导为可观测的任务失败}；\(\rho < W^*\) 时 SNR 虽已衰减（7B 在 131k
   处 SNR 损失 44\%），但任务正确率不受影响。\(W^*\)
-  是经验参数，不写入形式化接口。认识论边界见附录 B.11。
+  是经验参数，不写入形式化接口。认识论边界见附录 B.15。
 \item
   \textbf{学术锚点}：该公理对应长上下文实证研究所刻画的\textbf{上下文退化（Context
   Rot）}现象：模型有效推理能力随无关上下文增长而显著衰减，呈``迷失在中间（Lost
@@ -1018,7 +1018,7 @@ Auto-Immunity）}\label{ux516cux7406-ivux7ecfux9a8cux81eaux514dux75abux516cux740
   \(\hat m\) 由模型转写倾向决定（实测区间
   \([0.56,0.98]\)，可含近临界核），隔离（\(\sigma=1\)）的灭绝保证与
   \(\hat m\)
-  取值无关；防御效果不得依赖模型自身的转写衰减}。认识论边界见附录 B.11。
+  取值无关；防御效果不得依赖模型自身的转写衰减}。认识论边界见附录 B.15。
 \item
   \textbf{双层连接状态（见
   1.4.5）}：本公理的理论实证（上段全部传播实验）在纯社会传播通道完成；生产现场的工程基质实证与理论层的连接------观测-学习回路
@@ -1148,7 +1148,7 @@ B.3）。 - \textbf{闭合判据}：逐 token
 补偿阈值为工程层经验参数，不写入形式化接口。} - \textbf{现状}：\(W^*\)
 属于三层知识地位中的工程层（1.4.2），可自由标定但不得援引定理层声称其取值；其物理语义------信噪比相对损失
 \(P_{\text{violate}}=1-\mathrm{snr}/\mathrm{snr}(0)\)
-传导为可观测失败的临界条件 \(\rho>W^*\)------尚未定理化（附录 B.11）。 -
+传导为可观测失败的临界条件 \(\rho>W^*\)------尚未定理化（附录 B.15）。 -
 \textbf{边界}：工程部署可在接口外标定
 \(W^*\)，理论结论不依赖其具体取值。 - \textbf{闭合判据}：将 \(W^*\)
 与信噪比相对损失的传导条件纳入形式化定理（Lean
@@ -1878,7 +1878,10 @@ C（打回反馈的全局噪声污染）}：当门禁系统打回一个微小缺
     \textbf{注意力极度聚焦}：消除了``长文本大海捞针（Needle in a
     Haystack）''难题，单次代码生成的准确率显著提升；
   \item
-    \textbf{杜绝副作用}：任务间的修改互不重叠，天然支持并行化开发与拓扑调度。
+    \textbf{杜绝副作用}：任务间的修改互不重叠，天然支持并行化开发与拓扑调度；
+  \item
+    \textbf{自愈重试精准收敛}：门禁打回反馈经靶向过滤仅回传任务关联
+    Finding，避免过度自愈反模式。
   \end{itemize}
 \item
   \textbf{代价 (Cons)}：
@@ -1887,7 +1890,11 @@ C（打回反馈的全局噪声污染）}：当门禁系统打回一个微小缺
   \tightlist
   \item
     要求前期架构设计（Design
-    Phase）必须具备高质量的结构化接口与模块划分能力，若架构设计切分模糊，投影出的切片可能缺失必要依赖信息。
+    Phase）必须具备高质量的结构化接口与模块划分能力，若架构设计切分模糊，投影出的切片可能缺失必要依赖信息；
+  \item
+    需要编排器维护架构蓝图与任务切片的双向动态映射，增加了编排层元数据维护成本；
+  \item
+    对于强耦合跨模块重构任务，切片声明过紧可能引发漏改编译错误，需提供按需拓扑展开机制。
   \end{itemize}
 \end{itemize}
 
@@ -1913,12 +1920,12 @@ Avoid)}\label{ux53cdux6a21ux5f0fux8b66ux793a-anti-patterns-to-avoid-3}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\textbf{全量设计大倒灌 (Monolithic Design Dumping)} & 每次调用 Dev Agent
-时将整个系统的上百页设计书全量拼入 Prompt &
-导致模型在巨量信息中迷失，并产生大量越界修改 \\
-\textbf{无界写权限 (Unbounded Write Access)} &
-允许开发智能体随意修改项目中任意文件而不加边界拦截 &
-极易发生修改公共基类或删除单测的毁灭性回归 \\
+\textbf{全量设计大倒灌 (Monolithic Design Dumping / Blueprint Dump)} & 每次调用 Dev Agent
+时将整个系统的上百页设计书或数十万 Token 的完整微服务架构图无差别拼入 Prompt &
+导致模型在巨量信息中迷失并产生幻觉，出现大量越界修改 \\
+\textbf{无界写权限 (Unbounded Write Access / Unbounded Editing)} &
+允许开发智能体随意修改项目中任意文件（含未在任务契约中声明的外部文件）而不加边界拦截 &
+极易发生修改公共基类或删除单测等隐蔽逻辑破坏与毁灭性回归 \\
 \end{longtable}
 }
 
@@ -1971,6 +1978,39 @@ Formulation)}\label{ux62bdux8c61ux7b97ux6cd5ux89c4ux7ea6-algorithmic-formulation
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{9. 形式化理论支撑 (Lean 4
+Formal Proof)}\label{ux5f62ux5f0fux5316ux7406ux8bbaux652fux6491-lean-4-formal-proof}
+
+本模式的最小特权投影与信噪比增益已由 \textbf{Lean 4}
+形式化机检验证（0 公理、0
+sorry，源码见
+\texttt{formal\_proof/IACFormalization/src/IACFormalization/Pattern04\_PoLPProjection.lean}，对应附录
+B.13）：
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{最小特权投影保真定理
+  (\texttt{polp\_preserves\_snr\_strictly})}：
+
+  \[\forall \text{ctx}, b_{ext} > 0 \implies \operatorname{snr}(\operatorname{projectPoLP}(\text{ctx})) > \operatorname{snr}(\text{ctx})\]
+  裁剪外部无关冗余上下文必然使任务目标检索信噪比严格提升。
+\item
+  \textbf{越界违约概率压降定理
+  (\texttt{polp\_strictly\_reduces\_violation\_risk})}：
+
+  \[\forall \text{ctx}, b_{ext} > 0 \implies P_{\text{violate}}(\operatorname{projectPoLP}(\text{ctx})) < P_{\text{violate}}(\text{ctx})\]
+  最小特权投影严格压降模型的注意力退化与越界代码篡改风险。
+\item
+  \textbf{特权嵌套单调性定理
+  (\texttt{polp\_monotone\_nesting})}：
+
+  \[b_1 \le b_2 \implies P_{\text{violate}}(a, b_1) \le P_{\text{violate}}(a, b_2)\]
+  投影切片越紧凑，其违约风险上界单调更低。
+\end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -4797,7 +4837,7 @@ Modes)}\label{ux52a8ux673aux4e0eux5de5ux4e1aux5931ux6548ux573aux666f-motivation-
 \begin{itemize}
 \tightlist
 \item
-  \textbf{失效场景 A（自愈死循环与失控黑洞 Runway Self-Healing
+  \textbf{失效场景 A（自愈死循环与失控黑洞 Runaway Self-Healing
   Spiral）}：
   智能体在修复一个复杂的编译报错时，由于对业务意图产生了误解，开始自主重构整个底层架构（如删除重要的核心基类）。在传统的单工阻塞系统（Synchronous
   Blocking
@@ -7088,11 +7128,10 @@ Agentic Cybernetics）}。
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\subsubsection{二、 22
+\subsubsection{二、 24
 个模式构筑的系统外骨骼}\label{ux4e8c-22-ux4e2aux6a21ux5f0fux6784ux7b51ux7684ux7cfbux7edfux5916ux9aa8ux9abc}
 
-回顾本书总结的 8 大模式族（覆盖模式 01--22；模式 23/24
-为生产现场实证模式，计入 24 模式体系）： -
+回顾本书总结的 9 大模式族： -
 \textbf{物理底座穿透与现实审计（Patterns
 01-03）}：斩断了模型的自指欺骗本能，让每一次 Exit 0
 都锚定于物理世界的客观事实； -
@@ -7111,10 +7150,11 @@ Poisoning）的免疫系统，使智能体的经验演进具备正向复利； -
 Oracle 与客观物理沙箱（Patterns
 18-20）}：树立了不掺任何水分的工业级真理标尺； -
 \textbf{能效工程与原生架构（Patterns
-21-22）}：将昂贵的大模型计算收敛至商业可行的生产力边界。
+21-22）}：将昂贵的大模型计算收敛至商业可行的生产力边界； -
+\textbf{生产韧性与反馈闭环（Patterns
+23-24）}：以运行时异常嗅探与缺陷萃取热修复闭环，实现生产现场的自我修复与经验沉淀。
 
-这 22 个模式（连同生产现场实证的模式 23/24，全书共 24
-模式）互为支点，共同构成了现代自主软件工程的坚实底座。
+这 24 个模式互为支点，共同构成了现代自主软件工程的坚实底座。
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -7393,7 +7433,7 @@ Transformer
 0）------实测 SNR 衰减由分子收缩与分母膨胀共同贡献；7B YaRN
 长程''下降相''经三通道补测判定为填充子通道向 sink
 的质量迁移，总非目标质量 \(t=b+r\) 全程非减（\texttt{hb\_nondec}
-总量口径实测存活）。详见附录 B.11 与
+总量口径实测存活）。详见附录 B.15 与
 \texttt{experiments/attention\_growth/EXPERIMENT\_PLAN.md}。
 \end{quote}
 

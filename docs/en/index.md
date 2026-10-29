@@ -12,9 +12,9 @@ title: English Edition
 
 This book systematically introduces classical system cybernetics, distributed-systems causal-consistency theory, compiler principles, and cognitive attention constraints into agent system architecture, distilling **9 pattern families, 24 industrial-grade design patterns**, and **four foundational cybernetic axioms**; all core theorems are kernel-verified in Lean 4 (118 items: 117 theorems + 1 auxiliary lemma, 0 axioms, 0 sorry).
 
-- **Full-typeset PDF**: [📄 Industrial-Agentic-Cybernetics.pdf (LaTeX-compiled edition, ~180 pages)](../Industrial-Agentic-Cybernetics.pdf)
+- **Full-typeset PDF (English edition)**: [📄 Industrial-Agentic-Cybernetics-en.pdf (LaTeX-compiled)](../Industrial-Agentic-Cybernetics-en.pdf) · [中文版 PDF (Chinese edition)](../Industrial-Agentic-Cybernetics.pdf)
 - **Zenodo DOI (concept, pointing to the latest version)**: `https://doi.org/10.5281/zenodo.23636677`
-- **License**: Code MIT · Text CC BY 4.0 (attribution: Bin Wang / 北京开路者科技有限公司)
+- **License**: Code MIT · Text CC BY 4.0 (attribution: Bin Wang / Beijing Kailuzhe Technology Co., Ltd.)
 
 ---
 

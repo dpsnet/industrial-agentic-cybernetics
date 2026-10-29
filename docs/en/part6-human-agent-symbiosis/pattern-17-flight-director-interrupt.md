@@ -12,7 +12,7 @@ Establish the supreme human-arbitration cybernetic mechanism of human–machine 
 
 In the operation of agent pipelines with extremely high end-to-end autonomy, severe situations in which the agent falls into an uncontrolled state frequently occur:
 
-- **Failure Mode A (Runway Self-Healing Spiral)**:
+- **Failure Mode A (Runaway Self-Healing Spiral)**:
   While repairing a complex compilation error, the agent — having misunderstood the business intent — begins autonomously refactoring the entire underlying architecture (e.g., deleting an important core base class). In a traditional synchronous blocking system, the human engineer can only watch helplessly as the console keeps scrolling errors and consuming enormous Tokens, unable to input a command to stop it, and is reduced to brutally killing the process (`Kill -9`), causing all previously valid work to be reduced to ashes;
 - **Failure Mode B (Unverified Self-Correction Fallacy)**:
   Academic research shows that, without external physical constraints, a large model's self-reflection is not only ineffective but often leads to performance degradation (Huang et al., ICLR 2024). During multi-round self-derivation, the agent becomes convinced that "users do not need tenant isolation" and begins stripping tenant contexts on a large scale. Humans need an elegant mechanism to "pull the reins";
