@@ -232,7 +232,7 @@ window.addEventListener('load', function () {
 <div class="topbar">
   {% if is_en %}
   <span><a href="{{ site.baseurl }}/en/index.html">📖 Online E-Book</a> · <a href="{{ site.baseurl }}/Industrial-Agentic-Cybernetics-en.pdf">PDF Full Edition (English)</a></span>
-  <span><a href="{{ page.url | remove_first: '/en' }}">中文版</a> · <a href="https://github.com/dpsnet/industrial-agentic-cybernetics/discussions">💬 Discussions</a> · <a href="https://github.com/dpsnet/industrial-agentic-cybernetics">GitHub Repository</a></span>
+  <span><a href="{{ site.baseurl }}{{ page.url | remove_first: '/en' }}">中文版</a> · <a href="https://github.com/dpsnet/industrial-agentic-cybernetics/discussions">💬 Discussions</a> · <a href="https://github.com/dpsnet/industrial-agentic-cybernetics">GitHub Repository</a></span>
   {% else %}
   <span><a href="{{ site.baseurl }}/index.html">📖 在线电子书</a> · <a href="{{ site.baseurl }}/Industrial-Agentic-Cybernetics.pdf">PDF 完整版</a></span>
   <span><a href="{{ site.baseurl }}/en{{ page.url | remove_first: site.baseurl }}">English</a> · <a href="https://github.com/dpsnet/industrial-agentic-cybernetics/discussions">💬 话题与讨论</a> · <a href="https://github.com/dpsnet/industrial-agentic-cybernetics">GitHub 仓库</a></span>
