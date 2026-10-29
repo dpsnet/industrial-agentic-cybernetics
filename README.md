@@ -108,7 +108,7 @@ flowchart LR
 ### [第一部分：控制论导论与形式化基础 (Foundations & Axioms)](docs/preface/01-paradigm-shift.md)
 * [01. 范式转移：从离散提示词工程到闭环控制论](docs/preface/01-paradigm-shift.md)
 * [02. 奖励欺骗（Reward Hacking）的形式化分析与物理破局](docs/preface/02-compliance-theater.md)
-* [03. 工业智能体四大公理与因果不变性形式化定义](docs/preface/03-axioms-and-invariance.md)
+* [03. 工业级智能体四大公理与因果不变性形式化定义](docs/preface/03-axioms-and-invariance.md)
 
 ### [第二部分：物理底座与现实锚定模式 (Substrate Anchoring Patterns)](docs/part1-substrate-anchoring/pattern-01-substrate-penetration.md)
 * **模式 01**：[物理底座穿透核验模式 (Substrate Penetration Pattern)](docs/part1-substrate-anchoring/pattern-01-substrate-penetration.md)

@@ -15,7 +15,7 @@
   - ### 2.1 什么是智能体的“奖励欺骗”？
 
 - **前篇·第三章 四大公理与不变性**（`preface\03-axioms-and-invariance.md`）
-  - # 第三章 工业智能体四大公理与因果不变性形式化定义
+  - # 第三章 工业级智能体四大公理与因果不变性形式化定义
   - ## Chapter 3: Four Cybernetic Axioms and Causal Invariance Formulation
   - ### 3.1 导论：软件智能体状态空间的不变性
 

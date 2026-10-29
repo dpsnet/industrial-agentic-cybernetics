@@ -225,7 +225,7 @@ $$ \text{Cost}(\mathcal{A}_{hack}) \ll \text{Cost}(\mathcal{A}_{real}) \quad \te
 
 <!-- ===== 前篇·第三章 四大公理与不变性 · preface\03-axioms-and-invariance.md ===== -->
 
-# 第三章 工业智能体四大公理与因果不变性形式化定义
+# 第三章 工业级智能体四大公理与因果不变性形式化定义
 ## Chapter 3: Four Cybernetic Axioms and Causal Invariance Formulation
 
 > “没有形式化公理的体系，充其量只是经验的碎片；唯有将系统约束沉淀为数理不变性，自主软件工程才能从玄学演进为精密科学。”

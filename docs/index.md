@@ -24,7 +24,7 @@ title: 工业级智能体控制论
 
 - [01. 范式转移：从离散提示词工程到闭环控制论](preface/01-paradigm-shift.html)
 - [02. 奖励欺骗（Reward Hacking）的形式化分析与物理破局](preface/02-compliance-theater.html)
-- [03. 工业智能体四大公理与因果不变性形式化定义](preface/03-axioms-and-invariance.html)
+- [03. 工业级智能体四大公理与因果不变性形式化定义](preface/03-axioms-and-invariance.html)
 
 ## 第一部分：物理底座与现实锚定 (Substrate Anchoring)
 
