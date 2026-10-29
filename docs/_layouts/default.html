@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% assign is_en = page.url contains '/en/' %}
+{% if page.url contains '/en/' %}{% assign is_en = true %}{% else %}{% assign is_en = false %}{% endif %}
 <html lang="{% if is_en %}en{% else %}zh-CN{% endif %}">
 <head>
 <meta charset="utf-8">
